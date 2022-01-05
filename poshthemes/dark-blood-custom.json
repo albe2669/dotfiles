@@ -1,0 +1,91 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#ffffff",
+          "properties": {
+            "display_host": false,
+            "postfix": "<#CB4B16>]</>",
+            "prefix": "<#CB4B16>┏[</>",
+            "user_info_separator": ""
+          },
+          "style": "plain",
+          "type": "session"
+        },
+				{
+          "type": "battery",
+					"style": "plain",
+					"foreground": "#ffffff",
+					"properties": {
+            "prefix": "<#CB4B16>[</>",
+						"postfix": "%<#CB4B16>]</>",
+            "battery_icon": "",
+            "charged_color": "#0476d0",
+            "charging_color": "#33DD2D",
+            "discharging_color": "#FFCD58",
+            "hide_error": true
+          }
+				},
+				{
+					"type": "time",
+          "style": "plain",
+					"foreground": "#ffffff",
+          "properties": {
+            "time_format": "15:04:05",
+						"prefix": "<#CB4B16>[</>",
+						"postfix": "<#CB4B16>]</>"
+					}
+				},
+        {
+          "foreground": "#ffffff",
+          "properties": {
+            "postfix": "<#CB4B16>]</>",
+            "prefix": "<#CB4B16>[</>"
+          },
+          "style": "plain",
+          "type": "git"
+        },
+        {
+          "foreground": "#ffffff",
+          "properties": {
+            "postfix": "<#CB4B16>]</>",
+            "prefix": "<#CB4B16>[</>"
+          },
+          "style": "plain",
+          "type": "root"
+        },
+        {
+          "foreground": "#ffffff",
+          "properties": {
+            "postfix": "<#CB4B16>]</>",
+            "prefix": "<#CB4B16>[x</>"
+          },
+          "style": "plain",
+          "type": "exit"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#ffffff",
+          "properties": {
+            "postfix": "<#CB4B16>]></>",
+            "prefix": "<#CB4B16>┖[</>",
+            "style": "full"
+          },
+          "style": "plain",
+          "type": "path"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true
+}
