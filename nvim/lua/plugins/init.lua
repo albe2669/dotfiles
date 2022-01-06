@@ -1,9 +1,13 @@
+require("plugins.filetype")
+
 require("plugins.telescope")
 
 require("plugins.cmp")
 require("plugins.autopairs")
 
 require("plugins.treesitter")
+
+require("plugins.neogen")
 
 -- LSP stuff
 require("plugins.lsp")
