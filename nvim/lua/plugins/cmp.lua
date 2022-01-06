@@ -1,12 +1,5 @@
-" incremental substitution (neovim)
-if has('nvim')
-  set inccommand=split
-endif
-
-" Setup Completion
-" See https://github.com/hrsh7th/nvim-cmp#basic-configuration
-lua << EOF
 local cmp = require'cmp'
+
 cmp.setup({
   -- Enable LSP snippets
   snippet = {
@@ -21,7 +14,7 @@ cmp.setup({
         return char ~= " " and char ~= "\t" and char ~= "\n"
       end, trigger_characters)
     end,
-    }, 
+  }, 
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -34,6 +27,7 @@ cmp.setup({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     }),
+    -- Go to next on Tab
     ["<Tab>"] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -41,6 +35,7 @@ cmp.setup({
         fallback()
       end
     end,
+    -- Go back on Shift+tab
     ["<S-Tab>"] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -58,4 +53,3 @@ cmp.setup({
     { name = 'buffer' },
   },
 })
-EOF

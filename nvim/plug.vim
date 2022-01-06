@@ -10,6 +10,10 @@ call plug#begin(g:plug_location)
 " Plug 'gruvbox-community/gruvbox'
 Plug 'ntk148v/vim-horizon'
 
+" Lua line
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+
 " LSP client
 Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/null-ls.nvim'
