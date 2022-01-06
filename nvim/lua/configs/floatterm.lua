@@ -1,7 +1,6 @@
 local u = require("utils")
 
 -- Start lazygit in terminal when pressing F7
-u.nmap("<F7>", ":FloatermNew lazygit<CR>")
+u.nmap("<F7>", ":FloatermNew --disposable lazygit<CR>")
 
--- Ignore process exited message
--- vim.cmd("autocmd TermClose term://*lazygit execute 'bdelete! ' . expand('<abuf>')")
+vim.g.floaterm_autoclose = 1
