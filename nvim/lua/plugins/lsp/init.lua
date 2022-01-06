@@ -83,8 +83,6 @@ local on_attach = function(client, bufnr)
     if client.supports_method("textDocument/completion") then
       vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
       u.buf_map(bufnr, "i", "<C-Space>", "<C-x><C-o>")
-      -- automatically trigger on .
-      u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
     end
 end
 
