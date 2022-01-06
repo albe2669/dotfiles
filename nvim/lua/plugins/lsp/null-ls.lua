@@ -3,8 +3,6 @@ local null_ls = require("null-ls")
 local builtins = null_ls.builtins
 
 local sources = {
-    builtins.formatting.prettier,
-
     builtins.hover.dictionary,
 
     builtins.diagnostics.tsc,
