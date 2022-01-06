@@ -66,6 +66,9 @@ set whichwrap+=<,>,h,l,[,]
 " TODO: Set one for linux
 if has('win32')
 	set shell=powershell
+  set shellcmdflag=-c
+  set shellquote=\"
+  set shellxquote=
 else
   set shell=/bin/zsh
 endif
