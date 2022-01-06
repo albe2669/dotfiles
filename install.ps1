@@ -18,7 +18,7 @@ function Test-Symbolic-Link([string]$path) {
     }
 }
 
-$appdataDirectory = "~\AppData\Local\Programs\dotfiles"
+$appdataDirectory = Join-Path -Path $env:LOCALAPPDATA -ChildPath "dotfiles"
 
 # Create dotfiles directory in appdata if it doesn't exist
 if (!(Test-Path $appdataDirectory)) {
@@ -41,6 +41,26 @@ if (Test-Symbolic-Link $themePath) {
     Log("Creating symbolic link for themes: ${themePath}")
 
     New-Item -ItemType SymbolicLink -Path $themePath -Value .\poshthemes -Force
+
+    Log("Symbolic link created.")
+}
+
+
+$nvimPath = Join-Path -Path $env:LOCALAPPDATA -ChildPath "nvim"
+if (Test-Symbolic-Link $nvimPath) {
+    Log("Creating symbolic link for nvim: ${nvimPath}")
+
+    New-Item -ItemType SymbolicLink -Path $nvimPath -Value .\nvim -Force
+
+    Log("Symbolic link created.")
+}
+
+
+$lazygitPath = Join-Path -Path $env:APPDATA -ChildPath "lazygit"
+if (Test-Symbolic-Link $lazygitPath) {
+    Log("Creating symbolic link for lazygit: ${lazygitPath}")
+
+    New-Item -ItemType SymbolicLink -Path $lazygitPath -Value .\lazygit -Force
 
     Log("Symbolic link created.")
 }
