@@ -20,7 +20,7 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
 " Improve the LSP ui
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
 
 " Completion framework
 Plug 'hrsh7th/nvim-cmp'
