@@ -91,7 +91,7 @@ end
 
 
 for _, config in ipairs({ 
-  "null-ls",
+--  "null-ls",
   "rs-server",
   "ts-server",
   "eslint-server",
