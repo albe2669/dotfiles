@@ -12,6 +12,8 @@ Plug 'ntk148v/vim-horizon'
 
 " Lua line
 Plug 'nvim-lualine/lualine.nvim'
+
+" Icons, used by lualine and cokeline
 Plug 'kyazdani42/nvim-web-devicons'
 
 " LSP client
