@@ -32,6 +32,7 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 
 " Snippet completion source for nvim-cmp
 Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 " Other usefull completion sources
 Plug 'hrsh7th/cmp-path'
