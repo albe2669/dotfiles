@@ -6,6 +6,10 @@ scriptencoding utf-8
 set fileencoding=utf-8
 set encoding=utf8
 
+" Line endings
+set fileformat=unix
+set fileformats=unix
+
 " Disable compatability mode
 set nocompatible
 
@@ -60,7 +64,6 @@ set smartcase
 
 " When going back on line move up or down
 set whichwrap+=<,>,h,l,[,]
-
 
 " Set shell
 " TODO: Set one for linux
