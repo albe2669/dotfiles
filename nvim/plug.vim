@@ -41,6 +41,9 @@ Plug 'hrsh7th/cmp-buffer'
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
 Plug 'simrat39/rust-tools.nvim'
 
+" Http client
+Plug 'NTBBloodbath/rest.nvim'
+
 " Tree sitter, better language highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 

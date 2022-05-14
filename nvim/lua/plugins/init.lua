@@ -7,6 +7,8 @@ require("plugins.autopairs")
 
 require("plugins.treesitter")
 
+require("plugins.rest")
+
 require("plugins.neogen")
 
 -- LSP stuff

@@ -31,6 +31,7 @@ require('nvim-treesitter.configs').setup({
     "vim",
     "vue",
     "typescript",
+    "http",
   },
 })
 
