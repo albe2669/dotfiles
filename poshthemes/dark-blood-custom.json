@@ -8,42 +8,38 @@
           "foreground": "#ffffff",
           "properties": {
             "display_host": false,
-            "postfix": "<#CB4B16>]</>",
-            "prefix": "<#CB4B16>┏[</>",
-            "user_info_separator": ""
+            "template": "<#CB4B16>\u250f[</>{{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}<#CB4B16>]</>"
           },
           "style": "plain",
           "type": "session"
         },
-				{
-          "type": "battery",
-					"style": "plain",
-					"foreground": "#ffffff",
-					"properties": {
-            "prefix": "<#CB4B16>[</>",
-						"postfix": "%<#CB4B16>]</>",
-            "battery_icon": "",
-            "charged_color": "#0476d0",
-            "charging_color": "#33DD2D",
-            "discharging_color": "#FFCD58",
-            "hide_error": true
-          }
-				},
-				{
-					"type": "time",
-          "style": "plain",
-					"foreground": "#ffffff",
+        {
+          "foreground": "#ffffff",
+          "foreground_templates": [
+            "{{ if eq \"Full\" .State.String }}#0476d0{{ end }}",
+            "{{ if eq \"Charging\" .State.String }}#33DD2D{{ end }}",
+            "{{ if eq \"Discharging\" .State.String }}#FFCD58{{ end }}"
+          ],
           "properties": {
-            "time_format": "15:04:05",
-						"prefix": "<#CB4B16>[</>",
-						"postfix": "<#CB4B16>]</>"
-					}
-				},
+            "hide_error": true,
+            "template": "<#CB4B16>[</>{{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}{{ .Error }}%<#CB4B16>]</>"
+          },
+          "style": "plain",
+          "type": "battery"
+        },
         {
           "foreground": "#ffffff",
           "properties": {
-            "postfix": "<#CB4B16>]</>",
-            "prefix": "<#CB4B16>[</>"
+            "template": "<#CB4B16>[</>{{ .CurrentDate | date .Format }}<#CB4B16>]</>",
+            "time_format": "15:04:05"
+          },
+          "style": "plain",
+          "type": "time"
+        },
+        {
+          "foreground": "#ffffff",
+          "properties": {
+            "template": "<#CB4B16>[</>{{ .HEAD }} {{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0}} \uf692 {{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}} \uf1bb {{ .WorktreeCount }}{{ end }}<#CB4B16>]</>"
           },
           "style": "plain",
           "type": "git"
@@ -51,8 +47,7 @@
         {
           "foreground": "#ffffff",
           "properties": {
-            "postfix": "<#CB4B16>]</>",
-            "prefix": "<#CB4B16>[</>"
+            "template": "<#CB4B16>[</>\uf0e7<#CB4B16>]</>"
           },
           "style": "plain",
           "type": "root"
@@ -60,8 +55,7 @@
         {
           "foreground": "#ffffff",
           "properties": {
-            "postfix": "<#CB4B16>]</>",
-            "prefix": "<#CB4B16>[x</>"
+            "template": "<#CB4B16>[x</>{{ if gt .Code 0 }}\uf00d {{ .Meaning }}{{ else }}\uf42e{{ end }}<#CB4B16>]</>"
           },
           "style": "plain",
           "type": "exit"
@@ -76,9 +70,8 @@
         {
           "foreground": "#ffffff",
           "properties": {
-            "postfix": "<#CB4B16>]></>",
-            "prefix": "<#CB4B16>┖[</>",
-            "style": "full"
+            "style": "full",
+            "template": "<#CB4B16>\u2516[</>{{ .Path }}<#CB4B16>]></>"
           },
           "style": "plain",
           "type": "path"
@@ -87,5 +80,6 @@
       "type": "prompt"
     }
   ],
-  "final_space": true
+  "final_space": true,
+  "version": 1
 }
