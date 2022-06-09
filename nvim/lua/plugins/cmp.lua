@@ -44,7 +44,9 @@ cmp.setup({
       end
     end,
   },
-
+  experimental = {
+    ghost_text = true
+  },
   -- Installed sources
   sources = {
     { name = 'nvim_lsp' },
