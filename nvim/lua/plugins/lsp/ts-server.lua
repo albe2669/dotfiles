@@ -1,6 +1,5 @@
 local u = require("utils")
 
-
 local T = {
   setup = function(on_attach)
     local nvim_lsp = require('lspconfig')

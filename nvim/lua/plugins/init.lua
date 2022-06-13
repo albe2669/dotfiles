@@ -12,6 +12,7 @@ require("plugins.rest")
 require("plugins.neogen")
 
 -- LSP stuff
+require("plugins.lsp.lsp-installer")
 require("plugins.lsp")
 
 require("plugins.webicons")

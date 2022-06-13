@@ -16,6 +16,9 @@ Plug 'nvim-lualine/lualine.nvim'
 " Icons, used by lualine and cokeline
 Plug 'kyazdani42/nvim-web-devicons'
 
+" LSP installer
+Plug 'williamboman/nvim-lsp-installer'
+
 " LSP client
 Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/null-ls.nvim'

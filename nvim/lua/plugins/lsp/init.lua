@@ -67,14 +67,15 @@ local on_attach = function(client, bufnr)
     vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
 
     u.buf_map(bufnr, "n", "gd", ":LspDef<CR>")
-    u.buf_map(bufnr, "n", "gr", ":LspRename<CR>")
     u.buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>")
+    u.buf_map(bufnr, "n", "gI", ":LspImplementation<CR>")
     u.buf_map(bufnr, "n", "K", ":LspHover<CR>")
     u.buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>")
     u.buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>")
-    u.buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>")
-    u.buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>")
-    u.buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")
+    u.buf_map(bufnr, "n", "<Leader>lr", ":LspRename<CR>")
+    u.buf_map(bufnr, "n", "<Leader>la", ":LspCodeAction<CR>")
+    u.buf_map(bufnr, "n", "<Leader>ld", ":LspDiagLine<CR>")
+    u.buf_map(bufnr, "i", "<Leader>lh", "<cmd> LspSignatureHelp<CR>")
 
     if client.supports_method("textDocument/formatting") then
       vim.cmd("autocmd BufWritePre <buffer> lua global.lsp.formatting()")
@@ -93,7 +94,8 @@ for _, config in ipairs({
   "rs-server",
   "ts-server",
   "eslint-server",
---  "lua-server"
+  "yaml-server",
+  "lua-server"
 }) do
   require("plugins.lsp." .. config).setup(on_attach)
 end
