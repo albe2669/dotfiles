@@ -1,6 +1,5 @@
 local u = require("utils")
 
-print("test")
 require("neogen").setup({
   enabled = true,
   ...
