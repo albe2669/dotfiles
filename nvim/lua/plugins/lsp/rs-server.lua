@@ -32,6 +32,7 @@ local opts = {
 
 local R = {
   setup = function(on_attach)
+    opts.server.on_attach = on_attach -- Add the callback to the object
     require('rust-tools').setup(opts)
   end
 }
