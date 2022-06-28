@@ -8,7 +8,7 @@ local Y = {
       settings = {
         yaml = {
           schemas = {
-            ["kubernetes"] = "*.yaml"
+            ["kubernetes"] = ".infrastructure/kubernetes/**/*.yaml"
           }
         }
       }
