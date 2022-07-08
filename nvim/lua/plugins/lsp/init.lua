@@ -43,7 +43,8 @@ local formatting = function()
     end
 
     if result and result.result then
-        lsp.util.apply_text_edits(result.result, bufnr)
+        local offset_encoding = selected_client.offset_encoding
+        lsp.util.apply_text_edits(result.result, bufnr, offset_encoding)
     end
 end
 
