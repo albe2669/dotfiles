@@ -95,7 +95,9 @@ for _, config in ipairs({
   "ts-server",
   "eslint-server",
   "yaml-server",
-  "lua-server"
+  "lua-server",
+  "bash-server",
+  "terraform-server"
 }) do
   require("plugins.lsp." .. config).setup(on_attach)
 end
