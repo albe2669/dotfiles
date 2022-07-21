@@ -33,6 +33,7 @@ fi
 
 
 # Shell themes
+# TODO: Remove
 theme_path="$config_directory/poshthemes"
 if test_symbolic_link "$theme_path"; then
     log "Creating $theme_path directory"
@@ -42,6 +43,18 @@ if test_symbolic_link "$theme_path"; then
     log "Symbolic link created"
 fi
 
+# Shell config
+shell_path="$config_directory/fish"
+if test_symbolic_link "$shell_path"; then
+  log "Creating $shell_path directory"
+
+  ln -s "$PWD/fish" "$shell_path"
+
+  log "Symbolic link created"
+fi
+
+# TODO: Run these as root
+# sudo ln -s "$PWD/fish/bin_files" "/usr/local/bin/node"
 
 # Nvim
 nvim_path="$base_config_directory/nvim"
