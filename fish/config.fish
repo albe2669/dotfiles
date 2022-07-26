@@ -11,3 +11,4 @@ fish_add_path $HOME/.cargo/bin
 
 fish_add_path $HOME/Documents/Installs/lazygit
 fish_add_path $HOME/Documents/Installs/dagger/bin
+fish_add_path $HOME/Documents/Installs/google-cloud-sdk/bin
