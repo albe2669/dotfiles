@@ -73,7 +73,7 @@ if has('win32')
   set shellquote=\"
   set shellxquote=
 else
-  set shell=/bin/zsh
+  set shell=/usr/bin/fish
 endif
 
 " Imports

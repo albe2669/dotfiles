@@ -8,7 +8,8 @@ endif
 call plug#begin(g:plug_location)
 " Themes
 " Plug 'gruvbox-community/gruvbox'
-Plug 'ntk148v/vim-horizon'
+" Plug 'ntk148v/vim-horizon'
+Plug 'sainnhe/everforest'
 
 " Lua line
 Plug 'nvim-lualine/lualine.nvim'

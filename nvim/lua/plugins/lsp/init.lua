@@ -98,7 +98,8 @@ for _, config in ipairs({
   "yaml-server",
   "lua-server",
   "bash-server",
-  "terraform-server"
+  "terraform-server",
+  "dagger-server",
 }) do
   require("plugins.lsp." .. config).setup(on_attach)
 end
