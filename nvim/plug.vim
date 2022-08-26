@@ -46,6 +46,9 @@ Plug 'hrsh7th/cmp-buffer'
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
 Plug 'simrat39/rust-tools.nvim'
 
+" More clangd features
+Plug 'p00f/clangd_extensions.nvim'
+
 " Http client
 Plug 'NTBBloodbath/rest.nvim'
 

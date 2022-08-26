@@ -13,6 +13,7 @@ require('nvim-treesitter.configs').setup({
     enable_autocmd = true,
   },
   ensure_installed = {
+    "c",
     "tsx",
     "toml",
     "json",
