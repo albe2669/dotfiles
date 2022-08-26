@@ -19,4 +19,5 @@ require("plugins.lualine")
 
 require("plugins.floatterm")
 
+require("plugins.rooter")
 require("plugins.nerdtree")
