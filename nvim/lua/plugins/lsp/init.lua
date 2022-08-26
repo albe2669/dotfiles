@@ -16,9 +16,9 @@ local preferred_formatting_clients = { "eslint" }
 local fallback_formatting_client = "null-ls"
 
 local formatting = function()
-    local bufnr = api.nvim_get_current_buf()
+  local bufnr = api.nvim_get_current_buf()
 
-    local selected_client
+  local selected_client
     for _, client in ipairs(lsp.get_active_clients()) do
         if vim.tbl_contains(preferred_formatting_clients, client.name) then
             selected_client = client
@@ -88,8 +88,6 @@ local on_attach = function(client, bufnr)
     end
 end
 
-
-
 for _, config in ipairs({ 
   "null-ls",
   "rs-server",
@@ -104,6 +102,11 @@ for _, config in ipairs({
   require("plugins.lsp." .. config).setup(on_attach)
 end
 
+require("mason").setup({})
+require("mason-lspconfig").setup({
+  automatic_installation = true,
+})
+
 -- Hide lspconfig messages
 local notify = vim.notify
 vim.notify = function(msg, ...)
@@ -113,4 +116,5 @@ vim.notify = function(msg, ...)
 
   notify(msg, ...)
 end
+
 
