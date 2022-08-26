@@ -75,5 +75,6 @@ Plug 'mg979/vim-visual-multi' " Multi cursor
 Plug 'wakatime/vim-wakatime' " Timetracking
 Plug 'nathom/filetype.nvim' " Speed up startup time
 Plug 'danymat/neogen' " Generate annotations
+Plug 'github/copilot.vim'
 call plug#end()
 
