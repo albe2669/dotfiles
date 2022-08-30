@@ -51,7 +51,6 @@ telekastenConfig.vaults = {
   bosc = getConfig(uniHome .. '/semester-5/BOSC/notes')
 }
 
-print(vim.inspect(telekastenConfig))
 require('telekasten').setup(telekastenConfig)
 
 -- Commands
