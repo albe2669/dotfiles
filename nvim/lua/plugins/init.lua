@@ -12,7 +12,6 @@ require("plugins.rest")
 require("plugins.neogen")
 
 -- LSP stuff
-require("plugins.lsp.lsp-installer")
 require("plugins.lsp")
 
 require("plugins.webicons")
@@ -20,4 +19,5 @@ require("plugins.lualine")
 
 require("plugins.floatterm")
 
+require("plugins.rooter")
 require("plugins.nerdtree")

@@ -18,7 +18,8 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " LSP installer
-Plug 'williamboman/nvim-lsp-installer'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 
 " LSP client
 Plug 'neovim/nvim-lspconfig'
@@ -44,6 +45,9 @@ Plug 'hrsh7th/cmp-buffer'
 
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
 Plug 'simrat39/rust-tools.nvim'
+
+" More clangd features
+Plug 'p00f/clangd_extensions.nvim'
 
 " Http client
 Plug 'NTBBloodbath/rest.nvim'
