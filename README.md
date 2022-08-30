@@ -7,6 +7,7 @@
 - [neovim](https://github.com/neovim/neovim/releases/latest)
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [fd](https://github.com/sharkdp/fd/releases/latest)
+- [rg](https://github.com/BurntSushi/ripgrep)
 - [fisher](https://github.com/jorgebucaran/fisher)
 
 ### Font
