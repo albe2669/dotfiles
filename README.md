@@ -7,6 +7,7 @@
 - [neovim](https://github.com/neovim/neovim/releases/latest)
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [fd](https://github.com/sharkdp/fd/releases/latest)
+  - You will need PCRE2 support for telekazten, so install with `cargo install ripgrep --features 'pcre2'`
 - [rg](https://github.com/BurntSushi/ripgrep)
 - [fisher](https://github.com/jorgebucaran/fisher)
 
