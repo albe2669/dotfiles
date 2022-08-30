@@ -80,6 +80,7 @@ Plug 'danymat/neogen' " Generate annotations
 
 " Note taking
 Plug 'renerocksai/telekasten.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 call plug#end()
 
