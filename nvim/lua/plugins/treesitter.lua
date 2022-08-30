@@ -33,6 +33,7 @@ require('nvim-treesitter.configs').setup({
     "vue",
     "typescript",
     "http",
+    "markdown",
   },
 })
 
