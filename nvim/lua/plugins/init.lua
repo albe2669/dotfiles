@@ -21,3 +21,5 @@ require("plugins.floatterm")
 
 require("plugins.rooter")
 require("plugins.nerdtree")
+
+require("plugins.telekasten")

@@ -59,6 +59,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-media-files.nvim'
 
 " Popup terminal
 Plug 'voldikss/vim-floaterm'
@@ -75,6 +76,10 @@ Plug 'mg979/vim-visual-multi' " Multi cursor
 Plug 'wakatime/vim-wakatime' " Timetracking
 Plug 'nathom/filetype.nvim' " Speed up startup time
 Plug 'danymat/neogen' " Generate annotations
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
+
+" Note taking
+Plug 'renerocksai/telekasten.nvim'
+
 call plug#end()
 
