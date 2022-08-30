@@ -2,7 +2,8 @@ local utils = require("utils")
 
 local actions = require('telescope.actions')
 
-require('telescope').setup{
+require('telescope').load_extension('media_files')
+require('telescope').setup({
   defaults = {
     mappings = {
       n = {
@@ -13,7 +14,7 @@ require('telescope').setup{
       }
     },
   }
-}
+})
 
 utils.nmap("<c-p>", "<cmd>Telescope find_files<cr>")
 utils.nmap(";r", "<cmd>Telescope live_grep<cr>")
