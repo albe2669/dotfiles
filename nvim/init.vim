@@ -30,6 +30,9 @@ set shiftwidth=2
 set expandtab
 set smarttab
 
+" Dont do any of the above for make files
+autocmd FileType make set noexpandtab
+
 " Show title of file
 set title
 

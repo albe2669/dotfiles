@@ -99,6 +99,7 @@ for _, config in ipairs({
   "terraform-server",
   "dagger-server",
   "c-server",
+  "cmake-server",
 }) do
   require("plugins.lsp." .. config).setup(on_attach)
 end
