@@ -13,9 +13,9 @@ require('telekasten').setup({
     auto_set_filetype = true,
 
     -- dir names for special notes (absolute path or subdir name)
-    dailies      = home .. '/' .. 'daily',
-    weeklies     = home .. '/' .. 'weekly',
-    templates    = home .. '/' .. 'templates',
+    dailies      = '.',
+    weeklies     = '.',
+    templates    = './templates',
 
     -- image (sub)dir for pasting
     -- dir name (absolute path or subdir name)
@@ -99,7 +99,7 @@ require('telekasten').setup({
     -- - prefer_new_note: use `new_note` template
     -- - smart: if day or week is detected in title, use daily / weekly templates (default)
     -- - always_ask: always ask before creating a note
-    template_handling = "new_note",
+    template_handling = "prefer_new_note",
 
     -- path handling:
     --   this applies to:
@@ -128,11 +128,11 @@ require('telekasten').setup({
     rename_update_links = true,
 
     vaults = {
-        uni = {
-            -- alternate configuration for vault2 here. Missing values are defaulted to
-            -- default values from telekasten.
-            -- e.g.
-            home = baseHome .. "/Documents/Uni",
+        bosc = {
+            home = baseHome .. "/Documents/Uni/semester-5/BOSC/notes",
+            dailies      = '.',
+            weeklies     = '.',
+            templates    = './templates',
         },
     },
 
