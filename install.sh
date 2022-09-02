@@ -76,3 +76,14 @@ if test_symbolic_link "$lazy_git_path"; then
 
     log "Symbolic link created"
 fi
+
+zathura_path="$base_config_directory/zathura"
+if test_symbolic_link "$zathura_path"; then
+    log "Creating $zathura_path directory"
+
+    ln -s "$PWD/zathura" "$zathura_path"
+
+    log "Symbolic link created"
+fi
+
+

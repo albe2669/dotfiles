@@ -48,7 +48,8 @@ local uniHome = baseHome .. '/Documents/Uni/'
 
 local telekastenConfig = getConfig(baseHome .. '/Documents/Zettelkasten')
 telekastenConfig.vaults = {
-  bosc = getConfig(uniHome .. '/semester-5/BOSC/notes')
+  bosc = getConfig(uniHome .. '/semester-5/BOSC/notes'),
+  bsec1 = getConfig(uniHome .. '/semester-5/BSEC1/notes'),
 }
 
 require('telekasten').setup(telekastenConfig)
