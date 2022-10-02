@@ -3,7 +3,7 @@ local T = {
     local lspconfig = require("lspconfig")
 
     lspconfig.terraformls.setup({
-
+      on_attach = on_attach
     })
   end,
 }

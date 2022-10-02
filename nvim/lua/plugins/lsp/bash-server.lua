@@ -3,7 +3,7 @@ local B = {
     local lspconfig = require("lspconfig")
 
     lspconfig.bashls.setup({
-
+      on_attach = on_attach
     })
   end,
 }

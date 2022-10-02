@@ -100,6 +100,7 @@ for _, config in ipairs({
   "dagger-server",
   "c-server",
   "cmake-server",
+  "python-server",
 }) do
   require("plugins.lsp." .. config).setup(on_attach)
 end
