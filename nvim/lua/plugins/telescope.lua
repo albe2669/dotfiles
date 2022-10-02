@@ -13,7 +13,18 @@ require('telescope').setup({
         ["<Esc>"] = actions.close,
       }
     },
-  }
+  },
+  pickers = {
+    find_files = {
+      find_command = {
+        "rg",
+        "--files",
+        "--hidden",
+        "--glob",
+        "!.git/",
+      },
+    },
+  },
 })
 
 utils.nmap("<c-p>", "<cmd>Telescope find_files<cr>")
