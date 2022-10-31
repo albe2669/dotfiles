@@ -133,6 +133,11 @@ npm install -g typescript typescript-language-server vscode-langservers-extracte
 python3 -m pip install pyright
 ```
 
+### YAML
+```
+npm install -g yaml-language-server
+```
+
 ## Apps
 - Install discord
   - Can be done through the pop-shop
