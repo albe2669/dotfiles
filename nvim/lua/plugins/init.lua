@@ -23,3 +23,6 @@ require("plugins.rooter")
 require("plugins.nerdtree")
 
 require("plugins.telekasten")
+
+-- LaTeX
+require("plugins.vimtex")

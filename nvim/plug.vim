@@ -29,6 +29,9 @@ Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 " Improve the LSP ui
 " Plug 'glepnir/lspsaga.nvim'
 
+" LaTeX
+Plug 'lervag/vimtex'
+
 " Completion framework
 Plug 'hrsh7th/nvim-cmp'
 
