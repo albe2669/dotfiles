@@ -24,6 +24,11 @@ local opts = {
 							checkOnSave = {
 									command = "clippy"
 							},
+              cargo = {
+                buildScripts = {
+                  enable = true
+                }
+              }
 					}
 			}
 	},
