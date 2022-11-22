@@ -12,6 +12,7 @@ fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/Documents/Installs/nvim
 fish_add_path $HOME/Documents/Installs/lazygit
 fish_add_path $HOME/Documents/Installs/kubectl
+fish_add_path $HOME/Documents/Installs/kustomize
 fish_add_path $HOME/Documents/Installs/dagger/bin
 fish_add_path $HOME/Documents/Installs/rust_analyzer
 fish_add_path $HOME/Documents/Installs/google-cloud-sdk/bin
