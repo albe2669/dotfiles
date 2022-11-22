@@ -101,6 +101,7 @@ for _, config in ipairs({
   "c-server",
   "cmake-server",
   "python-server",
+  "go-server",
 }) do
   require("plugins.lsp." .. config).setup(on_attach)
 end
