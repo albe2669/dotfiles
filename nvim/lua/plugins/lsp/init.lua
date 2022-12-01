@@ -10,42 +10,25 @@ vim.diagnostic.config({ virtual_text = true, float = border_opts })
 lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, border_opts)
 lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, border_opts)
 
--- use lsp formatting if it's available (and if it's good)
--- otherwise, fall back to null-ls
-local preferred_formatting_clients = { "eslint" }
-local fallback_formatting_client = "null-ls"
-
 local formatting = function()
   local bufnr = api.nvim_get_current_buf()
+  -- Loop all the clients and use their formatting
+  for _, client in ipairs(lsp.get_active_clients()) do
+    if client.supports_method("textDocument/formatting") then
+      local params = lsp.util.make_formatting_params()
+      local result, err = client.request_sync("textDocument/formatting", params, 5000, bufnr)
+      if err then
+          local err_msg = type(err) == "string" and err or err.message
+          vim.notify("global.lsp.formatting: " .. err_msg, vim.log.levels.WARN)
+          return
+      end
 
-  local selected_client
-    for _, client in ipairs(lsp.get_active_clients()) do
-        if vim.tbl_contains(preferred_formatting_clients, client.name) then
-            selected_client = client
-            break
-        end
-
-        if client.name == fallback_formatting_client then
-            selected_client = client
-        end
+      if result and result.result then
+          local offset_encoding = client.offset_encoding
+          lsp.util.apply_text_edits(result.result, bufnr, offset_encoding)
+      end
     end
-
-    if not selected_client then
-        return
-    end
-
-    local params = lsp.util.make_formatting_params()
-    local result, err = selected_client.request_sync("textDocument/formatting", params, 5000, bufnr)
-    if err then
-        local err_msg = type(err) == "string" and err or err.message
-        vim.notify("global.lsp.formatting: " .. err_msg, vim.log.levels.WARN)
-        return
-    end
-
-    if result and result.result then
-        local offset_encoding = selected_client.offset_encoding
-        lsp.util.apply_text_edits(result.result, bufnr, offset_encoding)
-    end
+  end
 end
 
 global.lsp = {
