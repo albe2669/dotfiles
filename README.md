@@ -25,6 +25,10 @@
 - Add windows terminal profiles and settings
 - Add git signs
 - Add [bufferline](https://github.com/akinsho/bufferline.nvim) or cokeline
+- Setup PolyBar
+- Setup screenshotting tool
+- Configure lock screen
+- Install guide
 
 ## Shell
 ```bash
