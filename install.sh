@@ -19,71 +19,72 @@ test_symbolic_link() {
     return 0
 }
 
+create_directory() {
+  target_dir=$1
+
+  if [ ! -d "$target_dir" ]; then
+    log "Creating $target_dir directory"
+
+    mkdir -p "$target_dir"
+
+    log "directory created"
+  fi
+}
+
+create_link() {
+  target_loc=$1
+  local_loc=$2
+
+  if test_symbolic_link "$1"; then
+    log "Creating $1 link"
+
+    ln -s "$PWD/$local_loc" "$target_loc"
+
+    log "Symbolic link created"
+  fi
+}
+
 base_config_directory="$HOME/.config"
 
 # Config directory, where config files without specific locations are stored
 config_directory="$base_config_directory/dotfiles"
-if [ ! -d "$config_directory" ]; then
-    log "Creating $config_directory directory"
-
-    mkdir -p "$config_directory"
-
-    log "Directory created"
-fi
-
+create_directory "$config_directory"
 
 # Shell themes
-# TODO: Remove
 theme_path="$config_directory/poshthemes"
-if test_symbolic_link "$theme_path"; then
-    log "Creating $theme_path directory"
-    
-    ln -s "$PWD/poshthemes" "$theme_path"
-    
-    log "Symbolic link created"
-fi
+create_link "$theme_path" "poshthemes"
 
 # Shell config
 shell_path="$config_directory/fish"
-if test_symbolic_link "$shell_path"; then
-  log "Creating $shell_path directory"
-
-  ln -s "$PWD/fish" "$shell_path"
-
-  log "Symbolic link created"
-fi
+create_link "$shell_path" "fish"
 
 # TODO: Run these as root
 # sudo ln -s "$PWD/fish/bin_files" "/usr/local/bin/node"
 
 # Nvim
 nvim_path="$base_config_directory/nvim"
-if test_symbolic_link "$nvim_path"; then
-    log "Creating $nvim_path directory"
-
-    ln -s "$PWD/nvim" "$nvim_path"
-
-    log "Symbolic link created"
-fi
-
+create_link "$nvim_path" "nvim"
 
 # Lazy git
 lazy_git_path="$base_config_directory/lazygit"
-if test_symbolic_link "$lazy_git_path"; then
-    log "Creating $lazy_git_path directory"
+create_link "$lazy_git_path" "lazygit"
 
-    ln -s "$PWD/lazygit" "$lazy_git_path"
-
-    log "Symbolic link created"
-fi
-
+# Zathura
 zathura_path="$base_config_directory/zathura"
-if test_symbolic_link "$zathura_path"; then
-    log "Creating $zathura_path directory"
+create_link "$zathura_path" "zathura"
 
-    ln -s "$PWD/zathura" "$zathura_path"
+# Picom
+picom_path="$base_config_directory/picom"
+create_link "$picom_path" "picom"
 
-    log "Symbolic link created"
-fi
+# I3
+i3_path="$base_config_directory/i3"
+create_link "$i3_path" "i3"
 
+# betterlockscreen
+betterlockscreen_path="$base_config_directory/betterlockscreenrc"
+create_link "$betterlockscreen_path" "betterlockscreen/betterlockscreenrc"
 
+# Alacritty
+alacritty_path="$base_config_directory/alacritty"
+create_link "$alacritty_path" "alacritty"
