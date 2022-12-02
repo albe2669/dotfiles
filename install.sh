@@ -86,5 +86,9 @@ betterlockscreen_path="$base_config_directory/betterlockscreenrc"
 create_link "$betterlockscreen_path" "betterlockscreen/betterlockscreenrc"
 
 # Alacritty
+polybar_path="$base_config_directory/polybar"
+create_link "$polybar_path" "polybar"
+
+# Alacritty
 alacritty_path="$base_config_directory/alacritty"
 create_link "$alacritty_path" "alacritty"
