@@ -4,7 +4,7 @@ cmp.setup({
   -- Enable LSP snippets
   snippet = {
     expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
+      vim.fn["vsnip#anonymous"](args.body)
     end,
   },
   completion = {
@@ -14,7 +14,7 @@ cmp.setup({
         return char ~= " " and char ~= "\t" and char ~= "\n"
       end, trigger_characters)
     end,
-  }, 
+  },
   mapping = {
     ['<C-o>'] = cmp.mapping.select_prev_item(),
     ['<C-p>'] = cmp.mapping.select_next_item(),
@@ -29,8 +29,11 @@ cmp.setup({
     }),
     -- Go to next on Tab
     ["<Tab>"] = function(fallback)
+      local copilot_keys = vim.fn['copilot#Accept']()
       if cmp.visible() then
         cmp.select_next_item()
+      elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
+        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
       else
         fallback()
       end
@@ -53,6 +56,6 @@ cmp.setup({
     { name = 'vsnip' },
     { name = 'path' },
     { name = 'buffer' },
-    { name = 'omni '},
+    { name = 'omni ' },
   },
 })

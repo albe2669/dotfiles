@@ -26,3 +26,6 @@ require("plugins.telekasten")
 
 -- LaTeX
 require("plugins.vimtex")
+
+-- Copilot
+require("plugins.copilot")
