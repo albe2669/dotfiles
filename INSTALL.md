@@ -138,6 +138,11 @@ python3 -m pip install pyright
 npm install -g yaml-language-server
 ```
 
+### Go
+```
+go install golang.org/x/tools/gopls@latest
+```
+
 ## Apps
 - Install discord
   - Can be done through the pop-shop
