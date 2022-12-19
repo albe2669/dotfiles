@@ -237,9 +237,19 @@ client.focused          #d4be98 #d4be98 #d4be98 #d4be98 #d4be98
 
 bindsym $mod+Escape exec betterlockscreen -l dim 
 
+# Bind backlight
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+ 
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%- 
+
+# Bind screenshots
+bindsym Print exec flameshot screen -p ~/Pictures/FScreenshots
+bindsym Ctrl+Print exec flameshot screen -c -p ~/Pictures/FScreenshots
+bindsym Shift+Print exec flameshot gui -c -p ~/Pictures/FScreenshots
+
+
 # TODO: Check the hostname or something, this is only for the XPS machine
-exec xinput set-prop 13 "libinput Tapping Enabled" 1
-exec xinput set-prop 13 "libinput Natural Scrolling Enabled" 1
+exec xinput set-prop "VEN_04F3:00 04F3:311C Touchpad" "libinput Tapping Enabled" 1
+exec xinput set-prop "VEN_04F3:00 04F3:311C Touchpad" "libinput Natural Scrolling Enabled" 1
 
 exec_always --no-startup-id picom --experimental-backends --config ~/.config/picom/picom.conf --log-file /var/log/picom.log
 exec_always --no-startup-id nitrogen --restore
