@@ -4,8 +4,12 @@
 
 ### Install i3
 ```
-sudo apt install flameshot
+sudo apt install flameshot rofi
 ```
+
+Also install
+- Polybar
+- i3-gaps
 
 ### Firefox 
 #### Setup sync

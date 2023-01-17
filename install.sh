@@ -85,10 +85,14 @@ create_link "$i3_path" "i3"
 betterlockscreen_path="$base_config_directory/betterlockscreenrc"
 create_link "$betterlockscreen_path" "betterlockscreen/betterlockscreenrc"
 
-# Alacritty
+# Polybar
 polybar_path="$base_config_directory/polybar"
 create_link "$polybar_path" "polybar"
 
 # Alacritty
 alacritty_path="$base_config_directory/alacritty"
 create_link "$alacritty_path" "alacritty"
+
+# Rofi
+rofi_path="$base_config_directory/rofi"
+create_link "$rofi_path" "rofi"
