@@ -22,5 +22,3 @@ require('rest-nvim').setup({
   custom_dynamic_variables = {},
   yank_dry_run = true,
 })
-
-vim.cmd("autocmd FileType http map <buffer> <C-E> <Plug>RestNvim")
