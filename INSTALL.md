@@ -1,6 +1,16 @@
 # Install
 ## General
 ### Install Pop.OS
+
+### Install i3
+```
+sudo apt install flameshot rofi
+```
+
+Also install
+- Polybar
+- i3-gaps
+
 ### Firefox 
 #### Setup sync
 #### Dashlane
@@ -155,13 +165,3 @@ sudo apt update
 sudo apt full-upgrade
 ```
 
-### howdy
-```
-sudo add-apt-repository ppa:boltgolt/howdy
-sudo apt update
-sudo apt install howdy
-sudo howdy add
-
-# Test with
-sudo -i
-```
