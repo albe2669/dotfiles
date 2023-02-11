@@ -96,3 +96,7 @@ create_link "$alacritty_path" "alacritty"
 # Rofi
 rofi_path="$base_config_directory/rofi"
 create_link "$rofi_path" "rofi"
+
+# Kitty
+kitty_path="$base_config_directory/kitty"
+create_link "$kitty_path" "kitty"
