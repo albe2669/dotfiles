@@ -96,3 +96,7 @@ create_link "$alacritty_path" "alacritty"
 # Rofi
 rofi_path="$base_config_directory/rofi"
 create_link "$rofi_path" "rofi"
+
+# Dunst
+dunst_path="$base_config_directory/dunst"
+create_link "$dunst_path" "dunst"
