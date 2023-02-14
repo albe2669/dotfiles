@@ -97,6 +97,10 @@ create_link "$alacritty_path" "alacritty"
 rofi_path="$base_config_directory/rofi"
 create_link "$rofi_path" "rofi"
 
+# Dunst
+dunst_path="$base_config_directory/dunst"
+create_link "$dunst_path" "dunst"
+
 # Kitty
 kitty_path="$base_config_directory/kitty"
 create_link "$kitty_path" "kitty"
