@@ -54,7 +54,7 @@ telekastenConfig.vaults = {
   bprd = getConfig(uniHome .. '/semester-5/BPRD/notes'),
   aps23 = getConfig(uniHome .. '/semester-6/APS23/notes'),
   bachelor = getConfig(uniHome .. '/semester-6/bachelor/notes'),
-  reflections = getConfig(uniHome .. '/semester-6/reflections/notes'),
+  refit = getConfig(uniHome .. '/semester-6/refit/notes'),
 }
 
 require('telekasten').setup(telekastenConfig)
