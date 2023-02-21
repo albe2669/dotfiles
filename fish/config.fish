@@ -29,3 +29,5 @@ fish_add_path $HOME/Documents/Installs/google-cloud-sdk/bin
 fish_add_path $HOME/Documents/Installs/lsp/lua/bin
 
 fish_add_path $HOME/Documents/Installs/zotero
+
+jump shell fish | source
