@@ -4,7 +4,7 @@
 
 ### Install i3
 ```
-sudo apt install flameshot rofi
+sudo apt install flameshot rofi redshift
 ```
 
 Also install
