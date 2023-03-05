@@ -4,7 +4,7 @@
 
 ### Install i3
 ```
-sudo apt install flameshot rofi
+sudo apt install flameshot rofi redshift
 ```
 
 Also install
@@ -90,6 +90,10 @@ chmod +x nvim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 nvim -c PlugInstall
+
+# Mason Dependencies
+sudo apt update
+sudo apt install python3 python3-venv
 ```
 
 ### Lazygit
