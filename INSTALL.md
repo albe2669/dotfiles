@@ -112,6 +112,11 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install ripgrep --features 'pcre2'
 ```
 
+### jump
+```
+go install github.com/gsamokovarov/jump@latest
+```
+
 ### fira-code
 Download font, then to use it in the terminal:
 ```
