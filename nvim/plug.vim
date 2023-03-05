@@ -11,6 +11,9 @@ call plug#begin(g:plug_location)
 " Plug 'ntk148v/vim-horizon'
 Plug 'sainnhe/everforest'
 
+" Movement
+Plug 'ggandor/leap.nvim'
+
 " Lua line
 Plug 'nvim-lualine/lualine.nvim'
 

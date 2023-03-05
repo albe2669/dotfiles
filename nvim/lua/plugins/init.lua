@@ -1,3 +1,6 @@
+-- Movement
+require("plugins.leap")
+
 require("plugins.filetype")
 
 require("plugins.telescope")
