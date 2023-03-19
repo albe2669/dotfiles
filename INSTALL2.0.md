@@ -36,7 +36,7 @@ betterlockscreen -u ./wallpaper/green_hills.jpg
 
 ## Tools
 ```bash
-pacman -S xclip neovim fish unzip tar ripgrep lazygit
+pacman -S xclip neovim fish unzip tar ripgrep lazygit docker kubectl
 
 # After go has been installed
 go install github.com/gsamokovarov/jump@latest
