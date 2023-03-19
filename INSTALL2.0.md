@@ -41,6 +41,8 @@ pacman -S xclip neovim fish unzip tar ripgrep lazygit
 # After go has been installed
 go install github.com/gsamokovarov/jump@latest
 
+# After rust has been installed
+cargo install procs exa bandwhich bottom
 ```
 
 ## Langs
@@ -77,4 +79,9 @@ BusID "PCI:0:2:0"
 
 # For nvidia
 BusID "PCI:1:0:0"
+```
+
+### TLP
+```
+sudo ln -s $PWD/tlp/tlp.conf /etc/tlp.conf
 ```
