@@ -69,7 +69,7 @@ git clone https://aur.archlinux.org/optimus-manager.git
 cd optimus-manager
 makepkg -s -i
 j dot
-ln -s $PWD/optimus-manager/optimus-manager.conf /etc/optimus-manager/optimus-manager.conf
+sudo ln -s $PWD/optimus-manager/optimus-manager.conf /etc/optimus-manager/optimus-manager.conf
 ```
 
 Something changed in xorg which means it requires a BusID to be set for each Device. optimus-manager does not do this so it must be added. Go to each file in `/etc/optimus-manager/xorg/**/*.conf` and add this to them:
