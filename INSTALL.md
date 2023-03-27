@@ -2,6 +2,11 @@
 ## General
 ### Install Pop.OS
 
+### Tools
+```
+cargo install procs exa bandwhich bottom
+```
+
 ### Install i3
 ```
 sudo apt install flameshot rofi redshift
