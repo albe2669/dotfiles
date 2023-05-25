@@ -38,7 +38,7 @@ global.lsp = {
 
 local on_attach = function(client, bufnr)
   vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
-  vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
+  vim.cmd("command! LspFormatting lua vim.lsp.buf.format({ async = true})")
   vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
   vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
   vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
@@ -79,7 +79,6 @@ for _, config in ipairs({
   "eslint-server",
   "go-server",
   "lua-server",
-  "null-ls",
   "python-server",
   "rs-server",
   "svelte-server",

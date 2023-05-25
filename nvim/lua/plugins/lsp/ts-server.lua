@@ -12,11 +12,16 @@ local T = {
         on_attach(client, bufnr)
 
         ts_utils.setup({})
-        ts_utils.setup_client(client)        
+        ts_utils.setup_client(client)
 
         u.buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
         u.buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
         u.buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
+
+
+        -- ESLint server handles this
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
       end,
     })
   end
