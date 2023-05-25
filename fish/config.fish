@@ -17,6 +17,8 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.local/go/bin
 fish_add_path $HOME/.cargo/bin
 
+
+fish_add_path $HOME/Documents/Installs/bin
 fish_add_path $HOME/Documents/Installs/nvim
 fish_add_path $HOME/Documents/Installs/lazygit
 fish_add_path $HOME/Documents/Installs/kubectl
@@ -31,3 +33,6 @@ fish_add_path $HOME/Documents/Installs/lsp/lua/bin
 fish_add_path $HOME/Documents/Installs/zotero
 
 jump shell fish | source
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/goose/Downloads/gcloud/google-cloud-sdk/path.fish.inc' ]; . '/home/goose/Downloads/gcloud/google-cloud-sdk/path.fish.inc'; end
