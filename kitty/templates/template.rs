@@ -1,18 +1,18 @@
-use std::io::{self, Read};
+use std::io::{self, Read, Write};
 
 fn main() {
     let mut buffer = String::new();
-    let stdin = io::stdin();
-    let mut handle = stdin.lock();
+    io::stdin().lock().read_to_string(&mut buffer).unwrap();
+    let mut input = buffer.split_whitespace();
 
-    handle.read_to_string(&mut buffer).unwrap();
+    let stdout = io::stdout().lock();
+    let mut output = io::BufWriter::new(stdout);
 
-    let n: u32 = buffer.trim().parse().unwrap();
+    let n: u32 = input.next().unwrap().trim().parse().unwrap();
 
     if n > 1 {
-        println!("still running");
+        output.write_all(b"still running").unwrap();
     } else {
-        println!("{}", n);
+        output.write_fmt(format_args!("{}\n", n)).unwrap();
     }
 }
-
