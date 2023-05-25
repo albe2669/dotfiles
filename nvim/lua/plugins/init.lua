@@ -1,6 +1,7 @@
 -- Movement
 require("plugins.leap")
 
+-- General
 require("plugins.filetype")
 
 require("plugins.telescope")
@@ -13,6 +14,8 @@ require("plugins.treesitter")
 require("plugins.rest")
 
 require("plugins.neogen")
+
+require("plugins.comment")
 
 -- LSP stuff
 require("plugins.lsp")
@@ -32,3 +35,4 @@ require("plugins.vimtex")
 
 -- Copilot
 require("plugins.copilot")
+

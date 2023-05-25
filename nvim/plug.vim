@@ -77,6 +77,7 @@ Plug 'airblade/vim-rooter' " Sets working directory to the nearest git project
 Plug 'airblade/vim-gitgutter' " Shows deleted and edited lines on the side
 Plug 'tpope/vim-surround' " Surrounds words or lines with brackets, quotes etc.
 Plug 'mg979/vim-visual-multi' " Multi cursor
+Plug 'numToStr/Comment.nvim' " Commenting
 
 " Other
 Plug 'wakatime/vim-wakatime' " Timetracking
