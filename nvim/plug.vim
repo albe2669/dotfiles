@@ -58,6 +58,10 @@ Plug 'p00f/clangd_extensions.nvim'
 " Http client
 Plug 'NTBBloodbath/rest.nvim'
 
+" Database client
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+
 " Tree sitter, better language highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
