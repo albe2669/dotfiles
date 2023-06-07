@@ -14,6 +14,9 @@ local formatting = function()
   local bufnr = api.nvim_get_current_buf()
   -- Loop all the clients and use their formatting
   for _, client in ipairs(lsp.get_active_clients()) do
+    if client.name == "null-ls" or client.name == "clangd" then
+      return
+    end
     if client.supports_method("textDocument/formatting") then
       local params = lsp.util.make_formatting_params()
       local result, err = client.request_sync("textDocument/formatting", params, 5000, bufnr)
