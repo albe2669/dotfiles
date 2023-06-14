@@ -107,6 +107,7 @@ require("mason-lspconfig").setup({
     "svelte",
     "tailwindcss",
     "terraformls",
+    "tflint",
     "tsserver",
     "yamlls",
   }
