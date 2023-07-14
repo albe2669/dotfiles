@@ -52,7 +52,7 @@ telekastenConfig.vaults = {
   bdtf = getConfig(uniHome .. '/semester-5/BDTF/notes'),
   bsec1 = getConfig(uniHome .. '/semester-5/BSEC1/notes'),
   bprd = getConfig(uniHome .. '/semester-5/BPRD/notes'),
-  aps23 = getConfig(uniHome .. '/semester-6/APS23/notes'),
+  baps = getConfig(uniHome .. '/semester-6/baps/notes'),
   bachelor = getConfig(uniHome .. '/semester-6/bachelor/notes'),
   refit = getConfig(uniHome .. '/semester-6/refit/notes'),
 }
