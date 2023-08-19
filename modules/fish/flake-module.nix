@@ -67,12 +67,8 @@
     fishPlugins.bass
   ];
 
-  home.file = {
-    # Functions
-    ".config/fish/functions/fish_prompt.fish".source = config.lib.file.mkOutOfStoreSymlink ./config/functions/fish_prompt.fish;
-    ".config/fish/functions/__utils.fish".source = config.lib.file.mkOutOfStoreSymlink ./config/functions/__utils.fish;
-
-    # Completions
-    ".config/fish/completions/dagger.fish".source = config.lib.file.mkOutOfStoreSymlink ./config/completions/dagger.fish;
+  xdg.configFile.fish = {
+    source = ./config;
+    recursive = true;
   };
 }
