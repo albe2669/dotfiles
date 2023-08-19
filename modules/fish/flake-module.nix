@@ -15,6 +15,10 @@
       }
     ];
 
+    shellAliases = {
+      hms = "home-manager switch";
+    };
+
     shellAbbrs = {
       n = "nvim";
       g = "git";
