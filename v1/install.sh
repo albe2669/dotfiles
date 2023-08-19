@@ -54,20 +54,8 @@ create_directory "$config_directory"
 theme_path="$config_directory/poshthemes"
 create_link "$theme_path" "poshthemes"
 
-# Shell config
-shell_path="$base_config_directory/fish"
-create_link "$shell_path" "fish"
-
 # TODO: Run these as root
 # sudo ln -s "$PWD/fish/bin_files" "/usr/local/bin/node"
-
-# Nvim
-nvim_path="$base_config_directory/nvim"
-create_link "$nvim_path" "nvim"
-
-# Lazy git
-lazy_git_path="$base_config_directory/lazygit"
-create_link "$lazy_git_path" "lazygit"
 
 # Zathura
 zathura_path="$base_config_directory/zathura"

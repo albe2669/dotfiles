@@ -17,8 +17,9 @@
 
   imports = [
     ./modules/fish/flake-module.nix
-    ./modules/nvim/flake-module.nix
     ./modules/langs.nix
+    ./modules/lazygit/flake-module.nix
+    ./modules/nvim/flake-module.nix
     ./modules/utils.nix
   ];
 }
