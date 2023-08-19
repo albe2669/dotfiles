@@ -7,11 +7,6 @@
 
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [
-    ripgrep
-    nodejs-16_x
-  ];
-
   programs.bat = {
     enable = true;
     config = {
@@ -23,5 +18,7 @@
   imports = [
     ./modules/fish/flake-module.nix
     ./modules/nvim/flake-module.nix
+    ./modules/langs.nix
+    ./modules/utils.nix
   ];
 }

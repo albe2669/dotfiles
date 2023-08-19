@@ -1,11 +1,5 @@
 # Install
 ## General
-### Install Pop.OS
-
-### Tools
-```
-cargo install procs exa bandwhich bottom
-```
 
 ### Install i3
 ```
@@ -66,10 +60,6 @@ cd dotfiles
 ```
 
 ### Install fish
-#### Dependencies
-- Install [nvm](https://github.com/nvm-sh/nvm)
-  - Post install: ``nvm install node && nvm use node``
-
 #### Install fish
 ```
 sudo apt install fish
@@ -85,12 +75,7 @@ fisher install FabioAntunes/fish-nvm edc/bass
 Logout and log back in to save changes
 
 ### NVIM
-Download NVIM from [here](https://github.com/neovim/neovim/releases) to `~/Documents/Installs/nvim` then
 ```
-cd ~/Documents/Installs/nvim
-mv nvim.appimage nvim
-chmod +x nvim
-
 # Install vim-plug
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -99,31 +84,6 @@ nvim -c PlugInstall
 # Mason Dependencies
 sudo apt update
 sudo apt install python3 python3-venv
-```
-
-### Lazygit
-- Download lazygit to ~/Documents/Installs/lazygit 
-- Unpack with tar -xzf \<file\>
-
-### fd
-fd is already installed but as fdfind
-- First make the directory ``mkdir ~/.local/bin``
-- Alias ``ln -s $(which fdfind) ~/.local/bin/fd``
-
-### Rust
-Install rust 
-```
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-### ripgrep
-```
-cargo install ripgrep --features 'pcre2'
-```
-
-### jump
-```
-go install github.com/gsamokovarov/jump@latest
 ```
 
 ### fira-code

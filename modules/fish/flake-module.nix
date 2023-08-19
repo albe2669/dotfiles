@@ -13,16 +13,12 @@
           sha256 = "sha256-LV5NiHfg4JOrcjW7hAasUSukT43UBNXGPi1oZWPbnCA="; # Set to empty to get the right sha from the error output
         };
       }
-      {
-        name = "nvm.fish";
-        src = pkgs.fetchFromGitHub {
-          owner = "jorgebucaran";
-          repo = "nvm.fish";
-          rev = "c69e5d1017b21bcfca8f42c93c7e89fff6141a8a";
-          sha256 = "sha256-LV5NiHfg4JOrcjW7hAasUSukT43UBNXGPi1oZWPbnCA=";
-        };
-      }
     ];
+
+    shellAbbrs = {
+      n = "nvim";
+      g = "git";
+    };
   
     shellInit = ''
       # Move these to a separate file intended for arch-gosling

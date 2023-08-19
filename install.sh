@@ -20,3 +20,8 @@ ln -s $PWD/config.nix ~/.config/nixpkgs/config.nix
 
 # Switch to the config
 home-manager switch
+
+# Do the changes to the system that cause fish to work
+# Add fish to /etc/shells
+
+# Change the default shell

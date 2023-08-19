@@ -1,11 +1,4 @@
 # Install
-## Arch
-
-## Libs
-```
-pacman -S python-virtualenv
-```
-
 ## DE
 ```
 pacman -S flameshot i3-wm rofi redshift polybar dunst brightnessctl
@@ -36,22 +29,7 @@ betterlockscreen -u ./wallpaper/green_hills.jpg
 
 ## Tools
 ```bash
-pacman -S xclip neovim fish unzip tar ripgrep lazygit docker kubectl bluez bluez-utils blueman spotify-launcher
-
-# After go has been installed
-go install github.com/gsamokovarov/jump@latest
-
-# After rust has been installed
-cargo install procs exa bandwhich bottom
-```
-
-## Langs
-```bash
-# Go
-pacman -S go
-
-# Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+pacman -S xclip docker kubectl bluez bluez-utils blueman spotify-launcher
 ```
 
 ## Configs
