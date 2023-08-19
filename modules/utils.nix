@@ -3,18 +3,18 @@
 {
   home.packages = with pkgs; [
     # Tools
-    ripgrep
-    gnutar
-    unzip
     exa
+    gnutar
+    ripgrep
+    unzip
 
     # Convenience
-    jump
     fd
+    jump
 
     # System
-    procs
     bandwhich
     bottom
+    procs
   ];
 }
