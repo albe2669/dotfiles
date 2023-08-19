@@ -2,14 +2,6 @@
 
 ## Requirements
 *Note: I aim to auto install these at some point*
-### Tools
-- [oh-my-posh](https://ohmyposh.dev)
-- [neovim](https://github.com/neovim/neovim/releases/latest)
-- [lazygit](https://github.com/jesseduffield/lazygit)
-- [fd](https://github.com/sharkdp/fd/releases/latest)
-  - You will need PCRE2 support for telekazten, so install with `cargo install ripgrep --features 'pcre2'`
-- [rg](https://github.com/BurntSushi/ripgrep)
-- [fisher](https://github.com/jorgebucaran/fisher)
 
 ### Font
 - [fira code patched](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode/Regular/complete)
@@ -24,17 +16,9 @@
 ## TODO
 - Add windows terminal profiles and settings
 - Add [bufferline](https://github.com/akinsho/bufferline.nvim) or cokeline
-- Setup PolyBar
-- Setup screenshotting tool
 - Install guide
 
 ## Shell
-```bash
-curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-
-# Plugins
-fisher install FabioAntunes/fish-nvm edc/bass
-```
 
 ## Slack
 ### Horizon theme
