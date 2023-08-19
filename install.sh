@@ -25,3 +25,7 @@ home-manager switch
 # Add fish to /etc/shells
 
 # Change the default shell
+
+# Install kitty
+# TODO: Figure out how to install kitty using nix
+cargo install --git https://github.com/avborup/kitty
