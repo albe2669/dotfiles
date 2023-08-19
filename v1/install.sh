@@ -57,10 +57,6 @@ create_link "$theme_path" "poshthemes"
 # TODO: Run these as root
 # sudo ln -s "$PWD/fish/bin_files" "/usr/local/bin/node"
 
-# Zathura
-zathura_path="$base_config_directory/zathura"
-create_link "$zathura_path" "zathura"
-
 # Picom
 picom_path="$base_config_directory/picom"
 create_link "$picom_path" "picom"
@@ -88,7 +84,3 @@ create_link "$rofi_path" "rofi"
 # Dunst
 dunst_path="$base_config_directory/dunst"
 create_link "$dunst_path" "dunst"
-
-# Kitty
-kitty_path="$base_config_directory/kitty"
-create_link "$kitty_path" "kitty"

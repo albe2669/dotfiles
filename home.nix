@@ -22,5 +22,6 @@
     ./modules/lazygit/flake-module.nix
     ./modules/nvim/flake-module.nix
     ./modules/utils.nix
+    ./modules/zathura/flake-module.nix
   ];
 }
