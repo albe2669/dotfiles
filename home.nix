@@ -22,5 +22,6 @@
 
   imports = [
     ./modules/fish/flake-module.nix
+    ./modules/nvim/flake-module.nix
   ];
 }
