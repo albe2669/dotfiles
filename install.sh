@@ -12,6 +12,7 @@ nix-channel --update
 nix-shell '<home-manager>' -A install
 
 # Link home manager config
+rm -r ~/.config/home-manager # Remove the initial configuration
 ln -s $PWD ~/.config/home-manager
 
 # Link nix config
