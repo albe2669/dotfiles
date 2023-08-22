@@ -2,8 +2,6 @@
 require("plugins.leap")
 
 -- General
-require("plugins.filetype")
-
 require("plugins.telescope")
 
 require("plugins.cmp")
