@@ -12,10 +12,10 @@ pacman -S flameshot i3-wm rofi redshift polybar dunst brightnessctl
 
 # For sddm
 pacman -S sddm qt5-graphicaleffects qt5-quickcontrols2 qt5-svg
+pacman -Syu qt5-graphicaleffects qt5-svg qt5-quickcontrols2
 
-sudo ln -s $PWD/sddm /etc/sddm.conf.d
-sudo ln -s $PWD/sddm/themes/sugar-candy/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf
-sudo ln -s $PWD/wallpaper/green_hills.jpg /usr/share/sddm/themes/sugar-candy/Backgrounds/green_hills.jpg
+sudo ln -s $PWD/sddm/00-primary.conf /etc/sddm.conf.d/00-primary.conf
+sudo cp -r $PWD/sddm/themes/catppuccin/src/catppuccin-macchiato /usr/share/sddm/themes/catppuccin-macchiato
 ```
 
 Download and install the sugar-candy theme from [here](https://store.kde.org/p/1312658)
