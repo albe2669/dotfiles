@@ -30,6 +30,7 @@ require('nvim-treesitter.configs').setup({
     "lua",
     "markdown",
     "rust",
+    "scala",
     "scss",
     "terraform",
     "toml",

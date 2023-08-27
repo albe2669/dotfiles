@@ -11,5 +11,12 @@
     rustc
     openssl # openssl-sys
     pkg-config # openssl-sys
+
+    # Scala
+    scala
+    scala-cli
+    scalafmt
+    scalafix
+    coursier
   ];
 }

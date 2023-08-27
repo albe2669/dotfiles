@@ -85,6 +85,7 @@ for _, config in ipairs({
   "lua-server",
   "python-server",
   "rs-server",
+  "scala-server",
   "svelte-server",
   "tailwindcss-server",
   "terraform-server",
