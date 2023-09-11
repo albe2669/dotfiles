@@ -24,7 +24,7 @@
       g = "git";
       hm = "home-manager";
     };
-  
+
     shellInit = ''
       # Move these to a separate file intended for arch-gosling
       set GDK_SCALE 2
