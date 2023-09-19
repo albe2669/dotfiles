@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     # Tools
-    exa
+    eza
     gnutar
     ripgrep
     unzip
