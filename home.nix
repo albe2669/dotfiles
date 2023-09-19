@@ -20,6 +20,7 @@
     ./modules/git/flake-module.nix
     ./modules/kitty/flake-module.nix
     ./modules/langs.nix
+    ./modules/python3.nix
     ./modules/lazygit/flake-module.nix
     ./modules/nvim/flake-module.nix
     ./modules/obsidian/flake-module.nix
