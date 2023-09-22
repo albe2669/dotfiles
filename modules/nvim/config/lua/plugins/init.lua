@@ -17,6 +17,7 @@ require("plugins.comment")
 
 -- LSP stuff
 require("plugins.lsp")
+require("plugins.lsp.scala-server")
 
 require("plugins.webicons")
 require("plugins.lualine")
