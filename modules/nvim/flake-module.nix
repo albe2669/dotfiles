@@ -6,6 +6,8 @@
     virtualenv
     xclip
     lazygit
+    tree-sitter
+    stdenv.cc
   ];
 
   xdg.configFile.nvim = {

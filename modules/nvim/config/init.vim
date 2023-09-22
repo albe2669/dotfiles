@@ -76,7 +76,7 @@ if has('win32')
   set shellquote=\"
   set shellxquote=
 else
-  set shell=/usr/bin/fish
+  set shell=/home/goose/.nix-profile/bin/fish
 endif
 
 " Imports

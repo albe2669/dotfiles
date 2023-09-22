@@ -12,7 +12,8 @@ let
       sha256 = "sha256-8Qi12d4oZ2R6INYZH/qNUBDexft53uy9Uug7UoArwYw=";
     };
   });
-in {
+in
+{
   home.packages = with pkgs; [
     obsidian
   ];
