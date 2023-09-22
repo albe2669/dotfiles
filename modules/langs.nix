@@ -18,5 +18,8 @@
     scalafmt
     scalafix
     coursier
+
+    # Java, also required by Scala metals
+    jdk11
   ];
 }
