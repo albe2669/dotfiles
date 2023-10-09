@@ -29,6 +29,7 @@ for _, config in ipairs({
   "tailwindcss-server",
   "terraform-server",
   "ts-server",
+  "vue-server",
   "yaml-server",
 }) do
   require("plugins.lsp." .. config).setup(lu.on_attach)
@@ -41,6 +42,7 @@ require("mason-lspconfig").setup({
     "bashls",
     "clangd",
     "cmake",
+    "emmet_language_server",
     "eslint",
     "gopls",
     "omnisharp",
@@ -51,6 +53,7 @@ require("mason-lspconfig").setup({
     "terraformls",
     "tflint",
     "tsserver",
+    "volar",
     "yamlls",
   }
 })
