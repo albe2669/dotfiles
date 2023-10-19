@@ -19,6 +19,10 @@ let
     imutils
     jupyterlab
     ipywidgets
+
+    pypdf
+    pdf2image
+    pillow
   ];
 in
 {
