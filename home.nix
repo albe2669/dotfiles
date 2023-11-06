@@ -24,6 +24,7 @@
     ./modules/nvim/flake-module.nix
     ./modules/obsidian/flake-module.nix
     ./modules/python3.nix
+    ./modules/tmux/flake-module.nix
     ./modules/utils.nix
     ./modules/vscode.nix
     ./modules/zathura/flake-module.nix
