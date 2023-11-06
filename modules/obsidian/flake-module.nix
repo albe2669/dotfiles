@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   inherit (pkgs) fetchurl;
@@ -14,7 +14,7 @@ let
   });
 in
 {
-  home.packages = with pkgs; [
+  home.packages = [
     obsidian
   ];
 }
