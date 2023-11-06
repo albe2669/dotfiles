@@ -21,5 +21,9 @@
 
     # Java, also required by Scala metals
     jdk11
+
+    # PHP
+    php81
+    php81Packages.composer
   ];
 }

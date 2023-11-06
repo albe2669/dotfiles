@@ -2,6 +2,7 @@
 
 let
   python-packages = ps: with ps; [
+    # Machine learning packages
     numpy
     scipy
     scikit-learn
@@ -23,6 +24,8 @@ let
     pypdf
     pdf2image
     pillow
+
+    mysql-connector
   ];
 in
 {
