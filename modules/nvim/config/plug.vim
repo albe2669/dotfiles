@@ -55,6 +55,9 @@ Plug 'simrat39/rust-tools.nvim'
 " More clangd features
 Plug 'p00f/clangd_extensions.nvim'
 
+" COBOL
+Plug 'Jorengarenar/COBOL.vim'
+
 " Scala
 Plug 'scalameta/nvim-metals'
 

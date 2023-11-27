@@ -25,5 +25,8 @@
     # PHP
     php81
     php81Packages.composer
+
+    # COBOL
+    gnu-cobol
   ];
 }

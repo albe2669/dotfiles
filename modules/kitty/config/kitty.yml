@@ -2,7 +2,7 @@
 #
 # folders. The corresponding template will be generated in the folder. Note that
 # the file extension must belong to one of the defined languages below.
-default_language: py
+default_language: cbl
 
 # A list of languages that kitty can use.
 languages:
@@ -70,3 +70,7 @@ languages:
   compile_command: gcc -g -O2 -std=gnu11 $SRC_PATH -o $EXE_PATH
   run_command: $EXE_PATH
 
+- name: COBOL
+  file_extension: cbl
+  compile_command: cobc -g -O2 -std=default -free -x -static $SRC_PATH -o $EXE_PATH
+  run_command: $EXE_PATH
