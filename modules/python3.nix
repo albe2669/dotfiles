@@ -21,11 +21,18 @@ let
     jupyterlab
     ipywidgets
 
+    # ml-slide-splitter
     pypdf
     pdf2image
     pillow
 
+    # Database
     mysql-connector
+
+    # Testing
+    pytest
+    autopep8
+    pycodestyle
   ];
 in
 {
