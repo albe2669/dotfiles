@@ -2,6 +2,10 @@
   pkgs,
   ...
 }: {
+	imports = [
+		../services/sddm
+	];
+
   environment.pathsToLink = [ "/libexec" ];
 
   # Possibly move these to ../services
@@ -14,23 +18,12 @@
       libinput.enable = true;
 
       desktopManager = {
-        default = "none";
         xterm.enable = false;
       };
 
-      displayManager = {
-        sddm.enable = true;
-        lightdm.enable = false;
-        gdm.enable = false;
-      };
-
-      windowManager.default = "i3";
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
-          i3blocks
-          i3status
-
           rofi # application launcer
           dunst # notification daemon
           picom # compositor
