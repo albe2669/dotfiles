@@ -3,9 +3,9 @@
   ...
 }: {
   security = {
-    polkit = enable;
+    polkit.enable = true;
     pam.services.greetd.enableGnomeKeyring = true;
-  }
+  };
 
   services.gnome.gnome-keyring.enable = true;
 }

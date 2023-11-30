@@ -11,21 +11,26 @@
 
     xserver = {
       enable = true;
+      libinput.enable = true;
 
       desktopManager = {
+        default = "none";
         xterm.enable = false;
-      }
+      };
 
       displayManager = {
-        defaultSession = "none+i3";
-        sddm.enable = false;
+        sddm.enable = true;
         lightdm.enable = false;
         gdm.enable = false;
       };
 
+      windowManager.default = "i3";
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
+          i3blocks
+          i3status
+
           rofi # application launcer
           dunst # notification daemon
           picom # compositor
@@ -39,7 +44,7 @@
           xorg.xdpyinfo # screen information
           arandr # screen layout
           sysstat # system information
-          nautilus # file manager
+          gnome.nautilus # file manager
         ];
       };
 

@@ -2,5 +2,5 @@
   config,
   ...
 }: {
-  services.power-profiles.daemon.enable = true;
+  services.power-profiles-daemon.enable = true;
 }

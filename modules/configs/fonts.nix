@@ -17,7 +17,7 @@
       (nerdfonts.override {
         fonts = [
           "FiraCode"  
-        ]
+        ];
       })
 
       # icons

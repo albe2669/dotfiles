@@ -37,12 +37,13 @@
     (python3.withPackages (ps: 
       with ps; [ 
         # Add packages that need root here
-      ];
+      ]
     ))
     pulseaudio
   ];
 
   programs = {
+    fish.enable = true;
     ssh.startAgent = true;
     dconf.enable = true;
   };

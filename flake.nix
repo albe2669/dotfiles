@@ -47,6 +47,10 @@
     allSystems = [ x64System ];
 
     nixosSystem = import ./lib/nixos-system.nix;
+    skein = {
+      nixosModules = ./hosts/skein/os.nix;
+      homeModules = ./hosts/skein/home.nix;
+    };
 
   in {
     nixosConfigurations = let
@@ -55,21 +59,22 @@
         nixpkgs = nixpkgs; # TODO: nixpkgs-unstable?
         system = x64System;
         specialArgs = x64SpecialArgs;
-        modules = [];
       };
     in {
-      exampleIso = nixosSystem {
-        inherit (baseArgs) system;
-        modules = baseArgs.modules ++ [
-          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-        ];
-      };
-      example = nixpkgs.lib.nixosSystem {
-        inherit (baseArgs) system;
-        modules = baseArgs.modules ++ [
-          # Modules for installed systems only.
-        ];
-      };
+      skein = nixosSystem (skein // baseArgs);
     };
+
+    packages."${x64System}" = nixpkgs.lib.genAttrs [
+      "skein"
+      # gosling
+    ] (
+      host: self.nixosConfigurations.${host}.config.formats
+    );
+
+    #
+    # # TODO: This might be wrong
+    # formatter = nixpkgs.lib.genAttrs allSystems (
+    #   system: nixpkgs.legacyPackages.${system}.nixfmt
+    # );
   };
 }

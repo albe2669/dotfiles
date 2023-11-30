@@ -1,20 +1,19 @@
 {
-  config,
   nixpkgs,
   home-manager,
   nixos-generators,
   system,
   specialArgs,
   nixosModules,
-  homeModule,
+  homeModules,
 }: let
   username = specialArgs.username;
 in
   nixpkgs.lib.nixosSystem {
     inherit system specialArgs;
     modules =
-      nixosModules
-      ++ [
+      [
+        nixosModules
         {
           # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
           nix.registry.nixpkgs.flake = nixpkgs;
@@ -30,7 +29,11 @@ in
           home-manager.useUserPackages = true;
 
           home-manager.extraSpecialArgs = specialArgs;
-          home-manager.users."${username}" = homeModule;
+          home-manager.users."${username}" = homeModules;
+        }
+
+        nixos-generators.nixosModules.all-formats
+        {
         }
       ];
   }
