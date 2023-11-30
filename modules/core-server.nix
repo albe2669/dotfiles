@@ -1,11 +1,8 @@
-{
-  lib,
-  ...
-}: {
-	imports = [
-		./services/docker.nix
-		./configs/system-packages.nix
-	];
+{lib, ...}: {
+  imports = [
+    ./services/docker.nix
+    ./configs/system-packages.nix
+  ];
 
   boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;
 

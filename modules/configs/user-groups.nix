@@ -1,6 +1,5 @@
-{ username, ... }:
-{
-  nix.settings.trusted-users = [ username ];
+{username, ...}: {
+  nix.settings.trusted-users = [username];
 
   users.groups = {
     "${username}" = {};
@@ -12,7 +11,7 @@
     initialPassword = "changeme"; # Replace with hashedpassword
     isNormalUser = true;
     description = "User ${username}";
-    extraGroups = [ 
+    extraGroups = [
       username
       "docker"
       "wheel"
@@ -23,7 +22,7 @@
 
   security.sudo.extraRules = [
     {
-      users = [ username ];
+      users = [username];
       commands = [
         {
           command = "/run/current-system/sw/bin/nix-store";

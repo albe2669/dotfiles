@@ -1,12 +1,9 @@
-{
-  pkgs,
-  ...
-}: {
-	imports = [
-		../services/sddm
-	];
+{pkgs, ...}: {
+  imports = [
+    ../services/sddm
+  ];
 
-  environment.pathsToLink = [ "/libexec" ];
+  environment.pathsToLink = ["/libexec"];
 
   # Possibly move these to ../services
   services = {

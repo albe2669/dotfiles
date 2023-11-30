@@ -4,14 +4,11 @@
 # I'm sorry.
 # If you figure it out, please fix it. Otherwise increase this counter with your amount of hours spent.
 # Hours spent: 3
-
 {
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   buildTheme = {
     # args
     name,
@@ -19,7 +16,7 @@ let
     src,
     themeConfig ? [],
     nativeBuildInputs ? [],
-  }: 
+  }:
     pkgs.stdenv.mkDerivation rec {
       pname = "${name}";
       inherit version src nativeBuildInputs;
@@ -34,9 +31,10 @@ let
         chmod 644 $installDir/theme.conf
         ls -l $installDir
         ${lib.concatMapStringsSep "\n" (e: ''
-              ${pkgs.crudini}/bin/crudini --set --inplace $installDir/theme.conf \
-                "${e.section}" "${e.key}" "${e.value}"
-            '') themeConfig}
+            ${pkgs.crudini}/bin/crudini --set --inplace $installDir/theme.conf \
+              "${e.section}" "${e.key}" "${e.value}"
+          '')
+          themeConfig}
       '';
 
       installPhase = ''
@@ -46,7 +44,7 @@ let
 
   theme = themes.sugar-candy;
   themeName = theme.pkg.name;
-  packages = [ (buildTheme theme.pkg) ] ++ theme.runtimeDeps;
+  packages = [(buildTheme theme.pkg)] ++ theme.runtimeDeps;
 
   themes = {
     sugar-candy = {
@@ -67,7 +65,11 @@ let
         ];
 
         themeConfig = [
-          { section = "General"; key = "Background"; value = "Backgrounds/green_hills.jpg"; }
+          {
+            section = "General";
+            key = "Background";
+            value = "Backgrounds/green_hills.jpg";
+          }
         ];
       };
 
@@ -79,8 +81,7 @@ let
       ];
     };
   };
-in
-{
+in {
   environment.systemPackages = packages;
 
   services.xserver.displayManager.sddm.theme = themeName;

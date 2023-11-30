@@ -1,7 +1,4 @@
-{
-  pkgs-unstable,
-  ...
-}: {
+{pkgs-unstable, ...}: {
   services.pipewire = {
     enable = true;
     package = pkgs-unstable.pipewire;

@@ -1,12 +1,9 @@
-{
-	pkgs,
-	...
-}: {
-	home.packages = with pkgs; [
-		alacritty
-	];
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    alacritty
+  ];
 
-	# TODO: Coloring
+  # TODO: Coloring
   xdg.configFile.alacritty = {
     source = ./config;
     recursive = true;

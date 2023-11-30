@@ -1,13 +1,14 @@
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [
-      ../../modules/core-desktop.nix
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ../../modules/core-desktop.nix
 
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader = {
@@ -17,7 +18,7 @@
     # };
     grub = {
       enable = false;
-      device = "/dev/sda";  #  "nodev"
+      device = "/dev/sda"; #  "nodev"
       efiSupport = false;
       useOSProber = true;
       #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
@@ -42,5 +43,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

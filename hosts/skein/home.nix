@@ -1,6 +1,4 @@
-{ username, ... }:
-
-{
+{username, ...}: {
   home = {
     username = username;
     homeDirectory = "/home/${username}";
@@ -8,22 +6,22 @@
   };
 
   programs.home-manager.enable = true;
-  
+
   imports = [
-		../../home/alacritty
-		../../home/fish
-		../../home/git
+    ../../home/alacritty
+    ../../home/fish
+    ../../home/git
     ../../home/i3
-		../../home/kitty
-		../../home/lazygit
-		../../home/nvim
-		../../home/zathura
+    ../../home/kitty
+    ../../home/lazygit
+    ../../home/nvim
+    ../../home/zathura
 
-		../../home/langs.nix
-		../../home/python3.nix
+    ../../home/langs.nix
+    ../../home/python3.nix
 
-		../../home/tmux.nix
-		../../home/utils.nix
-		../../home/vscode.nix
+    ../../home/tmux.nix
+    ../../home/utils.nix
+    ../../home/vscode.nix
   ];
 }

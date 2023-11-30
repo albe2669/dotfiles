@@ -3,7 +3,7 @@
 
   # TODO: Move to it's own file
   nixConfig = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   # FIXME: Different file?
@@ -15,7 +15,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  
+
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +31,7 @@
     ...
   }: let
     username = "goose";
-    
+
     x64System = "x86_64-linux";
     x64SpecialArgs = {
       inherit username;
@@ -44,14 +44,13 @@
       };
     };
 
-    allSystems = [ x64System ];
+    allSystems = [x64System];
 
     nixosSystem = import ./lib/nixos-system.nix;
     skein = {
       nixosModules = ./hosts/skein/os.nix;
       homeModules = ./hosts/skein/home.nix;
     };
-
   in {
     nixosConfigurations = let
       baseArgs = {
@@ -64,12 +63,13 @@
       skein = nixosSystem (skein // baseArgs);
     };
 
-    packages."${x64System}" = nixpkgs.lib.genAttrs [
-      "skein"
-      # gosling
-    ] (
-      host: self.nixosConfigurations.${host}.config.formats
-    );
+    packages."${x64System}" =
+      nixpkgs.lib.genAttrs [
+        "skein"
+        # gosling
+      ] (
+        host: self.nixosConfigurations.${host}.config.formats
+      );
 
     # TODO: This might be wrong
     formatter = nixpkgs.lib.genAttrs allSystems (

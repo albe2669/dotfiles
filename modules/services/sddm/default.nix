@@ -1,22 +1,20 @@
-{
-	...
-}: {
+{...}: {
   imports = [
     ./theme.nix
   ];
 
-	services = {
-		xserver = {
-			enable = true;
+  services = {
+    xserver = {
+      enable = true;
       displayManager = {
         lightdm.enable = false;
         gdm.enable = false;
-				
-				sddm = {
-					enable = true;
-					enableHidpi = true;
-				};
+
+        sddm = {
+          enable = true;
+          enableHidpi = true;
+        };
       };
-		};
-	};
+    };
+  };
 }
