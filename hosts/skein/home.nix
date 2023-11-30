@@ -18,5 +18,12 @@
 		../../home/lazygit
 		../../home/nvim
 		../../home/zathura
+
+		../../home/langs.nix
+		../../home/python3.nix
+
+		../../home/tmux.nix
+		../../home/utils.nix
+		../../home/vscode.nix
   ];
 }
