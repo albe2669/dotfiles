@@ -10,6 +10,7 @@
   programs.home-manager.enable = true;
   
   imports = [
+		../../home/alacritty
     ../../home/i3
   ];
 }
