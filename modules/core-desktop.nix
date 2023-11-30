@@ -21,6 +21,7 @@
     ./configs/user-groups.nix
     ./configs/fonts.nix
     ./configs/i3.nix
+		./configs/programs.nix
   ];
 
   nixpkgs.config.allowUnfree = lib.mkForce true;
