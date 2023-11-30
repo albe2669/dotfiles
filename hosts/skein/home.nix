@@ -15,5 +15,6 @@
 		../../home/git
     ../../home/i3
 		../../home/kitty
+		../../home/lazygit
   ];
 }
