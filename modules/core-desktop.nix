@@ -15,6 +15,7 @@
     ./services/power.nix
     ./services/printing.nix
     ./services/security.nix
+		./services/shell.nix
     ./services/xdg.nix
 
     # configs
