@@ -2,3 +2,4 @@ modules/nvim/config/plugged
 modules/lazygit/config/state.yml
 
 .kattisrc*
+result
