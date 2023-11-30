@@ -11,6 +11,7 @@
   
   imports = [
 		../../home/alacritty
+		../../home/fish
     ../../home/i3
   ];
 }
