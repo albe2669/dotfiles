@@ -71,10 +71,9 @@
       host: self.nixosConfigurations.${host}.config.formats
     );
 
-    #
-    # # TODO: This might be wrong
-    # formatter = nixpkgs.lib.genAttrs allSystems (
-    #   system: nixpkgs.legacyPackages.${system}.nixfmt
-    # );
+    # TODO: This might be wrong
+    formatter = nixpkgs.lib.genAttrs allSystems (
+      system: nixpkgs.legacyPackages.${system}.alejandra
+    );
   };
 }
