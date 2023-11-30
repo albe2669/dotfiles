@@ -1,8 +1,12 @@
 {
   lib,
-  pkgs,
   ...
 }: {
+	imports = [
+		./services/docker.nix
+		./configs/system-packages.nix
+	];
+
   boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;
 
   nix.gc = {
@@ -44,21 +48,5 @@
       enable = true;
     };
     upower.enable = true;
-  };
-
-
-  environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    curl
-    git
-  ];
-  # TODO: Possibly setup fhs
-
-  environment.variables.EDITOR = "nvim";
-
-  virtualisation.docker = {
-    enable = lib.mkDefault true;
-    enableOnBoot = lib.mkDefault true;
   };
 }
