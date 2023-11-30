@@ -1,7 +1,10 @@
 {
-	pkgs,
 	...
 }: {
+  imports = [
+    ./theme.nix
+  ];
+
 	services = {
 		xserver = {
 			enable = true;
@@ -12,13 +15,8 @@
 				sddm = {
 					enable = true;
 					enableHidpi = true;
-					theme = "sddm-sugar-candy";
 				};
       };
 		};
 	};
-
-	environment.systemPackages = with pkgs; [
-		(libsForQt5.callPackage ./themes/sugar-candy {})
-	];
 }
