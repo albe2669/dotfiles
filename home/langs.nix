@@ -1,8 +1,11 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     dotnet-sdk_7
-    go
     nodejs-18_x
+
+    # Go
+    go
+    golangci-lint
 
     # Rust
     cargo
