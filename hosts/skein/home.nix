@@ -15,6 +15,10 @@
     ../../home/kitty
     ../../home/lazygit
     ../../home/nvim
+    ../../home/picom
+    ../../home/polybar
+    ../../home/rofi
+    ../../home/wallpapers
     ../../home/zathura
 
     ../../home/langs.nix
