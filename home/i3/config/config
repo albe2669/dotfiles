@@ -265,7 +265,7 @@ mode "$mode_redshift" {
 exec xinput set-prop "VEN_04F3:00 04F3:311C Touchpad" "libinput Tapping Enabled" 1
 exec xinput set-prop "VEN_04F3:00 04F3:311C Touchpad" "libinput Natural Scrolling Enabled" 1
 
-exec_always --no-startup-id picom --config ~/.config/picom/picom.conf --log-file /var/log/picom.log
+# exec_always --no-startup-id picom --config ~/.config/picom/picom.conf --log-file /var/log/picom.log
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id ~/.config/polybar/launch.sh 2> /tmp/polybar.log
 exec_always --no-startup-id dunst -conf ~/.config/dunst/dunstrc

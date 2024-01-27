@@ -15,7 +15,9 @@
     ../../home/kitty
     ../../home/lazygit
     ../../home/nvim
-    ../../home/picom
+    (import ../../home/picom (
+      { nvidiaDrivers = false; }
+    ))
     ../../home/polybar
     ../../home/rofi
     ../../home/wallpapers
