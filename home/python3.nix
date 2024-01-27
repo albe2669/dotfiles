@@ -1,6 +1,10 @@
 {pkgs, ...}: let
   python-packages = ps:
     with ps; [
+      # Common
+      build
+      wheel
+
       # Machine learning packages
       numpy
       scipy
