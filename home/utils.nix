@@ -6,6 +6,9 @@
     ripgrep
     unzip
 
+    # Programming
+    gh
+
     # Convenience
     fd
     jump
