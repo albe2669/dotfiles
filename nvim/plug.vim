@@ -85,7 +85,7 @@ Plug 'numToStr/Comment.nvim' " Commenting
 
 " Other
 Plug 'wakatime/vim-wakatime' " Timetracking
-Plug 'nathom/filetype.nvim' " Speed up startup time
+" Plug 'nathom/filetype.nvim' " Speed up startup time
 Plug 'danymat/neogen' " Generate annotations
 Plug 'github/copilot.vim'
 
