@@ -17,5 +17,6 @@
     bandwhich
     bottom
     procs
+    glxinfo
   ];
 }

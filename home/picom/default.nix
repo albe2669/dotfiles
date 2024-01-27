@@ -6,6 +6,7 @@
 
     backend = if nvidiaDrivers then "glx" else "xrender";
 
+    shadow = true;
     shadowOpacity = 0.75;
     shadowExclude = [
       "_GTK_FRAME_EXTENTS@:c"
@@ -25,28 +26,31 @@
       daemon = true;
       shadow-radius = 15;
       frame-opacity = 0.8;
-      blur = {
-        method = "dual_kawase";
-        strength = 12;
-        background = true;
-        background-frame = false;
-        background-fixed = false;
 
-        background-exclude = [
-          "window_type = 'dock'"
-          "window_type = 'desktop'"
-          "_GTK_FRAME_EXTENTS@:c"
-          "class_g = 'Polybar'"
-        ];
+      blur-method = "dual_kawase";
+      blur-strength = 12;
+      blur-background = true;
 
-        corner-radious = 15;
-        rounded-corners-exclude = [
-          "window_type = 'dock'"
-          "window_type = 'desktop'"
-          "class_g = 'nautilus'"
-          "class_g = 'Polybar'"
-        ];
-      };
+      background = true;
+      background-frame = false;
+      background-fixed = false;
+
+      background-exclude = [
+        "window_type = 'dock'"
+        "window_type = 'desktop'"
+        "_GTK_FRAME_EXTENTS@:c"
+        "class_g = 'Polybar'"
+      ];
+
+      corner-radious = 15;
+      rounded-corners-exclude = [
+        "window_type = 'dock'"
+        "window_type = 'desktop'"
+        "class_g = 'nautilus'"
+        "class_g = 'Polybar'"
+      ];
+
+      vsync = true;
     };
   };
 
