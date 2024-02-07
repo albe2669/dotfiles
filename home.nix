@@ -23,6 +23,7 @@
     ./modules/lazygit/flake-module.nix
     ./modules/nvim/flake-module.nix
     ./modules/obsidian/flake-module.nix
+    ./modules/tex/flake-module.nix
     ./modules/python3.nix
     ./modules/tmux/flake-module.nix
     ./modules/utils.nix
