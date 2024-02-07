@@ -12,7 +12,7 @@ local V = {
         },
       },
     })
-    -- lspconfig['emmet_language_server'].setup({ on_attach = on_attach })
+    lspconfig['emmet_language_server'].setup({ on_attach = on_attach })
   end
 }
 
