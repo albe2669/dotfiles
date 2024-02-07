@@ -2,6 +2,14 @@
 
 let
   python-packages = ps: with ps; [
+    # Common
+    build
+    wheel
+    cython
+    sphinx
+
+    python-dotenv
+
     # Machine learning packages
     numpy
     scipy
