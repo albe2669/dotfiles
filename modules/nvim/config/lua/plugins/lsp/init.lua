@@ -46,6 +46,7 @@ require("mason-lspconfig").setup({
     "cmake",
     "emmet_language_server",
     "eslint",
+    "golangci_lint_ls",
     "gopls",
     "graphql",
     "nil_ls",
