@@ -5,12 +5,16 @@
     # Tools
     eza
     gnutar
+    pandoc
     ripgrep
     unzip
 
     # Convenience
     fd
     jump
+
+    # Programming
+    gh
 
     # System
     bandwhich
