@@ -1,10 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   home.packages = with pkgs; [
     polybar
   ];
 
   xdg.configFile.polybar = {
-    source = ./config;
-    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink ./config;
   };
 }
