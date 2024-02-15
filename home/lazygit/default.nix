@@ -1,10 +1,9 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   home.packages = with pkgs; [
     lazygit
   ];
 
   xdg.configFile.lazygit = {
-    source = ./config;
-    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink ./config;
   };
 }

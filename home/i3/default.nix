@@ -1,6 +1,5 @@
-{...}: {
+{config, ...}: {
   xdg.configFile.i3 = {
-    source = ./config;
-    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink ./config;
   };
 }

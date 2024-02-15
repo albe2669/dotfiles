@@ -1,7 +1,6 @@
-{...}: {
+{config, ...}: {
   # Must be installed manually
   xdg.configFile.kitty = {
-    source = ./config;
-    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink ./config;
   };
 }
