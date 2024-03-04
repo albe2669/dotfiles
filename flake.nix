@@ -30,49 +30,13 @@
     home-manager,
     ...
   }: let
-    username = "goose";
-
-    x64System = "x86_64-linux";
-    x64SpecialArgs = {
-      inherit username;
-
-      pkgs-unstable = import nixpkgs-unstable {
-        system = x64System;
-
-        # Necessary for installing paid or non-free software
-        config.allowUnfree = true;
-      };
-    };
-
-    allSystems = [x64System];
-
-    nixosSystem = import ./lib/nixos-system.nix;
-    skein = {
-      nixosModules = ./hosts/skein/os.nix;
-      homeModules = ./hosts/skein/home.nix;
-    };
+    hosts = import ./hosts inputs;
   in {
-    nixosConfigurations = let
-      baseArgs = {
-        inherit home-manager nixos-generators;
-        nixpkgs = nixpkgs; # TODO: nixpkgs-unstable?
-        system = x64System;
-        specialArgs = x64SpecialArgs;
-      };
-    in {
-      skein = nixosSystem (skein // baseArgs);
-    };
-
-    packages."${x64System}" =
-      nixpkgs.lib.genAttrs [
-        "skein"
-        # gosling
-      ] (
-        host: self.nixosConfigurations.${host}.config.formats
-      );
-
+    nixosConfigurations = hosts.nixosConfigurations;
+    packages = hosts.packages;
+    
     # TODO: This might be wrong
-    formatter = nixpkgs.lib.genAttrs allSystems (
+    formatter = nixpkgs.lib.genAttrs hosts.allSystems (
       system: nixpkgs.legacyPackages.${system}.alejandra
     );
   };

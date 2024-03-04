@@ -28,7 +28,14 @@ in
         home-manager.useUserPackages = true;
 
         home-manager.extraSpecialArgs = specialArgs;
-        home-manager.users."${username}" = homeModules;
+        home-manager.users."${username}" = {
+          imports = [ homeModules ];
+
+          _module.args = {
+            consts = import ../consts.nix;
+            # theme = import ../colors.nix;
+          };
+        };
       }
 
       nixos-generators.nixosModules.all-formats
