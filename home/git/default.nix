@@ -1,12 +1,12 @@
-{pkgs, ...}: {
+{pkgs, consts, ...}: {
   home.packages = with pkgs; [
     bfg-repo-cleaner
   ];
 
   programs.git = {
     enable = true;
-    userName = "albe2669";
-    userEmail = "albert@risenielsen.dk";
+    userName = consts.git.username;
+    userEmail = consts.git.username;
 
     extraConfig = {
       pull.rebase = false;
