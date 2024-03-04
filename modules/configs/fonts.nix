@@ -14,6 +14,7 @@
       (nerdfonts.override {
         fonts = [
           "FiraCode"
+          "Iosevka"
         ];
       })
 
@@ -25,7 +26,7 @@
     fontconfig.defaultFonts = {
       serif = ["Noto Serif"];
       sansSerif = ["Noto Sans"];
-      monospace = ["Fira Code Nerd Font"];
+      monospace = ["Iosevka Nerd Font"];
       emoji = ["Noto Color Emoji"];
     };
   };
