@@ -1,8 +1,6 @@
 {
-  config,
   lib,
   pkgs,
-  pkgs-unstable,
   ...
 }: {
   imports = [
@@ -10,9 +8,7 @@
     ./core-server.nix
 
     # services
-    ./services/bluetooth.nix
     ./services/pipewire.nix
-    ./services/power.nix
     ./services/printing.nix
     ./services/security.nix
     ./services/shell.nix
