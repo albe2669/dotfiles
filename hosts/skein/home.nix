@@ -28,6 +28,7 @@
     ../../home/langs.nix
     ../../home/python3.nix
 
+    ../../home/programs.nix
     ../../home/tmux.nix
     ../../home/utils.nix
     ../../home/vscode.nix
