@@ -7,4 +7,9 @@
     discord
     spotify
   ];
+
+  programs.firefox = {
+    enable = true;
+    # TODO: Add extensions
+  };
 }
