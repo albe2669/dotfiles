@@ -9,6 +9,7 @@
 
   imports = [
     ../../home/alacritty
+    ../../home/dunst
     ../../home/fish
     ../../home/git
     ../../home/i3
