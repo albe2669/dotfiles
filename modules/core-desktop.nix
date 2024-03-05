@@ -8,7 +8,7 @@
     ./core-server.nix
 
     # services
-    ./services/pipewire.nix
+    ./services/pulseaudio.nix
     ./services/printing.nix
     ./services/security.nix
     ./services/shell.nix
@@ -31,7 +31,6 @@
           # Add packages that need root here
         ]
     ))
-    pulseaudio
   ];
 
   services = {
