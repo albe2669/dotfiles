@@ -61,6 +61,9 @@ Plug 'Jorengarenar/COBOL.vim'
 " Scala
 Plug 'scalameta/nvim-metals'
 
+" Cooklang
+Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
+
 " Http client
 Plug 'NTBBloodbath/rest.nvim'
 

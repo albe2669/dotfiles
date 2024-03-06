@@ -16,6 +16,7 @@ require('nvim-treesitter.configs').setup({
     "bash",
     "c",
     "c_sharp",
+    "cooklang",
     "dockerfile",
     "go",
     "gomod",
