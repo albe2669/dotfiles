@@ -9,6 +9,7 @@
   users.users."${username}" = {
     home = "/home/${username}";
     initialPassword = "changeme"; # Replace with hashedpassword
+    createHome = true;
     isNormalUser = true;
     description = "User ${username}";
     extraGroups = [
