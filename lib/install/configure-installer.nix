@@ -5,6 +5,7 @@
   nixos-generators,
   lib,
   system,
+	dotfilesLocation,
 }: let 
   defaultModule = {...}: {
     imports = [
@@ -12,6 +13,8 @@
       ./base-iso.nix
     ];
   };
+
+	isoDotfilesLocation = "/boot/dotfiles";
 in 
   nixos-generators.nixosGenerate {
     system = system;
@@ -27,6 +30,10 @@ in
         disko-mount = pkgs.writeShellScriptBin "disko-mount" "${config.system.build.mountScript}";
         disko-format = pkgs.writeShellScriptBin "disko-format" "${config.system.build.formatScript}"; 
 
+				# This is a bit of a hack, but it works
+				mntDotfilesLocation = "/mnt${dotfilesLocation}";
+				actualIsoDotfilesLocation = "/iso${isoDotfilesLocation}";
+
 				# TODO: Use the proper username variable
         install-system = pkgs.writeShellScriptBin "install-system" ''
           set -euo pipefail
@@ -38,17 +45,17 @@ in
           . ${disko-mount}/bin/disko-mount
 
           echo "Installing system"
-          nixos-install --root /mnt --flake /iso/boot/dotfiles#${host} -j 4
+          nixos-install --root /mnt --flake /iso${isoDotfilesLocation}#${host} -j 4
 
           echo "Copying dotfiles"
-          mkdir -p /mnt/home/goose/Documents/Other/dotfiles
-          cp -r /iso/boot/dotfiles/* /mnt/home/goose/Documents/Other/dotfiles
+          mkdir -p ${mntDotfilesLocation}
+          cp -r ${actualIsoDotfilesLocation}/* ${mntDotfilesLocation}
 
 					echo "Executing home-manager"
 					echo "This might fail, but it's fine"
 					echo "If it does, just run it manually after booting into the system"
 
-					nixos-enter --root /mnt -c "cd /home/goose/Documents/Other/dotfiles; nixos-rebuild switch --flake .#${host}"
+					nixos-enter --root /mnt -c "cd ${dotfilesLocation}; nixos-rebuild switch --flake .#${host}"
 
           echo "Done"
         '';
@@ -81,7 +88,7 @@ in
            contents = [
             {
               source = ../..;
-              target = "/boot/dotfiles";
+              target = isoDotfilesLocation;
             }
            ];
          };
