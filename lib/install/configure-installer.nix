@@ -34,7 +34,6 @@ in
 				mntDotfilesLocation = "/mnt${dotfilesLocation}";
 				actualIsoDotfilesLocation = "/iso${isoDotfilesLocation}";
 
-				# TODO: Use the proper username variable
         install-system = pkgs.writeShellScriptBin "install-system" ''
           set -euo pipefail
 
