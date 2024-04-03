@@ -3,7 +3,7 @@ let
 in {
   inherit username;
 
-  dotfilesLocation = "/home/${username}/Documents/dotfiles";
+  dotfilesLocation = "/home/${username}/Documents/Other/dotfiles";
 
   git = {
     username = "albe2669";
