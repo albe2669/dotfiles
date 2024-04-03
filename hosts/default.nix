@@ -6,9 +6,9 @@
   disko,
   self,
   ...
-}: let 
+}: let
   consts = import ../consts.nix;
-  
+
   x64System = "x86_64-linux";
 
   x64SpecialArgs = {
@@ -45,10 +45,9 @@ in {
     host: nixosSystem (configurations.${host} // baseArgs)
   );
 
-  packages."${x64System}" =
-    nixpkgs.lib.genAttrs hosts (
-      host: self.nixosConfigurations.${host}.config.formats
-    );
+  packages."${x64System}" = nixpkgs.lib.genAttrs hosts (
+    host: self.nixosConfigurations.${host}.config.formats
+  );
 
   hosts = hosts;
 

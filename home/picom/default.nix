@@ -1,10 +1,13 @@
-{ nvidiaDrivers ? false, ... }: {
+{nvidiaDrivers ? false, ...}: {
   # I3 currently starts picom for us
   # TODO: Remove this once we have a better way to configure i3
   services.picom = {
     enable = true;
 
-    backend = if nvidiaDrivers then "glx" else "xrender";
+    backend =
+      if nvidiaDrivers
+      then "glx"
+      else "xrender";
 
     shadow = true;
     shadowOpacity = 0.75;
@@ -53,8 +56,6 @@
       vsync = true;
     };
   };
-
-
 
   # home.packages = with pkgs; [
   #   picom

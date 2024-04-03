@@ -31,7 +31,7 @@ in
 
         home-manager.extraSpecialArgs = specialArgs;
         home-manager.users."${username}" = {
-          imports = [ homeModules ];
+          imports = [homeModules];
 
           _module.args = {
             consts = import ../consts.nix;

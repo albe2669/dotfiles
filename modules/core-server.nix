@@ -1,15 +1,15 @@
 {lib, ...}: {
   imports = [
-		# Core
-		./core/nix.nix
-		./core/network.nix
-		./core/bootloader.nix
+    # Core
+    ./core/nix.nix
+    ./core/network.nix
+    ./core/bootloader.nix
 
-		# Services
+    # Services
     ./services/docker.nix
-		./services/power.nix
+    ./services/power.nix
 
-		# Configs
+    # Configs
     ./configs/system-packages.nix
   ];
 

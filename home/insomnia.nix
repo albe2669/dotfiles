@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   inherit (pkgs) fetchurl;
   insomnia = pkgs.insomnia.overrideAttrs (oldAttrs: rec {
     inherit (oldAttrs) pname meta;
@@ -11,10 +9,8 @@ let
       sha256 = "sha256-qy2j6kdmtDgfTab8gTz7eb/uNKwtzbxcoJHNibVa35c=";
     };
   });
-in
-{
+in {
   home.packages = [
     insomnia
   ];
 }
-

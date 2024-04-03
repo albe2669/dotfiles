@@ -1,4 +1,8 @@
-{pkgs, consts, ...}: {
+{
+  pkgs,
+  consts,
+  ...
+}: {
   home.packages = with pkgs; [
     bfg-repo-cleaner
   ];

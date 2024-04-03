@@ -1,5 +1,8 @@
-{ username, lib, ...}: 
-let 
+{
+  username,
+  lib,
+  ...
+}: let
   dirs = ["Documents" "Downloads" "Music" "Pictures" "Videos"];
 in {
   home = {
@@ -8,7 +11,7 @@ in {
     stateVersion = "23.11";
 
     activation = {
-      createDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] (builtins.concatStringsSep "\n" (builtins.map(dir: "mkdir -p ~/${dir}") dirs));
+      createDirs = lib.hm.dag.entryAfter ["writeBoundary"] (builtins.concatStringsSep "\n" (builtins.map (dir: "mkdir -p ~/${dir}") dirs));
     };
   };
 

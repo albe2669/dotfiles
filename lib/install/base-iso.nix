@@ -4,6 +4,6 @@
   ];
 
   environment.etc."dotfiles" = {
-    source = ../..; 
+    source = ../..;
   };
 }

@@ -12,3 +12,6 @@ installer-skein:
 
 repl:
 	nix --extra-experimental-features "nix-command flakes repl-flake" repl
+
+fmt:
+	nix --extra-experimental-features "nix-command flakes" fmt

@@ -36,15 +36,19 @@
     ...
   }: let
     hosts = import ./hosts inputs;
-    installers = import ./hosts/installers.nix ({ hosts = hosts.hosts; systems = hosts.allSystems;} // inputs);
-
+    installers = import ./hosts/installers.nix ({
+        hosts = hosts.hosts;
+        systems = hosts.allSystems;
+      }
+      // inputs);
   in {
     nixosConfigurations = hosts.nixosConfigurations;
     packages = hosts.packages;
-    installers = installers;    
+    installers = installers;
+
     # TODO: This might be wrong
-    #formatter = nixpkgs.lib.genAttrs hosts.allSystems (
-    #  system: nixpkgs.legacyPackages.${system}.alejandra
-    #);
+    formatter = nixpkgs.lib.genAttrs hosts.allSystems (
+      system: nixpkgs.legacyPackages.${system}.alejandra
+    );
   };
 }

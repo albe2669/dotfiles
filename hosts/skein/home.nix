@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-		../../home/common.nix
+    ../../home/common.nix
     ../../home/alacritty
     ../../home/betterlockscreen
     ../../home/dunst
@@ -10,9 +10,7 @@
     ../../home/kitty
     ../../home/lazygit
     ../../home/nvim
-    (import ../../home/picom (
-      { nvidiaDrivers = false; }
-    ))
+    (import ../../home/picom {nvidiaDrivers = false;})
     ../../home/polybar
     ../../home/rofi
     ../../home/wallpapers
