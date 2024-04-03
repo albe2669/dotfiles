@@ -36,7 +36,11 @@ Referenced by `flake.nix`, this directory contains a directory for each host. Ea
 
 Secondly each host specifies a `os.nix` file which imports the hardware configuration, which type of host it is from `modules` and other OS related configurations.
 
+Thirdly each host specifies a `diskos.nix` file which specifies the disk layout and other disk related configurations.
+
 Lastly each host has a `home.nix` file which imports modules from `home` and specifies everything that should be configurad and installed on the user level.
+
+To add more hosts see [docs/add-hosts.md](docs/add-hosts.md).
 
 #### `modules`
 This directory contains all the modules that are used to configure the system. These are split into two categories, `configs` and `services`.
@@ -66,3 +70,5 @@ make vm
 ```
 
 A QEMU VM will be started with everything enabled.
+
+### Installing
