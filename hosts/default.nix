@@ -3,11 +3,10 @@
   nixpkgs-unstable,
   nixos-generators,
   home-manager,
+  disko,
   self,
   ...
 }: let 
-  inherit (self) inputs;
-
   consts = import ../consts.nix;
   
   x64System = "x86_64-linux";
@@ -26,29 +25,32 @@
   allSystems = [x64System];
 
   nixosSystem = import ../lib/nixos-system.nix;
-  skein = {
-    nixosModules = ./skein/os.nix;
-    homeModules = ./skein/home.nix;
-  };
-in {
-  nixosConfigurations = let
-    baseArgs = {
-      inherit home-manager nixos-generators;
-      nixpkgs = nixpkgs;
-      system = x64System;
-      specialArgs = x64SpecialArgs;
-    };
-  in {
-    skein = nixosSystem (skein // baseArgs);
+
+  baseArgs = {
+    inherit home-manager nixpkgs nixos-generators disko;
+    system = x64System;
+    specialArgs = x64SpecialArgs;
   };
 
+  configurations = {
+    skein = {
+      nixosModules = ./skein/os.nix;
+      homeModules = ./skein/home.nix;
+    };
+  };
+
+  hosts = builtins.attrNames configurations;
+in {
+  nixosConfigurations = nixpkgs.lib.genAttrs hosts (
+    host: nixosSystem (configurations.${host} // baseArgs)
+  );
+
   packages."${x64System}" =
-    nixpkgs.lib.genAttrs [
-      "skein"
-      # gosling
-    ] (
+    nixpkgs.lib.genAttrs hosts (
       host: self.nixosConfigurations.${host}.config.formats
     );
+
+  hosts = hosts;
 
   allSystems = allSystems;
 }

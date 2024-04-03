@@ -9,6 +9,7 @@
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+		./disko.nix
   ];
 
   networking.hostName = "skein"; # Define your hostname.

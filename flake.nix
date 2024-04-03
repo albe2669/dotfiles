@@ -20,6 +20,11 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -31,13 +36,15 @@
     ...
   }: let
     hosts = import ./hosts inputs;
+    installers = import ./hosts/installers.nix ({ hosts = hosts.hosts; systems = hosts.allSystems;} // inputs);
+
   in {
     nixosConfigurations = hosts.nixosConfigurations;
     packages = hosts.packages;
-    
+    installers = installers;    
     # TODO: This might be wrong
-    formatter = nixpkgs.lib.genAttrs hosts.allSystems (
-      system: nixpkgs.legacyPackages.${system}.alejandra
-    );
+    #formatter = nixpkgs.lib.genAttrs hosts.allSystems (
+    #  system: nixpkgs.legacyPackages.${system}.alejandra
+    #);
   };
 }

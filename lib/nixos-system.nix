@@ -6,6 +6,7 @@
   specialArgs,
   nixosModules,
   homeModules,
+  disko,
 }: let
   username = specialArgs.username;
 in
@@ -13,6 +14,7 @@ in
     inherit system specialArgs;
     modules = [
       nixosModules
+      disko.nixosModules.disko
       {
         # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
         nix.registry.nixpkgs.flake = nixpkgs;

@@ -1,8 +1,8 @@
 {
   host,
   disko,
+  nixpkgs,
   nixos-generators,
-  modulesPath,
   lib,
   system,
 }: let 
@@ -37,12 +37,16 @@ in
           . ${disko-mount}/bin/disko-mount
 
           echo "Installing system"
-          # nixos-install --system ${system}
+          mkdir -p /home/goose/Documents/Other/dotfiles
+          cp -r /iso/boot/dotfiles/* /home/goose/Documents/Other/dotfiles
+
+          nixos-install --root /mnt --flake /iso/boot/dotfiles#${host} -j 4
 
           echo "Done"
         '';
 
       in {
+        # TODO: Remove this from here and make it an argument to the script instead
         imports = [
           ../../hosts/${host}/disko.nix
         ];
@@ -61,7 +65,7 @@ in
     customFormats = {
       install-iso-goose = {
         imports = [
-           "${toString modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
          ];
 
          isoImage = {
@@ -69,7 +73,7 @@ in
            contents = [
             {
               source = ../..;
-              destination = "/boot/dotfiles";
+              target = "/boot/dotfiles";
             }
            ];
          };

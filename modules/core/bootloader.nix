@@ -4,15 +4,12 @@
 }: {
 	boot = {
 		loader = {
-			systemd-boot = {
-				configurationLimit = lib.mkDefault 10;
-			};
-
 			grub = {
-				enable = false;
-				device = "/dev/sda"; #  "nodev"
-				efiSupport = false;
-				useOSProber = true;
+				enable = lib.mkForce true;
+				efiSupport = true;
+				efiInstallAsRemovable = true;
+				# Will be set to "device" by disko
+				devices = [ "/dev/sda" ];
 			};
 		};
 	};
