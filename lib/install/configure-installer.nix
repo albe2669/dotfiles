@@ -44,7 +44,7 @@ in
           . ${disko-mount}/bin/disko-mount
 
           echo "Installing system"
-          nixos-install --root /mnt --flake /iso${isoDotfilesLocation}#${host} -j 4
+          nixos-install --root /mnt --flake ${actualIsoDotfilesLocation}#${host} -j 4
 
           echo "Copying dotfiles"
           mkdir -p ${mntDotfilesLocation}
