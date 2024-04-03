@@ -37,10 +37,11 @@ in
           . ${disko-mount}/bin/disko-mount
 
           echo "Installing system"
-          mkdir -p /home/goose/Documents/Other/dotfiles
-          cp -r /iso/boot/dotfiles/* /home/goose/Documents/Other/dotfiles
-
           nixos-install --root /mnt --flake /iso/boot/dotfiles#${host} -j 4
+
+          echo "Copying dotfiles"
+          mkdir -p /mnt/home/goose/Documents/Other/dotfiles
+          cp -r /iso/boot/dotfiles/* /mnt/home/goose/Documents/Other/dotfiles
 
           echo "Done"
         '';
