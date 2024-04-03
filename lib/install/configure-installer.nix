@@ -27,6 +27,7 @@ in
         disko-mount = pkgs.writeShellScriptBin "disko-mount" "${config.system.build.mountScript}";
         disko-format = pkgs.writeShellScriptBin "disko-format" "${config.system.build.formatScript}"; 
 
+				# TODO: Use the proper username variable
         install-system = pkgs.writeShellScriptBin "install-system" ''
           set -euo pipefail
 
@@ -42,6 +43,12 @@ in
           echo "Copying dotfiles"
           mkdir -p /mnt/home/goose/Documents/Other/dotfiles
           cp -r /iso/boot/dotfiles/* /mnt/home/goose/Documents/Other/dotfiles
+
+					echo "Executing home-manager"
+					echo "This might fail, but it's fine"
+					echo "If it does, just run it manually after booting into the system"
+
+					nixos-enter --root /mnt -c "cd /home/goose/Documents/Other/dotfiles; nixos-rebuild switch --flake .#${host}"
 
           echo "Done"
         '';
