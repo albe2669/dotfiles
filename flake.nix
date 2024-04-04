@@ -1,12 +1,11 @@
 {
   description = "A NixOS configuration made by a silly goose way over their head";
 
-  # TODO: Move to it's own file
   nixConfig = {
     experimental-features = ["nix-command" "flakes"];
   };
-
-  # FIXME: Different file?
+  
+  # These urls should coincide with the stateVersion variable in the variables.nix file
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11"; # Use stable for now
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -35,12 +34,16 @@
     home-manager,
     ...
   }: let
-    hosts = import ./hosts inputs;
+    args = {
+      variables = import ./variables.nix;
+    } // inputs;
+
+    hosts = import ./hosts args;
     installers = import ./hosts/installers.nix ({
         hosts = hosts.hosts;
         systems = hosts.allSystems;
       }
-      // inputs);
+      // args);
   in {
     nixosConfigurations = hosts.nixosConfigurations;
     packages = hosts.packages;

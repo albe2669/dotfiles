@@ -5,7 +5,8 @@
   nixos-generators,
   lib,
   system,
-  dotfilesLocation,
+  variables,
+  ...
 }: let
   defaultModule = {...}: {
     imports = [
@@ -14,10 +15,14 @@
     ];
   };
 
-  isoDotfilesLocation = "/boot/dotfiles";
+  isoDotfilesLocation = builtins.toPath "/boot/dotfiles";
 in
   nixos-generators.nixosGenerate {
-    system = system;
+    inherit system;
+    specialArgs = {
+      inherit variables;
+    };
+
     modules = [
       defaultModule
       ({
@@ -31,8 +36,8 @@ in
         disko-format = pkgs.writeShellScriptBin "disko-format" "${config.system.build.formatScript}";
 
         # This is a bit of a hack, but it works
-        mntDotfilesLocation = "/mnt${dotfilesLocation}";
-        actualIsoDotfilesLocation = "/iso${isoDotfilesLocation}";
+        mntDotfilesLocation = (builtins.toPath "/mnt") + variables.dotfilesLocation;
+        actualIsoDotfilesLocation = (builtins.toPath "/iso") + isoDotfilesLocation;
 
         install-system = pkgs.writeShellScriptBin "install-system" ''
                set -euo pipefail
@@ -54,7 +59,7 @@ in
           echo "This might fail, but it's fine"
           echo "If it does, just run it manually after booting into the system"
 
-          nixos-enter --root /mnt -c "cd ${dotfilesLocation}; nixos-rebuild switch --flake .#${host}"
+          nixos-enter --root /mnt -c "cd ${variables.dotfilesLocation}; nixos-rebuild switch --flake .#${host}"
 
                echo "Done"
         '';

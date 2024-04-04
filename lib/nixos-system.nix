@@ -34,7 +34,7 @@ in
           imports = [homeModules];
 
           _module.args = {
-            consts = import ../consts.nix;
+            variables = import ../variables.nix;
             # theme = import ../colors.nix;
           };
         };

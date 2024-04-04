@@ -1,17 +1,14 @@
 {
-  username,
+  variables,
   lib,
   ...
-}: let
-  dirs = ["Documents" "Downloads" "Music" "Pictures" "Videos"];
-in {
+}: {
   home = {
-    username = username;
-    homeDirectory = "/home/${username}";
-    stateVersion = "23.11";
+    inherit (variables) username stateVersion;
+    homeDirectory = variables.homeDirectory.path;
 
     activation = {
-      createDirs = lib.hm.dag.entryAfter ["writeBoundary"] (builtins.concatStringsSep "\n" (builtins.map (dir: "mkdir -p ~/${dir}") dirs));
+      createDirs = lib.hm.dag.entryAfter ["writeBoundary"] (builtins.concatStringsSep "\n" (builtins.map (dir: "mkdir -p ~/${dir}") variables.homeDirectory.directories));
     };
   };
 

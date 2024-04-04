@@ -4,15 +4,16 @@
   nixos-generators,
   home-manager,
   disko,
+  variables,
   self,
   ...
 }: let
-  consts = import ../consts.nix;
-
   x64System = "x86_64-linux";
 
   x64SpecialArgs = {
-    username = consts.username;
+    inherit variables;
+
+    username = variables.username;
 
     pkgs-unstable = import nixpkgs-unstable {
       system = x64System;

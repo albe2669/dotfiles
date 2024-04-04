@@ -4,15 +4,14 @@
   disko,
   nixpkgs,
   nixos-generators,
+  variables,
   ...
 }: let
-  consts = import ../consts.nix;
   configureInstaller = import ../lib/install/configure-installer.nix;
 
   args = {
     inherit (nixpkgs) lib;
-    inherit (consts) dotfilesLocation;
-    inherit disko nixos-generators nixpkgs;
+    inherit disko nixos-generators nixpkgs variables;
   };
 in
   nixpkgs.lib.genAttrs systems (
