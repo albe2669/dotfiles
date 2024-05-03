@@ -4,6 +4,9 @@ vm:
 iso:
 	nix --extra-experimental-features "nix-command flakes" build --show-trace --option eval-cache false .#skein.install-iso
 
+iso-gosling:
+	nix --extra-experimental-features "nix-command flakes" build --show-trace --option eval-cache false .#gosling.install-iso
+
 show:
 	nix --extra-experimental-features "nix-command flakes" flake show
 

@@ -38,6 +38,10 @@
       nixosModules = ./skein/os.nix;
       homeModules = ./skein/home.nix;
     };
+    gosling = {
+      nixosModules = ./gosling/os.nix;
+      homeModules = ./gosling/home.nix;
+    };
   };
 
   hosts = builtins.attrNames configurations;
