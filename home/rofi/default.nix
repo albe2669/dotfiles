@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  variables,
   ...
 }: {
   home.packages = with pkgs; [
@@ -8,6 +9,6 @@
   ];
 
   xdg.configFile.rofi = {
-    source = config.lib.file.mkOutOfStoreSymlink ./config;
+    source = config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}" + (builtins.toPath "/home/rofi/config");
   };
 }

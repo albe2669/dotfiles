@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  variables,
   ...
 }: {
   home.packages = with pkgs; [
@@ -9,6 +10,6 @@
   ];
 
   xdg.configFile.betterlockscreen = {
-    source = config.lib.file.mkOutOfStoreSymlink ./config;
+    source = config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}" + (builtins.toPath "/home/betterlockscreen/config");
   };
 }

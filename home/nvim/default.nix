@@ -2,6 +2,7 @@
   pkgs,
   config,
 	lib,
+  variables,
   ...
 }: {
   home.packages = with pkgs; [
@@ -21,6 +22,6 @@
 	'';
 
   xdg.configFile.nvim = {
-    source = config.lib.file.mkOutOfStoreSymlink ./config;
+    source = config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}" + (builtins.toPath "/home/nvim/config");
   };
 }
