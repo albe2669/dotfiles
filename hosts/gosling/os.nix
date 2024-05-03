@@ -2,7 +2,7 @@
   diskPath = "/dev/nvme0n1";
 in {
   imports = [
-    ../../modules/core-desktop.nix
+    (import ../../modules/core-desktop.nix {diskPath = diskPath; })
     ../../modules/core-laptop.nix
     ../../modules/core/nvidia.nix
     ../../modules/configs/hidpi.nix

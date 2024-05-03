@@ -1,4 +1,4 @@
-{lib, ...}: {
+{ diskPath }: {lib, ...}: {
   boot = {
     loader = {
       grub = {
@@ -6,7 +6,7 @@
         efiSupport = true;
         efiInstallAsRemovable = true;
         # Will be set to "device" by disko
-        devices = ["/dev/sda"];
+        devices = [diskPath];
       };
     };
   };

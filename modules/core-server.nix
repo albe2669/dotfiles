@@ -1,9 +1,9 @@
-{lib, ...}: {
+{ diskPath }: {lib, ...}: {
   imports = [
     # Core
     ./core/nix.nix
     ./core/network.nix
-    ./core/bootloader.nix
+    (import ./core/bootloader.nix { diskPath = diskPath; })
 
     # Services
     ./services/docker.nix

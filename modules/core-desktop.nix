@@ -1,11 +1,11 @@
-{
+{ diskPath }: {
   lib,
   pkgs,
   ...
 }: {
   imports = [
     # A desktop is just a server with better UX right?
-    ./core-server.nix
+    (import ./core-server.nix { diskPath = diskPath; })
 
     # services
     ./services/pulseaudio.nix

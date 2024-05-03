@@ -43,9 +43,11 @@ You should also define the networking hostname in this file.
 
 Use this as a template:
 ```nix
-{...}: {
+{...}: let
+  diskPath = "/dev/sda";
+in {
   imports = [
-    ../../modules/core-desktop.nix
+    (import ../../modules/core-desktop.nix {diskPath = diskPath; })
     ../../modules/core-laptop.nix
     ../../modules/services/bluetooth.nix
 
@@ -53,7 +55,7 @@ Use this as a template:
     ./hardware-configuration.nix
 
     # Disk configuration
-    ./disko.nix
+    (import ./disko.nix { diskPath = diskPath; })
   ];
 
   networking.hostName = "skein"; # Define your hostname.
