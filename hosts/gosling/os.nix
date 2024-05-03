@@ -1,4 +1,6 @@
-{...}: {
+{...}: let
+  diskPath = "/dev/nvme0n1";
+in {
   imports = [
     ../../modules/core-desktop.nix
     ../../modules/core-laptop.nix
@@ -8,7 +10,7 @@
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./disko.nix
+    (import ./disko.nix { diskPath = diskPath; })
   ];
 
   networking.hostName = "gosling"; # Define your hostname.

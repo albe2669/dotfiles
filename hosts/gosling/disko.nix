@@ -1,9 +1,9 @@
-{...}: {
+{diskPath, ...}: {
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";
+        device = diskPath;
         content = {
           type = "gpt";
           partitions = {
