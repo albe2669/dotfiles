@@ -1,5 +1,3 @@
-local u = require('utils')
-
 -- Configuration
 local getConfig = function(location)
   return {
@@ -57,18 +55,28 @@ telekastenConfig.vaults = {
   refit = getConfig(uniHome .. '/semester-6/refit/notes'),
 }
 
-require('telekasten').setup(telekastenConfig)
+return {
+  {
+    "renerocksai/telekasten.nvim",
+    config = function()
+      require('telekasten').setup(telekastenConfig)
 
--- Commands
-u.rq_cmd("NewNote", "telekasten", "new_note()")
-u.rq_cmd("FindNotes", "telekasten", "find_notes()")
-u.rq_cmd("SearchNotes", "telekasten", "search_notes()")
-u.rq_cmd("FollowLink", "telekasten", "follow_link()")
-u.rq_cmd("TelekastenPanel", "telekasten", "panel()")
+      local u = require('utils')
 
--- Keymaps
-u.nmap("<leader>z", "<cmd>TelekastenPanel<cr>")
-u.nmap("<leader>zn", "<cmd>NewNote<cr>")
-u.nmap("<leader>zf", "<cmd>FindNotes<cr>")
-u.nmap("<leader>zg", "<cmd>SearchNotes<cr>")
-u.nmap("<leader>zz", "<cmd>FollowLink<cr>")
+      -- Commands
+      u.rq_cmd("NewNote", "telekasten", "new_note()")
+      u.rq_cmd("FindNotes", "telekasten", "find_notes()")
+      u.rq_cmd("SearchNotes", "telekasten", "search_notes()")
+      u.rq_cmd("FollowLink", "telekasten", "follow_link()")
+      u.rq_cmd("TelekastenPanel", "telekasten", "panel()")
+
+      -- Keymaps
+      u.nmap("<leader>z", "<cmd>TelekastenPanel<cr>")
+      u.nmap("<leader>zn", "<cmd>NewNote<cr>")
+      u.nmap("<leader>zf", "<cmd>FindNotes<cr>")
+      u.nmap("<leader>zg", "<cmd>SearchNotes<cr>")
+      u.nmap("<leader>zz", "<cmd>FollowLink<cr>")
+    end,
+  }
+}
+
