@@ -10,6 +10,7 @@
     # Rust
     cargo
     rustc
+    clippy
     openssl # openssl-sys
     pkg-config # openssl-sys
 
