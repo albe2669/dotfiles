@@ -18,5 +18,6 @@
     bottom
     procs
     glxinfo
+    brightnessctl
   ];
 }
