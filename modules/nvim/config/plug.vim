@@ -37,10 +37,6 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 
 " Telescope fuzzy file finder
 Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-
-" Popup terminal
-Plug 'voldikss/vim-floaterm'
 
 " Editor
 Plug 'preservim/nerdtree' " File window
