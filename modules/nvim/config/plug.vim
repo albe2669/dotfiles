@@ -6,8 +6,6 @@ endif
 
 " Plugins
 call plug#begin(g:plug_location)
-" Movement
-Plug 'ggandor/leap.nvim'
 " LaTeX
 Plug 'lervag/vimtex'
 
