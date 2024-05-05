@@ -8,11 +8,6 @@ endif
 call plug#begin(g:plug_location)
 " Movement
 Plug 'ggandor/leap.nvim'
-
-" LSP client
-Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-
 " LaTeX
 Plug 'lervag/vimtex'
 
