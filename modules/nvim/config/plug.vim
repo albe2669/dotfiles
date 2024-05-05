@@ -25,7 +25,6 @@ Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
 Plug 'nvim-lua/popup.nvim'
 
 " Editor
-Plug 'tpope/vim-surround' " Surrounds words or lines with brackets, quotes etc.
 Plug 'mg979/vim-visual-multi' " Multi cursor
 
 " Other
