@@ -39,7 +39,6 @@ Plug 'mg979/vim-visual-multi' " Multi cursor
 
 " Other
 Plug 'wakatime/vim-wakatime' " Timetracking
-Plug 'danymat/neogen' " Generate annotations
 
 " Note taking
 Plug 'renerocksai/telekasten.nvim'
