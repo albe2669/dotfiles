@@ -6,9 +6,6 @@ endif
 
 " Plugins
 call plug#begin(g:plug_location)
-" LaTeX
-Plug 'lervag/vimtex'
-
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
 Plug 'simrat39/rust-tools.nvim'
 
