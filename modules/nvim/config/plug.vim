@@ -82,7 +82,6 @@ Plug 'numToStr/Comment.nvim' " Commenting
 " Other
 Plug 'wakatime/vim-wakatime' " Timetracking
 Plug 'danymat/neogen' " Generate annotations
-Plug 'github/copilot.vim'
 
 " Note taking
 Plug 'renerocksai/telekasten.nvim'
