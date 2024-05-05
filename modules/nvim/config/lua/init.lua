@@ -1,5 +1,5 @@
 global = {}
 
-require("plugins")
+require("plugin_manager")
 require("configs")
 
