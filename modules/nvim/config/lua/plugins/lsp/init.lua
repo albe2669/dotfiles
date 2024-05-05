@@ -36,14 +36,14 @@ local servers = lu.load_servers({
   "lua-server",
   "nix-server",
   "python-server",
-  -- "rs-server",
+  "rs-server",
   "scala-server",
   "svelte-server",
   "tailwindcss-server",
   "terraform-server",
   "ts-server",
-  -- "vue-server",
-  -- "yaml-server",
+  "vue-server",
+  "yaml-server",
 })
 
 for _, server in pairs(servers) do
