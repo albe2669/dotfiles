@@ -26,8 +26,5 @@ Plug 'nvim-lua/popup.nvim'
 
 " Editor
 Plug 'mg979/vim-visual-multi' " Multi cursor
-
-" Other
-Plug 'wakatime/vim-wakatime' " Timetracking
 call plug#end()
 
