@@ -57,9 +57,6 @@ Plug 'scalameta/nvim-metals'
 " Cooklang
 Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
 
-" Http client
-Plug 'NTBBloodbath/rest.nvim'
-
 " Database client
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
