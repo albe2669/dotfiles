@@ -6,11 +6,6 @@ endif
 
 " Plugins
 call plug#begin(g:plug_location)
-" Themes
-" Plug 'gruvbox-community/gruvbox'
-" Plug 'ntk148v/vim-horizon'
-Plug 'sainnhe/everforest'
-
 " Movement
 Plug 'ggandor/leap.nvim'
 
