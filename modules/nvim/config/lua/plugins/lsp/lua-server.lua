@@ -1,4 +1,5 @@
-local L = {
+return {
+  server_name = "lua_ls",
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
@@ -23,5 +24,3 @@ local L = {
     })
   end
 }
-
-return L

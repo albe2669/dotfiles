@@ -1,4 +1,5 @@
-local D = {
+return {
+  server_name = "dagger",
   setup = function (on_attach)
     local lspconfig = require 'lspconfig'
     local configs   = require 'lspconfig.configs'
@@ -22,5 +23,3 @@ local D = {
     }
   end,
 }
-
-return D

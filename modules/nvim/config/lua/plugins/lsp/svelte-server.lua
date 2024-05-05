@@ -1,4 +1,5 @@
-local S = {
+return {
+  server_name = "svelte",
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
@@ -7,5 +8,3 @@ local S = {
     })
   end
 }
-
-return S

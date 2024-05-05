@@ -1,4 +1,5 @@
-local T = {
+return {
+  server_name = "tailwindcss",
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
@@ -7,5 +8,3 @@ local T = {
     })
   end
 }
-
-return T

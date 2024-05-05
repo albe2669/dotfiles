@@ -1,4 +1,5 @@
-local E = {
+return {
+  server_name = "eslint",
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
@@ -17,5 +18,3 @@ local E = {
     })
   end,
 }
-
-return E

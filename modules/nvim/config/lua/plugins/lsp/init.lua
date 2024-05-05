@@ -13,57 +13,50 @@ global.lsp = {
   formatting = lu.formatting,
 }
 
-local load_servers = function()
-  for _, config in ipairs({
-    "bash-server",
-    "c-server",
-    "cmake-server",
-    "csharp-server",
-    "dagger-server",
-    "eslint-server",
-    "go-server",
-    "graphql-server",
-    "latex-server",
-    "lua-server",
-    "nix-server",
-    "python-server",
-    "rs-server",
-    "svelte-server",
-    "tailwindcss-server",
-    "terraform-server",
-    "ts-server",
-    "vue-server",
-    "yaml-server",
-  }) do
-    require("plugins.lsp." .. config).setup(lu.on_attach)
-  end
-end
-
 local opts = {
   automatic_installation = true,
-  ensure_installed = {
-    "bashls",
-    "clangd",
-    "cmake",
-    "emmet_language_server",
-    "eslint",
-    "golangci_lint_ls",
-    "gopls",
-    "graphql",
-    "nil_ls",
-    "omnisharp",
-    "pylsp",
-    "rust_analyzer",
-    "svelte",
-    "tailwindcss",
-    "terraformls",
-    "texlab",
-    "tflint",
-    "tsserver",
-    "volar",
-    "yamlls",
-  }
+  ensure_installed = {}
 }
+
+local dependencies = {
+  "williamboman/mason.nvim",
+  "neovim/nvim-lspconfig",
+}
+
+local servers = lu.load_servers({
+  "bash-server",
+  "c-server",
+  "cmake-server",
+  "csharp-server",
+  "dagger-server",
+  "eslint-server",
+  "go-server",
+  "graphql-server",
+  "latex-server",
+  "lua-server",
+  "nix-server",
+  "python-server",
+  -- "rs-server",
+  "scala-server",
+  "svelte-server",
+  "tailwindcss-server",
+  "terraform-server",
+  "ts-server",
+  -- "vue-server",
+  -- "yaml-server",
+})
+
+for _, server in pairs(servers) do
+  if type(server.server_name) == "table" then
+    lu.merge_arrays(opts.ensure_installed, server.server_name)
+  else
+    table.insert(opts.ensure_installed, server.server_name)
+  end
+
+  if server.dependencies then
+    lu.merge_arrays(dependencies, server.dependencies)
+  end
+end
 
 -- Hide lspconfig messages
 local hide_lspconfig_messages = function()
@@ -80,18 +73,18 @@ end
 return {
   {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "neovim/nvim-lspconfig",
-    },
+    dependencies = dependencies,
     lazy = false,
     config = function()
       require("mason").setup()
       require("mason-lspconfig").setup(opts)
+
+      for _, server in pairs(servers) do
+        server.setup(lu.on_attach)
+      end
     end,
     init = function()
       hide_lspconfig_messages()
-      load_servers()
     end
   }
 }

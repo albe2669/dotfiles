@@ -1,4 +1,5 @@
-local G = {
+return {
+  server_name = {"gopls", "golangci_lint_ls"},
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
@@ -11,5 +12,3 @@ local G = {
     })
   end
 }
-
-return G

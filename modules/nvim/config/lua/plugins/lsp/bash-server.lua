@@ -1,4 +1,5 @@
-local B = {
+return {
+  server_name = "bashls",
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
@@ -7,5 +8,3 @@ local B = {
     })
   end,
 }
-
-return B

@@ -1,4 +1,10 @@
-local C = {
+return {
+  server_name = "clangd",
+  dependencies = {
+    {
+      "p00f/clangd_extensions.nvim",
+    }
+  },
   setup = function (on_attach)
     require("clangd_extensions").setup({
       server = {
@@ -7,5 +13,3 @@ local C = {
     })
   end,
 }
-
-return C
