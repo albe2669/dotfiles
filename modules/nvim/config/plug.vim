@@ -9,20 +9,9 @@ call plug#begin(g:plug_location)
 " Movement
 Plug 'ggandor/leap.nvim'
 
-" Lua line
-Plug 'nvim-lualine/lualine.nvim'
-
-" Icons, used by lualine and cokeline
-Plug 'kyazdani42/nvim-web-devicons'
-
-" LSP installer
-
 " LSP client
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-
-" Improve the LSP ui
-" Plug 'glepnir/lspsaga.nvim'
 
 " LaTeX
 Plug 'lervag/vimtex'
