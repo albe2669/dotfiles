@@ -23,8 +23,5 @@ Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
 
 " Telescope fuzzy file finder
 Plug 'nvim-lua/popup.nvim'
-
-" Editor
-Plug 'mg979/vim-visual-multi' " Multi cursor
 call plug#end()
 
