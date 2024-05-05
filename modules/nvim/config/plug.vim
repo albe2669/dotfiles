@@ -21,10 +21,6 @@ Plug 'scalameta/nvim-metals'
 " Cooklang
 Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
 
-" Database client
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
-
 " Telescope fuzzy file finder
 Plug 'nvim-lua/popup.nvim'
 
