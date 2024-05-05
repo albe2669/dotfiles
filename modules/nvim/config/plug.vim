@@ -61,9 +61,6 @@ Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 
-" Tree sitter, better language highlighting
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 " Telescope fuzzy file finder
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
