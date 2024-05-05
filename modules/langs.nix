@@ -14,6 +14,7 @@
     rustc
     openssl # openssl-sys
     pkg-config # openssl-sys
+    clippy
 
     # Scala
     scala
