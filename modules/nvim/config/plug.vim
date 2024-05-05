@@ -29,9 +29,5 @@ Plug 'mg979/vim-visual-multi' " Multi cursor
 
 " Other
 Plug 'wakatime/vim-wakatime' " Timetracking
-
-" Note taking
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-
 call plug#end()
 
