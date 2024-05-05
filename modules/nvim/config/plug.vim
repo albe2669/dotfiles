@@ -18,7 +18,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 " LSP installer
 
 " LSP client
-Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
@@ -27,20 +26,6 @@ Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
 " LaTeX
 Plug 'lervag/vimtex'
-
-" Completion framework
-Plug 'hrsh7th/nvim-cmp'
-
-" LSP completion source for nvim-cmp
-Plug 'hrsh7th/cmp-nvim-lsp'
-
-" Snippet completion source for nvim-cmp
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-
-" Other usefull completion sources
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-buffer'
 
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
 Plug 'simrat39/rust-tools.nvim'
