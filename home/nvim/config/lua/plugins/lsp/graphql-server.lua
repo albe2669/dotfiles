@@ -1,4 +1,5 @@
-local G = {
+return {
+  server_name = "graphql",
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
@@ -7,5 +8,3 @@ local G = {
     })
   end,
 }
-
-return G

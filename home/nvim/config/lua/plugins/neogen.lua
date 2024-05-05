@@ -1,8 +1,17 @@
-local u = require("utils")
-
-require("neogen").setup({
+local opts = {
   enabled = true,
   ...
-})
+}
 
-u.nmap("<C-e>", ":lua require('neogen').generate()<CR>")
+return {
+  {
+    "danymat/neogen",
+    config = function()
+      require("neogen").setup(opts)
+
+      local u = require("utils")
+      u.nmap("<C-e>", ":lua require('neogen').generate()<CR>")
+    end,
+  },
+}
+

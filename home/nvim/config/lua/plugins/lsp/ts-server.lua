@@ -1,30 +1,16 @@
-local u = require("utils")
-
-local T = {
+return {
+  server_name = "tsserver",
+  dependencies = {
+    {
+      "pmizio/typescript-tools.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    }
+  },
   setup = function(on_attach)
-    local nvim_lsp = require('lspconfig')
-    local ts_utils = require("nvim-lsp-ts-utils")
+    local ts_tools = require("typescript-tools")
 
-    nvim_lsp["tsserver"].setup({
-      root_dir = nvim_lsp.util.root_pattern("package.json"),
-      init_options = ts_utils.init_options,
-      on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
-
-        ts_utils.setup({})
-        ts_utils.setup_client(client)
-
-        u.buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
-        u.buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
-        u.buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
-
-
-        -- ESLint server handles this
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-      end,
+    ts_tools.setup({
+      on_attach = on_attach,
     })
   end
 }
-
-return T

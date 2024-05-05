@@ -64,4 +64,21 @@ function utils.on_attach(client, bufnr)
   end
 end
 
+function utils.merge_arrays(t1, t2)
+  for _, v in ipairs(t2) do
+    table.insert(t1, v)
+  end
+  return t1
+end
+
+function utils.load_servers(servers)
+  local loaded = {}
+
+  for _, config in ipairs(servers) do
+    loaded[config] = require("plugins.lsp." .. config)
+  end
+
+  return loaded
+end
+
 return utils

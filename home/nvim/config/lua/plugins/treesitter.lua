@@ -1,4 +1,4 @@
-require('nvim-treesitter.configs').setup({
+local opts = {
   highlight = {
     enable = true,
     disable = {},
@@ -42,7 +42,21 @@ require('nvim-treesitter.configs').setup({
     "vim",
     "vue",
   },
-})
+}
 
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.tsx.used_by = { "javascript", "typescript.tsx" }
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      local configs = require("nvim-treesitter.configs")
+
+      configs.setup(opts)
+    end,
+    init = function()
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.tsx.used_by = { "javascript", "typescript.tsx" }
+    end,
+  },
+}
+

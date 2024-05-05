@@ -1,4 +1,5 @@
-local N = {
+return {
+  server_name = "nil_ls",
   setup = function(on_attach)
     local lspconfig = require('lspconfig')
 
@@ -7,5 +8,3 @@ local N = {
     })
   end,
 }
-
-return N

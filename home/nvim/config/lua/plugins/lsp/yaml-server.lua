@@ -1,4 +1,5 @@
-local Y = {
+return {
+  server_name = "yamlls",
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
@@ -17,5 +18,3 @@ local Y = {
     })
   end
 }
-
-return Y

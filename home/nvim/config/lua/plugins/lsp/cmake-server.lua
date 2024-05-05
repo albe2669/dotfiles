@@ -1,4 +1,5 @@
-local C = {
+return {
+  server_name = "cmake",
   setup = function (on_attach)
     local lspconfig = require("lspconfig")
 
@@ -7,5 +8,3 @@ local C = {
     })
   end
 }
-
-return C

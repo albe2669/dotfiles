@@ -1,5 +1,4 @@
 local lu = require("plugins.lsp.lsp-utils")
-
 local lsp = vim.lsp
 
 local border_opts = { border = "single", focusable = false, scope = "line" }
@@ -14,7 +13,17 @@ global.lsp = {
   formatting = lu.formatting,
 }
 
-for _, config in ipairs({
+local opts = {
+  automatic_installation = true,
+  ensure_installed = {}
+}
+
+local dependencies = {
+  "williamboman/mason.nvim",
+  "neovim/nvim-lspconfig",
+}
+
+local servers = lu.load_servers({
   "bash-server",
   "c-server",
   "cmake-server",
@@ -28,49 +37,54 @@ for _, config in ipairs({
   "nix-server",
   "python-server",
   "rs-server",
+  "scala-server",
   "svelte-server",
   "tailwindcss-server",
   "terraform-server",
   "ts-server",
   "vue-server",
   "yaml-server",
-}) do
-  require("plugins.lsp." .. config).setup(lu.on_attach)
-end
-
-require("mason").setup({})
-require("mason-lspconfig").setup({
-  automatic_installation = true,
-  ensure_installed = {
-    "bashls",
-    "clangd",
-    "cmake",
-    "emmet_language_server",
-    "eslint",
-    "golangci_lint_ls",
-    "gopls",
-    "graphql",
-    "nil_ls",
-    "omnisharp",
-    "pylsp",
-    "rust_analyzer",
-    "svelte",
-    "tailwindcss",
-    "terraformls",
-    "texlab",
-    "tflint",
-    "tsserver",
-    "volar",
-    "yamlls",
-  }
 })
 
--- Hide lspconfig messages
-local notify = vim.notify
-vim.notify = function(msg, ...)
-  if msg:match("%[lspconfig%]") then
-    return
+for _, server in pairs(servers) do
+  if type(server.server_name) == "table" then
+    lu.merge_arrays(opts.ensure_installed, server.server_name)
+  else
+    table.insert(opts.ensure_installed, server.server_name)
   end
 
-  notify(msg, ...)
+  if server.dependencies then
+    lu.merge_arrays(dependencies, server.dependencies)
+  end
 end
+
+-- Hide lspconfig messages
+local hide_lspconfig_messages = function()
+  local notify = vim.notify
+  vim.notify = function(msg, ...)
+    if msg:match("%[lspconfig%]") then
+      return
+    end
+
+    notify(msg, ...)
+  end
+end
+
+return {
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = dependencies,
+    lazy = false,
+    config = function()
+      require("mason").setup()
+      require("mason-lspconfig").setup(opts)
+
+      for _, server in pairs(servers) do
+        server.setup(lu.on_attach)
+      end
+    end,
+    init = function()
+      hide_lspconfig_messages()
+    end
+  }
+}

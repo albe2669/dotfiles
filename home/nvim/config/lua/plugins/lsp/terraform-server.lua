@@ -1,4 +1,5 @@
-local T = {
+return {
+  server_name = { "terraformls", "tflint" },
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
@@ -11,5 +12,3 @@ local T = {
     })
   end,
 }
-
-return T

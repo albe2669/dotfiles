@@ -1,4 +1,5 @@
-local V = {
+return {
+  server_name = { "volar", "emmet_language_server" },
   setup = function(on_attach)
     local lspconfig = require('lspconfig')
 
@@ -15,5 +16,3 @@ local V = {
     lspconfig['emmet_language_server'].setup({ on_attach = on_attach })
   end
 }
-
-return V

@@ -80,7 +80,6 @@ else
 endif
 
 " Imports
-runtime ./plug.vim
 runtime ./colors.vim
 
 lua require("init")

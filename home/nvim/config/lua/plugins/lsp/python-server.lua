@@ -1,4 +1,5 @@
-local P = {
+return {
+  server_name = "pylsp",
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
@@ -7,5 +8,3 @@ local P = {
     })
   end,
 }
-
-return P
