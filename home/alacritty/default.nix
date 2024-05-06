@@ -1,10 +1,10 @@
 {
-  pkgs,
+  pkgs-unstable,
   config,
   variables,
   ...
 }: {
-  home.packages = with pkgs; [
+  home.packages = with pkgs-unstable; [
     alacritty
   ];
 
