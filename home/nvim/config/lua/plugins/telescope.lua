@@ -32,8 +32,10 @@ return {
           },
         },
       }
-
-      require("telescope").load_extension("media_files")
+      
+      local telescope = require("telescope")
+      telescope.setup(opts)
+      telescope.load_extension("media_files")
     end,
     init = function()
       local utils = require("utils")
