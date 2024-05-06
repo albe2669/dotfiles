@@ -7,20 +7,21 @@ blink_interval = 750
 blinking = "Always"
 shape = "Block"
 
+[font]
+size = 9
+
+[font.normal]
+family = "Iosevka Nerd Font"
+style = "Regular"
+
 [font.bold]
-family = "FiraCode Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "FiraCode Nerd Font"
+style = "Bold Italic"
 
 [font.italic]
-family = "FiraCode Nerd Font"
 style = "Italic"
-
-[font.normal]
-family = "FiraCode Nerd Font"
-style = "Regular"
 
 [scrolling]
 history = 10000
