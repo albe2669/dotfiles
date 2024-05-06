@@ -18,9 +18,9 @@
   "nerdtree": { "branch": "master", "commit": "f3a4d8eaa8ac10305e3d53851c976756ea9dc8e8" },
   "nvim-autopairs": { "branch": "master", "commit": "14e97371b2aab6ee70054c1070a123dfaa3e217e" },
   "nvim-cmp": { "branch": "main", "commit": "8f3c541407e691af6163e2447f3af1bd6e17f9a3" },
-  "nvim-lspconfig": { "branch": "master", "commit": "ee450e6a9364fc740236166dd57aaca1ec7cdb48" },
+  "nvim-lspconfig": { "branch": "master", "commit": "97762065bf7e1ac617d0a8710eb7ec2d656287a9" },
   "nvim-metals": { "branch": "main", "commit": "c6268555d0b471262af78818f11a086ddf30688b" },
-  "nvim-treesitter": { "branch": "master", "commit": "73fdd31377d76aa1eea63e66581a8c6b7a71da94" },
+  "nvim-treesitter": { "branch": "master", "commit": "268611e3ece8463bfb5b09044dcd1b76a28ffbb6" },
   "nvim-web-devicons": { "branch": "master", "commit": "475fbcfcb6ee7c35aa33a6b6207ebd4032791d87" },
   "plenary.nvim": { "branch": "master", "commit": "08e301982b9a057110ede7a735dd1b5285eb341f" },
   "rest.nvim": { "branch": "main", "commit": "f96edb54a2940322bc7ed81a1031be04db7d3a99" },
@@ -39,5 +39,5 @@
   "vim-visual-multi": { "branch": "master", "commit": "b84a6d42c1c10678928b0bf8327f378c8bc8af5a" },
   "vim-vsnip": { "branch": "master", "commit": "02a8e79295c9733434aab4e0e2b8c4b7cea9f3a9" },
   "vim-wakatime": { "branch": "master", "commit": "3cb40867cb5a3120f9bef76eff88edc7f1dc1a23" },
-  "vimtex": { "branch": "master", "commit": "137f5bded9ce554018c47f4c9c59cddb8ac9a455" }
+  "vimtex": { "branch": "master", "commit": "5732cd898cc7027e58191fe4be64da8dbc158995" }
 }
