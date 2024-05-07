@@ -10,9 +10,17 @@
       logReversePathDrops = true;
     };
 
+    wireless.iwd = {
+      enable = true;
+    };
+
     networkmanager = {
       enable = true;
       unmanaged = ["docker0"];
+
+      wifi = {
+        backend = "iwd";
+      };
     };
   };
 
