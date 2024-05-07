@@ -1,5 +1,8 @@
 # Connecting to eduroam
 
+> [!CAUTION]
+> This guide only applies to iwd or iwd backed NetworkManager. Default Nix uses wpa_supplicant. I have yet to make wpa_supplicant and eduroam work, i suggest switching to iwd.
+
 This is a step by step guide to connect to eduroam using NetworkManager backed by iwd.
 
 ## Download and run the CAT installer
