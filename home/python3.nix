@@ -36,6 +36,9 @@
       pytest
       autopep8
       pycodestyle
+
+      # eduroam
+      dbus-python
     ];
 in {
   home.packages = [
