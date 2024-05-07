@@ -16,6 +16,7 @@
     ../../home/wallpapers
     ../../home/zathura
 
+    ../../home/k8.nix
     ../../home/langs.nix
     ../../home/python3.nix
 
