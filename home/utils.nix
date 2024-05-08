@@ -8,6 +8,7 @@
 
     # Programming
     gh
+    gnumake
 
     # Convenience
     fd
