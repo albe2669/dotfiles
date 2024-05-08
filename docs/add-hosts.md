@@ -92,6 +92,8 @@ hardware.nvidia.prime = {
 };
 ```
 
+Then make sure you import `../../modules/core/nvidia-prime.nix`
+
 ## Step 8: Configure it
 In the `hosts/default.nix` file, add the new host to the list of hosts. This will configure it as a nixosConfiguration and create an installer for it.
 
