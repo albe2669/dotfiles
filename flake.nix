@@ -45,6 +45,7 @@
       }
       // args);
   in {
+		hosts = hosts;
     nixosConfigurations = hosts.nixosConfigurations;
     packages = hosts.packages;
     installers = installers;
