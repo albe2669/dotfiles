@@ -24,6 +24,6 @@ vm:
 iso:
 	nix --extra-experimental-features "nix-command flakes" build --show-trace --option eval-cache false .#$(host).install-iso
 
-installer-skein:
+installer:
 	nix --extra-experimental-features "nix-command flakes" build --show-trace --option eval-cache false .#installers.x86_64-linux.$(host)
 
