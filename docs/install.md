@@ -1,4 +1,8 @@
 # Install
+
+> [!CAUTION]
+> I wrote this guide entirely from memory. It will be updated at some point when i have to redo the install. Feel free to contact me if something seems wrong or if you need support
+
 ## ISO
 To install first get your hands on an ISO file that contains the right host.
 
