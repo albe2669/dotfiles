@@ -18,5 +18,7 @@ in {
 
   dotfilesLocation = homeDirectory + (builtins.toPath "/Documents/Coding/Other/dotfiles");
 
+  initialPassword = "changeme";
+
   stateVersion = "23.11";
 }

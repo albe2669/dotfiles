@@ -1,4 +1,4 @@
-{username, ...}: {
+{username, initialPassword, ...}: {
   nix.settings.trusted-users = [username];
 
   users.groups = {
@@ -8,7 +8,7 @@
 
   users.users."${username}" = {
     home = "/home/${username}";
-    initialPassword = "changeme"; # Replace with hashedpassword
+    initialPassword = initialPassword;
     createHome = true;
     isNormalUser = true;
     description = "User ${username}";
