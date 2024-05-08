@@ -3,6 +3,9 @@
 > [!CAUTION]
 > I wrote this guide entirely from memory. It will be updated at some point when i have to redo the install. Feel free to contact me if something seems wrong or if you need support
 
+## Prep
+Change user names and other configs in `variables.nix` to suit you. Then make sure you've created a host by following the [adding hosts guide](./add-hosts.md)
+
 ## ISO
 To install first get your hands on an ISO file that contains the right host.
 
