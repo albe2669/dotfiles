@@ -5,14 +5,14 @@
   modulesPath,
   ...
 }: {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   swapDevices = [];
 
@@ -29,8 +29,8 @@
   hardware.opengl.enable = true;
 
   hardware.nvidia.prime = {
-		# Make sure to use the correct Bus ID values for your system!
-		intelBusId = "PCI:0:2:0";
-		nvidiaBusId = "PCI:1:0:0";
-	};
+    # Make sure to use the correct Bus ID values for your system!
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
 }

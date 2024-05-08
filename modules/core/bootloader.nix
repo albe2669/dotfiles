@@ -1,4 +1,4 @@
-{ diskPath }: {lib, ...}: {
+{diskPath}: {lib, ...}: {
   boot = {
     loader = {
       grub = {

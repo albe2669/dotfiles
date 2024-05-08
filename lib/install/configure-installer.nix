@@ -38,33 +38,33 @@ in
         # This is a bit of a hack, but it works
         mntDotfilesLocation = (builtins.toPath "/mnt") + variables.dotfilesLocation;
         actualIsoDotfilesLocation = (builtins.toPath "/iso") + isoDotfilesLocation;
-        
-        install-system = pkgs.writeShellScriptBin "install-system" ''
-              set -euo pipefail
-        
-              echo "Formatting disks"
-              . ${disko-format}/bin/disko-format
-        
-              echo "Mounting disks"
-              . ${disko-mount}/bin/disko-mount
-        
-              echo "Installing system"
-              nixos-install --root /mnt --flake ${actualIsoDotfilesLocation}#${host.name} -j 4
-        
-              echo "Copying dotfiles"
-              mkdir -p ${mntDotfilesLocation}
-              cp -r ${actualIsoDotfilesLocation}/* ${mntDotfilesLocation}
 
-              echo "Setting permissions"
-              nixos-enter --root /mnt -c "cd ${variables.dotfilesLocation}; sudo chown -R goose:users ${variables.homeDirectory.path}"
-        
-              echo "Executing home-manager"
-              echo "This might fail, but it's fine"
-              echo "If it does, just run it manually after booting into the system"
-        
-              nixos-enter --root /mnt -c "cd ${variables.dotfilesLocation}; nixos-rebuild switch --flake .#${host.name}"
-        
-              echo "Done"
+        install-system = pkgs.writeShellScriptBin "install-system" ''
+          set -euo pipefail
+
+          echo "Formatting disks"
+          . ${disko-format}/bin/disko-format
+
+          echo "Mounting disks"
+          . ${disko-mount}/bin/disko-mount
+
+          echo "Installing system"
+          nixos-install --root /mnt --flake ${actualIsoDotfilesLocation}#${host.name} -j 4
+
+          echo "Copying dotfiles"
+          mkdir -p ${mntDotfilesLocation}
+          cp -r ${actualIsoDotfilesLocation}/* ${mntDotfilesLocation}
+
+          echo "Setting permissions"
+          nixos-enter --root /mnt -c "cd ${variables.dotfilesLocation}; sudo chown -R goose:users ${variables.homeDirectory.path}"
+
+          echo "Executing home-manager"
+          echo "This might fail, but it's fine"
+          echo "If it does, just run it manually after booting into the system"
+
+          nixos-enter --root /mnt -c "cd ${variables.dotfilesLocation}; nixos-rebuild switch --flake .#${host.name}"
+
+          echo "Done"
         '';
       in {
         imports = [

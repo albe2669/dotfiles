@@ -1,13 +1,13 @@
 {...}: {
-	networking = {
-		wireless.iwd = {
-			enable = true;
-		};
+  networking = {
+    wireless.iwd = {
+      enable = true;
+    };
 
-		networkmanager = {
-			wifi = {
-				backend = "iwd";
-			};
-		};
-	};
+    networkmanager = {
+      wifi = {
+        backend = "iwd";
+      };
+    };
+  };
 }

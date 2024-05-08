@@ -1,12 +1,12 @@
 {
   pkgs,
   config,
-	lib,
+  lib,
   variables,
   ...
 }: {
   home.packages = with pkgs; [
-		curl # for vimplug
+    curl # for vimplug
     neovim
     virtualenv
     xclip

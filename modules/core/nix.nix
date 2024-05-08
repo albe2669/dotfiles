@@ -1,4 +1,8 @@
-{lib, variables, ...}: {
+{
+  lib,
+  variables,
+  ...
+}: {
   nix = {
     gc = {
       automatic = lib.mkDefault true;

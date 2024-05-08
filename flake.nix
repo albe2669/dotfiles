@@ -4,7 +4,7 @@
   nixConfig = {
     experimental-features = ["nix-command" "flakes"];
   };
-  
+
   # These urls should coincide with the stateVersion variable in the variables.nix file
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11"; # Use stable for now
@@ -34,9 +34,11 @@
     home-manager,
     ...
   }: let
-    args = {
-      variables = import ./variables.nix;
-    } // inputs;
+    args =
+      {
+        variables = import ./variables.nix;
+      }
+      // inputs;
 
     hosts = import ./hosts args;
     installers = import ./hosts/installers.nix ({
@@ -45,7 +47,7 @@
       }
       // args);
   in {
-		hosts = hosts;
+    hosts = hosts;
     nixosConfigurations = hosts.nixosConfigurations;
     packages = hosts.packages;
     installers = installers;
