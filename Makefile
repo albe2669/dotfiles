@@ -4,7 +4,7 @@ host != cat /etc/hostname
 host ?= skein
 
 repl:
-	nix --extra-experimental-features "nix-command flakes repl-flake" repl
+	nix --extra-experimental-features "nix-command flakes repl-flake" --show-trace repl
 
 show:
 	nix --extra-experimental-features "nix-command flakes" flake show
