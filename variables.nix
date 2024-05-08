@@ -16,7 +16,7 @@ in {
     email = "albert@risenielsen.dk";
   };
 
-  dotfilesLocation = homeDirectory + (builtins.toPath "/Documents/Other/dotfiles");
+  dotfilesLocation = homeDirectory + (builtins.toPath "/Documents/Coding/Other/dotfiles");
 
   stateVersion = "23.11";
 }
