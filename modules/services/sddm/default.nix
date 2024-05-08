@@ -12,7 +12,6 @@
 
         sddm = {
           enable = true;
-          enableHidpi = true;
         };
       };
     };
