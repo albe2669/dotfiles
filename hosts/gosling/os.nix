@@ -5,6 +5,7 @@ in {
     (import ../../modules/core-desktop.nix {diskPath = info.diskPath;})
     ../../modules/core-laptop.nix
     ../../modules/core/nvidia.nix
+    ../../modules/configs/touchpad.nix
     ../../modules/configs/hidpi.nix
     ../../modules/services/bluetooth.nix
     ../../modules/services/wireless.nix
