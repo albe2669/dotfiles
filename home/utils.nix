@@ -20,5 +20,8 @@
     procs
     glxinfo
     brightnessctl
+
+    # Networks
+    networkmanagerapplet
   ];
 }
