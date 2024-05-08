@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ../../modules/core-server.nix
+    (import ../../modules/core-server.nix { diskPath = "/dev/sda"; })
   ];
 }

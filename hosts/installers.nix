@@ -16,12 +16,11 @@
 in
   nixpkgs.lib.genAttrs systems (
     system:
-      nixpkgs.lib.genAttrs hosts (
-        host:
-          configureInstaller ({
-              host = host;
-              system = system;
-            }
-            // args)
-      )
+			builtins.mapAttrs (_: hostConf: 
+				configureInstaller ({
+						host = hostConf;
+						system = system;
+					}
+					// args)) hosts
+			
   )

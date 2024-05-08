@@ -4,6 +4,7 @@ There are a few steps to adding more hosts. This guide will walk you through the
 ## Step 1: Create a new host directory
 Create a new directory in the `hosts` directory with the name of the host. This directory should contain the following files:
 
+- `info.nix`
 - `hardware-configuration.nix`
 - `os.nix`
 - `disko.nix`
@@ -34,35 +35,50 @@ This file is specific to the disk configuration of the host. This file usually m
 
 Usually the only modification necessary is to change the `device` designation. This should be set to the device that the host's root partition is on. This can be found by running `lsblk` on the host, just boot into the minimal installer and run `lsblk` to find the device.
 
-## Step 6: `os.nix`
+## Step 6: `info.nix`
+This file specifies details about the system that the rest of the dotfiles may need to identify and build on later. Be careful about what you import here as it will be imported early on in the process.
+
+You should define the networking hostname in this file using the `name` variable
+
+For skein it looks like this:
+```nix
+{...}: let
+	name = "skein";
+    diskPath = "/dev/sda";
+	disko = import ./disko.nix { diskPath = diskPath; };
+in {
+	name = name;
+	diskPath = diskPath;
+	disko = disko;
+}
+```
+
+## Step 7: `os.nix`
 This file imports the above files and files that are common to hosts. When creating this file you should decide what kind of host it is. Fx is it a server, laptop og desktop. This will determine what modules to import. Different host types can be found in `modules/core-<type>.nix`.
 
 Most hosts are of the desktop type, which itself extends the server type. The laptop type should be imported along with the desktop type if the host is a laptop.
 
-You should also define the networking hostname in this file.
-
 Use this as a template:
 ```nix
 {...}: let
-  diskPath = "/dev/sda";
+	info = import ./info.nix {};
 in {
   imports = [
-    (import ../../modules/core-desktop.nix {diskPath = diskPath; })
+    (import ../../modules/core-desktop.nix {diskPath = info.diskPath; })
+    # Probably does nothing as it's a vm, but it tests if the installation is successful.
     ../../modules/core-laptop.nix
     ../../modules/services/bluetooth.nix
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-
-    # Disk configuration
-    (import ./disko.nix { diskPath = diskPath; })
+    info.disko
   ];
 
-  networking.hostName = "skein"; # Define your hostname.
+  networking.hostName = info.name; # Define your hostname.
 }
 ```
 
-## Step 7: Configure it
+## Step 8: Configure it
 In the `hosts/default.nix` file, add the new host to the list of hosts. This will configure it as a nixosConfiguration and create an installer for it.
 
 The `default.nix` file should look something like this:
@@ -72,11 +88,13 @@ The `default.nix` file should look something like this:
 
   configurations = {
     skein = {
+	  info = (import ./skein/info.nix) {};
       nixosModules = ./skein/os.nix;
       homeModules = ./skein/home.nix;
     };
     ...
     <add-host-here> = {
+	  info = (import ./<host>/info.nix) {};
       nixosModules = ./<host>/os.nix;
       homeModules = ./<host>/home.nix;
     };

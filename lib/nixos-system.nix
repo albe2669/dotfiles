@@ -4,8 +4,7 @@
   nixos-generators,
   system,
   specialArgs,
-  nixosModules,
-  homeModules,
+	host,
   disko,
 }: let
   username = specialArgs.username;
@@ -13,7 +12,7 @@ in
   nixpkgs.lib.nixosSystem {
     inherit system specialArgs;
     modules = [
-      nixosModules
+			host.configuration.nixosModules
       disko.nixosModules.disko
       {
         # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
@@ -31,7 +30,9 @@ in
 
         home-manager.extraSpecialArgs = specialArgs;
         home-manager.users."${username}" = {
-          imports = [homeModules];
+          imports = [
+						host.configuration.homeModules
+					];
 
           _module.args = {
             # theme = import ../colors.nix;

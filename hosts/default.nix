@@ -35,24 +35,33 @@
 
   configurations = {
     skein = {
+			info = (import ./skein/info.nix) {};
       nixosModules = ./skein/os.nix;
       homeModules = ./skein/home.nix;
     };
     gosling = {
+			info = (import ./gosling/info.nix) {};
       nixosModules = ./gosling/os.nix;
       homeModules = ./gosling/home.nix;
     };
   };
 
-  hosts = builtins.attrNames configurations;
+	hosts = builtins.mapAttrs (host: hostConf: { 
+		name = hostConf.info.name;
+		disko = hostConf.info.disko;
+		diskPath = hostConf.info.diskPath;
+		configuration = {
+			inherit (hostConf) nixosModules homeModules;
+		};
+	}) configurations;
 in {
-  nixosConfigurations = nixpkgs.lib.genAttrs hosts (
-    host: nixosSystem (configurations.${host} // baseArgs)
-  );
+  nixosConfigurations = builtins.mapAttrs (_: hostConf: 
+		nixosSystem ({ host = hostConf; } // baseArgs)
+  ) hosts;
 
-  packages."${x64System}" = nixpkgs.lib.genAttrs hosts (
-    host: self.nixosConfigurations.${host}.config.formats
-  );
+  packages."${x64System}" = builtins.mapAttrs (_: hostConf: 
+		self.nixosConfigurations.${hostConf.name}.config.formats
+	) hosts;
 
   hosts = hosts;
 

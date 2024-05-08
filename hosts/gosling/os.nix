@@ -1,8 +1,8 @@
 {...}: let
-  diskPath = "/dev/nvme0n1";
+	info = import ./info.nix {};
 in {
   imports = [
-    (import ../../modules/core-desktop.nix {diskPath = diskPath; })
+    (import ../../modules/core-desktop.nix {diskPath = info.diskPath; })
     ../../modules/core-laptop.nix
     ../../modules/core/nvidia.nix
     ../../modules/configs/hidpi.nix
@@ -11,8 +11,8 @@ in {
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (import ./disko.nix { diskPath = diskPath; })
+		info.disko
   ];
 
-  networking.hostName = "gosling"; # Define your hostname.
+  networking.hostName = info.name; # Define your hostname.
 }

@@ -64,9 +64,8 @@ in
               echo "Done"
         '';
       in {
-        # TODO: Remove this from here and make it an argument to the script instead
         imports = [
-          ../../hosts/${host}/disko.nix
+          host.disko
         ];
 
         disko.enableConfig = lib.mkDefault false;
