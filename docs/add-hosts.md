@@ -13,6 +13,8 @@ Create a new directory in the `hosts` directory with the name of the host. This 
 ## Step 2: `hardware-configuration.nix`
 This file is specific to the hardware of the host. This file can be generated using the `nixos-generate-config` command. This file should be placed in the `hosts/<host>` directory.
 
+After adding it to your hosts directory open it and delete everthing regarding the file system. If you want to save it to a different file for reference when creating `disko.nix`. The things to be deleted start with `filesystem.` or `swapDevices`
+
 ## Step 3: `home.nix`
 This file is specific to the user level configuration of the host. This file should import modules from the `home` directory and specify everything that should be configured and installed on the user level.
 
