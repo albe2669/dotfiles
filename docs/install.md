@@ -4,7 +4,9 @@
 > I wrote this guide entirely from memory. It will be updated at some point when i have to redo the install. Feel free to contact me if something seems wrong or if you need support
 
 ## Prep
-Change user names and other configs in `variables.nix` to suit you. Then make sure you've created a host by following the [adding hosts guide](./add-hosts.md)
+Change user names and other configs in `variables.nix` to suit you. Then make sure you've created a host by following the [adding hosts guide](./add-hosts.md).
+
+Make note of the `initalPassword` setting, this will also be the `sudo` password in the install environment.
 
 ## ISO
 To install first get your hands on an ISO file that contains the right host.
@@ -76,10 +78,8 @@ Number  Start (sector)    End (sector)  Size       Code  Name
 
 Now format the partitions with:
 ```bash
-mkfs.vfat /dev/sda2
-mkfs.ext4 /dev/sda3
+sudo mkfs.vfat /dev/sda2
+sudo mkfs.ext4 /dev/sda3
 ```
 
-From here on out you should follow the output of `cat $(which install-system)` right after `disko-format`. So start with `disko-mount`. If the formatting has succeeded the partitions should mount without issue.
-
-
+From here on out you should follow the output of `cat $(which install-system)` right after `disko-format`. So start with `disko-mount`. If the formatting has succeeded the partitions should mount without issue. Remember, every command should be run with `sudo`.
