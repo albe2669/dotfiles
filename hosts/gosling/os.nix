@@ -7,6 +7,7 @@ in {
     ../../modules/core/nvidia.nix
     ../../modules/configs/hidpi.nix
     ../../modules/services/bluetooth.nix
+		../../modules/services/wireless.nix
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
