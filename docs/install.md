@@ -83,3 +83,13 @@ sudo mkfs.ext4 /dev/sda3
 ```
 
 From here on out you should follow the output of `cat $(which install-system)` right after `disko-format`. So start with `disko-mount`. If the formatting has succeeded the partitions should mount without issue. Remember, every command should be run with `sudo`.
+
+## Post install
+
+Login using the password you set in `variables.nix`, open a terminal using `super+enter`, and run `passwd` to change the password to something more secure.
+
+Go to `~/Documents/Coding/Other/dotfiles` and set it up as a git repository with:
+```
+git init
+git remote add origin https://github.com/albe2669/dotfiles # use your own repo if you have one
+```
