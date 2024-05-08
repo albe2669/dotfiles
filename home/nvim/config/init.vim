@@ -69,7 +69,6 @@ set smartcase
 set whichwrap+=<,>,h,l,[,]
 
 " Set shell
-" TODO: Set one for linux
 if has('win32')
 	set shell=powershell
   set shellcmdflag=-c

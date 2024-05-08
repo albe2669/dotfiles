@@ -6,6 +6,5 @@
     git
   ];
 
-  # TODO: Possibly setup fhs
   environment.variables.EDITOR = "nvim";
 }

@@ -65,7 +65,7 @@ While this repo is set up to be as modular as possible, one of the hosts `skein`
 To test it out ensure you have QEMU installed. Then run
 
 ```bash
-make vm
+make vm host=skein
 ./result
 ```
 

@@ -41,7 +41,6 @@ function fish_prompt
   set -l up (color_section $green "┖")
  
   set -l name (section $green $USER)
-  # TODO: battery
   set -l time (section $green (date "+%H:%M:%S"))
   set -l vcs (create_vcs $green) 
   set -l working_dir (create_working_dir $green)

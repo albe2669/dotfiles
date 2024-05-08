@@ -52,7 +52,6 @@
     packages = hosts.packages;
     installers = installers;
 
-    # TODO: This might be wrong
     formatter = nixpkgs.lib.genAttrs hosts.allSystems (
       system: nixpkgs.legacyPackages.${system}.alejandra
     );
