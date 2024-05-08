@@ -24,11 +24,6 @@
     };
 
     shellInit = ''
-      # Move these to a separate file intended for arch-gosling
-      set GDK_SCALE 2
-      set GDK_DPI_SCALE 0.5
-      set QT_AUTO_SCREEN_SCALE_FACTOR 1
-
       # Go stuff
       set -x GOPATH $HOME/.local/go
 
