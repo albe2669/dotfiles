@@ -62,6 +62,8 @@ sudo gdisk /dev/sda
 > disk-main-root
 # verify
 > p
+# commit
+> w
 ```
 
 On a 1TB disk the output of `> p` looks like:
