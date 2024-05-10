@@ -223,7 +223,7 @@ mode "$mode_gaps_outer" {
 for_window[class=".*"] border pixel 3
 gaps inner 10
 gaps outer 10
-gaps top 30
+gaps top 10
 gaps bottom 10
 
 # class                 border  backgr. text    indicator child_border
