@@ -33,6 +33,12 @@
       blur-method = "dual_kawase";
       blur-strength = 12;
       blur-background = true;
+      blur-background-exclude = [
+        "window_type = 'dock'"
+        "window_type = 'desktop'"
+        "_GTK_FRAME_EXTENTS@:c"
+        "class_g = 'Polybar'"
+      ];
 
       background = true;
       background-frame = false;
