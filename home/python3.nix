@@ -39,6 +39,9 @@
 
       # eduroam
       dbus-python
+
+      # Hacking
+      dnspython
     ];
 in {
   home.packages = [
