@@ -1,19 +1,21 @@
 {
   pkgs,
+  pkgs-unstable,
   config,
-  lib,
   variables,
   ...
-}: {
-  home.packages = with pkgs; [
-    curl # for vimplug
+}: let
+  normalPackages = with pkgs; [
+      curl # for vimplug
+      virtualenv
+      xclip
+      stdenv.cc
+  ]; 
+in {
+  home.packages = with pkgs-unstable; [
     neovim
-    virtualenv
-    xclip
-    lazygit
     tree-sitter
-    stdenv.cc
-  ];
+  ] ++ normalPackages;
 
   xdg.configFile.nvim = {
     source = config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}" + (builtins.toPath "/home/nvim/config");
