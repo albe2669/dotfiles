@@ -19,6 +19,7 @@
     ../../home/langs.nix
     ../../home/python3.nix
 
+    ../../home/gcloud.nix
     ../../home/programs.nix
     ../../home/tmux.nix
     ../../home/utils.nix

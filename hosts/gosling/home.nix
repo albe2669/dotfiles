@@ -20,6 +20,7 @@
     ../../home/langs.nix
     ../../home/python3.nix
 
+    ../../home/gcloud.nix
     ../../home/obs.nix
     ../../home/programs.nix
     ../../home/tmux.nix
