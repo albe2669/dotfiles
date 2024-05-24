@@ -11,7 +11,6 @@
           sha256 = "sha256-RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk="; # Set to empty to get the right sha from the error output
         };
       }
-
     ];
 
     shellAliases = {
