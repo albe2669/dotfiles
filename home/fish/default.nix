@@ -59,6 +59,8 @@
 
   home.packages = with pkgs; [
     fishPlugins.bass
+    fishPlugins.puffer
+    fishPlugins.async-prompt
   ];
 
   xdg.configFile.fish = {
