@@ -25,6 +25,7 @@
     ../../home/obs.nix
     ../../home/programs.nix
     ../../home/tmux.nix
+    ../../home/todo.nix
     ../../home/utils.nix
     ../../home/vscode.nix
   ];
