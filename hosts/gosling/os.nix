@@ -9,7 +9,6 @@ in {
     ../../modules/configs/touchpad.nix
     ../../modules/configs/hidpi.nix
     ../../modules/services/bluetooth.nix
-    ../../modules/services/virtualbox.nix
     ../../modules/services/wireless.nix
 
     # Include the results of the hardware scan.
