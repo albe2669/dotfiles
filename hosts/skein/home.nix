@@ -25,5 +25,7 @@
     ../../home/tmux.nix
     ../../home/utils.nix
     ../../home/vscode.nix
+
+    ../../home/courses/htmaa.nix
   ];
 }
