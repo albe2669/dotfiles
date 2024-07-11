@@ -37,6 +37,7 @@
     args =
       {
         variables = import ./variables.nix;
+        theme = import ./theme.nix;
       }
       // inputs;
 

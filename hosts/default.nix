@@ -5,13 +5,14 @@
   home-manager,
   disko,
   variables,
+  theme,
   self,
   ...
 }: let
   x64System = "x86_64-linux";
 
   x64SpecialArgs = {
-    inherit variables;
+    inherit variables theme;
 
     username = variables.username;
 
