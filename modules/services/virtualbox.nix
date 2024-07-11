@@ -1,8 +1,8 @@
 {username, ...}: {
-   virtualisation.virtualbox.host = {
+  virtualisation.virtualbox.host = {
     enable = true;
     enableExtensionPack = true;
-   };
+  };
 
-   users.extraGroups.vboxusers.members = [ username ];
+  users.extraGroups.vboxusers.members = [username];
 }

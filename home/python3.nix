@@ -45,7 +45,7 @@
     ];
 in {
   home.packages = with pkgs; [
-    poetry 
+    poetry
 
     ((python3.withPackages python-packages).override (args: {ignoreCollisions = true;}))
   ];

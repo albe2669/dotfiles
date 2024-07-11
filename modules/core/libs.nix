@@ -1,8 +1,5 @@
-{
-	pkgs,
-	...
-}: {
-	environment.systemPackages = with pkgs; [
-		libnotify
-	];
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    libnotify
+  ];
 }
