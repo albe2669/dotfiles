@@ -4,6 +4,7 @@
     ./core/nix.nix
     ./core/network.nix
     (import ./core/bootloader.nix {diskPath = diskPath;})
+		./core/libs.nix
 
     # Services
     ./services/docker.nix
