@@ -16,7 +16,7 @@ update:
 	nix flake update
 
 rebuild:
-	sudo nixos-rebuild switch --flake .#$(host)
+	sudo nixos-rebuild switch --show-trace --flake .#$(host)
 
 vm:
 	nix --extra-experimental-features "nix-command flakes" build --show-trace --option eval-cache false .#$(host).vm
