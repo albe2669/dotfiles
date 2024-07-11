@@ -9,11 +9,11 @@
       displayManager = {
         lightdm.enable = false;
         gdm.enable = false;
-
-        sddm = {
-          enable = true;
-        };
       };
+    };
+
+    displayManager.sddm = {
+      enable = true;
     };
   };
 }
