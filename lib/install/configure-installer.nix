@@ -6,6 +6,7 @@
   lib,
   system,
   variables,
+  theme,
   ...
 }: let
   defaultModule = {...}: {
@@ -20,7 +21,7 @@ in
   nixos-generators.nixosGenerate {
     inherit system;
     specialArgs = {
-      inherit variables;
+      inherit variables theme;
     };
 
     modules = [

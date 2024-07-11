@@ -1,6 +1,6 @@
 {...}: {
-  services.xserver = {
-    dpi = 180;
+  services = {
+    xserver.dpi = 180;
 
     displayManager.sddm.enableHidpi = true;
   };

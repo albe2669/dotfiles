@@ -9,10 +9,10 @@
   services = {
     gvfs.enable = true;
     tumbler.enable = true;
+    libinput.enable = true;
 
     xserver = {
       enable = true;
-      libinput.enable = true;
 
       desktopManager = {
         xterm.enable = false;
@@ -38,7 +38,7 @@
         ];
       };
 
-      layout = "us";
+      xkb.layout = "us";
     };
   };
 }
