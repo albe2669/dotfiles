@@ -14,13 +14,6 @@
     openssl # openssl-sys
     pkg-config # openssl-sys
 
-    # Scala
-    scala
-    scala-cli
-    scalafmt
-    scalafix
-    coursier
-
     # Java, also required by Scala metals
     jdk11
 
