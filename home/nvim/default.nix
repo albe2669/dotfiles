@@ -10,6 +10,8 @@
     virtualenv
     xclip
     stdenv.cc
+    lua5_1
+    lua51Packages.luarocks
   ];
 in {
   home.packages = with pkgs-unstable;
