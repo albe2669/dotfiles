@@ -12,6 +12,7 @@
     stdenv.cc
     lua5_1
     lua51Packages.luarocks
+    rust-analyzer
   ];
 in {
   home.packages = with pkgs-unstable;
