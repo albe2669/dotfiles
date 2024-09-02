@@ -17,10 +17,6 @@
     # Java, also required by Scala metals
     jdk11
 
-    # PHP
-    php83
-    php83Packages.composer
-
     # COBOL
     gnu-cobol
   ];

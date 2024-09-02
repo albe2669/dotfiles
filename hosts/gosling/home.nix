@@ -24,6 +24,7 @@
     ../../home/gcloud.nix
     ../../home/obs.nix
     ../../home/phpstorm.nix
+    ../../home/php.nix
     ../../home/programs.nix
     ../../home/tmux.nix
     ../../home/todo.nix
