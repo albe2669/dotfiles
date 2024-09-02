@@ -11,6 +11,13 @@
       enumitem
       gauss
       forest
+
+      # CV:
+      ncctools
+      lastpage
+      tikzpagenodes
+      ifoddpage
+      doi
       ;
   };
 in {
