@@ -18,8 +18,8 @@
     jdk11
 
     # PHP
-    php81
-    php81Packages.composer
+    php83
+    php83Packages.composer
 
     # COBOL
     gnu-cobol
