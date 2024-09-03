@@ -21,6 +21,10 @@
 
       # Necessary for installing paid or non-free software
       config.allowUnfree = true;
+
+      config.permittedInsecurePackages = [
+        "electron-29.4.6"
+      ];
     };
   };
 
