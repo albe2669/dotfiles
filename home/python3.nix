@@ -42,6 +42,9 @@
 
       # Hacking
       dnspython
+
+      # Excel
+      openpyxl
     ];
 in {
   home.packages = with pkgs; [
