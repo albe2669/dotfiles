@@ -25,17 +25,19 @@ in
 
       home-manager.nixosModules.home-manager
       {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
+        home-manager = {
+          useGlobalPkgs = true;
+          backupFileExtension = "backup";
+          useUserPackages = true;
+          extraSpecialArgs = specialArgs;
+          users."${username}" = {
+            imports = [
+              host.configuration.homeModules
+            ];
 
-        home-manager.extraSpecialArgs = specialArgs;
-        home-manager.users."${username}" = {
-          imports = [
-            host.configuration.homeModules
-          ];
-
-          _module.args = {
-            # theme = import ../colors.nix;
+            _module.args = {
+              # theme = import ../colors.nix;
+            };
           };
         };
       }
