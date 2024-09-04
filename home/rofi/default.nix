@@ -180,4 +180,8 @@ in {
       };
     };
   };
+
+  xdg.configFile."rofi/rofi-power-menu" = {
+    source = ./config/rofi-power-menu;
+  };
 }
