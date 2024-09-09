@@ -25,6 +25,9 @@
       config.permittedInsecurePackages = [
         "electron-29.4.6"
       ];
+
+      # Overlays are only applied to the unstable channel, since they probably are
+      overlays = [];
     };
   };
 
