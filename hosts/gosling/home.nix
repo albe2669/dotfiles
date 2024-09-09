@@ -21,6 +21,7 @@
     ../../home/python3.nix
     ../../home/tex.nix
 
+    ../../home/anytype.nix
     ../../home/gcloud.nix
     ../../home/obs.nix
     ../../home/phpstorm.nix
