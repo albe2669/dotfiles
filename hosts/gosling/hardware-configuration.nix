@@ -13,6 +13,11 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
+  boot.extraModprobeConfig = ''
+    options cfg80211 ieee80211_regdom="DK"
+  '';
+  hardware.firmware = [ pkgs.wireless-regdb ];
+  hardware.enableRedistributableFirmware = true;
 
   swapDevices = [];
 
