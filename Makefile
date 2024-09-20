@@ -19,6 +19,8 @@ rebuild:
 	sudo nixos-rebuild switch --show-trace --flake .#$(host)
 
 vm:
+	rm -rf result
+	rm -f $(host).qcow2
 	nix --extra-experimental-features "nix-command flakes" build --show-trace --option eval-cache false .#$(host).vm
 
 iso:
