@@ -4,7 +4,7 @@
   ...
 }: {
   xdg = {
-    portal = {
+    portal.config.common.default = {
       enable = true;
       # Sets environment variable NIXOS_XDG_OPEN_USE_PORTAL to 1
       # This will make xdg-open use the portal to open programs,
