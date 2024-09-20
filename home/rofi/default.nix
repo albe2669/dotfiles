@@ -3,25 +3,24 @@
   config,
   theme,
   ...
-}:
-let
+}: let
   inherit (config.lib.formats.rasi) mkLiteral;
 
-	foreground = mkLiteral theme.colors.fg;
-	background = mkLiteral theme.colors.bg0;
-	active-background = mkLiteral theme.colors.bg1;
-	urgent-background = mkLiteral theme.colors.bg_yellow; # Should probably be theme.colors.bg_red
+  foreground = mkLiteral theme.colors.fg;
+  background = mkLiteral theme.colors.bg0;
+  active-background = mkLiteral theme.colors.bg1;
+  urgent-background = mkLiteral theme.colors.bg_yellow; # Should probably be theme.colors.bg_red
   selected-background = active-background;
   selected-urgent-background = urgent-background;
   selected-active-background = active-background;
   separatorcolor = active-background;
   bordercolor = active-background;
 in {
-	programs.rofi = {
-		enable = true;
-		package = pkgs-unstable.rofi;
+  programs.rofi = {
+    enable = true;
+    package = pkgs-unstable.rofi;
 
-		theme = {
+    theme = {
       "*" = {
         font = theme.font.family + " 24";
         foreground = foreground;
