@@ -1,5 +1,5 @@
 return {
-  server_name = "tsserver",
+  server_name = "ts_ls",
   dependencies = {
     {
       "pmizio/typescript-tools.nvim",
