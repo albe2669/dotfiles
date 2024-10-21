@@ -28,6 +28,7 @@
     ../../home/phpstorm.nix
     ../../home/php.nix
     ../../home/programs.nix
+    ../../home/spacedrive.nix
     ../../home/tmux.nix
     ../../home/todo.nix
     ../../home/utils.nix
