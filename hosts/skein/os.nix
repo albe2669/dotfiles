@@ -9,6 +9,9 @@ in {
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+
+    ../../modules/configs/hyprland.nix
+
     info.disko
   ];
 

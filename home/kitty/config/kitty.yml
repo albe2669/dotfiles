@@ -2,7 +2,7 @@
 #
 # folders. The corresponding template will be generated in the folder. Note that
 # the file extension must belong to one of the defined languages below.
-default_language: cbl
+default_language: py
 
 # A list of languages that kitty can use.
 languages:

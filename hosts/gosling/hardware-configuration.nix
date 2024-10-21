@@ -16,7 +16,7 @@
   boot.extraModprobeConfig = ''
     options cfg80211 ieee80211_regdom="DK"
   '';
-  hardware.firmware = [ pkgs.wireless-regdb ];
+  hardware.firmware = [pkgs.wireless-regdb];
   hardware.enableRedistributableFirmware = true;
 
   swapDevices = [];

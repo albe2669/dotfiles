@@ -6,6 +6,7 @@ in {
     ../../modules/core-laptop.nix
     ../../modules/core/nvidia.nix
     ../../modules/core/nvidia-prime.nix
+    ../../modules/configs/dynamic-libs.nix
     ../../modules/configs/touchpad.nix
     ../../modules/configs/hidpi.nix
     ../../modules/services/bluetooth.nix

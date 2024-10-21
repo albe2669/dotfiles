@@ -16,3 +16,5 @@ Examples:
 
 EWW Powermenu:
 - https://dharmx.is-a.dev/eww-powermenu/
+- Switch to pipewire
+- 

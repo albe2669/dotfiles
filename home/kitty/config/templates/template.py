@@ -1,8 +1,7 @@
-from io import BytesIO, read, fstat
 from sys import stdout
 
-input = BytesIO(read(0, fstat(0).st_size)).readline
+input = iter(open(0).read().splitlines())
 
-[n, m] = [int(x) for x in input().decode().split()]
+[n, m] = [int(x) for x in input]
 
 stdout.write(f"{n + m}\n")
