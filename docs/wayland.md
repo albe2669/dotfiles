@@ -4,3 +4,5 @@
 - Ensure ROFI still works
 - Create a EWW config
 - Install and configure NEMO
+- Switch to pipewire
+- 
