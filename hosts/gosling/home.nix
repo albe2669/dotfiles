@@ -22,6 +22,7 @@
     ../../home/tex.nix
 
     ../../home/anytype.nix
+    ../../home/bluetooth.nix
     ../../home/gcloud.nix
     ../../home/obs.nix
     ../../home/phpstorm.nix
