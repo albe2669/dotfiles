@@ -11,8 +11,10 @@
       enumitem
       gauss
       forest
+
+      standalone
+
       # CV:
-      
       ncctools
       lastpage
       tikzpagenodes
