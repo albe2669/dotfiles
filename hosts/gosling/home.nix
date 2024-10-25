@@ -4,6 +4,7 @@
     ../../home/alacritty
     ../../home/betterlockscreen
     ../../home/dunst
+		../../home/eww
     ../../home/fish
     ../../home/git
     ../../home/i3
