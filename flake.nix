@@ -34,10 +34,38 @@
     home-manager,
     ...
   }: let
+    extraArgs = {
+      variables = import ./variables.nix;
+      theme = import ./theme.nix;
+    };
+
+    specialArgs = import ./lib/special-args.nix ({
+        inherit nixpkgs-unstable;
+      }
+      // extraArgs);
+
+    configurations =
+      builtins.mapAttrs (_: hostConf: {
+        inherit (hostConf) info nixosModules homeModules;
+        homeManager = import ./lib/home-manager.nix {
+          inherit nixpkgs home-manager;
+          specialArgs = specialArgs.x64SpecialArgs;
+          host = hostConf;
+        };
+      }) {
+        gander = import ./hosts/gander {};
+        gosling = import ./hosts/gosling {};
+        skein = import ./hosts/skein {};
+      };
+
+    osConfigurations =
+      nixpkgs.lib.filterAttrs (_: hostConf: builtins.hasAttr "nixosModules" hostConf) configurations;
+
     args =
       {
-        variables = import ./variables.nix;
-        theme = import ./theme.nix;
+        inherit specialArgs;
+
+        configurations = osConfigurations;
       }
       // inputs;
 
@@ -48,6 +76,12 @@
       }
       // args);
   in {
+    homeConfigurations =
+      builtins.mapAttrs (
+        _: hostConf:
+          hostConf.homeManager.configuration
+      )
+      configurations;
     hosts = hosts;
     nixosConfigurations = hosts.nixosConfigurations;
     packages = hosts.packages;
