@@ -1,48 +1,74 @@
-# .files
+# My .dotfiles and NixOS configuration
 
-## Requirements
-*Note: I aim to auto install these at some point*
-### Tools
-- [oh-my-posh](https://ohmyposh.dev)
-- [neovim](https://github.com/neovim/neovim/releases/latest)
-- [lazygit](https://github.com/jesseduffield/lazygit)
-- [fd](https://github.com/sharkdp/fd/releases/latest)
-  - You will need PCRE2 support for telekazten, so install with `cargo install ripgrep --features 'pcre2'`
-- [rg](https://github.com/BurntSushi/ripgrep)
-- [fisher](https://github.com/jorgebucaran/fisher)
+## What is this?
+This is my personal config files for NixOS and pretty much every program i use. It's not really designed for others to use, since it's very personalised, but you should feel absolutely free to try it. I will be adding a guide for adapting to more machines and usecases when i finish it.
 
-### Font
-- [fira code patched](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode/Regular/complete)
-  - [Refer to this superuser answer regarding gnome terminal issues](https://superuser.com/questions/1335155/patched-fonts-not-showing-up-on-gnome-terminal)
+## Overviews
+### File structure
+```
+.
+├── home
+├── hosts
+│  └── <host>
+│     ├── hardware-configuration.nix
+│     ├── home.nix
+│     └── os.nix
+├── modules
+│  ├── configs
+│  ├── services
+│  ├── core-desktop.nix
+│  └── core-server.nix
+├── lib
+├── Makefile
+└── flake.nix
+```
 
-### Language specific tools
-  - ``npm install -g typescript typescript-language-server vscode-langservers-extracted prettier``
-  - Install [lua language server](https://github.com/sumneko/lua-language-server/releases)
-  - Install [clangd](https://clangd.llvm.org/installation.html)
-    - Be sure to install version 14 or higher 
+#### `flake.nix`
+The entrypoint and where it all begins. This file configures which architectures to build for, building arguments and is where each buildable host is specified.
 
-## TODO
-- Add windows terminal profiles and settings
-- Add [bufferline](https://github.com/akinsho/bufferline.nvim) or cokeline
-- Setup PolyBar
-- Setup screenshotting tool
-- Install guide
+`flake.nix` is also where every input configuration option should be specified.
 
-## Shell
+#### `Makefile`
+This is where the magic happens. This file is responsible for building, running, testing and installing the configuration. 
+
+#### `hosts`
+Referenced by `flake.nix`, this directory contains a directory for each host. Eachost should specify a `hardware-configuration.nix` which is specific to that host. These can either be generated or found [here](https://github.com/NixOS/nixos-hardware).
+
+Secondly each host specifies a `os.nix` file which imports the hardware configuration, which type of host it is from `modules` and other OS related configurations.
+
+Thirdly each host specifies a `diskos.nix` file which specifies the disk layout and other disk related configurations.
+
+Lastly each host has a `home.nix` file which imports modules from `home` and specifies everything that should be configurad and installed on the user level.
+
+To add more hosts see [docs/add-hosts.md](docs/add-hosts.md).
+
+#### `modules`
+This directory contains all the modules that are used to configure the system. These are split into two categories, `configs` and `services`.
+
+`configs` are modules that configure a specific program or part of the system. These are usually imported by `core-<type-of-machine>.nix`.
+
+`services` are modules that configure a service that should be running on the system. These are usually imported by `core-<type-of-machine>.nix`.
+
+#### `home`
+This directory contains all the programs and modules that are used to configure the user level. These are primarily programs. If a program has additional, non Nix, configuration files, then the program is placed in it's own directory with those files in a `config` directory and a `default.nix` file to import it with.
+
+#### `lib`
+This directory contains functions, utilities and other things used to help build this flake.
+
+## TODOs
+All TODOs, known issues, etc, are tracked in the [issues](https://github.com/albe2669/dotfiles)
+
+## Building, running, testing, installing
+### Testing
+While this repo is set up to be as modular as possible, one of the hosts `skein` is designed to be the test of what happens if everything is enabled. This also makes it perfect for testing if these configurations make sense to you. 
+
+To test it out ensure you have QEMU installed. Then run
+
 ```bash
-curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-
-# Plugins
-fisher install FabioAntunes/fish-nvm edc/bass
+make vm host=skein
+./result
 ```
 
-## Slack
-### Horizon theme
-```
-#1D1F27,#121016,#22252E,#E0E2E3,#22252E,#7F8086,#27D796,#D18274,#1D1F27,#B173D3
-```
+A QEMU VM will be started with everything enabled.
 
-### Everforest
-```
-#2B3339,#3B4252,#4C555B,#D3C6AA,#3A454A,#D3C6AA,#A7C080,#E67E80,#2B3339,#D3C6AA
-```
+### Installing

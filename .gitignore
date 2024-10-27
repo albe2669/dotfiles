@@ -1,4 +1,8 @@
-nvim/plugged
-lazygit/state.yml
+modules/nvim/config/plugged
+modules/lazygit/config/state.yml
 
 .kattisrc*
+result
+
+*.qcow2
+*.iso
