@@ -63,7 +63,7 @@
 
     args =
       {
-        inherit specialArgs;
+        inherit specialArgs home-manager;
 
         configurations = osConfigurations;
       }
@@ -76,6 +76,7 @@
       }
       // args);
   in {
+    confs = configurations;
     homeConfigurations =
       builtins.mapAttrs (
         _: hostConf:

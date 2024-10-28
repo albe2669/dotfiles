@@ -1,6 +1,7 @@
 {
   nixpkgs,
   nixos-generators,
+  home-manager,
   disko,
   self,
   specialArgs,
@@ -21,7 +22,7 @@
 
   systemArgs =
     {
-      inherit nixos-generators disko;
+      inherit nixos-generators home-manager disko;
       system = x64System;
     }
     // baseArgs;

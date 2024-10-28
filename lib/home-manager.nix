@@ -10,23 +10,21 @@
     extraSpecialArgs = specialArgs;
   };
 in {
-  module =
-    home-manager.nixosModules.home-manager
-    {
-      home-manager =
-        {
-          useGlobalPkgs = true;
-          backupFileExtension = "backup";
-          useUserPackages = true;
+  module = {
+    home-manager =
+      {
+        useGlobalPkgs = true;
+        backupFileExtension = "backup";
+        useUserPackages = true;
 
-          users."${username}" = {
-            imports = [
-              host.homeModules
-            ];
-          };
-        }
-        // sharedConfig;
-    };
+        users."${username}" = {
+          imports = [
+            host.homeModules
+          ];
+        };
+      }
+      // sharedConfig;
+  };
 
   configuration = home-manager.lib.homeManagerConfiguration ({
       pkgs = nixpkgs.legacyPackages.${specialArgs.system};

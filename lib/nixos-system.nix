@@ -1,6 +1,7 @@
 {
   nixpkgs,
   nixos-generators,
+  home-manager,
   system,
   specialArgs,
   host,
@@ -20,6 +21,9 @@ nixpkgs.lib.nixosSystem {
       environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
       nix.nixPath = ["/etc/nix/inputs"];
     }
+
+    home-manager.nixosModules.home-manager
+    host.configuration.nixosModules
 
     nixos-generators.nixosModules.all-formats
     {
