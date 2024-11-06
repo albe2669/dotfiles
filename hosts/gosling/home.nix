@@ -24,6 +24,7 @@
     ../../home/anytype.nix
     ../../home/bluetooth.nix
     ../../home/gcloud.nix
+    ../../home/libreoffice.nix
     ../../home/obs.nix
     ../../home/phpstorm.nix
     ../../home/php.nix
