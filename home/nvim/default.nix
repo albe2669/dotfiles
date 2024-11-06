@@ -15,11 +15,14 @@
     lua-language-server
     rust-analyzer
   ];
+
 in {
   home.packages = with pkgs-unstable;
     [
       neovim
       tree-sitter
+      basedpyright
+      ruff
     ]
     ++ normalPackages;
 
