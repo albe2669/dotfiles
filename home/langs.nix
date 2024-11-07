@@ -1,11 +1,11 @@
-{pkgs, ...}: {
+{pkgs, pkgs-unstable, ...}: {
   home.packages = with pkgs; [
     dotnet-sdk_7
     nodejs-18_x
 
     # Go
-    go
-    golangci-lint
+    pkgs-unstable.go
+    pkgs-unstable.golangci-lint
 
     # Rust
     cargo
