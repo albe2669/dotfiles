@@ -1,7 +1,7 @@
 {pkgs, pkgs-unstable, ...}: {
   home.packages = with pkgs; [
     dotnet-sdk_7
-    nodejs-18_x
+    nodejs_22
 
     # Go
     pkgs-unstable.go

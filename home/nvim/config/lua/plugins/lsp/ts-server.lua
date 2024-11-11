@@ -11,6 +11,18 @@ return {
 
     ts_tools.setup({
       on_attach = on_attach,
+      filetypes = {
+        "javascript",
+        "typescript",
+        "vue"
+      },
+      settings = {
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        single_file_support = false,
+        tsserver_plugins = {
+          "@vue/typescript-plugin",
+        },
+      },
     })
   end
 }

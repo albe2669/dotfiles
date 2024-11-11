@@ -8,8 +8,8 @@ local utils = {}
 function utils.formatting()
   local bufnr = api.nvim_get_current_buf()
   -- Loop all the clients and use their formatting
-  for _, client in ipairs(lsp.get_active_clients()) do
-    if client.name == "null-ls" or client.name == "clangd" then
+  for _, client in ipairs(lsp.get_clients()) do
+    if client.name == "null-ls" or client.name == "clangd" or client.name == "typescript-tools" then
       return
     end
     if client.supports_method("textDocument/formatting") then

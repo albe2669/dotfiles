@@ -23,6 +23,8 @@ in {
       tree-sitter
       basedpyright
       ruff
+
+      nodePackages."@vue/typescript-plugin"
     ]
     ++ normalPackages;
 
