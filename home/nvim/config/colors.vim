@@ -12,4 +12,4 @@ set background=dark
 " Transparency
 hi Normal ctermfg=255 ctermbg=NONE guifg=#ffffff guibg=NONE guisp=NONE cterm=NONE gui=NONE
 hi Terminal ctermfg=255 ctermbg=NONE guifg=#ffffff guibg=NONE guisp=NONE cterm=NONE gui=NONE
-hi Todo cterm=bold gui=bold ctermbg=None ctermfg=LightGreen guibg=None guifg=#9f3e85
+hi Todo ctermfg=LightGreen ctermbg=NONE guifg=#9f3e85 guibg=NONE cterm=bold gui=bold
