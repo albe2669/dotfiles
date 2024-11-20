@@ -12,6 +12,7 @@
     ../../home/nvim
     (import ../../home/picom {nvidiaDrivers = true;})
     ../../home/polybar
+    ../../home/ranger
     ../../home/rofi
     ../../home/wallpapers
     ../../home/zathura
