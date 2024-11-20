@@ -8,6 +8,7 @@
     ../../home/kitty
     ../../home/lazygit
     ../../home/nvim
+    ../../home/ranger
     ../../home/zathura
 
     ../../home/k8.nix
