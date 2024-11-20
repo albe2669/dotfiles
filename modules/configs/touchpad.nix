@@ -4,6 +4,7 @@
     touchpad = {
       naturalScrolling = true;
       tapping = true;
+      disableWhileTyping = true;
     };
   };
 }
