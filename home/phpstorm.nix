@@ -3,8 +3,8 @@
   pkgs-unstable,
   ...
 }: {
-  home.packages = with pkgs-unstable; [
-    (jetbrains.plugins.addPlugins pkgs-unstable.jetbrains.phpstorm [
+  home.packages = with pkgs; [
+    (jetbrains.plugins.addPlugins pkgs.jetbrains.phpstorm [
       "github-copilot"
     ])
   ];
