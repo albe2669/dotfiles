@@ -15,6 +15,9 @@
 
     shellAliases = {
       hms = "home-manager switch";
+      ls = "exa";
+      ll = "exa -l";
+      cat = "bat";
     };
 
     shellAbbrs = {
