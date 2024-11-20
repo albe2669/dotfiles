@@ -32,6 +32,11 @@ return {
             },
           },
         },
+        extensions = {
+          ['ui-select'] = {
+            require('telescope.themes').get_dropdown(),
+          },
+        },
       }
 
       local telescope = require("telescope")
