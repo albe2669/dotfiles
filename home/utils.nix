@@ -13,7 +13,7 @@
 
     # Convenience
     fd
-    jump
+    zoxide
 
     # System
     bandwhich

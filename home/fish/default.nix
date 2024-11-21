@@ -23,6 +23,7 @@
     shellAbbrs = {
       n = "nvim";
       g = "git";
+      j = "z";
       hm = "home-manager";
     };
 
@@ -53,10 +54,10 @@
 
       fish_add_path $HOME/Documents/Installs/zotero
 
-      jump shell fish | source
-
       # The next line updates PATH for the Google Cloud SDK.
       if [ -f '/home/goose/Downloads/gcloud/google-cloud-sdk/path.fish.inc' ]; . '/home/goose/Downloads/gcloud/google-cloud-sdk/path.fish.inc'; end
+
+      zoxide init fish | source
     '';
   };
 
