@@ -1,3 +1,14 @@
+[opener]
+firefox = [
+	{ run = 'firefox "$1"', desc = "Firefox" },
+]
+
+[open]
+prepend_rules = [
+  { mime = "image/*", use = [ "open", "firefox", "reveal" ] },
+  { mime = "application/pdf", use = [ "firefox", "open", "reveal" ] },
+]
+
 [preview]
 max_width = 1280
 max_height = 1920
