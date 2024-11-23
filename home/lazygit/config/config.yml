@@ -236,7 +236,13 @@ keybinding:
     update: u
     bulkMenu: b
 disableStartupPopups: false
-customCommands: []
+customCommands:
+  - key: "C"
+    command: "git cz c"
+    description: "commit with commitizen"
+    context: "files"
+    loadingText: "opening commitizen commit tool"
+    subprocess: true
 services: {}
 notARepository: prompt
 promptToReturnFromSubprocess: true
