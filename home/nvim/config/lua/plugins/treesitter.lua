@@ -16,6 +16,7 @@ local opts = {
     "bash",
     "c",
     "c_sharp",
+    "clojure",
     "cooklang",
     "dockerfile",
     "go",
@@ -59,4 +60,3 @@ return {
     end,
   },
 }
-

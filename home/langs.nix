@@ -23,5 +23,9 @@
 
     # COBOL
     gnu-cobol
+
+    # clojure
+    clojure
+    leiningen
   ];
 }
