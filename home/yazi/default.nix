@@ -9,6 +9,7 @@
     poppler_utils
     ueberzugpp
     xdragon
+    clipboard-jh
   ];
 
   xdg.configFile.yazi = {

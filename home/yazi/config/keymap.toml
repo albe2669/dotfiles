@@ -6,6 +6,4 @@ run = '''
 
 [[manager.prepend_keymap]]
 on  = "<C-y>"
-run = [ '''
-	shell 'echo "$@" | xclip -i -selection clipboard -t text/uri-list' --confirm
-''', "yank" ]
+run = ["plugin system-clipboard"]
