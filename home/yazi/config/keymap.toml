@@ -1,7 +1,7 @@
 [[manager.prepend_keymap]]
 on  = "<C-n>"
 run = '''
-	shell 'dragon -x -i -T "$1"' --confirm
+	shell 'dragon -x -i -T -A $@' --confirm
 '''
 
 [[manager.prepend_keymap]]
