@@ -8,6 +8,7 @@
     yazi
     poppler_utils
     ueberzugpp
+    xdragon
   ];
 
   xdg.configFile.yazi = {
