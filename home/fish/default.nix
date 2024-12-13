@@ -46,7 +46,7 @@
       fish_add_path $HOME/Documents/Installs/kubectl
       fish_add_path $HOME/Documents/Installs/kustomize
       fish_add_path $HOME/Documents/Installs/kind
-      fish_add_path $HOME/Documents/Installs/dagger/bin
+      fish_add_path $HOME/Documents/Installs/dagger
       fish_add_path $HOME/Documents/Installs/rust_analyzer
       fish_add_path $HOME/Documents/Installs/zotero
       fish_add_path $HOME/Documents/Installs/google-cloud-sdk/bin
