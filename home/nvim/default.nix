@@ -15,7 +15,6 @@
     lua-language-server
     rust-analyzer
   ];
-
 in {
   home.packages = with pkgs-unstable;
     [
