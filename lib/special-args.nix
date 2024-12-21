@@ -2,6 +2,7 @@
   variables,
   theme,
   nixpkgs-unstable,
+  nixos-hardware,
 }: let
   x64System = "x86_64-linux";
 in {
@@ -26,5 +27,7 @@ in {
       # Overlays are only applied to the unstable channel, since they probably are
       overlays = [];
     };
+
+    nixos-hardware = nixos-hardware;
   };
 }

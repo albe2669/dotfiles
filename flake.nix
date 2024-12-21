@@ -24,6 +24,8 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = inputs @ {
@@ -31,6 +33,7 @@
     nixpkgs,
     nixpkgs-unstable,
     nixos-generators,
+    nixos-hardware,
     home-manager,
     ...
   }: let
@@ -40,7 +43,7 @@
     };
 
     specialArgs = import ./lib/special-args.nix ({
-        inherit nixpkgs-unstable;
+        inherit nixpkgs-unstable nixos-hardware;
       }
       // extraArgs);
 
