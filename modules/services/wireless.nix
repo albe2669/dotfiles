@@ -4,7 +4,7 @@
       enable = true;
       settings = {
         IPv6 = {
-          Enabled = true;
+          Enabled = false;
         };
       };
     };
