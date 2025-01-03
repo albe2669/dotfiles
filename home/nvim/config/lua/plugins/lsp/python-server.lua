@@ -1,9 +1,12 @@
 return {
-  server_name = "pylsp",
+  server_name = { "basedpyright", "ruff" },
   setup = function(on_attach)
     local lspconfig = require("lspconfig")
 
-    lspconfig["pylsp"].setup({
+    lspconfig["basedpyright"].setup({
+      on_attach = on_attach
+    })
+    lspconfig["ruff"].setup({
       on_attach = on_attach
     })
   end,

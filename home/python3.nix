@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{pkgs-unstable, ...}: let
   python-packages = ps:
     with ps; [
       # Common
@@ -15,8 +15,6 @@
 
       # Testing
       pytest
-      autopep8
-      pycodestyle
 
       # eduroam
       dbus-python
@@ -26,9 +24,13 @@
 
       # Excel
       openpyxl
+
+      # LSP
+      autopep8
+      pycodestyle
     ];
 in {
-  home.packages = with pkgs; [
+  home.packages = with pkgs-unstable; [
     poetry
     poppler_utils
 

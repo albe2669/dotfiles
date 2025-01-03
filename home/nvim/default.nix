@@ -20,6 +20,8 @@ in {
     [
       neovim
       tree-sitter
+      basedpyright
+      ruff
     ]
     ++ normalPackages;
 

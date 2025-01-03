@@ -8,7 +8,7 @@ local utils = {}
 function utils.formatting()
   local bufnr = api.nvim_get_current_buf()
   -- Loop all the clients and use their formatting
-  for _, client in ipairs(lsp.get_active_clients()) do
+  for _, client in ipairs(lsp.get_clients()) do
     if client.name == "null-ls" or client.name == "clangd" then
       return
     end

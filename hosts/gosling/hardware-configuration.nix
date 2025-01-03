@@ -14,7 +14,7 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
   boot.extraModprobeConfig = ''
-    options cfg80211 ieee80211_regdom="DK"
+    options cfg80211 ieee80211_regdom="DK" iwlwifi power_save=1 disable_11ax=1
   '';
   hardware.firmware = [pkgs.wireless-regdb];
   hardware.enableRedistributableFirmware = true;
@@ -29,7 +29,9 @@
   # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
+
+  services.fstrim.enable = true;
 }

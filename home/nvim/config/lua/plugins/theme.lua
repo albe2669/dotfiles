@@ -14,6 +14,7 @@ return {
       vim.g.everforest_diagnostic_virtual_text = "grey"
 
       vim.cmd([[colorscheme everforest]])
+      vim.cmd([[hi FloatBorder	ctermbg=NONE guibg=NONE]])
     end
   },
 }

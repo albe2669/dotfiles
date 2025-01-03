@@ -1,58 +1,31 @@
 {
   nixpkgs,
-  nixpkgs-unstable,
   nixos-generators,
   home-manager,
   disko,
-  variables,
-  theme,
   self,
+  specialArgs,
+  configurations,
   ...
 }: let
-  x64System = "x86_64-linux";
-
-  x64SpecialArgs = {
-    inherit variables theme;
-
-    username = variables.username;
-
-    pkgs-unstable = import nixpkgs-unstable {
-      system = x64System;
-
-      # Necessary for installing paid or non-free software
-      config.allowUnfree = true;
-
-      config.permittedInsecurePackages = [
-        "electron-29.4.6"
-      ];
-
-      # Overlays are only applied to the unstable channel, since they probably are
-      overlays = [];
-    };
-  };
+  x64System = specialArgs.x64System;
+  x64SpecialArgs = specialArgs.x64SpecialArgs;
 
   allSystems = [x64System];
 
   nixosSystem = import ../lib/nixos-system.nix;
 
   baseArgs = {
-    inherit home-manager nixpkgs nixos-generators disko;
-    system = x64System;
+    inherit nixpkgs;
     specialArgs = x64SpecialArgs;
   };
 
-  configurations = {
-    skein = {
-      info = (import ./skein/info.nix) {};
-      nixosModules = ./skein/os.nix;
-      homeModules = ./skein/home.nix;
-    };
-    gosling = {
-      info = (import ./gosling/info.nix) {};
-      nixosModules = ./gosling/os.nix;
-      homeModules = ./gosling/home.nix;
-    };
-  };
+  systemArgs =
+    {
+      inherit nixos-generators home-manager disko;
+      system = x64System;
+    }
+    // baseArgs;
 
   hosts =
     builtins.mapAttrs (host: hostConf: {
@@ -62,13 +35,14 @@
       configuration = {
         inherit (hostConf) nixosModules homeModules;
       };
+      homeManager = hostConf.homeManager;
     })
     configurations;
 in {
   nixosConfigurations =
     builtins.mapAttrs (
       _: hostConf:
-        nixosSystem ({host = hostConf;} // baseArgs)
+        nixosSystem ({host = hostConf;} // systemArgs)
     )
     hosts;
 

@@ -21,8 +21,6 @@
     ./configs/user-groups.nix
   ];
 
-  nixpkgs.config.allowUnfree = lib.mkForce true;
-
   environment.systemPackages = with pkgs; [
     parted
     (python3.withPackages (

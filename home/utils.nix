@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # Tools
+    bat
     eza
     gnutar
     ripgrep
@@ -12,7 +13,7 @@
 
     # Convenience
     fd
-    jump
+    zoxide
 
     # System
     bandwhich

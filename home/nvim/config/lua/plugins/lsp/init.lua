@@ -26,6 +26,7 @@ local dependencies = {
 local servers = lu.load_servers({
   "bash-server",
   "c-server",
+  "clojure-server",
   "cmake-server",
   "csharp-server",
   "dagger-server",

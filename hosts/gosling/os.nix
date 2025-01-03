@@ -1,4 +1,4 @@
-{...}: let
+{nixos-hardware, ...}: let
   info = import ./info.nix {};
 in {
   imports = [
@@ -14,6 +14,8 @@ in {
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
+
     info.disko
   ];
 
