@@ -3,12 +3,13 @@
   theme,
   nixpkgs-unstable,
   nixos-hardware,
+  zen-browser,
 }: let
   x64System = "x86_64-linux";
 in {
   x64System = x64System;
   x64SpecialArgs = {
-    inherit variables theme;
+    inherit variables theme nixos-hardware zen-browser;
 
     system = x64System;
 
@@ -27,7 +28,5 @@ in {
       # Overlays are only applied to the unstable channel, since they probably are
       overlays = [];
     };
-
-    nixos-hardware = nixos-hardware;
   };
 }

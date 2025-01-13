@@ -26,6 +26,8 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = inputs @ {
@@ -35,6 +37,7 @@
     nixos-generators,
     nixos-hardware,
     home-manager,
+    zen-browser,
     ...
   }: let
     extraArgs = {
@@ -43,7 +46,7 @@
     };
 
     specialArgs = import ./lib/special-args.nix ({
-        inherit nixpkgs-unstable nixos-hardware;
+        inherit nixpkgs-unstable nixos-hardware zen-browser;
       }
       // extraArgs);
 

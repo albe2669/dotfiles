@@ -36,6 +36,7 @@
     ../../home/todo.nix
     ../../home/utils.nix
     ../../home/vscode.nix
+    ../../home/zen.nix
 
     ../../home/courses/htmaa.nix
   ];
