@@ -1,11 +1,10 @@
 {
   variables,
+  theme,
   lib,
   ...
 }: let 
-  colorScss = ''
-    \$color: #f01;
-  '';
+  colorScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: color: "\\\$${name}: ${color};\n") theme.colors));
 
   colorPath = variables.dotfilesLocation + (builtins.toPath "/home/eww/config/generated.scss");
 in {
