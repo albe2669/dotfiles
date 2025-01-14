@@ -20,7 +20,6 @@
       tikzpagenodes
       ifoddpage
       doi
-      standalone
       ;
   };
 in {
