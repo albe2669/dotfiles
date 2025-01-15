@@ -25,5 +25,7 @@
     ../../home/spacedrive.nix
     ../../home/utils.nix
     ../../home/vscode.nix
+
+    ../../home/eww
   ];
 }
