@@ -2,6 +2,7 @@
   variables,
   theme,
   lib,
+  pkgs-unstable,
   ...
 }: let 
   colorScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: color: "\\\$${name}: ${color};\n") theme.colors));
@@ -25,4 +26,8 @@ in {
     configDir = ./config;
     # enableFishIntegration = true;
   };
+
+  home.packages = [
+    (pkgs-unstable.callPackage ../../pkgs/yuckls {})
+  ];
 }

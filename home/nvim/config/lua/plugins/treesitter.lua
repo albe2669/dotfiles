@@ -42,6 +42,7 @@ local opts = {
     "yaml",
     "vim",
     "vue",
+    "yuck",
   },
 }
 
