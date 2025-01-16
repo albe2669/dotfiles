@@ -1,14 +1,26 @@
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-  pattern = { '*.yuck' },
+return {
+  setup = function(on_attach)
+    local lspconfig = require("lspconfig")
+    local configs = require("lspconfig.configs")
 
-  callback = function(event)
-    print(string.format('starting yuck;s for %s', vim.inspect(event)))
+    if not configs.yuck_ls then
+      configs.yuck_ls = {
+        default_config = {
+          cmd = { 'YuckLS' },
+          filetypes = { 'yuck' },
+          root_dir = function()
+            return vim.fn.getcwd()
+          end,
+          settings = {},
+        },
+      }
+    end
 
-    vim.lsp.start {
-      name = 'YuckLs',
-      cmd = { 'YuckLS' },
-      root_dir = vim.fn.getcwd(),
-    }
-  end,
-
-})
+    lspconfig.yuck_ls.setup({
+      on_attach = function(client, bufnr)
+        print("Yuck server attached")
+        on_attach(client, bufnr)
+      end,
+    })
+  end
+}

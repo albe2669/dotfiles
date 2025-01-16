@@ -45,6 +45,7 @@ local servers = lu.load_servers({
   "ts-server",
   "vue-server",
   "yaml-server",
+  "yuck-server",
 })
 
 for _, server in pairs(servers) do
