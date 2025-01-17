@@ -1,0 +1,23 @@
+(include "./modules/clock/index.yuck")
+(include "./modules/tray/index.yuck")
+(include "./modules/system/index.yuck")
+
+(defwidget left []
+  (box :space-evenly false
+    (clock)
+    (tray)
+  )
+)
+
+(defwidget right []
+  (box :space-evenly false :halign "end"
+    (system)
+  )
+)
+
+(defwidget bar []
+  (box :class "main" :space-evenly true
+    (left)
+    (right)
+  )
+)

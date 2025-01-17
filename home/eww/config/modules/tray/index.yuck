@@ -1,0 +1,8 @@
+(include "./modules/base/pill.yuck")
+(include "./modules/base/icon.yuck")
+
+(defwidget tray []
+  (pill
+    (systray :icon-size 18)
+  )
+)

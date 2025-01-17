@@ -1,0 +1,34 @@
+(include "./modules/base/pill.yuck")
+(include "./modules/base/icon.yuck")
+
+(defwidget syswidg [icon value]
+  (box :space-evenly false
+    (icon :class "sys-icon" :icon icon)
+    (label :text value)
+  )
+)
+
+(defwidget cpu []
+  (syswidg :icon "" :value "${round(EWW_CPU["avg"], 0)}%")
+)
+
+(defwidget ram []
+  (syswidg :icon "" :value "${round(EWW_RAM["used_mem_perc"], 0)}%")
+)
+
+(defwidget disk []
+  (syswidg :icon "󰋊" :value "${round(EWW_DISK["/"]["used_perc"], 0)}%")
+)
+
+(defwidget temp []
+  (syswidg :icon "" :value "${round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)}°C")
+)
+
+(defwidget system []
+  (pill :class "system-widget"
+    (cpu)
+    (ram)
+    (disk)
+    (temp)
+  )
+)
