@@ -1,0 +1,9 @@
+@import "./generated.scss";
+@import "./modules/base";
+@import "./modules/bar";
+
+* {
+  font-family: $font_family;
+  font-size: 12pt;
+  color: $fg;
+}

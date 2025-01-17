@@ -1,1 +1,15 @@
-(defwidget)
+(include "./modules/base/pill.yuck")
+(include "./modules/base/icon.yuck")
+
+(defpoll time
+  :interval "1s"
+  :initial "00:00"
+  :run-while true
+  `date +%H:%M`)
+
+(defwidget clock []
+  (pill :class "clock-widget"
+    (icon :class "clock-icon" :icon "")
+    (label :text "${time}")
+  )
+)

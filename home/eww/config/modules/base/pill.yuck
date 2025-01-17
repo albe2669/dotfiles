@@ -1,0 +1,4 @@
+(defwidget pill [?class]
+  (box :space-evenly false :class "pill ${class}"
+    (children))
+)

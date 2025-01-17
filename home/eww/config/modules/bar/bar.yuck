@@ -1,0 +1,13 @@
+(include "./modules/clock/clock.yuck")
+
+(defwidget left []
+  (box :space-evenly false
+    (clock)
+  )
+)
+
+(defwidget bar []
+  (box :class "main" :space-evenly true
+    (left)
+  )
+)

@@ -3,6 +3,7 @@
   theme,
   lib,
   pkgs-unstable,
+  config,
   ...
 }: let 
   colorScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: color: "\\\$${name}: ${color};\n") theme.colors));
@@ -21,13 +22,14 @@ in {
     '';
   };
 
-  programs.eww = {
-    enable = true;
-    configDir = ./config;
-    # enableFishIntegration = true;
+
+  home.packages = with pkgs-unstable; [
+    (pkgs-unstable.callPackage ../../pkgs/yuckls {})
+    eww
+  ];
+
+  xdg.configFile.eww = {
+    source = config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}" + (builtins.toPath "/home/eww/config");
   };
 
-  home.packages = [
-    (pkgs-unstable.callPackage ../../pkgs/yuckls {})
-  ];
 }
