@@ -1,0 +1,8 @@
+(include "./modules/base/icon.yuck")
+
+(defwidget icon-and-label [?class icon value]
+  (box :space-evenly false :class "sys-widget ${class}"
+    (icon :class "il-icon" :icon icon)
+    (label :class "il-label" :text value)
+  )
+)

@@ -1,5 +1,6 @@
 .separator {
   margin: 0 0.3em;
+
   label {
     color: $bg_dim;
   }
@@ -13,7 +14,7 @@
 }
 
 .ram-widget { 
-  .sys-icon {
+  .il-icon {
     margin-right: 0.5em;
   }
 
@@ -23,7 +24,7 @@
 }
 
 .disk-widget { 
-  .sys-icon {
+  .il-icon {
     margin-right: 0.7em;
   }
 
@@ -33,7 +34,7 @@
 }
 
 .temp-widget { 
-  .sys-icon {
+  .il-icon {
     margin-right: 0.7em;
   }
 }
@@ -47,7 +48,7 @@
 }
 
 .battery-widget {
-  .sys-icon {
+  .il-icon {
     margin-right: 0.6em;
   }
   
@@ -57,7 +58,7 @@
 }
 
 .battery-widget-charging {
-  .sys-icon, > label {
+  .il-icon, > label {
     color: $green;
   }
 }

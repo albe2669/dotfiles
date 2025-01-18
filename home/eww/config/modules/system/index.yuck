@@ -1,12 +1,5 @@
 (include "./modules/base/pill.yuck")
-(include "./modules/base/icon.yuck")
-
-(defwidget syswidg [?class icon value]
-  (box :space-evenly false :class "sys-widget ${class}"
-    (icon :class "sys-icon" :icon icon)
-    (label :class "sys-label" :text value)
-  )
-)
+(include "./modules/base/icon-and-label.yuck")
 
 (defwidget separator []
   (box :space-evenly false :class "separator"
@@ -15,19 +8,19 @@
 )
 
 (defwidget cpu []
-  (syswidg :class "cpu-widget" :icon "" :value "${round(EWW_CPU["avg"], 0)}%")
+  (icon-and-label :class "cpu-widget" :icon "" :value "${round(EWW_CPU["avg"], 0)}%")
 )
 
 (defwidget ram []
-  (syswidg :class "ram-widget" :icon "" :value "${round(EWW_RAM["used_mem_perc"], 0)}%")
+  (icon-and-label :class "ram-widget" :icon "" :value "${round(EWW_RAM["used_mem_perc"], 0)}%")
 )
 
 (defwidget disk []
-  (syswidg :class "disk-widget" :icon "󰋊" :value "${round(EWW_DISK["/"]["used_perc"], 0)}%")
+  (icon-and-label :class "disk-widget" :icon "󰋊" :value "${round(EWW_DISK["/"]["used_perc"], 0)}%")
 )
 
 (defwidget _temp [class]
-  (syswidg :class "temp-widget ${class}" :value "${round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)}°C" :icon {
+  (icon-and-label :class "temp-widget ${class}" :value "${round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)}°C" :icon {
         EWW_TEMPS.CORETEMP_PACKAGE_ID_0 >= 80 ? "" :
         EWW_TEMPS.CORETEMP_PACKAGE_ID_0 >= 70 ? "" :
         EWW_TEMPS.CORETEMP_PACKAGE_ID_0 >= 60 ? "" :
@@ -52,7 +45,7 @@
   `bash -c 'echo $(($(date +%s%N) / 750000000 % 10))'`)
 
 (defwidget _battery [class]
-  (syswidg 
+  (icon-and-label 
     :class "battery-widget ${class}" 
     :value "${EWW_BATTERY["BAT0"].capacity}%" 
     :icon {
