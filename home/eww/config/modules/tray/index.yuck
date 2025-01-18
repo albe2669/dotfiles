@@ -3,6 +3,6 @@
 
 (defwidget tray []
   (pill
-    (systray :icon-size 18)
+    (systray :icon-size 18 :spacing 10)
   )
 )
