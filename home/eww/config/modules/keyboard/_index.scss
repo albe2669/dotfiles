@@ -1,0 +1,10 @@
+.keyboard-widget {
+  .il-icon {
+    font-size: 1.1em;
+    margin-right: 0.7em;
+  }
+
+  > label {
+    color: $yellow;  // Using magenta to differentiate from other widgets
+  }
+}

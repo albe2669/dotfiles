@@ -1,0 +1,18 @@
+(include "./modules/base/pill.yuck")
+(include "./modules/base/icon.yuck")
+(include "./modules/base/icon-and-label.yuck")
+
+(defpoll current-kb-layout
+  :interval "2s"
+  :initial "us"
+  `y=$(setxkbmap -query | grep layout | awk '{print $2}');echo \${y^^}`)
+
+(defwidget keyboard []
+  (pill
+    (icon-and-label 
+      :class "keyboard-widget"
+      :icon "󰌌"
+      :value "${current-kb-layout}"
+    )
+  )
+)
