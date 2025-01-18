@@ -1,34 +1,87 @@
 (include "./modules/base/pill.yuck")
 (include "./modules/base/icon.yuck")
 
-(defwidget syswidg [icon value]
-  (box :space-evenly false
+(defwidget syswidg [?class icon value]
+  (box :space-evenly false :class "sys-widget ${class}"
     (icon :class "sys-icon" :icon icon)
-    (label :text value)
+    (label :class "sys-label" :text value)
+  )
+)
+
+(defwidget separator []
+  (box :space-evenly false :class "separator"
+    (label :text "|")
   )
 )
 
 (defwidget cpu []
-  (syswidg :icon "" :value "${round(EWW_CPU["avg"], 0)}%")
+  (syswidg :class "cpu-widget" :icon "" :value "${round(EWW_CPU["avg"], 0)}%")
 )
 
 (defwidget ram []
-  (syswidg :icon "" :value "${round(EWW_RAM["used_mem_perc"], 0)}%")
+  (syswidg :class "ram-widget" :icon "" :value "${round(EWW_RAM["used_mem_perc"], 0)}%")
 )
 
 (defwidget disk []
-  (syswidg :icon "󰋊" :value "${round(EWW_DISK["/"]["used_perc"], 0)}%")
+  (syswidg :class "disk-widget" :icon "󰋊" :value "${round(EWW_DISK["/"]["used_perc"], 0)}%")
+)
+
+(defwidget _temp [class]
+  (syswidg :class "temp-widget ${class}" :value "${round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)}°C" :icon {
+        EWW_TEMPS.CORETEMP_PACKAGE_ID_0 >= 80 ? "" :
+        EWW_TEMPS.CORETEMP_PACKAGE_ID_0 >= 70 ? "" :
+        EWW_TEMPS.CORETEMP_PACKAGE_ID_0 >= 60 ? "" :
+        EWW_TEMPS.CORETEMP_PACKAGE_ID_0 >= 50 ? "" : ""
+  })
 )
 
 (defwidget temp []
-  (syswidg :icon "" :value "${round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)}°C")
+  (_temp :class {EWW_TEMPS.CORETEMP_PACKAGE_ID_0 > 80 ? "temp-widget-crit" :
+                 EWW_TEMPS.CORETEMP_PACKAGE_ID_0 > 60 ? "temp-widget-warn" : "temp-widget-norm"}  ) 
+)
+
+(defvar battery-charging-icons '[
+  "󰁺", "󰁻", "󰁼", "󰁽", "󰁾",
+  "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+]')
+
+(defpoll battery-charging-index
+  :interval "750ms"
+  :initial "0"
+  :run-while {EWW_BATTERY["BAT0"].status == "Charging"}
+  `bash -c 'echo $(($(date +%s%N) / 750000000 % 10))'`)
+
+(defwidget _battery [class]
+  (syswidg 
+    :class "battery-widget ${class}" 
+    :value "${EWW_BATTERY["BAT0"].capacity}%" 
+    :icon {
+      EWW_BATTERY["BAT0"].status == "Charging" ? 
+        battery-charging-icons[battery-charging-index] :
+      battery-charging-icons[min(round(EWW_BATTERY["BAT0"].capacity / 10, 0), 9)]
+    }
+  )
+)
+
+
+(defwidget battery []
+  (_battery 
+    :class "${EWW_BATTERY["BAT0"].status == "Charging" ? "battery-widget-charging" :
+             EWW_BATTERY["BAT0"].capacity <= 15 ? "battery-widget-crit" : 
+             "battery-widget-norm"}"
+  )
 )
 
 (defwidget system []
   (pill :class "system-widget"
     (cpu)
+    (separator)
     (ram)
+    (separator)
     (disk)
+    (separator)
     (temp)
+    (separator)
+    (battery)
   )
 )

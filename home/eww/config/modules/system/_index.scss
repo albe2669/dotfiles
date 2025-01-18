@@ -1,7 +1,67 @@
-.clock-widget {
-  .clock-content {
-    .time {
-      margin-left: 2px;
-    }
+.separator {
+  margin: 0 0.3em;
+  label {
+    color: $bg_dim;
   }
+}
+
+
+.cpu-widget {
+  > label {
+    color: $green;
+  }
+}
+
+.ram-widget { 
+  .sys-icon {
+    margin-right: 0.5em;
+  }
+
+  > label {
+    color: $aqua;
+  }
+}
+
+.disk-widget { 
+  .sys-icon {
+    margin-right: 0.7em;
+  }
+
+  > label {
+    color: $blue;
+  } 
+}
+
+.temp-widget { 
+  .sys-icon {
+    margin-right: 0.7em;
+  }
+}
+
+.temp-widget-crit > label {
+  color: $red;
+}
+
+.temp-widget-warn > label {
+  color: $yellow;
+}
+
+.battery-widget {
+  .sys-icon {
+    margin-right: 0.6em;
+  }
+  
+  > label {
+    color: $statusline2;
+  }
+}
+
+.battery-widget-charging {
+  .sys-icon, > label {
+    color: $green;
+  }
+}
+
+.battery-widget-crit > label {
+  color: $red;
 }
