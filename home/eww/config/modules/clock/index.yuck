@@ -1,5 +1,5 @@
 (include "./modules/base/pill.yuck")
-(include "./modules/base/icon.yuck")
+(include "./modules/base/icon-and-label.yuck")
 
 (defpoll time
   :interval "1s"
@@ -8,8 +8,11 @@
   `date +%H:%M`)
 
 (defwidget clock []
-  (pill :class "clock-widget"
-    (icon :class "clock-icon" :icon "")
-    (label :text "${time}")
+  (pill
+    (icon-and-label 
+      :class "clock-widget"
+      :icon ""
+      :value "${time}"
+    )
   )
 )
