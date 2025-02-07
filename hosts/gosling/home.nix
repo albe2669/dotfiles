@@ -32,11 +32,11 @@
     ../../home/php.nix
     ../../home/programs.nix
     ../../home/spacedrive.nix
-    ../../home/teams.nix
     ../../home/tmux.nix
     ../../home/todo.nix
     ../../home/utils.nix
     ../../home/vscode.nix
+    ../../home/work.nix
     ../../home/zen.nix
 
     ../../home/courses/htmaa.nix
