@@ -18,7 +18,7 @@
     pkg-config # openssl-sys
 
     # Java, also required by Scala metals
-    jdk11
+    jdk17
 
     # COBOL
     gnu-cobol
