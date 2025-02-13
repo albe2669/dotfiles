@@ -4,7 +4,7 @@
 
 (defpoll current-kb-layout
   :interval "2s"
-  :initial "us"
+  :initial "US"
   `y=$(setxkbmap -query | grep layout | awk '{print $2}');echo \${y^^}`)
 
 (defwidget keyboard []
