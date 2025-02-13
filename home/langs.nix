@@ -13,6 +13,7 @@
     # Rust
     cargo
     rustc
+    rustfmt
     clippy
     openssl # openssl-sys
     pkg-config # openssl-sys
