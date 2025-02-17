@@ -31,7 +31,7 @@
     ];
 in {
   home.packages = with pkgs-unstable; [
-    poetry
+    uv
     poppler_utils
 
     ((python3.withPackages python-packages).override (args: {ignoreCollisions = true;}))
