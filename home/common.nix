@@ -1,6 +1,7 @@
 {
   variables,
   lib,
+  pkgs,
   ...
 }: {
   home = {
@@ -13,4 +14,8 @@
   };
 
   programs.home-manager.enable = true;
+
+  home.packages = with pkgs; [
+    pulseeffects-legacy
+  ];
 }

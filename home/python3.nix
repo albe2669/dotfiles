@@ -19,15 +19,15 @@
       # eduroam
       dbus-python
 
-      # Hacking
-      dnspython
-
       # Excel
       openpyxl
 
       # LSP
       autopep8
       pycodestyle
+
+      pandas
+      numpy
     ];
 in {
   home.packages = with pkgs-unstable; [

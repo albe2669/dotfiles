@@ -9,6 +9,7 @@
     ../../home/git
     ../../home/i3
     ../../home/kitty
+    ../../home/lazydocker
     ../../home/lazygit
     ../../home/nvim
     (import ../../home/picom {nvidiaDrivers = true;})
