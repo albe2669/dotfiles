@@ -6,6 +6,7 @@
     ../../home/fish
     ../../home/git
     ../../home/kitty
+    ../../home/lazydocker
     ../../home/lazygit
     ../../home/nvim
     ../../home/yazi
