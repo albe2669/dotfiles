@@ -27,5 +27,7 @@
     # clojure
     clojure
     leiningen
+
+    opentofu
   ];
 }
