@@ -5,8 +5,8 @@
   ...
 }:
 let
-  profileuuid = "e5b5fa5d-4641-4330-ac91-ec61a5fd687b";
-  backgroundSettings = {
+  profile-uuid = "e5b5fa5d-4641-4330-ac91-ec61a5fd687b";
+  background-settings = {
     color-shading-type = "solid";
     picture-options = "zoom";
     picture-uri-dark = "file://${variables.homeDirectory.path}/.background-image";
@@ -15,7 +15,7 @@ let
     secondary-color = "#000000000000";
   };
 
-  flameshotDir = variables.homeDirectory.path + (builtins.toPath "/Pictures/FScreenshots");
+  flameshot-dir = variables.homeDirectory.path + (builtins.toPath "/Pictures/FScreenshots");
   clock-format = "24h";
 in
 with lib.hm.gvariant; {
@@ -65,8 +65,8 @@ with lib.hm.gvariant; {
         (mkTuple [ "xkb" "dk+winkeys" ])
       ];
     };
-    "org/gnome/desktop/screensaver" = backgroundSettings;
-    "org/gnome/desktop/background" = backgroundSettings;
+    "org/gnome/desktop/screensaver" = background-settings;
+    "org/gnome/desktop/background" = background-settings;
     "org/gnome/shell/extensions/pop-shell" = {
       tile-by-default = true;
       snap-to-grid = true;
@@ -84,15 +84,22 @@ with lib.hm.gvariant; {
       show-extensions-notice = false;
     };
     "org/gnome/terminal/legacy/profiles:" = {
-      default = profileuuid;
-      list = [profileuuid];
+      default = profile-uuid;
+      list = [profile-uuid];
     };
-    "org/gnome/terminal/legacy/profiles:/:${profileuuid}" = {
+    "org/gnome/terminal/legacy/profiles:/:${profile-uuid}" = {
       visible-name = "Custom profile";
       background-transparency-percent = 3;
       use-theme-transparency = false;
       use-transparent-background = true;
       font = "Iosevka Nerd Font 12";
+    };
+    "org/gnome/settings-daemon/plugins/color" = {
+      night-light-enabled = true;
+      night-light-schedule-automatic = false;
+      night-light-schedule-from = "16.0";
+      night-light-schedule-to = "6.0";
+      night-light-temperature = mkUint32 2700;
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -107,17 +114,17 @@ with lib.hm.gvariant; {
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "Print";
       name = "Flameshot - gui";
-      command = "flameshot gui -c -p ${flameshotDir}";
+      command = "flameshot gui -c -p ${flameshot-dir}";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       binding = "<Primary>Print";
       name = "Flameshot - screen";
-      command = "flameshot screen -p ${flameshotDir}";
+      command = "flameshot screen -p ${flameshot-dir}";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
       binding = "<Shift>Print";
       name = "Flameshot - screen copy";
-      command = "flameshot screen -c -p ${flameshotDir}";
+      command = "flameshot screen -c -p ${flameshot-dir}";
     };
 
     "org/gnome/shell/keybindings/show-screenshot-ui" = {
