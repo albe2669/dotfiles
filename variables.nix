@@ -8,7 +8,7 @@ in {
 
   homeDirectory = {
     path = homeDirectory;
-    directories = ["Documents" "Downloads" "Music" "Pictures" "Videos"];
+    directories = ["Documents" "Downloads" "Music" "Pictures" "Pictures/FScreenshots" "Videos"];
   };
 
   git = {

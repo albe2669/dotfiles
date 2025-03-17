@@ -28,7 +28,6 @@
           redshift # blue light filter
           betterlockscreen # lock screen
           feh # wallpaper
-          flameshot # screenshot
           acpi # battery
           xorg.xbacklight # screen brightness
           xorg.xdpyinfo # screen information
