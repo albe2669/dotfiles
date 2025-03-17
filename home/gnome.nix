@@ -16,6 +16,7 @@ let
   };
 
   flameshotDir = variables.homeDirectory.path + (builtins.toPath "/Pictures/FScreenshots");
+  clock-format = "24h";
 in
 with lib.hm.gvariant; {
   imports = [
@@ -72,6 +73,12 @@ with lib.hm.gvariant; {
       gap-inner = 1;
       gap-outer = 1;
       mouse-cursor-follows-active-window = false;
+    };
+    "org/gnome/desktop/interface" = {
+      inherit clock-format;
+    };
+    "org/gtk/settings/file-chooser" = {
+      inherit clock-format;
     };
     "org/gnome/tweaks" = {
       show-extensions-notice = false;
