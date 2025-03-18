@@ -12,6 +12,8 @@
       extraConfig = ''
         xdebug.mode=debug
         upload_max_filesize = 2G
+        memory_limit = 2G
+        max_execution_time = 120
       '';
     };
   in [
