@@ -238,9 +238,9 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%- 
 
 # Bind screenshots
-bindsym Print exec flameshot screen -p ~/Pictures/FScreenshots
-bindsym Ctrl+Print exec flameshot screen -c -p ~/Pictures/FScreenshots
-bindsym Shift+Print exec flameshot gui -c -p ~/Pictures/FScreenshots
+bindsym Print exec flameshot gui -c -p ~/Pictures/FScreenshots
+bindsym Shift+Print exec flameshot screen -c -p ~/Pictures/FScreenshots
+bindsym Ctrl+Print exec flameshot screen -p ~/Pictures/FScreenshots
 
 # Redshift modes
 # redshift modes

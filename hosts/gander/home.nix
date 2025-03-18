@@ -1,7 +1,7 @@
 {...}: {
-  nixpkgs.config.allowUnfree = true;
   imports = [
     ../../home/common.nix
+    ../../home/alacritty
     ../../home/dunst
     ../../home/fish
     ../../home/git
@@ -18,7 +18,9 @@
     ../../home/tex.nix
 
     ../../home/anytype.nix
+    ../../home/fonts.nix
     ../../home/gcloud.nix
+    ../../home/gnome.nix
     ../../home/obs.nix
     ../../home/phpstorm.nix
     ../../home/php.nix
@@ -30,5 +32,6 @@
     ../../home/zen.nix
 
     ../../home/eww
+
   ];
 }

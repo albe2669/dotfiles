@@ -3,6 +3,7 @@
     # Tools
     bat
     eza
+    flameshot # screenshot
     gnutar
     ripgrep
     unzip

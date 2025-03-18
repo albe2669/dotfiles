@@ -29,6 +29,7 @@ in {
   configuration = home-manager.lib.homeManagerConfiguration ({
       pkgs = nixpkgs.legacyPackages.${specialArgs.system};
       modules = [
+        ../modules/core/nix.nix
         host.homeModules
       ];
     }

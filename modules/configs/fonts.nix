@@ -1,33 +1,13 @@
-{pkgs, ...}: {
+{pkgs, ...}:
+let
+  fontConfig = import ./font-packages.nix { inherit pkgs; };
+in
+{
   fonts = {
     enableDefaultPackages = true;
     fontDir.enable = true;
 
-    packages = with pkgs; [
-      # fonts
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-      noto-fonts-extra
-
-      # nerd fonts
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "Iosevka"
-        ];
-      })
-
-      # icons
-      material-design-icons
-      font-awesome
-    ];
-
-    fontconfig.defaultFonts = {
-      serif = ["Noto Serif"];
-      sansSerif = ["Noto Sans"];
-      monospace = ["Iosevka Nerd Font"];
-      emoji = ["Noto Color Emoji"];
-    };
+    packages = fontConfig.packages;
+    fontconfig.defaultFonts = fontConfig.defaultFonts;
   };
 }
