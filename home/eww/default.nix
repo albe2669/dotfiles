@@ -5,7 +5,7 @@
   pkgs-unstable,
   config,
   ...
-}: let 
+}: let
   colorScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: color: "\\\$${name}: ${color};\n") theme.colors));
 
   fontScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: font: "\\\$font_${name}: \"${font}\";\n") theme.font));
@@ -22,7 +22,6 @@ in {
     '';
   };
 
-
   home.packages = with pkgs-unstable; [
     (pkgs-unstable.callPackage ../../pkgs/yuckls {})
     eww
@@ -31,5 +30,4 @@ in {
   xdg.configFile.eww = {
     source = config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}" + (builtins.toPath "/home/eww/config");
   };
-
 }

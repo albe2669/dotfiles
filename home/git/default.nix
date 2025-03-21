@@ -17,7 +17,7 @@
       credential.helper = "store";
       init.defaultBranch = "master";
 
-      # https://blog.gitbutler.com/how-git-core-devs-configure-git/ 
+      # https://blog.gitbutler.com/how-git-core-devs-configure-git/
       column.ui = "auto";
       branch.sort = "-committerdate";
       tag.sort = "version:refname";
@@ -39,7 +39,7 @@
         autoupdate = true;
       };
       rebase = {
-       autoSquash = true;
+        autoSquash = true;
         autoStash = true;
         updateRefs = true;
       };

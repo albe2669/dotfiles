@@ -23,6 +23,4 @@
   nixpkgs.config.pulseaudio = true;
 
   users.users.${username}.extraGroups = ["audio"];
-
-
 }

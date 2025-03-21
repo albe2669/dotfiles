@@ -15,6 +15,9 @@ fmt:
 update:
 	nix --extra-experimental-features "nix-command flakes" flake update
 
+build:
+	sudo nixos-build --show-trace --flake .#$(host)
+
 rebuild:
 	sudo nixos-rebuild switch --show-trace --flake .#$(host)
 
