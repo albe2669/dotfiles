@@ -19,6 +19,8 @@ in {
   home.packages = with pkgs-unstable;
     [
       neovim
+      nil
+      clipboard-jh
       tree-sitter
       basedpyright
       ruff
