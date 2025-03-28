@@ -1,12 +1,12 @@
 [opener]
-firefox = [
-	{ run = 'firefox "$1"', desc = "Firefox" },
+zen = [
+	{ run = 'zen "$1"', desc = "Zen" },
 ]
 
 [open]
 prepend_rules = [
-  { mime = "image/*", use = [ "open", "firefox", "reveal" ] },
-  { mime = "application/pdf", use = [ "firefox", "open", "reveal" ] },
+  { mime = "image/*", use = [ "open", "zen", "reveal" ] },
+  { mime = "application/pdf", use = [ "zen", "open", "reveal" ] },
 ]
 
 [preview]
