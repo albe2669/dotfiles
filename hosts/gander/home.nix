@@ -32,6 +32,5 @@
     ../../home/zen.nix
 
     ../../home/eww
-
   ];
 }

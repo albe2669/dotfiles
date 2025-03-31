@@ -1,8 +1,6 @@
-{pkgs, ...}:
-let
-  fontConfig = import ./font-packages.nix { inherit pkgs; };
-in
-{
+{pkgs, ...}: let
+  fontConfig = import ./font-packages.nix {inherit pkgs;};
+in {
   fonts = {
     enableDefaultPackages = true;
     fontDir.enable = true;

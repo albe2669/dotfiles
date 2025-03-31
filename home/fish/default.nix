@@ -58,10 +58,13 @@
       if [ -f '/home/goose/Downloads/gcloud/google-cloud-sdk/path.fish.inc' ]; . '/home/goose/Downloads/gcloud/google-cloud-sdk/path.fish.inc'; end
 
       zoxide init fish | source
+      atuin init fish | source
     '';
   };
 
   home.packages = with pkgs; [
+    atuin
+
     fishPlugins.bass
     fishPlugins.puffer
     fishPlugins.async-prompt

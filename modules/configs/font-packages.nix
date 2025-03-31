@@ -18,7 +18,7 @@
     material-design-icons
     font-awesome
   ];
-  
+
   defaultFonts = {
     serif = ["Noto Serif"];
     sansSerif = ["Noto Sans"];
