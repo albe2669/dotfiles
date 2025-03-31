@@ -20,6 +20,7 @@ in {
     [
       neovim
       nil
+      gopls
       clipboard-jh
       tree-sitter
       basedpyright
