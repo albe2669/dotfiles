@@ -40,15 +40,12 @@
     zen-browser,
     ...
   }: let
-    extraArgs = {
-      variables = import ./variables.nix;
-      theme = import ./theme.nix;
-    };
-
     specialArgs = import ./lib/special-args.nix ({
         inherit nixpkgs-unstable nixos-hardware zen-browser;
-      }
-      // extraArgs);
+
+        variables = import ./variables.nix;
+        theme = import ./theme.nix;
+      });
 
     configurations =
       builtins.mapAttrs (_: hostConf: {
