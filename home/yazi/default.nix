@@ -6,6 +6,8 @@
 }: {
   home.packages = with pkgs-unstable; [
     yazi
+    exiftool
+    mediainfo
     poppler_utils
     ueberzugpp
     xdragon
