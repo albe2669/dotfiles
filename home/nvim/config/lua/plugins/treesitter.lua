@@ -55,9 +55,5 @@ return {
 
       configs.setup(opts)
     end,
-    init = function()
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.tsx.used_by = { "javascript", "typescript.tsx" }
-    end,
   },
 }

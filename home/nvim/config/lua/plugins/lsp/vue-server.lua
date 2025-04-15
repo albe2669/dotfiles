@@ -13,6 +13,9 @@ return {
         },
       },
     })
-    lspconfig['emmet_language_server'].setup({ on_attach = on_attach })
+    lspconfig['emmet_language_server'].setup({
+      on_attach = on_attach,
+      file_types = { "html", "css", "scss", "less", "vue", "typescript" }
+    })
   end
 }
