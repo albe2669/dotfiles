@@ -10,6 +10,7 @@ in {
     ../../modules/configs/touchpad.nix
     ../../modules/configs/hidpi.nix
     ../../modules/services/bluetooth.nix
+    ../../modules/services/qemu.nix
     ../../modules/services/tailscale.nix
     ../../modules/services/wireless.nix
 
