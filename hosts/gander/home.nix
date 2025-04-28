@@ -18,6 +18,7 @@
     ../../home/tex.nix
 
     ../../home/anytype.nix
+    ../../home/direnv.nix
     ../../home/fonts.nix
     ../../home/gcloud.nix
     ../../home/gnome.nix
