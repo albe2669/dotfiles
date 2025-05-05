@@ -16,6 +16,7 @@
     ../../home/polybar
     ../../home/yazi
     ../../home/rofi
+    ../../home/sioyek
     ../../home/wallpapers
     ../../home/zathura
 

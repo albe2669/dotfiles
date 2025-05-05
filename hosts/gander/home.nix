@@ -9,6 +9,7 @@
     ../../home/lazydocker
     ../../home/lazygit
     ../../home/nvim
+    ../../home/sioyek
     ../../home/yazi
     ../../home/zathura
 
