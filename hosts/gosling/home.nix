@@ -40,7 +40,5 @@
     ../../home/vscode.nix
     ../../home/work.nix
     ../../home/zen.nix
-
-    ../../home/courses/htmaa.nix
   ];
 }
