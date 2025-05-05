@@ -1,6 +1,6 @@
-{variables, pkgs-unstable, ...}: {
-  home.packages = with pkgs-unstable; [
-    (jetbrains.plugins.addPlugins pkgs-unstable.jetbrains.phpstorm [
+{variables, pkgs, ...}: {
+  home.packages = with pkgs; [
+    (jetbrains.plugins.addPlugins jetbrains.phpstorm [
       "github-copilot"
     ])
   ];
