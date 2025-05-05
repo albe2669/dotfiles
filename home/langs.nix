@@ -29,5 +29,10 @@
     leiningen
 
     opentofu
+
+    # C#
+    dotnetCorePackages.dotnet_8.sdk
+    azure-functions-core-tools
+    azurite
   ];
 }
