@@ -31,6 +31,10 @@
       # Go stuff
       set -x GOPATH $HOME/.local/go
 
+      # Encore
+      set -x ENCORE_INSTALL $HOME/.encore
+      fish_add_path $ENCORE_INSTALL/bin
+
       # Path
       fish_add_path /usr/local/go/bin
       fish_add_path /usr/local/texlive/2022/bin/x86_64-linux
@@ -38,7 +42,6 @@
       fish_add_path $HOME/.local/bin
       fish_add_path $HOME/.local/go/bin
       fish_add_path $HOME/.cargo/bin
-
 
       fish_add_path $HOME/Documents/Installs/bin
       fish_add_path $HOME/Documents/Installs/nvim
@@ -53,6 +56,7 @@
       fish_add_path $HOME/Documents/Installs/lsp/lua/bin
 
       fish_add_path $HOME/Documents/Installs/zotero
+
 
       # The next line updates PATH for the Google Cloud SDK.
       if [ -f '/home/goose/Downloads/gcloud/google-cloud-sdk/path.fish.inc' ]; . '/home/goose/Downloads/gcloud/google-cloud-sdk/path.fish.inc'; end

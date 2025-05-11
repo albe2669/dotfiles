@@ -13,6 +13,7 @@
     (import ../../home/picom {nvidiaDrivers = false;})
     ../../home/polybar
     ../../home/rofi
+    ../../home/sioyek
     ../../home/wallpapers
     ../../home/zathura
 

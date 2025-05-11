@@ -1,6 +1,6 @@
-{variables, pkgs-unstable, ...}: {
-  home.packages = with pkgs-unstable; [
-    (jetbrains.plugins.addPlugins pkgs-unstable.jetbrains.phpstorm [
+{variables, pkgs, ...}: {
+  home.packages = with pkgs; [
+    (jetbrains.plugins.addPlugins jetbrains.phpstorm [
       "github-copilot"
     ])
   ];
@@ -32,6 +32,10 @@
       set ideajoin
       set ideastatusicon=gray
       set idearefactormode=keep
+
+      """ New keybindings -------------------------
+      " gw : Swap word with next word 
+      nmap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l>
     '';
   };
 }
