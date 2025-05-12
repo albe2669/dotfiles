@@ -7,3 +7,17 @@ run = '''
 [[manager.prepend_keymap]]
 on  = "<C-y>"
 run = ["plugin system-clipboard"]
+
+[[manager.prepend_keymap]]
+on = "z"
+run = "plugin zoxide"
+
+[[manager.prepend_keymap]]
+on = "Z"
+run = "plugin fzf"
+
+
+[[manager.prepend_keymap]]
+on = "<C-u>"
+run = "shell --confirm 'unzip $@'"
+desc = "Unzip files"
