@@ -10,7 +10,7 @@ show:
 	nix --extra-experimental-features "nix-command flakes" flake show
 
 fmt:
-	nix --extra-experimental-features "nix-command flakes" fmt
+	nix --extra-experimental-features "nix-command flakes" fmt *
 
 update:
 	nix --extra-experimental-features "nix-command flakes" flake update
