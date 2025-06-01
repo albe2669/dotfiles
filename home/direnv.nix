@@ -6,10 +6,10 @@
         nix-direnv.enable = true;
       };
 
-    fish = {
-      shellInit = ''
-        direnv hook fish | source
-      '';
-    };
+    # fish = {
+    #   shellInit = ''
+    #     direnv hook fish | source
+    #   '';
+    # };
   };
 }
