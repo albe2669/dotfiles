@@ -33,7 +33,7 @@
           xorg.xdpyinfo # screen information
           arandr # screen layout
           sysstat # system information
-          gnome.nautilus # file manager
+          nautilus # file manager
         ];
       };
 
