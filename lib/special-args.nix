@@ -1,4 +1,5 @@
 {
+  inputs,
   variables,
   theme,
   nixpkgs-unstable,
@@ -11,7 +12,7 @@
 in {
   x64System = x64System;
   x64SpecialArgs = {
-    inherit variables theme nixos-hardware zen-browser hyprland hyprland-plugins;
+    inherit inputs variables theme nixos-hardware zen-browser;
 
     system = x64System;
 

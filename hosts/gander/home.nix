@@ -23,6 +23,7 @@
     ../../home/fonts.nix
     ../../home/gcloud.nix
     ../../home/gnome.nix
+    ../../home/nixgl.nix
     ../../home/obs.nix
     ../../home/phpstorm.nix
     ../../home/php.nix
