@@ -31,5 +31,8 @@
     dotnetCorePackages.dotnet_8.sdk
     azure-functions-core-tools
     azurite
+
+    # AI
+    pkgs-unstable.claude-code
   ];
 }
