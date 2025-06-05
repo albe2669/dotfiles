@@ -1,9 +1,10 @@
 {
   zen-browser,
   system,
+  config,
   ...
 }: {
   home.packages = [
-    zen-browser.packages."${system}".default
+    (config.lib.nixGL.wrapOffload zen-browser.packages."${system}".default)
   ];
 }

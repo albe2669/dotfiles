@@ -10,7 +10,7 @@ show:
 	nix --extra-experimental-features "nix-command flakes" flake show
 
 fmt:
-	nix --extra-experimental-features "nix-command flakes" fmt
+	nix --extra-experimental-features "nix-command flakes" fmt *
 
 update:
 	nix --extra-experimental-features "nix-command flakes" flake update
@@ -33,7 +33,7 @@ installer:
 	nix --extra-experimental-features "nix-command flakes" build --show-trace --option eval-cache false .#installers.x86_64-linux.$(host)
 
 hms:
-	home-manager switch -b backup --extra-experimental-features "nix-command flakes repl-flake" --show-trace --flake .#$(host)
+	NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b backup --extra-experimental-features "nix-command flakes repl-flake" --show-trace --impure --flake .#$(host)
 
 nixprofiles != ls -dv /nix/var/nix/profiles/system-*-link/|tail -2
 homeprofiles != ls -dv ~/.local/state/nix/profiles/home-manager-*-link/|tail -2

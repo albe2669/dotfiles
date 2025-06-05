@@ -1,15 +1,18 @@
 {
+  inputs,
   variables,
   theme,
   nixpkgs-unstable,
   nixos-hardware,
   zen-browser,
+  hyprland,
+	hyprland-plugins,
 }: let
   x64System = "x86_64-linux";
 in {
   x64System = x64System;
   x64SpecialArgs = {
-    inherit variables theme nixos-hardware zen-browser;
+    inherit inputs variables theme nixos-hardware zen-browser;
 
     system = x64System;
 

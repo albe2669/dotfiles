@@ -27,10 +27,25 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
     };
   };
 
@@ -40,16 +55,19 @@
     nixpkgs-unstable,
     nixos-generators,
     nixos-hardware,
+    nixgl,
     home-manager,
     zen-browser,
+    hyprland,
+    hyprland-plugins,
     ...
   }: let
-    specialArgs = import ./lib/special-args.nix ({
-        inherit nixpkgs-unstable nixos-hardware zen-browser;
+    specialArgs = import ./lib/special-args.nix {
+      inherit inputs nixpkgs-unstable nixos-hardware zen-browser hyprland hyprland-plugins;
 
-        variables = import ./variables.nix;
-        theme = import ./theme.nix;
-      });
+      variables = import ./variables.nix;
+      theme = import ./theme.nix;
+    };
 
     configurations =
       builtins.mapAttrs (_: hostConf: {

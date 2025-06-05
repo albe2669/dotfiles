@@ -6,6 +6,13 @@
   nix = {
     package = pkgs.nix;
 
+    optimise = {
+      automatic = lib.mkDefault true;
+      dates = [
+        "Mon *-*-* 00:00:00" # weekly
+      ];
+    };
+
     gc = {
       automatic = lib.mkDefault true;
       dates = lib.mkDefault "weekly";
