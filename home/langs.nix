@@ -21,9 +21,6 @@
     # Java, also required by Scala metals
     jdk17
 
-    # COBOL
-    gnu-cobol
-
     # clojure
     clojure
     leiningen

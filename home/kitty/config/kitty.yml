@@ -69,8 +69,3 @@ languages:
   # The -static flag has been omitted since it causes issues on macOS.
   compile_command: gcc -g -O2 -std=gnu11 $SRC_PATH -o $EXE_PATH
   run_command: $EXE_PATH
-
-- name: COBOL
-  file_extension: cbl
-  compile_command: cobc -g -O2 -std=default -free -x -static $SRC_PATH -o $EXE_PATH
-  run_command: $EXE_PATH
