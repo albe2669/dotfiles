@@ -6,7 +6,7 @@
   nixos-hardware,
   zen-browser,
   hyprland,
-	hyprland-plugins,
+  hyprland-plugins,
 }: let
   x64System = "x86_64-linux";
 in {
