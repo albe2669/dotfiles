@@ -1,4 +1,4 @@
 {...}: [
-(import ./basedpyright.nix)
-(import ./phpstorm.nix)
+  (import ./basedpyright.nix)
+  (import ./phpstorm.nix)
 ]
