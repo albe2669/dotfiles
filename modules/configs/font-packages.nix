@@ -7,12 +7,9 @@
     noto-fonts-extra
 
     # nerd fonts
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "Iosevka"
-      ];
-    })
+    nerd-fonts.fira-code
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
 
     # icons
     material-design-icons

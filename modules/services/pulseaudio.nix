@@ -8,7 +8,7 @@
     pavucontrol
   ];
 
-  hardware.pulseaudio = {
+  services.pulseaudio = {
     enable = true;
     support32Bit = true;
 
