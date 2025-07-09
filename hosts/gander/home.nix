@@ -29,6 +29,7 @@
     ../../home/php.nix
     ../../home/programs.nix
     ../../home/spacedrive.nix
+    ../../home/guiutils.nix
     ../../home/utils.nix
     ../../home/vscode.nix
     ../../home/work.nix
