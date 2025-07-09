@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,6 +60,7 @@
     nixpkgs-unstable,
     nixos-generators,
     nixos-hardware,
+    nixos-wsl,
     nixgl,
     home-manager,
     zen-browser,
@@ -81,6 +87,7 @@
         gander = import ./hosts/gander {};
         gosling = import ./hosts/gosling {};
         skein = import ./hosts/skein {};
+        larry = import ./hosts/larry {};
       };
 
     osConfigurations =

@@ -3,7 +3,6 @@
     # Tools
     bat
     eza
-    flameshot # screenshot
     gnutar
     ripgrep
     unzip
@@ -22,8 +21,5 @@
     procs
     glxinfo
     brightnessctl
-
-    # Networks
-    networkmanagerapplet
   ];
 }
