@@ -2,7 +2,6 @@
   imports = [
     ../../home/common.nix
     ../../home/alacritty
-    ../../home/dunst
     ../../home/fish
     ../../home/git
     ../../home/kitty
