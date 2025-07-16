@@ -6,16 +6,17 @@
   nix = {
     package = pkgs.nix;
 
-    optimise = {
-      automatic = lib.mkDefault true;
-      dates = [
-        "Mon *-*-* 00:00:00" # weekly
-      ];
-    };
+    # optimise = {
+    #   automatic = lib.mkDefault true;
+    #   dates = [
+    #     "Mon *-*-* 00:00:00" # weekly
+    #   ];
+    # };
 
     gc = {
       automatic = lib.mkDefault true;
-      dates = lib.mkDefault "weekly";
+      # dates = lib.mkDefault "weekly";
+      frequency = lib.mkDefault "weekly";
       options = lib.mkDefault "--delete-older-than 7d";
     };
 

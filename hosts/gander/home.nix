@@ -25,7 +25,7 @@
     ../../home/gnome.nix
     ../../home/nixgl.nix
     ../../home/obs.nix
-    ../../home/phpstorm.nix
+    ../../home/jetbrains.nix
     ../../home/php.nix
     ../../home/programs.nix
     ../../home/spacedrive.nix
