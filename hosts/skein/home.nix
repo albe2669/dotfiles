@@ -24,6 +24,7 @@
     ../../home/gcloud.nix
     ../../home/programs.nix
     ../../home/tmux.nix
+    ../../home/guiutils.nix
     ../../home/utils.nix
     ../../home/vscode.nix
 

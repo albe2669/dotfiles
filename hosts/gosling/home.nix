@@ -37,6 +37,7 @@
     ../../home/spacedrive.nix
     ../../home/tmux.nix
     ../../home/todo.nix
+    ../../home/guiutils.nix
     ../../home/utils.nix
     ../../home/vscode.nix
     ../../home/work.nix
