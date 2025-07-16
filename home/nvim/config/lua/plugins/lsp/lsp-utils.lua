@@ -22,7 +22,8 @@ function utils.formatting()
   local bufnr = api.nvim_get_current_buf()
   -- Loop all the clients and use their formatting
   for _, client in ipairs(lsp.get_clients()) do
-    if client.name == "null-ls" or client.name == "clangd" then
+    local name = client.name
+    if name == "null-ls" or name == "clangd" or name == "roslyn" then
       return
     end
     if client.supports_method("textDocument/formatting") then

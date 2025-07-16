@@ -79,7 +79,12 @@ return {
     dependencies = dependencies,
     lazy = false,
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+        registries = {
+          "github:mason-org/mason-registry",
+          "github:Crashdummyy/mason-registry",
+        }
+      })
       require("mason-lspconfig").setup(opts)
 
       for _, server in pairs(servers) do

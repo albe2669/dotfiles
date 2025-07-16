@@ -28,7 +28,7 @@
     opentofu
 
     # C#
-    dotnetCorePackages.dotnet_8.sdk
+    dotnetCorePackages.dotnet_9.sdk
     azure-functions-core-tools
     azurite
 
