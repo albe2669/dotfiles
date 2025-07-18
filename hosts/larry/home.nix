@@ -12,6 +12,7 @@
     ../../home/langs.nix
     ../../home/python3.nix
 
+    ../../home/direnv.nix
     ../../home/tmux.nix
     ../../home/utils.nix
   ];
