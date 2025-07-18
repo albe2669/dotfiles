@@ -14,7 +14,8 @@
 
   home.file."${variables.homeDirectory.path}/.ideavimrc" = {
     text = ''
-      set ideavimr""" Map leader to space ---------------------
+      set ideavimr
+      """ Map leader to space ---------------------
       let mapleader="\"
 
       """ Plugins  --------------------------------
