@@ -22,6 +22,8 @@ in {
       wsl = {
         enable = true;
         defaultUser = variables.username;
+
+        docker-desktop.enable = true;
       };
     }
   ];
