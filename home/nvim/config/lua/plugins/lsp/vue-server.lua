@@ -1,9 +1,9 @@
 return {
-  server_name = { "volar", "emmet_language_server" },
+  server_name = { "vue_ls", "emmet_language_server" },
   setup = function(on_attach)
     local lspconfig = require('lspconfig')
 
-    lspconfig['volar'].setup({
+    lspconfig['vue_ls'].setup({
       on_attach = on_attach,
       settings = {
         html = {
