@@ -30,6 +30,7 @@
     ../../home/bluetooth.nix
     ../../home/direnv.nix
     ../../home/gcloud.nix
+    ../../home/hidpi.nix
     ../../home/libreoffice.nix
     ../../home/obs.nix
     ../../home/jetbrains.nix

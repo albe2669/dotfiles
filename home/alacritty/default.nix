@@ -2,7 +2,8 @@
   pkgs-unstable,
   theme,
   ...
-}: {
+}:
+{
   programs.alacritty = {
     enable = true;
 
@@ -11,7 +12,7 @@
 
     settings = {
       font = {
-        size = 8;
+        size = 10;
 
         normal = {
           family = theme.font.family;

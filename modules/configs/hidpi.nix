@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   services = {
     xserver.dpi = 180;
 
