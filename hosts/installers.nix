@@ -4,7 +4,7 @@
   disko,
   nixpkgs,
   nixos-generators,
-  variables,
+  config,
   theme,
   ...
 }: let

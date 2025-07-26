@@ -1,11 +1,12 @@
-{diskPath}: {
+{
   lib,
   pkgs,
+  variables,
   ...
 }: {
   imports = [
     # A desktop is just a server with better UX right?
-    (import ./core-server.nix {diskPath = diskPath;})
+    ./core-server.nix
 
     # services
     ./services/pipewire.nix
@@ -19,7 +20,7 @@
     ./configs/i3.nix
     ./configs/hyprland.nix
     ./configs/programs.nix
-    ./configs/user-groups.nix
+    ./configs/hidpi.nix
   ];
 
   environment.systemPackages = with pkgs; [

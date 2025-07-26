@@ -1,18 +1,19 @@
-{diskPath}: {lib, ...}: {
+{lib, ...}: {
   imports = [
     # Core
-    ./core/nix.nix
-    ./core/state.nix
-    ./core/network.nix
-    (import ./core/bootloader.nix {diskPath = diskPath;})
-    ./core/libs.nix
-
-    # Services
-    ./services/docker.nix
-    ./services/power.nix
-
-    # Configs
-    ./configs/system-packages.nix
+    # ./core/nix.nix
+    # ./core/state.nix
+    # ./core/network.nix
+    # ./core/bootloader.nix
+    # ./core/libs.nix
+    #
+    # # Services
+    # ./services/docker.nix
+    # ./services/power.nix
+    #
+    # # Configs
+    # ./configs/system-packages.nix
+    ./configs/user-groups.nix
   ];
 
   time.timeZone = "Europe/Copenhagen";

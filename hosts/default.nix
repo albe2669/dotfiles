@@ -1,59 +1,81 @@
 {
-  nixpkgs,
-  nixos-generators,
-  home-manager,
-  disko,
   self,
-  specialArgs,
-  configurations,
+  inputs,
+  config,
   ...
 }: let
-  x64System = specialArgs.x64System;
-  x64SpecialArgs = specialArgs.x64SpecialArgs;
+  createNixosConfiguration = (import ../lib/nixos-system.nix { inherit inputs; }).createNixosConfiguration;
+  createHomeConfiguration = (import ../lib/home-manager.nix { inherit self inputs; }).createHomeConfiguration;
 
-  allSystems = [x64System];
+  system = "x86_64-linux";
 
-  nixosSystem = import ../lib/nixos-system.nix;
+  specialArgs = rec {
+    inherit self inputs system;
 
-  baseArgs = {
-    inherit nixpkgs;
-    specialArgs = x64SpecialArgs;
+    username = config.variables.username;
+
+    pkgs-unstable = import inputs.nixpkgs-unstable {
+      system = system;
+
+      # Necessary for installing paid or non-free software
+      config.allowUnfree = true;
+
+      config.permittedInsecurePackages = [
+        "electron-29.4.6"
+      ];
+
+      # Overlays are only applied to the unstable channel, since they probably are
+      overlays = import ../overlays {};
+    };
   };
 
-  systemArgs =
-    {
-      inherit nixos-generators home-manager disko;
-      system = x64System;
-    }
-    // baseArgs;
+  allHosts = [
+    "gander"
+    "gosling"
+    "skein"
+    "larry"
+  ];
 
-  hosts =
-    builtins.mapAttrs (host: hostConf: {
-      name = hostConf.info.name;
-      disko = hostConf.info.disko;
-      diskPath = hostConf.info.diskPath;
-      configuration = {
-        inherit (hostConf) nixosModules homeModules;
-      };
-      homeManager = hostConf.homeManager;
-    })
-    configurations;
+  allConfigurations =
+    builtins.listToAttrs (builtins.map (host: 
+      let 
+        hostConf = import ./${host} {};
+      in {
+        name = host;
+        value = rec {
+          inherit (hostConf) info nixosModules homeModules;
+          name = host;
+          homeManagerConfiguration = createHomeConfiguration hostConf system specialArgs;
+          nixosConfiguration = if (builtins.hasAttr "nixosModules" hostConf) then
+            createNixosConfiguration hostConf system specialArgs homeManagerConfiguration.module
+          else
+            null;
+        };
+    }) allHosts);
+
+
+  nixosConfigurations = builtins.mapAttrs (_: hostConf:
+    if (builtins.hasAttr "nixosConfiguration" hostConf) then
+      hostConf.nixosConfiguration
+    else
+      null
+  ) allConfigurations;
 in {
-  nixosConfigurations =
+  flake.nixosConfigurations = nixosConfigurations;
+
+  flake.homeConfigurations =
     builtins.mapAttrs (
       _: hostConf:
-        nixosSystem ({host = hostConf;} // systemArgs)
+        hostConf.homeManagerConfiguration.configuration
     )
-    hosts;
+    allConfigurations;
 
-  packages."${x64System}" =
+  flake.packages."${system}" =
     builtins.mapAttrs (
       _: hostConf:
-        self.nixosConfigurations.${hostConf.name}.config.formats
+        hostConf.nixosConfiguration.config.formats
     )
-    hosts;
+    allConfigurations;
 
-  hosts = hosts;
-
-  allSystems = allSystems;
+  flake.hosts = allConfigurations;
 }

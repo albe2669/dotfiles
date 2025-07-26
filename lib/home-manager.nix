@@ -1,37 +1,45 @@
 {
-  nixpkgs,
-  home-manager,
-  specialArgs,
-  host,
-}: let
-  username = specialArgs.username;
+  self,
+  inputs,
+  ...
+}: 
+{
+  createHomeConfiguration =
+    machineConfig: system: specialArgs:
+    let 
+      sharedImports = [
+        ../variables.nix
+        ../theme.nix
 
-  sharedConfig = {
-    extraSpecialArgs = specialArgs;
-  };
-in {
-  module = {
-    home-manager =
-      {
-        useGlobalPkgs = true;
-        backupFileExtension = "backup";
-        useUserPackages = true;
-
-        users."${username}" = {
-          imports = [
-            host.homeModules
-          ];
-        };
-      }
-      // sharedConfig;
-  };
-
-  configuration = home-manager.lib.homeManagerConfiguration ({
-      pkgs = nixpkgs.legacyPackages.${specialArgs.system};
-      modules = [
-        ../modules/core/nix.nix
-        host.homeModules
+        machineConfig.homeModules
       ];
-    }
-    // sharedConfig);
+    in {
+      configuration = inputs.home-manager.lib.homeManagerConfiguration ({
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+
+        extraSpecialArgs = specialArgs;
+
+        modules = [
+          # self.nixosModules.core.nix
+        ] ++ sharedImports;
+      });
+
+      module = {
+        home-manager = {
+          useGlobalPkgs = true;
+          backupFileExtension = "backup";
+          useUserPackages = true;
+
+          extraSpecialArgs = specialArgs;
+
+          users."${specialArgs.username}" = {
+            imports = [
+            ] ++ sharedImports;
+          };
+        };
+      };
+    };
 }

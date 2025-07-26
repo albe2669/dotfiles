@@ -1,5 +1,9 @@
 { inputs, system, ... }:
 {
+  # imports = [
+  #   ./hidpi.nix
+  # ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${system}.hyprland;
@@ -18,7 +22,7 @@
       "$fileManager" = "nautilus";
 
       bind = [
-        "$mod, return, exec, $termnial"
+        "$mod, Return, exec, $termnial"
         "$mod SHIFT, q, killactive"
         "$mod, f, fullscreen"
         "$mod SHIFT, space, togglefloating"
