@@ -15,8 +15,8 @@
 
     gc = {
       automatic = lib.mkDefault true;
-      # dates = lib.mkDefault "weekly";
-      frequency = lib.mkDefault "weekly";
+      dates = lib.mkDefault "weekly";
+      # frequency = lib.mkDefault "weekly";
       options = lib.mkDefault "--delete-older-than 7d";
     };
 

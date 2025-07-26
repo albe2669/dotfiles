@@ -8,7 +8,7 @@
     (import ./core-server.nix {diskPath = diskPath;})
 
     # services
-    ./services/pulseaudio.nix
+    ./services/pipewire.nix
     ./services/printing.nix
     ./services/security.nix
     ./services/shell.nix
@@ -17,6 +17,7 @@
     # configs
     ./configs/fonts.nix
     ./configs/i3.nix
+    ./configs/hyprland.nix
     ./configs/programs.nix
     ./configs/user-groups.nix
   ];

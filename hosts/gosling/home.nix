@@ -8,6 +8,7 @@
     ../../home/fish
     ../../home/git
     ../../home/i3
+    ../../home/hyprland
     ../../home/kitty
     ../../home/lazydocker
     ../../home/lazygit

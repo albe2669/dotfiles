@@ -45,12 +45,12 @@
 
     hyprland = {
       url = "github:hyprwm/hyprland";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable"; # Commented so it uses the cache
     };
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
+      # inputs.hyprland.follows = "hyprland"; # Commented so it uses the cache
     };
   };
 

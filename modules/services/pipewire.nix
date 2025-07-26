@@ -1,19 +1,18 @@
-# FOR TESTING PURPOSES ONLY
-# Not used
 {pkgs-unstable, ...}: {
   services.pipewire = {
     enable = true;
     package = pkgs-unstable.pipewire;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    alsa = {
+      enable = true;
+      support32Bit = true; # Enable 32-bit support for PipeWire ALSA
+    };
+    audio.enable = true;
     pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
+    # jack.enable = false;
+    # wireplumber.enable = true;
   };
 
   security.rtkit.enable = true;
 
-  # Causes issues with pipewire if enabled
-  sound.enable = false;
   hardware.pulseaudio.enable = false;
 }
