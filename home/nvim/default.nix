@@ -8,7 +8,6 @@
   normalPackages = with pkgs; [
     curl # for vimplug
     virtualenv
-    xclip
     stdenv.cc
     lua5_1
     lua51Packages.luarocks
@@ -21,7 +20,7 @@ in {
       neovim
       nil
       gopls
-      clipboard-jh
+      wl-clipboard
       tree-sitter
       basedpyright
       ruff

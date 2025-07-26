@@ -3,7 +3,8 @@
   config,
   variables,
   ...
-}: {
+}:
+{
   home.packages = with pkgs-unstable; [
     yazi
     exiftool
@@ -11,10 +12,12 @@
     poppler_utils
     ueberzugpp
     xdragon
-    clipboard-jh
+    wl-clipboard
   ];
 
   xdg.configFile.yazi = {
-    source = config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}" + (builtins.toPath "/home/yazi/config");
+    source =
+      config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}"
+      + (builtins.toPath "/home/yazi/config");
   };
 }

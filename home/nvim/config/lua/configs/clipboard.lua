@@ -1,12 +1,12 @@
 vim.g["clipboard"] = {
-  name = "cb",
+  name = "wl-copy",
   copy = {
-    ["+"] = { "cb", "copy" },
-    ["*"] = { "cb", "copy" }
+    ["+"] = { "wl-copy" },
+    ["*"] = { "wl-copy" }
   },
   paste = {
-    ["+"] = { "cb", "paste" },
-    ["*"] = { "cb", "paste" }
+    ["+"] = { "wl-paste" },
+    ["*"] = { "wl-paste" }
   },
   cache_enabled = 1
 }

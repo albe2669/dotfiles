@@ -24,8 +24,7 @@ return {
 		-- ya.notify({ title = #urls, content = table.concat(urls, " "), level = "info", timeout = 5 })
 
 		local status, err =
-				Command("cb")
-				:arg("copy")
+				Command("wl-copy")
 				:args(urls)
 				:spawn()
 				:wait()
