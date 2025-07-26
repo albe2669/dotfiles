@@ -57,7 +57,6 @@
     libmikmod
     libogg
     libpng12
-    libpulseaudio
     librsvg
     libsamplerate
     libthai

@@ -9,7 +9,7 @@
     audio.enable = true;
     pulse.enable = true;
     # jack.enable = false;
-    # wireplumber.enable = true;
+    wireplumber.enable = true;
   };
 
   security.rtkit.enable = true;
