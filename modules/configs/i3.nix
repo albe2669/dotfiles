@@ -24,7 +24,6 @@
           rofi # application launcer
           dunst # notification daemon
           picom # compositor
-          xclip # clipboard manager
           redshift # blue light filter
           betterlockscreen # lock screen
           feh # wallpaper
