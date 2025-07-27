@@ -23,8 +23,14 @@
     };
   };
 
-  environment.systemPackages = [
-    pkgs.kitty # required for the default Hyprland config
+  environment.systemPackages = with pkgs; [
+    rofi # application launcer
+    dunst # notification daemon
+    feh # wallpaper
+    acpi # battery
+    xorg.xbacklight # screen brightness
+    xorg.xdpyinfo # screen information
+    nautilus # file manager
   ];
 
   nix.settings = {
