@@ -66,9 +66,10 @@
   ];
 
   nixosConfigurations = builtins.listToAttrs (builtins.map (host: {
-    name = host;
-    value = createNixosConfiguration host system specialArgs;
-  }) allHosts);
+      name = host;
+      value = createNixosConfiguration host system specialArgs;
+    })
+    allHosts);
 in {
   flake.nixosConfigurations = nixosConfigurations;
   flake.legacyPackages.${system} =
