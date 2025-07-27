@@ -2,7 +2,10 @@
   description = "A NixOS configuration made by a silly goose way over their head";
 
   nixConfig = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
   # These urls should coincide with the stateVersion variable in the variables.nix file
@@ -55,25 +58,30 @@
     };
   };
 
-  outputs = inputs @ {flake-parts, ... }: 
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      debug = true;
+      imports = [
+        ./variables.nix
+        ./theme.nix
 
-  flake-parts.lib.mkFlake { inherit inputs; } {
-    imports = [
-      ./variables.nix
-      ./theme.nix
+        ./modules
 
-      ./modules
+        ./hosts
+      ];
 
-      ./hosts
-    ];
+      systems = [
+        "x86_64-linux"
+      ];
 
-    systems = [
-      "x86_64-linux"
-    ];
-
-    perSystem = { config, pkgs, ... }:{
+      perSystem = {
+        config,
+        pkgs,
+        ...
+      }: {
+        formatter = pkgs.alejandra;
+      };
     };
-  };
 }
 #
 #
@@ -129,8 +137,6 @@
 #     packages = hosts.packages;
 #     installers = installers;
 #
-#     formatter = nixpkgs.lib.genAttrs hosts.allSystems (
-#       system: nixpkgs.legacyPackages.${system}.alejandra
-#     );
 #   };
 # }
+

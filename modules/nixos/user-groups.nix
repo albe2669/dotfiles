@@ -1,7 +1,7 @@
-{
-  config,
-  ...
-}: with config; let username = variables.username; in {
+{config, ...}:
+with config.opts; let
+  username = variables.username;
+in {
   nix.settings.trusted-users = [username];
 
   users.groups = {

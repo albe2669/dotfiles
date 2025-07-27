@@ -1,22 +1,27 @@
-{config, lib,...}:
 {
-    config = lib.mkIf config.variables.isHidpi {
-      wayland.windowManager.hyprland = {
-        extraConfig = ''
-          monitor = , highres, auto, 2
+  config,
+  lib,
+  ...
+}: let
+  opts = config.opts;
+in {
+  config = lib.mkIf opts.variables.isHidpi {
+    wayland.windowManager.hyprland = {
+      extraConfig = ''
+        monitor = , highres, auto, 2
 
-          xwayland {
-            force_zero_scaling = true
-          }
+        xwayland {
+          force_zero_scaling = true
+        }
 
-          env = GDK_SCALE=${config.variables.screen.scaleFactor}
-        '';
-      };
-
-      home.file.".Xresources" = {
-        text = ''
-          Xft.dpi: ${toString config.variables.screen.dpi}
-        '';
-      };
+        env = GDK_SCALE=${opts.variables.screen.scaleFactor}
+      '';
     };
+
+    home.file.".Xresources" = {
+      text = ''
+        Xft.dpi: ${toString opts.variables.screen.dpi}
+      '';
+    };
+  };
 }

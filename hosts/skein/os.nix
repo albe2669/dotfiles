@@ -1,7 +1,11 @@
-{self, ...}: let
-  info = import ./info.nix {};
-in {
+{
+  self,
+  config,
+  ...
+}: {
   imports = [
+    ./info.nix
+
     self.nixosModules.core-server
 
     # Probably does nothing as it's a vm, but it tests if the installation is successful.
@@ -12,9 +16,7 @@ in {
     # ./hardware-configuration.nix
     #
     # ../../modules/configs/hyprland.nix
-
-    info.disko
   ];
 
-  networking.hostName = info.name; # Define your hostname.
+  networking.hostName = config.opts.info.name; # Define your hostname.
 }

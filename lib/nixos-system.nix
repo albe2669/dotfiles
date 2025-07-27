@@ -1,11 +1,6 @@
-{
-  inputs,
-  ...
-}:
-{
-createNixosConfiguration =
-  machineConfig: system: specialArgs: homeManagerModule:
-    inputs.nixpkgs.lib.nixosSystem ({
+{inputs, ...}: {
+  createNixosConfiguration = machineConfig: system: specialArgs: homeManagerModule:
+    inputs.nixpkgs.lib.nixosSystem {
       inherit system specialArgs;
 
       modules = [
@@ -31,6 +26,5 @@ createNixosConfiguration =
         machineConfig.nixosModules
         homeManagerModule
       ];
-    });
+    };
 }
-

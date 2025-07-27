@@ -2,8 +2,7 @@
   pkgs-unstable,
   theme,
   ...
-}:
-{
+}: {
   programs.alacritty = {
     enable = true;
 

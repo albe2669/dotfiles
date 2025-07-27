@@ -4,18 +4,49 @@
   config,
   ...
 }: let
-  createNixosConfiguration = (import ../lib/nixos-system.nix { inherit inputs; }).createNixosConfiguration;
-  createHomeConfiguration = (import ../lib/home-manager.nix { inherit self inputs; }).createHomeConfiguration;
+  createNixosConfiguration = machine: system: specialArgs:
+    inputs.nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      specialArgs = specialArgs;
+
+      modules = [
+        ../variables.nix
+        ../theme.nix
+
+        self.nixosModules.state
+        self.nixosModules.home
+
+        inputs.disko.nixosModules.disko
+
+        inputs.nixos-generators.nixosModules.all-formats
+        {
+        }
+
+        {
+          # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
+          nix.registry.nixpkgs.flake = inputs.nixpkgs;
+
+          # make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
+          environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
+          nix.nixPath = ["/etc/nix/inputs"];
+        }
+
+        ./${machine}
+      ];
+    };
 
   system = "x86_64-linux";
 
   specialArgs = rec {
     inherit self inputs system;
 
-    username = config.variables.username;
+    username = config.opts.variables.username;
 
     pkgs-unstable = import inputs.nixpkgs-unstable {
       system = system;
+
+      config.opts = config.opts;
 
       # Necessary for installing paid or non-free software
       config.allowUnfree = true;
@@ -30,52 +61,14 @@
   };
 
   allHosts = [
-    "gander"
-    "gosling"
+    # "gander"
+    # "gosling"
     "skein"
-    "larry"
+    # "larry"
   ];
-
-  allConfigurations =
-    builtins.listToAttrs (builtins.map (host: 
-      let 
-        hostConf = import ./${host} {};
-      in {
-        name = host;
-        value = rec {
-          inherit (hostConf) info nixosModules homeModules;
-          name = host;
-          homeManagerConfiguration = createHomeConfiguration hostConf system specialArgs;
-          nixosConfiguration = if (builtins.hasAttr "nixosModules" hostConf) then
-            createNixosConfiguration hostConf system specialArgs homeManagerConfiguration.module
-          else
-            null;
-        };
-    }) allHosts);
-
-
-  nixosConfigurations = builtins.mapAttrs (_: hostConf:
-    if (builtins.hasAttr "nixosConfiguration" hostConf) then
-      hostConf.nixosConfiguration
-    else
-      null
-  ) allConfigurations;
 in {
-  flake.nixosConfigurations = nixosConfigurations;
-
-  flake.homeConfigurations =
-    builtins.mapAttrs (
-      _: hostConf:
-        hostConf.homeManagerConfiguration.configuration
-    )
-    allConfigurations;
-
-  flake.packages."${system}" =
-    builtins.mapAttrs (
-      _: hostConf:
-        hostConf.nixosConfiguration.config.formats
-    )
-    allConfigurations;
-
-  flake.hosts = allConfigurations;
+  flake.nixosConfigurations = builtins.listToAttrs (builtins.map (host: {
+    name = host;
+    value = createNixosConfiguration host system specialArgs;
+  }) allHosts);
 }

@@ -1,5 +1,8 @@
-{ variables, lib, ... }:
 {
+  variables,
+  lib,
+  ...
+}: {
   config = lib.mkIf variables.isHidpi {
     services = {
       xserver.dpi = variables.screen.dpi;

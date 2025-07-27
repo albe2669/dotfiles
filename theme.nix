@@ -1,7 +1,11 @@
-{ config, lib, ... }:
-
 {
-  options = {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.opts.theme;
+in {
+  options.opts = {
     theme = {
       font = {
         family = lib.mkOption {

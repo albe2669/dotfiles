@@ -3,8 +3,7 @@
   config,
   variables,
   ...
-}:
-{
+}: {
   home.packages = with pkgs-unstable; [
     yazi
     exiftool

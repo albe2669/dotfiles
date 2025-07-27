@@ -1,5 +1,5 @@
 {self, ...}: {
-  imports = [
+  hm.imports = [
     self.homeModules.home
     # ../../home/common.nix
     # ../../home/alacritty

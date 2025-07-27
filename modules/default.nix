@@ -4,4 +4,3 @@
     nixosModules = import ./nixos;
   };
 }
-

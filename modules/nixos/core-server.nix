@@ -1,19 +1,22 @@
-{lib, ...}: {
+{
+  self,
+  lib,
+  ...
+}: {
   imports = [
     # Core
-    # ./core/nix.nix
-    # ./core/state.nix
-    # ./core/network.nix
-    # ./core/bootloader.nix
-    # ./core/libs.nix
-    #
-    # # Services
-    # ./services/docker.nix
-    # ./services/power.nix
-    #
-    # # Configs
-    # ./configs/system-packages.nix
-    ./configs/user-groups.nix
+    self.nixosModules.nix
+    self.nixosModules.state
+    self.nixosModules.network
+    self.nixosModules.libs
+
+    # Services
+    self.nixosModules.docker
+    self.nixosModules.power
+
+    # Configs
+    self.nixosModules.system-packages
+    self.nixosModules.user-groups
   ];
 
   time.timeZone = "Europe/Copenhagen";

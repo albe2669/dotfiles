@@ -4,11 +4,11 @@
   ...
 }: {
   home = {
-    inherit (config.variables) username stateVersion;
-    homeDirectory = config.variables.homeDirectory.path;
+    inherit (config.opts.variables) username stateVersion;
+    homeDirectory = config.opts.variables.homeDirectory.path;
 
     activation = {
-      createDirs = lib.hm.dag.entryAfter ["writeBoundary"] (builtins.concatStringsSep "\n" (builtins.map (dir: "mkdir -p ~/${dir}") config.variables.homeDirectory.directories));
+      createDirs = lib.hm.dag.entryAfter ["writeBoundary"] (builtins.concatStringsSep "\n" (builtins.map (dir: "mkdir -p ~/${dir}") config.opts.variables.homeDirectory.directories));
     };
   };
 
