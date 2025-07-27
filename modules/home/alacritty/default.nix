@@ -3,8 +3,7 @@
   config,
   ...
 }:
-with config.opts;
-{
+with config.opts; {
   programs.alacritty = {
     enable = true;
 

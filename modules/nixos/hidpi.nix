@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: with config.opts; {
+}:
+with config.opts; {
   config = lib.mkIf variables.isHidpi {
     services = {
       xserver.dpi = variables.screen.dpi;

@@ -1,5 +1,4 @@
-{ specialArgs }:
-{
+{specialArgs}: {
   inputs,
   lib,
   config,

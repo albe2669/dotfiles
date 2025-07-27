@@ -9,7 +9,7 @@
 
   programs.git = {
     enable = true;
-    userName =  config.opts.variables.git.username;
+    userName = config.opts.variables.git.username;
     userEmail = config.opts.variables.git.email;
 
     extraConfig = {

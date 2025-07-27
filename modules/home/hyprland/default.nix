@@ -20,13 +20,18 @@
         };
       };
 
+      exec-once = [
+        "nm-applet"
+        "dunst -conf ~/.config/dunst/dunstrc"
+      ];
+
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
       "$fileManager" = "nautilus";
 
       bind =
         [
-          "$mod, Return, exec, $termnial"
+          "$mod, return, exec, $terminal"
           "$mod SHIFT, q, killactive"
           "$mod, f, fullscreen"
           "$mod SHIFT, space, togglefloating"

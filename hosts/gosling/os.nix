@@ -1,4 +1,10 @@
-{self, inputs, lib, config, ...}: {
+{
+  self,
+  inputs,
+  lib,
+  config,
+  ...
+}: {
   imports = [
     self.nixosModules.core-desktop
     self.nixosModules.core-laptop

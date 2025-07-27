@@ -4,9 +4,8 @@
   config,
   ...
 }: let
-  createNixosConfiguration =
-    machine: system: specialArgs:
-    inputs.nixpkgs.lib.nixosSystem ({
+  createNixosConfiguration = machine: system: specialArgs:
+    inputs.nixpkgs.lib.nixosSystem {
       inherit system;
 
       specialArgs = specialArgs;
@@ -16,7 +15,7 @@
         ../theme.nix
 
         self.nixosModules.state
-        (import ../modules/nixos/home.nix {inherit specialArgs; })
+        (import ../modules/nixos/home.nix {inherit specialArgs;})
 
         inputs.disko.nixosModules.disko
 
@@ -35,9 +34,7 @@
 
         ./${machine}
       ];
-
-    });
-
+    };
 
   system = "x86_64-linux";
 
@@ -68,16 +65,15 @@
     "larry"
   ];
 
-   nixosConfigurations = 
-    builtins.listToAttrs (builtins.map (host: 
-      {
-        name = host;
-        value = createNixosConfiguration host system specialArgs;
-      }) allHosts);
-
+  nixosConfigurations = builtins.listToAttrs (builtins.map (host: {
+    name = host;
+    value = createNixosConfiguration host system specialArgs;
+  }) allHosts);
 in {
   flake.nixosConfigurations = nixosConfigurations;
-  flake.legacyPackages.${system} = builtins.mapAttrs (
-    name: config: config.config.formats
-  ) nixosConfigurations;
+  flake.legacyPackages.${system} =
+    builtins.mapAttrs (
+      name: config: config.config.formats
+    )
+    nixosConfigurations;
 }

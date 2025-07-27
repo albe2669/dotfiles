@@ -5,7 +5,8 @@
   self,
   system,
   ...
-}: with config.opts; let
+}:
+with config.opts; let
   colorScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: color: "\\\$${name}: ${color};\n") theme.colors));
 
   fontScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: font: "\\\$font_${name}: \"${font}\";\n") theme.font));

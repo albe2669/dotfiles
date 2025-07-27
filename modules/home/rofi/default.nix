@@ -2,7 +2,8 @@
   pkgs-unstable,
   config,
   ...
-}: with config.opts; let
+}:
+with config.opts; let
   inherit (config.lib.formats.rasi) mkLiteral;
 
   foreground = mkLiteral theme.colors.fg;

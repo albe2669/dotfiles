@@ -1,4 +1,8 @@
-{self, pkgs, ...}: let
+{
+  self,
+  pkgs,
+  ...
+}: let
   fontConfig = import ./font-packages.nix {inherit pkgs;};
 in {
   hm.imports = [

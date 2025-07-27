@@ -89,7 +89,7 @@
         };
 
         formatter = pkgs.alejandra;
-        packages = import ./pkgs { inherit pkgs; };
+        packages = import ./pkgs {inherit pkgs;};
       };
     };
 }
