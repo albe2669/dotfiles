@@ -30,7 +30,7 @@
   - [x] Fix scroll in the opposite direction
   - [x] Set high dpi mode on the XPS
   - [ ] Make alacritty sync it's font size with the DPI scaling
-  - [ ] Fix the scaling of electron apps, like Discord and Spotify
+  - [x] Fix the scaling of electron apps, like Discord and Spotify
 - [ ] Configure astal/ags
   - [ ] Bar
 

@@ -22,6 +22,11 @@
   ];
 
   opts.variables.isHidpi = lib.mkForce true;
+  hm.imports = [
+    {
+      opts.variables.isHidpi = lib.mkForce true;
+    }
+  ];
 
   networking.hostName = config.opts.info.name; # Define your hostname.
 }

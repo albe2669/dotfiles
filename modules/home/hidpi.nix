@@ -14,7 +14,7 @@ in {
           force_zero_scaling = true
         }
 
-        env = GDK_SCALE=${opts.variables.screen.scaleFactor}
+        env = GDK_SCALE=${toString opts.variables.screen.scaleFactor}
       '';
     };
 

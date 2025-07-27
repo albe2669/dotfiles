@@ -25,6 +25,4 @@ in {
 
   config = {
   };
-
-  config.opts.variables.isHidpi = true;
 }
