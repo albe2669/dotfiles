@@ -1,5 +1,5 @@
-{pkgs-unstable, ...}: {
+{self, system, ...}: {
   home.packages = [
-    (pkgs-unstable.callPackage ../pkgs/anytype {})
+    self.packages.${system}.anytype
   ];
 }

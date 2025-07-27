@@ -77,9 +77,19 @@
       perSystem = {
         config,
         pkgs,
+        lib,
+        system,
         ...
       }: {
+        _module.args.pkgs = import inputs.nixpkgs-unstable {
+          inherit system;
+
+          # Necessary for installing paid or non-free software
+          config.allowUnfree = true;
+        };
+
         formatter = pkgs.alejandra;
+        packages = import ./pkgs { inherit pkgs; };
       };
     };
 }

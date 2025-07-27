@@ -1,8 +1,8 @@
 {
-  variables,
+  config,
   lib,
   ...
-}: {
+}: with config.opts; {
   config = lib.mkIf variables.isHidpi {
     services = {
       xserver.dpi = variables.screen.dpi;
@@ -11,7 +11,7 @@
     };
 
     environment.variables = {
-      GDK_SCALE = "${variables.screen.scaleFactor}";
+      GDK_SCALE = "${toString variables.screen.scaleFactor}";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     };
   };

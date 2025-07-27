@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  variables,
   ...
 }: {
   home.packages = with pkgs; [
@@ -9,6 +8,6 @@
   ];
 
   xdg.configFile.zathura = {
-    source = config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}" + (builtins.toPath "/home/zathura/config");
+    source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/home/zathura/config");
   };
 }

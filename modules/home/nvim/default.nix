@@ -2,7 +2,6 @@
   pkgs,
   pkgs-unstable,
   config,
-  variables,
   ...
 }: let
   normalPackages = with pkgs; [
@@ -30,6 +29,6 @@ in {
     ++ normalPackages;
 
   xdg.configFile.nvim = {
-    source = config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}" + (builtins.toPath "/home/nvim/config");
+    source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/home/nvim/config");
   };
 }

@@ -1,32 +1,29 @@
 {
+  self,
+  config,
   inputs,
-  variables,
   ...
-}: let
-  info = import ./info.nix {};
-in {
+}: {
   imports = [
-    ../../modules/core/nix.nix
-    ../../modules/core/state.nix
-    ../../modules/core/libs.nix
-
-    ../../modules/services/docker.nix
-    ../../modules/services/shell.nix
-
-    ../../modules/configs/system-packages.nix
-    ../../modules/configs/user-groups.nix
+    self.nixosModules.nix
+    self.nixosModules.state
+    self.nixosModules.libs
+    self.nixosModules.docker
+    self.nixosModules.shell
+    self.nixosModules.system-packages
+    self.nixosModules.user-groups
 
     inputs.nixos-wsl.nixosModules.default
     {
-      system.stateVersion = variables.stateVersion;
+      system.stateVersion = config.opts.variables.stateVersion;
       wsl = {
         enable = true;
-        defaultUser = variables.username;
+        defaultUser = config.opts.variables.username;
 
         docker-desktop.enable = true;
       };
     }
   ];
 
-  networking.hostName = info.name; # Define your hostname.
+  networking.hostName = config.opts.info.name; # Define your hostname.
 }

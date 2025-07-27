@@ -1,6 +1,6 @@
 {
+  config,
   pkgs,
-  variables,
   lib,
   ...
 }: let
@@ -8,13 +8,13 @@
   background-settings = {
     color-shading-type = "solid";
     picture-options = "zoom";
-    picture-uri-dark = "file://${variables.homeDirectory.path}/.background-image";
+    picture-uri-dark = "file://${config.opts.variables.homeDirectory.path}/.background-image";
     # picture-uri-dark = "file:///home/goose/.local/share/backgrounds/2025-03-17-19-02-54-demon_goose.png";
     primary-color = "#000000000000";
     secondary-color = "#000000000000";
   };
 
-  flameshot-dir = variables.homeDirectory.path + (builtins.toPath "/Pictures/FScreenshots");
+  flameshot-dir = config.opts.variables.homeDirectory.path + (builtins.toPath "/Pictures/FScreenshots");
   clock-format = "24h";
 in
   with lib.hm.gvariant; {

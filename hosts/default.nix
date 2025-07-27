@@ -4,8 +4,9 @@
   config,
   ...
 }: let
-  createNixosConfiguration = machine: system: specialArgs:
-    inputs.nixpkgs.lib.nixosSystem {
+  createNixosConfiguration =
+    machine: system: specialArgs:
+    inputs.nixpkgs.lib.nixosSystem ({
       inherit system;
 
       specialArgs = specialArgs;
@@ -15,7 +16,7 @@
         ../theme.nix
 
         self.nixosModules.state
-        self.nixosModules.home
+        (import ../modules/nixos/home.nix {inherit specialArgs; })
 
         inputs.disko.nixosModules.disko
 
@@ -34,7 +35,9 @@
 
         ./${machine}
       ];
-    };
+
+    });
+
 
   system = "x86_64-linux";
 
@@ -45,8 +48,6 @@
 
     pkgs-unstable = import inputs.nixpkgs-unstable {
       system = system;
-
-      config.opts = config.opts;
 
       # Necessary for installing paid or non-free software
       config.allowUnfree = true;
@@ -62,13 +63,21 @@
 
   allHosts = [
     # "gander"
-    # "gosling"
+    "gosling"
     "skein"
-    # "larry"
+    "larry"
   ];
+
+   nixosConfigurations = 
+    builtins.listToAttrs (builtins.map (host: 
+      {
+        name = host;
+        value = createNixosConfiguration host system specialArgs;
+      }) allHosts);
+
 in {
-  flake.nixosConfigurations = builtins.listToAttrs (builtins.map (host: {
-    name = host;
-    value = createNixosConfiguration host system specialArgs;
-  }) allHosts);
+  flake.nixosConfigurations = nixosConfigurations;
+  flake.legacyPackages.${system} = builtins.mapAttrs (
+    name: config: config.config.formats
+  ) nixosConfigurations;
 }

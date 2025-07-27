@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{self, pkgs, ...}: {
   imports = [
-    ../services/sddm
+    self.nixosModules.sddm
   ];
 
   environment.pathsToLink = ["/libexec"];

@@ -1,8 +1,10 @@
 {
   pkgs-unstable,
-  theme,
+  config,
   ...
-}: {
+}:
+with config.opts;
+{
   programs.alacritty = {
     enable = true;
 

@@ -1,26 +1,23 @@
 {
-  lib,
+  self,
   pkgs,
-  variables,
   ...
 }: {
   imports = [
     # A desktop is just a server with better UX right?
-    ./core-server.nix
+    self.nixosModules.core-server
 
-    # services
-    ./services/pipewire.nix
-    ./services/printing.nix
-    ./services/security.nix
-    ./services/shell.nix
-    ./services/xdg.nix
+    self.nixosModules.pipewire
+    self.nixosModules.printing
+    self.nixosModules.security
+    self.nixosModules.shell
+    self.nixosModules.xdg
 
-    # configs
-    ./configs/fonts.nix
-    ./configs/i3.nix
-    ./configs/hyprland.nix
-    ./configs/programs.nix
-    ./configs/hidpi.nix
+    self.nixosModules.fonts
+    self.nixosModules.i3
+    self.nixosModules.hyprland
+    self.nixosModules.programs
+    self.nixosModules.hidpi
   ];
 
   environment.systemPackages = with pkgs; [

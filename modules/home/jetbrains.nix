@@ -1,5 +1,5 @@
 {
-  variables,
+  config,
   pkgs-unstable,
   ...
 }: {
@@ -12,7 +12,7 @@
     ])
   ];
 
-  home.file."${variables.homeDirectory.path}/.ideavimrc" = {
+  home.file."${config.opts.variables.homeDirectory.path}/.ideavimrc" = {
     text = ''
       set ideavimr
       """ Map leader to space ---------------------

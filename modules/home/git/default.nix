@@ -1,6 +1,6 @@
 {
   pkgs,
-  variables,
+  config,
   ...
 }: {
   home.packages = with pkgs; [
@@ -9,8 +9,8 @@
 
   programs.git = {
     enable = true;
-    userName = variables.git.username;
-    userEmail = variables.git.email;
+    userName =  config.opts.variables.git.username;
+    userEmail = config.opts.variables.git.email;
 
     extraConfig = {
       pull.rebase = false;

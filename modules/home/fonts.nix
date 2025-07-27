@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  fontConfig = import ../modules/configs/font-packages.nix {inherit pkgs;};
+  fontConfig = import ../nixos/font-packages.nix {inherit pkgs;};
 in {
   home.packages = fontConfig.packages;
 

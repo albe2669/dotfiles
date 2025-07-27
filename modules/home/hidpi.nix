@@ -18,10 +18,14 @@ in {
       '';
     };
 
-    home.file.".Xresources" = {
-      text = ''
-        Xft.dpi: ${toString opts.variables.screen.dpi}
-      '';
+    xresources.properties = {
+      "Xft.dpi" = opts.variables.screen.dpi;
     };
+
+    # home.file.".Xresources" = {
+    #   text = ''
+    #     Xft.dpi: ${toString opts.variables.screen.dpi}
+    #   '';
+    # };
   };
 }

@@ -1,12 +1,13 @@
 {
+  self,
   pkgs,
-  variables,
+  config,
   ...
 }: {
   imports = [
     # Also included by default in core-server
-    ./services/power.nix
-    ./services/tlp.nix
+    self.nixosModules.power
+    self.nixosModules.tlp
   ];
 
   services = {
@@ -24,7 +25,7 @@
     description = "Send notification if battery is low";
     serviceConfig = {
       Type = "oneshot";
-      User = variables.username;
+      User = config.opts.variables.username;
       ExecStart = pkgs.writeScript "battery_check" ''
         #!${pkgs.bash}/bin/bash
         . <(udevadm info -q property -p /sys/class/power_supply/BAT0 | grep -E 'POWER_SUPPLY_(CAPACITY|STATUS)=')

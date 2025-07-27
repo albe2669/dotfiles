@@ -1,48 +1,42 @@
-{...}: {
-  imports = [
-    ../../home/common.nix
-    ../../home/alacritty
-    ../../home/betterlockscreen
-    ../../home/dunst
-    ../../home/eww
-    ../../home/fish
-    ../../home/git
-    ../../home/i3
-    ../../home/hyprland
-    ../../home/kitty
-    ../../home/lazydocker
-    ../../home/lazygit
-    ../../home/nvim
-    (import ../../home/picom {nvidiaDrivers = true;})
-    ../../home/polybar
-    ../../home/yazi
-    ../../home/rofi
-    ../../home/sioyek
-    ../../home/wallpapers
-    ../../home/zathura
-
-    ../../home/k8.nix
-    ../../home/langs.nix
-    ../../home/python3.nix
-    ../../home/tex.nix
-
-    ../../home/anytype.nix
-    ../../home/bluetooth.nix
-    ../../home/direnv.nix
-    ../../home/gcloud.nix
-    ../../home/hidpi.nix
-    ../../home/libreoffice.nix
-    ../../home/obs.nix
-    ../../home/jetbrains.nix
-    ../../home/php.nix
-    ../../home/programs.nix
-    ../../home/spacedrive.nix
-    ../../home/tmux.nix
-    ../../home/todo.nix
-    ../../home/guiutils.nix
-    ../../home/utils.nix
-    ../../home/vscode.nix
-    ../../home/work.nix
-    ../../home/zen.nix
+{self, ...}: {
+  hm.imports = [
+    self.homeModules.home
+    self.homeModules.alacritty
+    self.homeModules.betterlockscreen
+    self.homeModules.dunst
+    self.homeModules.eww
+    self.homeModules.fish
+    self.homeModules.git
+    self.homeModules.i3
+    self.homeModules.hyprland
+    self.homeModules.kitty
+    self.homeModules.lazydocker
+    self.homeModules.lazygit
+    self.homeModules.nvim
+    self.homeModules.polybar
+    self.homeModules.rofi
+    self.homeModules.sioyek
+    self.homeModules.wallpapers
+    self.homeModules.zathura
+    self.homeModules.langs
+    self.homeModules.python3
+    self.homeModules.tex
+    self.homeModules.anytype
+    self.homeModules.bluetooth
+    self.homeModules.direnv
+    self.homeModules.gcloud
+    self.homeModules.hidpi
+    self.homeModules.libreoffice
+    self.homeModules.obs
+    self.homeModules.jetbrains
+    self.homeModules.php
+    self.homeModules.programs
+    self.homeModules.tmux
+    self.homeModules.todo
+    self.homeModules.guiutils
+    self.homeModules.utils
+    self.homeModules.vscode
+    self.homeModules.work
+    self.homeModules.zen
   ];
 }

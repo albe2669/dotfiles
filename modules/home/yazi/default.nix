@@ -1,7 +1,6 @@
 {
   pkgs-unstable,
   config,
-  variables,
   ...
 }: {
   home.packages = with pkgs-unstable; [
@@ -16,7 +15,7 @@
 
   xdg.configFile.yazi = {
     source =
-      config.lib.file.mkOutOfStoreSymlink "${variables.dotfilesLocation}"
-      + (builtins.toPath "/home/yazi/config");
+      config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}"
+      + (builtins.toPath "/modules/home/yazi/config");
   };
 }

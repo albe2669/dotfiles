@@ -1,5 +1,5 @@
+{ specialArgs }:
 {
-  self,
   inputs,
   lib,
   config,
@@ -14,9 +14,7 @@
         backupFileExtension = "backup";
         useUserPackages = true;
 
-        extraSpecialArgs = {
-          inherit inputs self;
-        };
+        extraSpecialArgs = specialArgs;
 
         users."${config.opts.variables.username}" = {
           imports = [

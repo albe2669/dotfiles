@@ -1,11 +1,12 @@
 {
+  self,
   pkgs,
   inputs,
   system,
   ...
 }: {
   imports = [
-    ../services/sddm
+    self.nixosModules.sddm
   ];
 
   programs = {
