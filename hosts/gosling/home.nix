@@ -7,7 +7,6 @@
     self.homeModules.eww
     self.homeModules.fish
     self.homeModules.git
-    self.homeModules.i3
     self.homeModules.hyprland
     self.homeModules.kitty
     self.homeModules.lazydocker

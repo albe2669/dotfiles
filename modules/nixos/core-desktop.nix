@@ -14,7 +14,6 @@
     self.nixosModules.xdg
 
     self.nixosModules.fonts
-    self.nixosModules.i3
     self.nixosModules.hyprland
     self.nixosModules.programs
     self.nixosModules.hidpi
