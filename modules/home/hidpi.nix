@@ -22,6 +22,8 @@ in {
       "Xft.dpi" = opts.variables.screen.dpi;
     };
 
+    programs.alacritty.settings.font.size = lib.mkForce 11;
+
     # home.file.".Xresources" = {
     #   text = ''
     #     Xft.dpi: ${toString opts.variables.screen.dpi}

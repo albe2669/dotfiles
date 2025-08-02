@@ -1,6 +1,7 @@
 {self, ...}: {
   hm.imports = [
     self.homeModules.home
+    self.homeModules.ags
     self.homeModules.alacritty
     self.homeModules.betterlockscreen
     self.homeModules.dunst
@@ -37,5 +38,6 @@
     self.homeModules.vscode
     self.homeModules.work
     self.homeModules.zen
+    self.homeModules.yazi
   ];
 }
