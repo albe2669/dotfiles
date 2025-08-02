@@ -1,4 +1,5 @@
-{pkgs-unstable, ...}: {
+{ pkgs-unstable, ... }:
+{
   services.pipewire = {
     enable = true;
     package = pkgs-unstable.pipewire;
@@ -13,4 +14,8 @@
   };
 
   security.rtkit.enable = true;
+
+  hm.home.packages = with pkgs-unstable; [
+    pwvucontrol
+  ];
 }
