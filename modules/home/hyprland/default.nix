@@ -67,6 +67,15 @@
           "$mod SHIFT, up,    movewindow, u"
           "$mod SHIFT, right, movewindow, r"
           "$mod SHIFT, left,  movewindow, l"
+
+          "$mod CONTROL, j,     movewindow, mon:d"
+          "$mod CONTROL, k,     movewindow, mon:u"
+          "$mod CONTROL, l,     movewindow, mon:r"
+          "$mod CONTROL, h,     movewindow, mon:l"
+          "$mod CONTROL, down,  movewindow, mon:d"
+          "$mod CONTROL, up,    movewindow, mon:u"
+          "$mod CONTROL, right, movewindow, mon:r"
+          "$mod CONTROL, left,  movewindow, mon:l"
         ]
         ++ (
           # workspaces
