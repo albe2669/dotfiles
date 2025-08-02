@@ -1,30 +1,36 @@
 {
   host,
-  disko,
-  nixpkgs,
-  nixos-generators,
+  self,
+  inputs,
   lib,
   system,
-  variables,
-  theme,
+  config,
   ...
-}: let
-  defaultModule = {...}: {
+}:
+with config.opts; let
+  defaultModule = {self, ...}: {
     imports = [
-      disko.nixosModules.disko
-      ./base-iso.nix
+      inputs.disko.nixosModules.disko
+      self.nixosModules.core-server
+
+      {
+        # Override conflicting options for installer environment
+        services.openssh.settings.PermitRootLogin = lib.mkForce "yes";
+      }
     ];
   };
 
   isoDotfilesLocation = builtins.toPath "/boot/dotfiles";
 in
-  nixos-generators.nixosGenerate {
+  inputs.nixos-generators.nixosGenerate {
     inherit system;
     specialArgs = {
-      inherit variables theme;
+      inherit self variables theme;
     };
 
     modules = [
+      ../../variables.nix
+      ../../theme.nix
       defaultModule
       ({
         config,
@@ -69,7 +75,7 @@ in
         '';
       in {
         imports = [
-          host.disko
+          (import ../../hosts/${host.name}/disko.nix {diskPath = host.diskPath;}) # Disgusting, but works
         ];
 
         disko.enableConfig = lib.mkDefault false;
@@ -86,7 +92,7 @@ in
     customFormats = {
       install-iso-goose = {
         imports = [
-          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
         ];
 
         isoImage = {

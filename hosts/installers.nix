@@ -5,9 +5,9 @@
   nixpkgs,
   nixos-generators,
   config,
-  theme,
   ...
-}: let
+}:
+with config.opts; let
   configureInstaller = import ../lib/install/configure-installer.nix;
 
   args = {
