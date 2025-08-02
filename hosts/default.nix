@@ -59,7 +59,7 @@
   };
 
   allHosts = [
-    # "gander"
+    "gander"
     "gosling"
     "skein"
     "larry"
