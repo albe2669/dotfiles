@@ -1,14 +1,25 @@
-// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-$fg-color: #{"@theme_fg_color"};
-$bg-color: #{"@theme_bg_color"};
+@use "./generated.scss";
+
+* {
+  font-family: generated.$font_family;
+  font-size: 12pt;
+  color: generated.$fg;
+}
+
+/* Base styles */
+.pill {
+  background-color: generated.$bg1;
+  border-radius: 15px;
+  padding: 4px 12px;
+  margin: 2px 4px;
+}
 
 window.Bar {
   background: transparent;
-  color: $fg-color;
   font-weight: bold;
 
   > centerbox {
-    background: $bg-color;
+    background: transparent;
     border-radius: 10px;
     margin: 8px;
   }
