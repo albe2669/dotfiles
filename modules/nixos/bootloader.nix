@@ -1,13 +1,13 @@
 {lib, ...}: {
   boot = {
     loader = {
-			systemd-boot = {
-				enable = lib.mkForce true;
-			};
+      systemd-boot = {
+        enable = lib.mkForce true;
+      };
 
-			efi = {
-				canTouchEfiVariables = true;
-			};
+      efi = {
+        canTouchEfiVariables = true;
+      };
 
       grub = {
         enable = lib.mkForce true;

@@ -70,15 +70,18 @@
       value = createNixosConfiguration host system specialArgs;
     })
     allHosts);
-  installers = builtins.mapAttrs (hostName: nixosConfig: 
-    import ../lib/install/configure-installer.nix {
-      host = nixosConfig.config.opts.info;
-      inherit self system inputs;
-      inherit (nixosConfig.config.opts) variables theme;
-      lib = inputs.nixpkgs.lib;
-      config = nixosConfig.config;
-    }
-  ) nixosConfigurations;
+  installers =
+    builtins.mapAttrs (
+      hostName: nixosConfig:
+        import ../lib/install/configure-installer.nix {
+          host = nixosConfig.config.opts.info;
+          inherit self system inputs;
+          inherit (nixosConfig.config.opts) variables theme;
+          lib = inputs.nixpkgs.lib;
+          config = nixosConfig.config;
+        }
+    )
+    nixosConfigurations;
 in {
   flake.nixosConfigurations = nixosConfigurations;
   flake.installers.${system} = installers;

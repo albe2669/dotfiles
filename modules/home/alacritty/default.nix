@@ -3,8 +3,7 @@
   config,
   ...
 }:
-with config.opts;
-{
+with config.opts; {
   programs.alacritty = {
     enable = true;
 
@@ -13,7 +12,7 @@ with config.opts;
 
     settings = {
       font = {
-        size = 8;
+        size = 11;
 
         normal = {
           family = theme.font.family;
