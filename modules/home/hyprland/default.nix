@@ -1,10 +1,15 @@
 {
   inputs,
   system,
+  pkgs,
   ...
 }: {
   imports = [
 	  ./hypridle.nix
+  ];
+
+  home.packages = with pkgs; [
+    playerctl
   ];
 
   wayland.windowManager.hyprland = {
@@ -103,6 +108,12 @@
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
+      ];
+      bindl = [
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioStop, exec, playerctl stop"
       ];
     };
   };

@@ -31,11 +31,13 @@
   - [x] Set high dpi mode on the XPS
   - [x] Make alacritty sync it's font size with the DPI scaling
   - [x] Fix the scaling of electron apps, like Discord and Spotify
+  - [ ] Fix media keys
 - [ ] Configure astal/ags
   - [ ] Bar
 
 ## resources
 - Great full example: https://www.reddit.com/r/hyprland/comments/15g2bin/q_new_to_nixos_want_to_install_hyprland/ 
+- https://www.reddit.com/r/Fedora/comments/vkkc3k/fixsolution_nvidia_suspendresume/?share_id=Q6kkhc645_FIJR9biKg3g&utm_medium=ios_app&utm_name=ioscss&utm_source=share&utm_term=1
 
 - Wayland
 - Hyprland
