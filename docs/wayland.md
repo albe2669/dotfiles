@@ -12,7 +12,7 @@
     - [ ] hy3
     - [ ] hyprexpo for showing windows
     - [ ] hyprpaper for wallpaper
-    - [ ] hypridle for idle
+    - [x] hypridle for idle
     - [ ] xdg-desktop-portal-hyprland
     - [ ] hyprsunset for blue light filter
     - [ ] hyprpolkitagent for polkit authentication

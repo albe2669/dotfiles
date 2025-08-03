@@ -3,9 +3,9 @@
   system,
   ...
 }: {
-  # imports = [
-  #   ./hidpi.nix
-  # ];
+  imports = [
+	  ./hypridle.nix
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
