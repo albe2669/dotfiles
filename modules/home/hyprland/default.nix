@@ -5,10 +5,11 @@
   ...
 }: {
   imports = [
-	  ./hypridle.nix
+    ./hypridle.nix
   ];
 
   home.packages = with pkgs; [
+    wev
     playerctl
   ];
 
@@ -16,6 +17,7 @@
     enable = true;
     package = inputs.hyprland.packages.${system}.hyprland;
     portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+    systemd.variables = ["--all"];
     settings = {
       input = {
         kb_layout = "us,dk";
