@@ -16,4 +16,9 @@
     ../../home/tmux.nix
     ../../home/utils.nix
   ];
+
+  programs.git.extraConfig.safe.directory = [
+    "/mnt/c/Users/AlbertRiseNielsen/Coding/Man-in-the-Middle"
+    "/mnt/c/Users/AlbertRiseNielsen/Coding/Man-in-the-Middle/*"
+  ];
 }
