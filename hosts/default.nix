@@ -1,59 +1,93 @@
 {
-  nixpkgs,
-  nixos-generators,
-  home-manager,
-  disko,
   self,
-  specialArgs,
-  configurations,
+  inputs,
+  config,
   ...
 }: let
-  x64System = specialArgs.x64System;
-  x64SpecialArgs = specialArgs.x64SpecialArgs;
+  createNixosConfiguration = machine: system: specialArgs:
+    inputs.nixpkgs.lib.nixosSystem {
+      inherit system;
 
-  allSystems = [x64System];
+      specialArgs = specialArgs;
 
-  nixosSystem = import ../lib/nixos-system.nix;
+      modules = [
+        ../variables.nix
+        ../theme.nix
 
-  baseArgs = {
-    inherit nixpkgs;
-    specialArgs = x64SpecialArgs;
+        self.nixosModules.state
+        (import ../modules/nixos/home.nix {inherit specialArgs;})
+
+        inputs.disko.nixosModules.disko
+
+        inputs.nixos-generators.nixosModules.all-formats
+        {
+        }
+
+        {
+          # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
+          nix.registry.nixpkgs.flake = inputs.nixpkgs;
+
+          # make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
+          environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
+          nix.nixPath = ["/etc/nix/inputs"];
+        }
+
+        ./${machine}
+      ];
+    };
+
+  system = "x86_64-linux";
+
+  specialArgs = rec {
+    inherit self inputs system;
+
+    username = config.opts.variables.username;
+
+    pkgs-unstable = import inputs.nixpkgs-unstable {
+      system = system;
+
+      # Necessary for installing paid or non-free software
+      config.allowUnfree = true;
+
+      config.permittedInsecurePackages = [
+        "electron-29.4.6"
+      ];
+
+      # Overlays are only applied to the unstable channel, since they probably are
+      overlays = import ../overlays {};
+    };
   };
 
-  systemArgs =
-    {
-      inherit nixos-generators home-manager disko;
-      system = x64System;
-    }
-    // baseArgs;
+  allHosts = [
+    "gander"
+    "gosling"
+    "skein"
+    "larry"
+  ];
 
-  hosts =
-    builtins.mapAttrs (host: hostConf: {
-      name = hostConf.info.name;
-      disko = hostConf.info.disko;
-      diskPath = hostConf.info.diskPath;
-      configuration = {
-        inherit (hostConf) nixosModules homeModules;
-      };
-      homeManager = hostConf.homeManager;
+  nixosConfigurations = builtins.listToAttrs (builtins.map (host: {
+      name = host;
+      value = createNixosConfiguration host system specialArgs;
     })
-    configurations;
+    allHosts);
+  installers =
+    builtins.mapAttrs (
+      hostName: nixosConfig:
+        import ../lib/install/configure-installer.nix {
+          host = nixosConfig.config.opts.info;
+          inherit self system inputs;
+          inherit (nixosConfig.config.opts) variables theme;
+          lib = inputs.nixpkgs.lib;
+          config = nixosConfig.config;
+        }
+    )
+    nixosConfigurations;
 in {
-  nixosConfigurations =
+  flake.nixosConfigurations = nixosConfigurations;
+  flake.installers.${system} = installers;
+  flake.legacyPackages.${system} =
     builtins.mapAttrs (
-      _: hostConf:
-        nixosSystem ({host = hostConf;} // systemArgs)
+      name: config: config.config.formats
     )
-    hosts;
-
-  packages."${x64System}" =
-    builtins.mapAttrs (
-      _: hostConf:
-        self.nixosConfigurations.${hostConf.name}.config.formats
-    )
-    hosts;
-
-  hosts = hosts;
-
-  allSystems = allSystems;
+    nixosConfigurations;
 }

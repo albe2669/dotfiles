@@ -1,5 +1,18 @@
-{...}: let
-  name = "larry";
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.opts.info;
 in {
-  name = name;
+  options.opts.info = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "larry";
+      description = "System name";
+    };
+  };
+
+  config = {
+  };
 }

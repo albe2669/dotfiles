@@ -1,19 +1,20 @@
-{...}: let
-  info = import ./info.nix {};
-in {
+{
+  self,
+  config,
+  ...
+}: {
   imports = [
-    (import ../../modules/core-desktop.nix {diskPath = info.diskPath;})
+    ./info.nix
+
+    self.nixosModules.core-desktop
+
     # Probably does nothing as it's a vm, but it tests if the installation is successful.
-    ../../modules/core-laptop.nix
-    ../../modules/services/bluetooth.nix
+    self.nixosModules.core-laptop
+    self.nixosModules.bluetooth
 
-    # Include the results of the hardware scan.
+    # # Include the results of the hardware scan.
     ./hardware-configuration.nix
-
-    ../../modules/configs/hyprland.nix
-
-    info.disko
   ];
 
-  networking.hostName = info.name; # Define your hostname.
+  networking.hostName = config.opts.info.name; # Define your hostname.
 }

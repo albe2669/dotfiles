@@ -1,0 +1,131 @@
+/* Generated colors and fonts */
+@define-color aqua #83C092;
+@define-color bg0 #2D353B;
+@define-color bg1 #343F44;
+@define-color bg2 #3D484D;
+@define-color bg3 #475258;
+@define-color bg4 #4F585E;
+@define-color bg5 #56635f;
+@define-color bg_blue #3A515D;
+@define-color bg_dim #232A2E;
+@define-color bg_green #425047;
+@define-color bg_red #514045;
+@define-color bg_visual #543A48;
+@define-color bg_yellow #4D4C43;
+@define-color blue #7FBBB3;
+@define-color fg #D3C6AA;
+@define-color green #A7C080;
+@define-color grey0 #7A8478;
+@define-color grey1 #859289;
+@define-color grey2 #9DA9A0;
+@define-color orange #E69875;
+@define-color purple #D699B6;
+@define-color red #E67E80;
+@define-color statusline1 #A7C080;
+@define-color statusline2 #D3C6AA;
+@define-color statusline3 #E67E80;
+@define-color yellow #DBBC7F;
+
+* {
+  font-family: "Iosevka Nerd Font";
+  font-size: 12pt;
+  color: @fg;
+}
+
+/* Base styles */
+.pill {
+  background-color: @bg1;
+  border-radius: 15px;
+  padding: 4px 12px;
+  margin: 2px 4px;
+}
+
+.sys-widget {
+  padding: 0 4px;
+}
+
+.icon {
+  margin-right: 6px;
+}
+
+.il-icon {
+  margin-right: 6px;
+}
+
+.il-label {
+  font-weight: bold;
+}
+
+/* Main bar */
+.main {
+  background-color: @bg0;
+  padding: 0 10px;
+  min-height: 30px;
+}
+
+/* Separator */
+.separator {
+  margin: 0 8px;
+  color: @grey1;
+}
+
+/* Clock widget */
+.clock-widget {
+  color: @blue;
+}
+
+/* System widgets */
+.cpu-widget {
+  color: @green;
+}
+
+.ram-widget {
+  color: @purple;
+}
+
+.disk-widget {
+  color: @orange;
+}
+
+.temp-widget {
+  color: @yellow;
+}
+
+.temp-widget-norm {
+  color: @green;
+}
+
+.temp-widget-warn {
+  color: @yellow;
+}
+
+.temp-widget-crit {
+  color: @red;
+}
+
+/* Battery widget */
+.battery-widget {
+  color: @green;
+}
+
+.battery-widget-charging {
+  color: @blue;
+}
+
+.battery-widget-crit {
+  color: @red;
+}
+
+.battery-widget-norm {
+  color: @fg;
+}
+
+/* Keyboard widget */
+.keyboard-widget {
+  color: @aqua;
+}
+
+/* System widget container */
+.system-widget {
+  background-color: @bg2;
+}

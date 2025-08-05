@@ -1,0 +1,31 @@
+@use "./generated.scss";
+
+* {
+  font-family: generated.$font_family;
+  font-size: 12pt;
+  color: generated.$fg;
+}
+
+/* Base styles */
+.pill {
+  background-color: generated.$bg1;
+  border-radius: 15px;
+  padding: 4px 12px;
+  margin: 2px 4px;
+}
+
+window.Bar {
+  background: transparent;
+  font-weight: bold;
+
+  > centerbox {
+    background: transparent;
+    border-radius: 10px;
+    margin: 8px;
+  }
+
+  button {
+    border-radius: 8px;
+    margin: 2px;
+  }
+}

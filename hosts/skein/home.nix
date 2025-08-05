@@ -1,33 +1,27 @@
-{...}: {
-  imports = [
-    ../../home/common.nix
-    ../../home/alacritty
-    ../../home/betterlockscreen
-    ../../home/dunst
-    ../../home/fish
-    ../../home/git
-    ../../home/i3
-    ../../home/kitty
-    ../../home/lazygit
-    ../../home/nvim
-    (import ../../home/picom {nvidiaDrivers = false;})
-    ../../home/polybar
-    ../../home/rofi
-    ../../home/sioyek
-    ../../home/wallpapers
-    ../../home/zathura
-
-    ../../home/langs.nix
-    ../../home/python3.nix
-    ../../home/tex.nix
-
-    ../../home/gcloud.nix
-    ../../home/programs.nix
-    ../../home/tmux.nix
-    ../../home/guiutils.nix
-    ../../home/utils.nix
-    ../../home/vscode.nix
-
-    ../../home/courses/htmaa.nix
+{self, ...}: {
+  hm.imports = [
+    self.homeModules.home
+    self.homeModules.alacritty
+    self.homeModules.betterlockscreen
+    self.homeModules.dunst
+    self.homeModules.fish
+    self.homeModules.git
+    self.homeModules.kitty
+    self.homeModules.lazygit
+    self.homeModules.nvim
+    self.homeModules.polybar
+    self.homeModules.rofi
+    self.homeModules.sioyek
+    self.homeModules.wallpapers
+    self.homeModules.zathura
+    self.homeModules.langs
+    self.homeModules.python3
+    self.homeModules.tex
+    self.homeModules.gcloud
+    self.homeModules.programs
+    self.homeModules.tmux
+    self.homeModules.guiutils
+    self.homeModules.utils
+    self.homeModules.vscode
   ];
 }

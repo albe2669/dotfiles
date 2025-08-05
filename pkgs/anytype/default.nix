@@ -7,11 +7,11 @@
   commandLineArgs ? "",
 }: let
   pname = "anytype";
-  version = "0.44.0";
+  version = "0.47.0";
   name = "Anytype-${version}";
   src = fetchurl {
     url = "https://github.com/anyproto/anytype-ts/releases/download/v${version}/${name}.AppImage";
-    hash = "sha256-+Ae0xH6ipNZgIVrrAmgeG8bibm/I3NLiDMzS+fwf9RQ=";
+    hash = "sha256-fjjsQH3ZUZMZT3dCrcYv0nR7n1fMd6Uy602EWTlwS2o=";
   };
   appimageContents = appimageTools.extractType2 {inherit pname version src;};
 in

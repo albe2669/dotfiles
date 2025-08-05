@@ -1,6 +1,5 @@
 {
   inputs,
-  variables,
   theme,
   nixpkgs-unstable,
   nixos-hardware,
@@ -12,11 +11,9 @@
 in {
   x64System = x64System;
   x64SpecialArgs = {
-    inherit inputs variables theme nixos-hardware zen-browser;
+    inherit inputs theme nixos-hardware zen-browser;
 
     system = x64System;
-
-    username = variables.username;
 
     pkgs-unstable = import nixpkgs-unstable {
       system = x64System;

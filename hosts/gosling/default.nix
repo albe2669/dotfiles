@@ -1,5 +1,8 @@
-{}: {
-  info = (import ./info.nix) {};
-  nixosModules = ./os.nix;
-  homeModules = ./home.nix;
+{...}: {
+  imports = [
+    ./info.nix
+    ./os.nix
+    ./home.nix
+    ./hardware-configuration.nix
+  ];
 }
