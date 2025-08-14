@@ -1,5 +1,5 @@
 {self, ...}: {
-  imports = [
+  hm.imports = [
     self.homeModules.home
     self.homeModules.fish
     self.homeModules.git
@@ -13,10 +13,13 @@
     self.homeModules.direnv
     self.homeModules.tmux
     self.homeModules.utils
-  ];
+    self.homeModules.jetbrains
 
-  programs.git.extraConfig.safe.directory = [
-    "/mnt/c/Users/AlbertRiseNielsen/Coding/Man-in-the-Middle"
-    "/mnt/c/Users/AlbertRiseNielsen/Coding/Man-in-the-Middle/*"
+    {
+      programs.git.extraConfig.safe.directory = [
+        "/mnt/c/Users/AlbertRiseNielsen/Coding/Man-in-the-Middle"
+        "/mnt/c/Users/AlbertRiseNielsen/Coding/Man-in-the-Middle/*"
+      ];
+    }
   ];
 }

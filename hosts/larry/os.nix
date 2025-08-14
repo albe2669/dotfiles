@@ -8,6 +8,7 @@
     self.nixosModules.nix
     self.nixosModules.state
     self.nixosModules.libs
+    self.nixosModules.dynamic-libs
     self.nixosModules.docker
     self.nixosModules.shell
     self.nixosModules.system-packages
@@ -21,6 +22,7 @@
         defaultUser = config.opts.variables.username;
 
         docker-desktop.enable = true;
+        startMenuLaunchers = true;
       };
     }
   ];
