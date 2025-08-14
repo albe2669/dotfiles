@@ -10,6 +10,7 @@
     # Programming
     gh
     gnumake
+    jq
 
     # Convenience
     fd
