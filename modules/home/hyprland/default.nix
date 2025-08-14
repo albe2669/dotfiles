@@ -22,6 +22,8 @@
       input = {
         kb_layout = "us,dk";
 
+        accel_profile = "flat";
+
         touchpad = {
           natural_scroll = true;
         };
