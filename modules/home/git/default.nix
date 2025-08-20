@@ -13,7 +13,7 @@
     userEmail = config.opts.variables.git.email;
 
     extraConfig = {
-      pull.rebase = false;
+      pull.rebase = true;
       credential.helper = "store";
       init.defaultBranch = "master";
 
