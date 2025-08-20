@@ -13,6 +13,7 @@
         enable = lib.mkForce true;
         efiSupport = true;
         efiInstallAsRemovable = true;
+        useOSProber = true;
       };
     };
   };

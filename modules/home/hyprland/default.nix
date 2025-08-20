@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./hypridle.nix
+    ./hyprpanel.nix
   ];
 
   home.packages = with pkgs; [

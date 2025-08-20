@@ -5,26 +5,15 @@
   ...
 }: {
   imports = [
-    self.nixosModules.nix
-    self.nixosModules.state
-    self.nixosModules.libs
+    self.nixosModules.core-desktop
+    self.nixosModules.core-laptop
     self.nixosModules.dynamic-libs
-    self.nixosModules.docker
-    self.nixosModules.shell
-    self.nixosModules.system-packages
-    self.nixosModules.user-groups
+    self.nixosModules.touchpad
+    self.nixosModules.hidpi
+    self.nixosModules.bluetooth
+    self.nixosModules.wireless
 
-    inputs.nixos-wsl.nixosModules.default
-    {
-      system.stateVersion = config.opts.variables.stateVersion;
-      wsl = {
-        enable = true;
-        defaultUser = config.opts.variables.username;
-
-        docker-desktop.enable = true;
-        startMenuLaunchers = true;
-      };
-    }
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen
   ];
 
   networking.hostName = config.opts.info.name; # Define your hostname.

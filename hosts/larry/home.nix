@@ -1,26 +1,46 @@
-{self, ...}: {
+{
+  self,
+  ...
+}: {
   hm.imports = [
     self.homeModules.home
+    self.homeModules.ags
+    self.homeModules.alacritty
+    self.homeModules.betterlockscreen
+    self.homeModules.dunst
+    self.homeModules.eww
     self.homeModules.fish
     self.homeModules.git
+    self.homeModules.hyprland
+    self.homeModules.kitty
     self.homeModules.lazydocker
     self.homeModules.lazygit
-    self.homeModules.yazi
     self.homeModules.nvim
-    self.homeModules.fonts
+    self.homeModules.polybar
+    self.homeModules.rofi
+    self.homeModules.sioyek
+    self.homeModules.wallpapers
+    self.homeModules.zathura
     self.homeModules.langs
     self.homeModules.python3
+    self.homeModules.tex
+    self.homeModules.anytype
+    self.homeModules.bluetooth
     self.homeModules.direnv
-    self.homeModules.tmux
-    self.homeModules.utils
+    self.homeModules.gcloud
+    self.homeModules.hidpi
+    self.homeModules.libreoffice
+    self.homeModules.obs
     self.homeModules.jetbrains
-
-    {
-      programs.git.extraConfig.safe.directory = [
-        "/mnt/c/Users/AlbertRiseNielsen/Coding/Man-in-the-Middle"
-        "/mnt/c/Users/AlbertRiseNielsen/Coding/Man-in-the-Middle/*"
-        "/mnt/c/Users/AlbertRiseNielsen/OneDrive - IAM Group/IAM Group - Documents/Kunder/Jyske Bank/AD_Safeguard_Integration/ARS _SafeGuard implementation/Script implementation"
-      ];
-    }
+    self.homeModules.php
+    self.homeModules.programs
+    self.homeModules.tmux
+    self.homeModules.todo
+    self.homeModules.guiutils
+    self.homeModules.utils
+    self.homeModules.vscode
+    self.homeModules.work
+    self.homeModules.zen
+    self.homeModules.yazi
   ];
 }
