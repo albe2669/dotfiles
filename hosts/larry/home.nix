@@ -19,6 +19,7 @@
       programs.git.extraConfig.safe.directory = [
         "/mnt/c/Users/AlbertRiseNielsen/Coding/Man-in-the-Middle"
         "/mnt/c/Users/AlbertRiseNielsen/Coding/Man-in-the-Middle/*"
+        "/mnt/c/Users/AlbertRiseNielsen/OneDrive - IAM Group/IAM Group - Documents/Kunder/Jyske Bank/AD_Safeguard_Integration/ARS _SafeGuard implementation/Script implementation"
       ];
     }
   ];
