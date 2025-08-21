@@ -31,10 +31,22 @@
         };
       };
 
+			general = {
+				layout = "master";
+			};
+
+			master = {
+				orientation = "center";
+			};
+
       exec-once = [
         "nm-applet"
-        "dunst -conf ~/.config/dunst/dunstrc"
+				"hyprpanel"
       ];
+
+			windowrule = [
+  	    "minsize 50% 80%, class:jetbrains-rider"
+			];
 
       "$mod" = "SUPER";
       "$terminal" = "alacritty";

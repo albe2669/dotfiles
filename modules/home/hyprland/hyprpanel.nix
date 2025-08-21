@@ -18,12 +18,20 @@ in {
           "*" = {
             left = [ "dashboard" "notifications" "clock" "systray" ];
             middle = [ "media" "workspaces" ];
-            right = [ "volume" "microphone" "bluetooth" "network" "ram" "cpu" "cputemp" "storage" "kbinput" "notifications" ]; # ++ extraRightModules;
+            right = [ "volume" "microphone" "bluetooth" "network" "ram" "cpu" "cputemp" "storage" "kbinput" ]; # ++ extraRightModules;
           };
         };
 
         clock = {
           format = "%a %b %d  %H:%M:%S";
+        };
+
+        ram = {
+          round = true;
+        };
+
+        storage = {
+          round = true;
         };
       };
 
