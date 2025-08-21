@@ -1,8 +1,10 @@
 { ... }:
 let 
-  extraRightModules = if services.tlp.enable then [ "battery" ] else [];
+  # extraRightModules = if services.tlp.enable then [ "battery" ] else [];
 in {
   programs.hyprpanel = {
+    enable = true;
+
     # Configure and theme almost all options from the GUI.
     # See 'https://hyprpanel.com/configuration/settings.html'.
     # Default: <same as gui>
@@ -11,20 +13,22 @@ in {
       # Configure bar layouts for monitors.
       # See 'https://hyprpanel.com/configuration/panel.html'.
       # Default: null
-      layout = {
-        bar = {
-          layouts = {
-            "*" = {
-              left = [ "dashboard" "clock" "systray" ];
-              middle = [ "media" "workspaces" ];
-              right = [ "volume" "microphone" "bluetooth" "network" "ram" "cpu" "cputemp" "storage" "kbinput" "hyprsunset" "hypridle" "notifications" "power" ] ++ extraRightModules;
-            };
+      bar = {
+        layouts = {
+          "*" = {
+            left = [ "dashboard" "notifications" "clock" "systray" ];
+            middle = [ "media" "workspaces" ];
+            right = [ "volume" "microphone" "bluetooth" "network" "ram" "cpu" "cputemp" "storage" "kbinput" "notifications" ]; # ++ extraRightModules;
           };
         };
 
-        launcher.autoDetectIcon = true;
-        workspaces.show_icons = true;
+        clock = {
+          format = "%a %b %d  %H:%M:%S";
+        };
       };
+
+      launcher.autoDetectIcon = true;
+      workspaces.show_icons = true;
 
       menus = {
         clock = {
@@ -44,7 +48,7 @@ in {
 
         font = {
           name = "CaskaydiaCove NF";
-          size = "16px";
+          size = "14px";
         };
       };
     };

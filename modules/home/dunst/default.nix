@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    dunst
+    # dunst
   ];
 
   xdg.configFile.dunst = {

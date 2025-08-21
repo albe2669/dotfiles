@@ -25,7 +25,7 @@
 
   environment.systemPackages = with pkgs; [
     rofi # application launcer
-    dunst # notification daemon
+    # dunst # notification daemon
     feh # wallpaper
     acpi # battery
     xorg.xbacklight # screen brightness

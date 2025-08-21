@@ -17,6 +17,8 @@
     # Configs
     self.nixosModules.system-packages
     self.nixosModules.user-groups
+
+    self.nixosModules.bootloader
   ];
 
   time.timeZone = "Europe/Copenhagen";
