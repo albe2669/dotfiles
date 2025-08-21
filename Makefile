@@ -13,13 +13,13 @@ fmt:
 	nix --extra-experimental-features "nix-command flakes" fmt *
 
 update:
-	nix --extra-experimental-features "nix-command flakes" flake update
+	nix --extra-experimental-features "nix-command flakes" flake update -j 4
 
 build:
-	sudo nixos-build --show-trace --flake .#$(host)
+	sudo nixos-build --show-trace -j 4 --flake .#$(host)
 
 rebuild:
-	sudo nixos-rebuild switch --show-trace --flake .#$(host)
+	sudo nixos-rebuild switch --show-trace -j 4 --flake .#$(host)
 
 vm:
 	rm -rf result
