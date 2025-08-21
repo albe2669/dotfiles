@@ -42,5 +42,14 @@
     self.homeModules.work
     self.homeModules.zen
     self.homeModules.yazi
+
+    {
+      wayland.windowManager.hyprland = {
+        settings.monitor = [
+          "eDP-1,1920x1200@60.0,5120x640,1.5"
+          "DP-1,5120x1440@59.98,0x0,1.0"
+        ];
+      };
+    }
   ];
 }
