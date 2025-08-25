@@ -39,7 +39,6 @@ local servers = lu.load_servers({
   "nix-server",
   "python-server",
   "rs-server",
-  "scala-server",
   "svelte-server",
   "tailwindcss-server",
   "terraform-server",
