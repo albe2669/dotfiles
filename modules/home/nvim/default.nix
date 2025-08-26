@@ -23,8 +23,8 @@ in {
       tree-sitter
       basedpyright
       ruff
-      csharp-ls
-      roslyn-ls
+      # csharp-ls
+      # roslyn-ls
     ]
     ++ normalPackages;
 
