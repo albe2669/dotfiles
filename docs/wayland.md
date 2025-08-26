@@ -3,7 +3,7 @@
   - [x] Install
   - [x] Lock screen
   - [x] Keybinds
-  - [ ] Wallpaper
+  - [x] Wallpaper
   - [x] Notifications
   - [ ] Set font for Hyprland
   - [x] Start NetworkManager applet

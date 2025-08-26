@@ -7,6 +7,7 @@
   imports = [
     ./hypridle.nix
     ./hyprpanel.nix
+    ./hyprpaper.nix
   ];
 
   home.packages = with pkgs; [
