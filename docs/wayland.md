@@ -31,9 +31,9 @@
   - [x] Set high dpi mode on the XPS
   - [x] Make alacritty sync it's font size with the DPI scaling
   - [x] Fix the scaling of electron apps, like Discord and Spotify
-  - [ ] Fix media keys
-- [ ] Configure astal/ags
-  - [ ] Bar
+  - [x] Fix media keys
+- [x] Configure astal/ags
+  - [x] Bar
 
 ## resources
 - Great full example: https://www.reddit.com/r/hyprland/comments/15g2bin/q_new_to_nixos_want_to_install_hyprland/ 
