@@ -6,12 +6,14 @@
   home = ./home.nix;
 
   bootloader = ./bootloader.nix;
+  bootloader-uefi = ./bootloader-uefi.nix;
   libs = ./libs.nix;
   network = ./network.nix;
   nix = ./nix.nix;
   nvidia-prime = ./nvidia-prime.nix;
   nvidia = ./nvidia.nix;
   state = ./state.nix;
+  stylix = ./stylix.nix;
   bluetooth = ./bluetooth.nix;
   docker = ./docker.nix;
   pipewire = ./pipewire.nix;

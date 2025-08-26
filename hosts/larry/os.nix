@@ -7,6 +7,7 @@
   imports = [
     self.nixosModules.core-desktop
     self.nixosModules.core-laptop
+    self.nixosModules.bootloader-uefi
     self.nixosModules.dynamic-libs
     self.nixosModules.touchpad
     self.nixosModules.hidpi
