@@ -8,7 +8,6 @@
   default = ./default.nix;
   direnv = ./direnv.nix;
   dunst = ./dunst;
-  eww = ./eww;
   fish = ./fish;
   fonts = ./fonts.nix;
   gcloud = ./gcloud.nix;

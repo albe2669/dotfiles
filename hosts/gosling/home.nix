@@ -5,7 +5,6 @@
     self.homeModules.alacritty
     self.homeModules.betterlockscreen
     self.homeModules.dunst
-    self.homeModules.eww
     self.homeModules.fish
     self.homeModules.git
     self.homeModules.hyprland
