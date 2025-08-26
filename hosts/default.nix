@@ -15,6 +15,7 @@
         ../theme.nix
 
         self.nixosModules.state
+        self.nixosModules.stylix
         (import ../modules/nixos/home.nix {inherit specialArgs;})
 
         inputs.disko.nixosModules.disko
