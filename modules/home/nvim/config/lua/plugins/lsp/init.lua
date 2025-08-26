@@ -33,6 +33,7 @@ local servers = lu.load_servers({
   "eslint-server",
   "go-server",
   "graphql-server",
+  "java-server",
   "json-server",
   "latex-server",
   "lua-server",

@@ -25,6 +25,7 @@ in {
       ruff
       # csharp-ls
       # roslyn-ls
+      java-language-server
     ]
     ++ normalPackages;
 
