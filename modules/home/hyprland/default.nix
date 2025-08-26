@@ -31,26 +31,26 @@
         };
       };
 
-			general = {
-				layout = "master";
-			};
+      general = {
+        layout = "master";
+      };
 
       xwayland = {
         force_zero_scaling = true;
       };
 
-			master = {
-				orientation = "center";
-			};
+      master = {
+        orientation = "center";
+      };
 
       exec-once = [
         "nm-applet"
-				"hyprpanel"
+        "hyprpanel"
       ];
 
-			windowrule = [
-  	    "minsize 50% 80%, class:jetbrains-rider"
-			];
+      windowrule = [
+        "minsize 50% 80%, class:jetbrains-rider"
+      ];
 
       "$mod" = "SUPER";
       "$terminal" = "alacritty";

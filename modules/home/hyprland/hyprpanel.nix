@@ -1,5 +1,4 @@
-{ ... }:
-let 
+{...}: let
   # extraRightModules = if services.tlp.enable then [ "battery" ] else [];
 in {
   programs.hyprpanel = {
@@ -9,16 +8,15 @@ in {
     # See 'https://hyprpanel.com/configuration/settings.html'.
     # Default: <same as gui>
     settings = {
-
       # Configure bar layouts for monitors.
       # See 'https://hyprpanel.com/configuration/panel.html'.
       # Default: null
       bar = {
         layouts = {
           "*" = {
-            left = [ "dashboard" "notifications" "clock" "systray" ];
-            middle = [ "media" "workspaces" ];
-            right = [ "volume" "microphone" "bluetooth" "network" "ram" "cpu" "cputemp" "storage" "kbinput" ]; # ++ extraRightModules;
+            left = ["dashboard" "notifications" "clock" "systray"];
+            middle = ["media" "workspaces"];
+            right = ["volume" "microphone" "bluetooth" "network" "ram" "cpu" "cputemp" "storage" "kbinput"]; # ++ extraRightModules;
           };
         };
 
