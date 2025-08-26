@@ -33,10 +33,11 @@ in {
         storage = {
           round = true;
         };
+
+        workspaces.show_numbered = true;
       };
 
       launcher.autoDetectIcon = true;
-      workspaces.show_icons = true;
 
       menus = {
         clock = {
