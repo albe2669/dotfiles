@@ -35,6 +35,10 @@
 				layout = "master";
 			};
 
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
 			master = {
 				orientation = "center";
 			};
