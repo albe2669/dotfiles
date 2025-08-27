@@ -2,12 +2,14 @@
   inputs,
   system,
   pkgs,
+  config,
   ...
 }: {
   imports = [
     ./hypridle.nix
     ./hyprpanel.nix
     ./hyprpaper.nix
+    ./hyprlock.nix
   ];
 
   home.packages = with pkgs; [
