@@ -11,7 +11,7 @@
   - [ ] Plugins:
     - [ ] hy3
     - [ ] hyprexpo for showing windows
-    - [ ] hyprpaper for wallpaper
+    - [x] hyprpaper for wallpaper
     - [x] hypridle for idle
     - [ ] xdg-desktop-portal-hyprland
     - [ ] hyprsunset for blue light filter
