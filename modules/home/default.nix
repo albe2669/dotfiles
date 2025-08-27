@@ -46,5 +46,5 @@
   work = ./work.nix;
   yazi = ./yazi;
   zathura = ./zathura;
-  zen = ./zen.nix;
+  zen = ./zen;
 }

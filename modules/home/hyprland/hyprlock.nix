@@ -16,7 +16,7 @@ in {
       };
 
       background = {
-        path="screenshot";
+        path = "screenshot";
         blur_passes = 2;
         contrast = 0.9;
         brightness = 0.5;
@@ -44,7 +44,6 @@ in {
           font_color = "rgb(${colors.base05})";
           fail_color = "rgb(${colors.base08})";
           check_color = "rgb(${colors.base0A})";
-
         }
       ];
 
