@@ -1,158 +1,140 @@
 {colors}:
 with colors; ''
-  :root {
-    --zen-colors-primary: #${base02-hex} !important;
-    --zen-primary-color: #${base0D-hex} !important;
-    --zen-colors-secondary: #${base02-hex} !important;
-    --zen-colors-tertiary: #${base01-hex} !important;
-    --zen-colors-border: #${base0D-hex} !important;
-    --toolbarbutton-icon-fill: #${base0D-hex} !important;
-    --lwt-text-color: #${base05-hex} !important;
-    --toolbar-field-color: #${base05-hex} !important;
-    --tab-selected-textcolor: #${base05-hex} !important;
-    --toolbar-field-focus-color: #${base05-hex} !important;
-    --toolbar-color: #${base05-hex} !important;
-    --newtab-text-primary-color: #${base05-hex} !important;
-    --arrowpanel-color: #${base05-hex} !important;
-    --arrowpanel-background: #${base00-hex} !important;
-    --sidebar-text-color: #${base05-hex} !important;
-    --lwt-sidebar-text-color: #${base05-hex} !important;
-    --lwt-sidebar-background-color: #${base00-hex} !important;
-    --toolbar-bgcolor: #${base02-hex} !important;
-    --newtab-background-color: #${base00-hex} !important;
-    --zen-themed-toolbar-bg: #${base00-hex} !important;
-    --zen-main-browser-background: #${base00-hex} !important;
-    --toolbox-bgcolor-inactive: #${base01-hex} !important;
-    --toolbox-textcolor: #${base05-hex} !important;
-    --toolbox-textcolor-inactive: #${base05-hex} !important;
-    --tab-selected-textcolor: #${base00-hex} !important;
-  }
+:root {
+  --zen-colors-primary: #${base02} !important;
+  --zen-primary-color:  #${base0C} !important;
+  --zen-colors-secondary: #${base02} !important;
+  --zen-colors-tertiary: #${base00} !important;
+  --zen-colors-border: #${base0C} !important;
+  --zen-themed-toolbar-bg: #${base00} !important;
+  --zen-main-browser-background: #${base00} !important;
+  
+  --toolbar-field-color: #${base0C} !important;
+  --toolbar-field-focus-color: #${base06} !important;
+  --toolbar-color: #${base0C} !important;
+  --toolbar-bgcolor: #${base02} !important;
+  
+  --toolbarbutton-icon-fill: #${base0C} !important;
+  
+  
+  --arrowpanel-color: #${base06} !important;
+  --arrowpanel-background: #${base01} !important;
+  
+  --tab-selected-textcolor: #${base0A} !important;
+  
+  --newtab-text-primary-color: #${base06} !important;
+  --newtab-background-color: #${base01} !important;
+  
+  --lwt-text-color: #${base06} !important;
+  --lwt-sidebar-text-color: #${base06} !important;
+  --lwt-sidebar-background-color: #${base00} !important;
+  
+  --sidebar-text-color: #${base06} !important;
+  
+  --toolbox-bgcolor-inactive: #${base00} !important;
+  --toolbox-textcolor: #${base05} !important;
+  --toolbox-textcolor-inactive: #${base05} !important;
+}
 
-  #permissions-granted-icon {
-    color: #${base05-hex} !important;
-  }
+#permissions-granted-icon {
+  color: #${base00} !important;
+}
 
-  .sidebar-placesTree {
-    background-color: #${base00-hex} !important;
-  }
+.sidebar-placesTree {
+  background-color: #${base00} !important;
+}
 
-  #zen-workspaces-button {
-    background-color: #${base00-hex} !important;
-  }
+#zen-workspaces-button {
+  background-color: #${base00} !important;
+}
 
-  #TabsToolbar {
-    background-color: #${base00-hex} !important;
-  }
+#TabsToolbar {
+  background-color: #${base00} !important;
+}
 
-  #urlbar-background {
-    background-color: #${base02-hex} !important;
-  }
+#urlbar-background {
+  background-color: #${base01} !important;
+}
 
-  .content-shortcuts {
-    background-color: #${base00-hex} !important;
-    border-color: #${base0D-hex} !important;
-  }
+.content-shortcuts {
+  background-color: #${base01} !important;
+  border-color: #${base0C} !important;
+}
 
-  #zen-context-menu-compact-mode {
-    color: ${base05-hex} !important;
-  }
+.urlbarView-url {
+  color: #${base0C} !important;
+}
 
-  .urlbarView-url {
-    color: #${base05-hex} !important;
-  }
+#zenEditBookmarkPanelFaviconContainer {
+  background: #${base00} !important;
+}
 
-  .urlbarView-row {
-    color: #${base05-hex} !important;
-
-    &[selected] {
-      & *, & .urlbarView-title-separator::before {
-        color: ${base00-hex} !important;
-      }
+#zen-media-controls-toolbar {
+  & #zen-media-progress-bar {
+    &::-moz-range-track {
+      background: #${base02} !important;
     }
   }
+}
 
-
-  #zenEditBookmarkPanelFaviconContainer {
-    background: #${base00-hex} !important;
-  }
-
-  #zen-media-controls-toolbar {
-    & #zen-media-progress-bar {
-      &::-moz-range-track {
-        background: #${base02-hex} !important;
-      }
-    }
-  }
-
-  #tabs-newtab-button {
-    &[in-urlbar] {
-      color: #${base00-hex} !important;
-    }
-  }
-
-  toolbar .toolbarbutton-1 {
-    &:is([in-urlbar])
+toolbar .toolbarbutton-1 {
+  &:not([disabled]) {
+    &:is([open], [checked])
       > :is(
         .toolbarbutton-icon,
         .toolbarbutton-text,
         .toolbarbutton-badge-stack
       ) {
-      fill: #${base00-hex};
-      color: #${base00-hex};
+      fill: #${base00};
     }
   }
+}
 
-  .identity-color-blue {
-    --identity-tab-color: #${base0D-hex} !important;
-    --identity-icon-color: #${base0D-hex} !important;
-  }
+.identity-color-blue {
+  --identity-tab-color: #${base0D} !important;
+  --identity-icon-color: #${base0D} !important;
+}
 
-  .identity-color-turquoise {
-    --identity-tab-color: #${base0C-hex} !important;
-    --identity-icon-color: #${base0C-hex} !important;
-  }
+.identity-color-turquoise {
+  --identity-tab-color: #${base0D} !important;
+  --identity-icon-color: #${base0D} !important;
+}
 
-  .identity-color-green {
-    --identity-tab-color: #${base0B-hex} !important;
-    --identity-icon-color: #${base0B-hex} !important;
-  }
+.identity-color-green {
+  --identity-tab-color: #${base0B} !important;
+  --identity-icon-color: #${base0B} !important;
+}
 
-  .identity-color-yellow {
-    --identity-tab-color: #${base0A-hex} !important;
-    --identity-icon-color: #${base0A-hex} !important;
-  }
+.identity-color-yellow {
+  --identity-tab-color: #${base0A} !important;
+  --identity-icon-color: #${base0A} !important;
+}
 
-  .identity-color-orange {
-    --identity-tab-color: #${base09-hex} !important;
-    --identity-icon-color: #${base09-hex} !important;
-  }
+.identity-color-orange {
+  --identity-tab-color: #${base09} !important;
+  --identity-icon-color: #${base09} !important;
+}
 
-  .identity-color-red {
-    --identity-tab-color: #${base08-hex} !important;
-    --identity-icon-color: #${base08-hex} !important;
-  }
+.identity-color-red {
+  --identity-tab-color: #${base08} !important;
+  --identity-icon-color: #${base08} !important;
+}
 
-  .identity-color-pink {
-    --identity-tab-color: #${base0E-hex} !important;
-    --identity-icon-color: #${base0E-hex} !important;
-  }
+.identity-color-pink {
+  --identity-tab-color: #${base0E} !important;
+  --identity-icon-color: #${base0E} !important;
+}
 
-  .identity-color-purple {
-    --identity-tab-color: #${base0F-hex} !important;
-    --identity-icon-color: #${base0F-hex} !important;
-  }
+.identity-color-purple {
+  --identity-tab-color: #c6a0f6 !important; /* Leftover from catpuccin */
+  --identity-icon-color: #c6a0f6 !important;
+}
 
-  hbox#titlebar {
-    background-color: #${base00-hex} !important;
-  }
+hbox#titlebar {
+  background-color: #${base00} !important;
+}
 
-  #zen-appcontent-navbar-container {
-    background-color: #${base00-hex} !important;
-  }
-
-  #contentAreaContextMenu menu,
-  menuitem,
-  menupopup {
-    color: #${base05-hex} !important;
-  }
+#zen-appcontent-navbar-container {
+  background-color: #${base00} !important;
+}
 ''

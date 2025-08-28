@@ -103,7 +103,7 @@ in {
         "zen.view.welcome-screen.seen" = true;
       };
 
-      # userChrome = import ./userChrome.nix {inherit colors;};
+      userChrome = import ./userChrome.nix {inherit colors;};
       # userContent = import ./userContent.nix {inherit colors;};
     };
   };
