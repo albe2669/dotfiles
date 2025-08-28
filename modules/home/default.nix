@@ -16,6 +16,7 @@
   guiutils = ./guiutils.nix;
   home = ./home.nix;
   hidpi = ./hidpi.nix;
+  hpgp = ./hpgp;
   hyprland = ./hyprland;
   i3 = ./i3;
   insomnia = ./insomnia.nix;

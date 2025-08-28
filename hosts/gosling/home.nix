@@ -7,6 +7,7 @@
     self.homeModules.dunst
     self.homeModules.fish
     self.homeModules.git
+    self.homeModules.hpgp
     self.homeModules.hyprland
     self.homeModules.kitty
     self.homeModules.lazydocker

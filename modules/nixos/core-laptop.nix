@@ -19,6 +19,8 @@
     logind.extraConfig = ''
       HoldoffTimeoutSec=0
     '';
+
+    upower.enable = true;
   };
 
   systemd.services.battery_check = {

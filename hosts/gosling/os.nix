@@ -8,6 +8,7 @@
   imports = [
     self.nixosModules.core-desktop
     self.nixosModules.core-laptop
+    self.nixosModules.bootloader-uefi
     self.nixosModules.nvidia
     self.nixosModules.nvidia-prime
     self.nixosModules.dynamic-libs
