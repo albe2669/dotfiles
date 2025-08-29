@@ -54,7 +54,7 @@
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
-      # inputs.hyprland.follows = "hyprland"; # Commented so it uses the cache
+      inputs.hyprland.follows = "hyprland";
     };
 
     astal = {
