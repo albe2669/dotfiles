@@ -24,7 +24,7 @@
 - [ ] Ensure the following works:
   - [x] Rofi
   - [x] Rofi powermenu
-  - [ ] Flameshot
+  - [x] Flameshot (replaced with grim+slurp+satty)
   - [ ] Xwayland app scaling
 - [ ] Fixes
   - [x] Fix scroll in the opposite direction
