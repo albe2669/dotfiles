@@ -2,7 +2,7 @@
   inputs,
   system,
   pkgs,
-  config,
+  self,
   ...
 }: {
   imports = [
@@ -10,12 +10,15 @@
     ./hyprpanel.nix
     ./hyprpaper.nix
     ./hyprlock.nix
+    self.homeModules.satty
   ];
 
   home.packages = with pkgs; [
     wev
     playerctl
     nwg-displays
+    grim
+    slurp
   ];
 
   wayland.windowManager.hyprland = {
@@ -73,9 +76,8 @@
           "$mod CONTROL, u, exec, hyprctl switchxkblayout current 0"
           "$mod CONTROL, d, exec, hyprctl switchxkblayout current 1"
 
-          ",        print, exec, flameshot gui -c -p ~/Pictures/FScreenshots"
-          "SHIFT,   print, exec, flameshot screen -c -p ~/Pictures/FScreenshots"
-          "CONTROL, print, exec, flameshot screen -p ~/Pictures/FScreenshots"
+          ",        print, exec, grim -g \"$(slurp)\" - | wl-copy"
+          "SHIFT,   print, exec, grim -g \"$(slurp)\" - | satty -f -"
 
           "$mod, d,       exec, rofi -show drun"
           "$mod SHIFT, d, exec, rofi -show p modi p:~/.config/rofi/rofi-power-menu -width 20 -lines 6"

@@ -35,6 +35,7 @@
   polybar = ./polybar;
   programs = ./programs.nix;
   python3 = ./python3.nix;
+  satty = ./satty.nix;
   rofi = ./rofi;
   sioyek = ./sioyek;
   spacedrive = ./spacedrive.nix;
