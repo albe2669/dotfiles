@@ -24,10 +24,13 @@
 
     fonts = {
       serif = config.stylix.fonts.monospace;
-      sansSerif = config.stylix.fonts.monospace;
-      monospace = {
+      sansSerif = {
         package = pkgs.nerd-fonts.iosevka;
         name = "Iosevka Nerd Font";
+      };
+      monospace = {
+        package = pkgs.nerd-fonts.iosevka;
+        name = "Iosevka Nerd Font Mono";
       };
     };
   };

@@ -1,5 +1,6 @@
-{...}: let
+{config, pkgs, ...}: let
   # extraRightModules = if services.tlp.enable then [ "battery" ] else [];
+  inherit (config.stylix) fonts;
 in {
   programs.hyprpanel = {
     enable = true;
@@ -16,7 +17,7 @@ in {
           "*" = {
             left = ["dashboard" "notifications" "clock" "systray"];
             middle = ["media" "workspaces"];
-            right = ["volume" "microphone" "bluetooth" "network" "ram" "cpu" "cputemp" "storage" "battery" "kbinput"]; # ++ extraRightModules;
+            right = ["volume" "microphone" "bluetooth" "network" "hyprsunset" "ram" "cpu" "cputemp" "storage" "battery" "kbinput"]; # ++ extraRightModules;
           };
         };
 
@@ -54,7 +55,7 @@ in {
         bar.transparent = true;
 
         font = {
-          name = "CaskaydiaCove NF";
+          name = "JetBrainsMono Nerd Font Mono";
           size = "14px";
         };
       };

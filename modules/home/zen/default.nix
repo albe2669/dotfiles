@@ -92,9 +92,6 @@ in {
       };
 
       settings = {
-        "font.name.monospace.x-western" = fonts.monospace.name;
-        "font.name.sans-serif.x-western" = fonts.sansSerif.name;
-        "font.name.serif.x-western" = fonts.serif.name;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.search.suggest.enabled" = true;
         "browser.tabs.closeWindowWithLastTab" = false;

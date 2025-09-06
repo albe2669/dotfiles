@@ -14,12 +14,12 @@
     - [x] hyprpaper for wallpaper
     - [x] hypridle for idle
     - [ ] xdg-desktop-portal-hyprland
-    - [ ] hyprsunset for blue light filter
+    - [x] hyprsunset for blue light filter
     - [ ] hyprpolkitagent for polkit authentication
     - [ ] split-monitor-workspaces?
 - [ ] Configure replacement services
   - [x] Replace PulseAudio with Pipewire
-  - [ ] Replace redshift with hyprsunset
+  - [x] Replace redshift with hyprsunset
   - [x] Replace clipboard with wl-clipboard (possibly find an alternative for the xserver)
 - [ ] Ensure the following works:
   - [x] Rofi

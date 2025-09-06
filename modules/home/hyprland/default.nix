@@ -11,6 +11,7 @@
     ./hyprpaper.nix
     ./hyprlock.nix
     self.homeModules.satty
+    ./hyprsunset.nix
   ];
 
   home.packages = with pkgs; [
