@@ -1,10 +1,28 @@
 return {
-  server_name = "java_language_server",
+  dependencies = {
+    {
+      "nvim-java/nvim-java",
+    },
+  },
+  server_name = "",
   setup = function(on_attach)
-    local lspconfig = require("lspconfig")
+    require("java").setup()
 
-    lspconfig["java_language_server"].setup({
+    require("lspconfig")["jdtls"].setup({
       on_attach = on_attach,
+      settings = {
+        java = {
+          configuration = {
+            runtimes = {
+              {
+                name = "JavaSE-17",
+                path = "/etc/profiles/per-user/goose/bin/java",
+                default = true,
+              }
+            }
+          }
+        }
+      }
     })
   end
 }

@@ -28,7 +28,6 @@ local servers = lu.load_servers({
   "c-server",
   "clojure-server",
   "cmake-server",
-  "csharp-server",
   "dagger-server",
   "eslint-server",
   "go-server",
@@ -52,7 +51,7 @@ local servers = lu.load_servers({
 for _, server in pairs(servers) do
   if type(server.server_name) == "table" then
     lu.merge_arrays(opts.ensure_installed, server.server_name)
-  else
+  elseif server.server_name ~= "" then
     table.insert(opts.ensure_installed, server.server_name)
   end
 
@@ -92,7 +91,7 @@ return {
       end
     end,
     init = function()
-      hide_lspconfig_messages()
+      -- hide_lspconfig_messages()
     end
   }
 }
