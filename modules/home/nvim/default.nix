@@ -26,6 +26,7 @@ in {
       # csharp-ls
       # roslyn-ls
       jdt-language-server
+      google-java-format
     ]
     ++ normalPackages;
 

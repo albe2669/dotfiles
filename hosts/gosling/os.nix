@@ -4,7 +4,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   imports = [
     self.nixosModules.core-desktop
     self.nixosModules.core-laptop
@@ -16,7 +17,7 @@
     self.nixosModules.hidpi
     self.nixosModules.bluetooth
     self.nixosModules.qemu
-    self.nixosModules.tailscale
+    # self.nixosModules.tailscale
     self.nixosModules.wireless
 
     inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
