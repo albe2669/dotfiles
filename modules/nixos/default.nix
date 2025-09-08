@@ -5,6 +5,7 @@
 
   home = ./home.nix;
 
+  battery = ./battery.nix;
   bootloader = ./bootloader.nix;
   bootloader-uefi = ./bootloader-uefi.nix;
   libs = ./libs.nix;
@@ -24,7 +25,6 @@
   security = ./security.nix;
   shell = ./shell.nix;
   tailscale = ./tailscale.nix;
-  tlp = ./tlp.nix;
   virtualbox = ./virtualbox.nix;
   wireless = ./wireless.nix;
   xdg = ./xdg.nix;

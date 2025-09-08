@@ -7,7 +7,7 @@
   imports = [
     # Also included by default in core-server
     self.nixosModules.power
-    self.nixosModules.tlp
+    self.nixosModules.battery
   ];
 
   services = {
