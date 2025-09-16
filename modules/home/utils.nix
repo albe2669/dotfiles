@@ -11,6 +11,7 @@
     gh
     gnumake
     jq
+    pre-commit
 
     # Convenience
     fd
