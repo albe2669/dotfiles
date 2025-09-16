@@ -41,15 +41,18 @@ function fish_prompt
   set -l up (color_section $green "┖")
  
   set -l name (section $green $USER)
+  set -l host (section $green $hostname)
   set -l time (section $green (date "+%H:%M:%S"))
   set -l vcs (create_vcs $green) 
   set -l working_dir (create_working_dir $green)
     
-  printf "%s%s%s%s\n%s%s" \
+  printf "%s%s%s%s%s\n%s%s%s" \
     $down \
     $name \
+    $host \
     $time \
     $vcs \
+    $up \
     $working_dir \
     (color_section $green "> ")
 end
