@@ -4,8 +4,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   imports = [
     self.nixosModules.core-desktop
     self.nixosModules.core-laptop

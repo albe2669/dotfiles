@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   # see this post: https://discourse.nixosstag.fcio.net/t/what-is-the-best-option-for-power-management/63406/2
 
   services = {

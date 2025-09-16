@@ -52,7 +52,6 @@
 
       exec-once = [
         "nm-applet"
-        "hyprpanel"
       ];
 
       windowrule = [

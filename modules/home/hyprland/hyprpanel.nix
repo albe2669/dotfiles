@@ -1,4 +1,8 @@
-{config, pkgs, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   # extraRightModules = if services.tlp.enable then [ "battery" ] else [];
   inherit (config.stylix) fonts;
 in {
