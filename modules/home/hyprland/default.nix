@@ -36,6 +36,8 @@
         touchpad = {
           natural_scroll = true;
         };
+
+        follow_mouse = 2; # Cursor focus will be detached from keyboard focus. Clicking on a window will move keyboard focus to that window.
       };
 
       general = {
@@ -56,6 +58,9 @@
 
       windowrule = [
         "minsize 50% 80%, class:jetbrains-rider"
+        "size 20% 40%, class:(jetbrains-)(.*), title:^$, initialTitle:^$, floating:1"
+        "center, class:(jetbrains-)(.*), title:^$, initialTitle:^$, floating:1"
+        "center, class:(jetbrains-)(.*), initialTitle:(.+), floating:1"
       ];
 
       "$mod" = "SUPER";
