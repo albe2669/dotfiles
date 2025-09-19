@@ -5,6 +5,7 @@
 }: {
   home.packages = with pkgs; [
     bfg-repo-cleaner
+    pre-commit
   ];
 
   programs.git = {
