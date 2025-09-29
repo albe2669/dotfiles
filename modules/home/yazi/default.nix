@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   stylix.targets.yazi.enable = true;
 
   home.packages = with pkgs-unstable; [
@@ -55,11 +56,20 @@
       open.prepend_rules = [
         {
           mime = "image/*";
-          use = ["open" "zen" "reveal"];
+          use = [
+            "open"
+            "zen"
+            "reveal"
+          ];
         }
         {
           mime = "application/pdf";
-          use = ["zen" "zathura" "open" "reveal"];
+          use = [
+            "zen"
+            "zathura"
+            "open"
+            "reveal"
+          ];
         }
       ];
 
