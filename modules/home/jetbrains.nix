@@ -26,6 +26,8 @@
         "com.github.catppuccin.jetbrains"
         "com.github.catppuccin.jetbrains_icons"
         "com.intellij.lang.jsgraphql"
+        "com.wakatime.intellij.plugin"
+        "com.github.lppedd.idea-conventional-commit"
       ]);
 in {
   home.packages = with pkgs-unstable; [
