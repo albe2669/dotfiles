@@ -21,6 +21,8 @@ build:
 rebuild:
 	sudo nixos-rebuild switch --show-trace --flake .#$(host)
 
+upgrade: update rebuild
+
 vm:
 	rm -rf result
 	rm -f $(host).qcow2
