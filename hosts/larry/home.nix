@@ -3,6 +3,7 @@
     self.homeModules.home
     self.homeModules.ags
     self.homeModules.alacritty
+    self.homeModules.azure-cli
     self.homeModules.betterlockscreen
     self.homeModules.dunst
     self.homeModules.fish
@@ -38,6 +39,7 @@
     self.homeModules.work
     self.homeModules.zen
     self.homeModules.yazi
+    self.homeModules.spicetify
 
     {
       wayland.windowManager.hyprland = {

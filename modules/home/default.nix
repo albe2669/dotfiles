@@ -2,6 +2,7 @@
   ags = ./ags;
   alacritty = ./alacritty;
   anytype = ./anytype.nix;
+  azure-cli = ./azure-cli.nix;
   betterlockscreen = ./betterlockscreen;
   bluetooth = ./bluetooth.nix;
   courses = ./courses;

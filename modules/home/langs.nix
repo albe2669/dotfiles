@@ -35,7 +35,5 @@
     # AI
     pkgs-unstable.claude-code
     pkgs-unstable.gemini-cli
-
-    azure-cli
   ];
 }
