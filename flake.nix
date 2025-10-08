@@ -76,6 +76,11 @@
     nix-jetbrains-plugins = {
       url = "github:theCapypara/nix-jetbrains-plugins";
     };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:

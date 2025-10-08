@@ -39,6 +39,7 @@
   rofi = ./rofi;
   sioyek = ./sioyek;
   spacedrive = ./spacedrive.nix;
+  spicetify = ./spicetify.nix;
   tex = ./tex.nix;
   tmux = ./tmux.nix;
   todo = ./todo.nix;
