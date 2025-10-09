@@ -47,7 +47,7 @@
       opener = {
         zen = [
           {
-            run = "zen-beta '$@'";
+            run = "zen-beta \"$@\"";
             desc = "Zen";
           }
         ];
