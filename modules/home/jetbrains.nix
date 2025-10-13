@@ -28,6 +28,7 @@
         "com.intellij.lang.jsgraphql"
         "com.wakatime.intellij.plugin"
         "com.github.lppedd.idea-conventional-commit"
+        "org.intellij.plugins.hcl"
       ]);
 in {
   home.packages = with pkgs-unstable; [
