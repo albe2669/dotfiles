@@ -29,7 +29,7 @@
     enable = lib.mkDefault true;
     settings = {
       X11Forwarding = lib.mkDefault true;
-      PermitRootLogin = lib.mkDefault "no";
+      PermitRootLogin = lib.mkForce "no";
       PasswordAuthentication = lib.mkDefault false;
     };
     openFirewall = lib.mkDefault true;

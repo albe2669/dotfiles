@@ -15,7 +15,10 @@ with config.opts; let
 
       {
         # Override conflicting options for installer environment
-        services.openssh.settings.PermitRootLogin = lib.mkForce "yes";
+        services.openssh.settings.PermitRootLogin = lib.mkOverride 10 "yes";
+
+        # Disable GRUB for the installer ISO (the ISO uses its own bootloader)
+        boot.loader.grub.enable = lib.mkForce false;
       }
     ];
   };
