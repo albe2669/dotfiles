@@ -9,6 +9,7 @@
     self.nixosModules.nvidia
     self.nixosModules.dynamic-libs
     self.nixosModules.qemu
+    self.nixosModules.bootloader-uefi
 
     # nixos-hardware
     # nixos-hardware/tree/master/common/gpu/nvidia/pascal
