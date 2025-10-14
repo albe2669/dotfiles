@@ -1,9 +1,7 @@
 return {
   server_name = "texlab",
   setup = function(on_attach)
-    local lspconfig = require("lspconfig")
-
-    lspconfig["texlab"].setup({
+    vim.lsp.config("texlab", {
       on_attach = on_attach,
     })
   end

@@ -1,13 +1,11 @@
 return {
   server_name = { "terraformls", "tflint" },
   setup = function(on_attach)
-    local lspconfig = require("lspconfig")
-
-    lspconfig["terraformls"].setup({
+    vim.lsp.config("terraformls", {
       on_attach = on_attach
     })
 
-    lspconfig["tflint"].setup({
+    vim.lsp.config("tflint", {
       on_attach = on_attach
     })
   end,

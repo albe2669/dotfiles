@@ -1,9 +1,7 @@
 return {
   server_name = { "jsonls" },
   setup = function(on_attach)
-    local lspconfig = require('lspconfig')
-
-    lspconfig['jsonls'].setup({
+    vim.lsp.config('jsonls', {
       on_attach = on_attach,
       settings = {
         json = {
@@ -44,6 +42,6 @@ return {
         }
       },
     })
-    lspconfig['emmet_language_server'].setup({ on_attach = on_attach })
+    vim.lsp.config('emmet_language_server', { on_attach = on_attach })
   end
 }

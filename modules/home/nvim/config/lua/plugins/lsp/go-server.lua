@@ -1,13 +1,11 @@
 return {
   server_name = { "gopls", "golangci_lint_ls" },
   setup = function(on_attach)
-    local lspconfig = require("lspconfig")
-
-    lspconfig["gopls"].setup({
+    vim.lsp.config("gopls", {
       on_attach = on_attach,
     })
 
-    lspconfig["golangci_lint_ls"].setup({
+    vim.lsp.config("golangci_lint_ls", {
       on_attach = on_attach,
       init_options = {
         command = {

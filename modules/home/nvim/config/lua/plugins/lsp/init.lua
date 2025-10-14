@@ -20,6 +20,8 @@ local opts = {
 
 local dependencies = {
   "williamboman/mason.nvim",
+  -- Note: We keep neovim/nvim-lspconfig for the LSP configs (now in lsp/ directory)
+  -- but we use vim.lsp.config() instead of require('lspconfig') framework
   "neovim/nvim-lspconfig",
 }
 
@@ -37,11 +39,12 @@ local servers = lu.load_servers({
   "latex-server",
   "lua-server",
   "nix-server",
+  "opentofu-server",
   "python-server",
   "rs-server",
   "svelte-server",
   "tailwindcss-server",
-  "terraform-server",
+  -- "terraform-server",
   "ts-server",
   "vue-server",
   "yaml-server",
@@ -60,17 +63,7 @@ for _, server in pairs(servers) do
   end
 end
 
--- Hide lspconfig messages
-local hide_lspconfig_messages = function()
-  local notify = vim.notify
-  vim.notify = function(msg, ...)
-    if msg:match("%[lspconfig%]") then
-      return
-    end
-
-    notify(msg, ...)
-  end
-end
+-- Note: We no longer hide lspconfig messages since we're using vim.lsp.config() directly
 
 return {
   {
@@ -89,9 +82,6 @@ return {
       for _, server in pairs(servers) do
         server.setup(lu.on_attach)
       end
-    end,
-    init = function()
-      -- hide_lspconfig_messages()
     end
   }
 }

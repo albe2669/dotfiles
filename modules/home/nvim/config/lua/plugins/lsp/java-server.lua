@@ -26,7 +26,7 @@ return {
       -- ]])
     end
 
-    require("lspconfig")["jdtls"].setup({
+    vim.lsp.config("jdtls", {
       on_attach = java_on_attach,
       settings = {
         java = {

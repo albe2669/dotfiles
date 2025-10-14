@@ -1,9 +1,7 @@
 return {
   server_name = "lua_ls",
   setup = function(on_attach)
-    local lspconfig = require("lspconfig")
-
-    lspconfig["lua_ls"].setup({
+    vim.lsp.config("lua_ls", {
       on_attach = on_attach,
       settings = {
         Lua = {

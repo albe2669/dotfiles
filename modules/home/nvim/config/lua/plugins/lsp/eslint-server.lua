@@ -1,11 +1,9 @@
 return {
   server_name = "eslint",
   setup = function(on_attach)
-    local lspconfig = require("lspconfig")
-
-    lspconfig["eslint"].setup({
-      root_dir = lspconfig.util.root_pattern(".eslintrc", ".eslintrc.js", "eslint.config.js", ".eslintrc.json",
-        ".eslintrc.yml", ".eslintrc.yaml"),
+    vim.lsp.config("eslint", {
+      root_markers = { ".eslintrc", ".eslintrc.js", "eslint.config.js", ".eslintrc.json",
+        ".eslintrc.yml", ".eslintrc.yaml" },
       on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = true
         client.server_capabilities.documentRangeFormattingProvider = true

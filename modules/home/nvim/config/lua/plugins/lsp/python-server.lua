@@ -1,12 +1,10 @@
 return {
   server_name = { "basedpyright", "ruff" },
   setup = function(on_attach)
-    local lspconfig = require("lspconfig")
-
-    lspconfig["basedpyright"].setup({
+    vim.lsp.config("basedpyright", {
       on_attach = on_attach
     })
-    lspconfig["ruff"].setup({
+    vim.lsp.config("ruff", {
       on_attach = on_attach
     })
   end,

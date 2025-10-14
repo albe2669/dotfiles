@@ -6,9 +6,8 @@ local opts = {
     enable_clippy = true,
   },
 
-  -- all the opts to send to nvim-lspconfig
-  -- these override the defaults set by rust-tools.nvim
-  -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+  -- LSP server configuration
+  -- see https://rust-analyzer.github.io/manual.html#configuration
   server = {
     default_settings = {
       -- to enable rust-analyzer settings visit:

@@ -12,7 +12,6 @@ return {
     }
   },
   setup = function(on_attach)
-    local lspconfig = require("lspconfig")
     print("C# server setup called")
 
     vim.lsp.config("roslyn", {

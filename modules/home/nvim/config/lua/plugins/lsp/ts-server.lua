@@ -3,7 +3,7 @@ return {
   dependencies = {
     {
       "pmizio/typescript-tools.nvim",
-      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      dependencies = { "nvim-lua/plenary.nvim" },
     }
   },
   setup = function(on_attach)
