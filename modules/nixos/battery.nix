@@ -22,7 +22,7 @@
         PLATFORM_PROFILE_ON_AC = "performance";
         PLATFORM_PROFILE_ON_BAT = "power";
 
-        START_CHARGE_THRESH_BAT0 = 40;
+        # START_CHARGE_THRESH_BAT0 = 40;
         STOP_CHARGE_THRESH_BAT0 = 80;
 
         CPU_MIN_PERF_ON_AC = 0;
