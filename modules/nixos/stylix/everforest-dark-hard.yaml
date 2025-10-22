@@ -1,0 +1,46 @@
+system: "base16"
+name: "Everforest Dark Hard"
+author: "Sainnhe Park (https://github.com/sainnhe)"
+variant: "dark"
+palette:
+  base00: "#272e33" # bg0,       palette1 dark
+  base01: "#2e383c" # bg1,       palette1 dark
+  base02: "#414b50" # bg3,       palette1 dark
+  base03: "#859289" # grey1,     palette2 dark
+  base04: "#9da9a0" # grey2,     palette2 dark
+  base05: "#d3c6aa" # fg,        palette2 dark
+  base06: "#e4e1cd" # bg3,       palette1 light
+  base07: "#fdf6e3" # bg0,       palette1 light
+
+  base08: "#7fbbb3" # blue
+  base09: "#d699b6" # peach
+  base0A: "#dbbc7f" # yellow
+  base0B: "#83c092" # green
+  base0C: "#e69875" # orange
+  base0D: "#a7c080" # light green
+  base0E: "#e67e80" # red
+  base0F: "#4c3743" # maroon
+
+# system: "base16"
+# name: "Catppuccin Mocha"
+# author: "https://github.com/catppuccin/catppuccin"
+# variant: "dark"
+# palette:
+#   base00: "#1e1e2e" # base
+#   base01: "#181825" # mantle
+#   base02: "#313244" # surface0
+#   base03: "#45475a" # surface1
+#   base04: "#585b70" # surface2
+#   base05: "#cdd6f4" # text
+#   base06: "#f5e0dc" # rosewater
+#   base07: "#b4befe" # lavender
+#
+#   base08: "#f38ba8" # red
+#   base09: "#fab387" # peach
+#   base0A: "#f9e2af" # yellow
+#   base0B: "#a6e3a1" # green
+#   base0C: "#94e2d5" # teal
+#   base0D: "#89b4fa" # blue
+#   base0E: "#cba6f7" # mauve
+#   base0F: "#f2cdcd" # flamingo
+#

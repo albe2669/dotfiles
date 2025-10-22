@@ -14,7 +14,7 @@
   nvidia-prime = ./nvidia-prime.nix;
   nvidia = ./nvidia.nix;
   state = ./state.nix;
-  stylix = ./stylix.nix;
+  stylix = ./stylix;
   bluetooth = ./bluetooth.nix;
   docker = ./docker.nix;
   pipewire = ./pipewire.nix;
