@@ -6,14 +6,14 @@
 }: {
   imports = [
     self.nixosModules.core-desktop
-    self.nixosModules.nvidia
+    self.nixosModules.amd
     self.nixosModules.dynamic-libs
     self.nixosModules.qemu
     self.nixosModules.bootloader-uefi
 
     # nixos-hardware
-    # nixos-hardware/tree/master/common/gpu/nvidia/pascal
-    # nixos-hardware/blob/master/common/cpu/intel/skylake
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-gpu-amd
   ];
 
   networking.hostName = config.opts.info.name; # Define your hostname.

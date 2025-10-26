@@ -14,7 +14,7 @@ in {
 
     diskPath = lib.mkOption {
       type = lib.types.path;
-      default = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B7682B1C6A7";
+      default = "/dev/disk/by-id/nvme-WD_Blue_SN5000_500GB_25320W805731";
       description = "Path to the disk used for installation";
     };
   };

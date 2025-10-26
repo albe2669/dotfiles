@@ -5,6 +5,7 @@
 
   home = ./home.nix;
 
+  amd = ./amd.nix;
   battery = ./battery.nix;
   bootloader = ./bootloader.nix;
   bootloader-uefi = ./bootloader-uefi.nix;
