@@ -16,5 +16,6 @@
 
   hm.home.packages = with pkgs-unstable; [
     pwvucontrol
+    easyeffects
   ];
 }
