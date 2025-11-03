@@ -1,9 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     # Tools
     bat
     eza
     gnutar
+    hyperfine
     ripgrep
     unzip
 
