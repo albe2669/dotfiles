@@ -12,6 +12,7 @@
     self.nixosModules.storage
     self.nixosModules.security
     self.nixosModules.shell
+    self.nixosModules.storage
     self.nixosModules.xdg
 
     self.nixosModules.fonts

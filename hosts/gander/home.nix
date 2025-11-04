@@ -20,7 +20,7 @@
     self.homeModules.zathura
     self.homeModules.langs
     self.homeModules.python3
-    self.homeModules.tex
+    # self.homeModules.tex
     self.homeModules.anytype
     self.homeModules.bluetooth
     self.homeModules.direnv
