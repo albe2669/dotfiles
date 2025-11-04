@@ -9,6 +9,7 @@
 
     self.nixosModules.pipewire
     self.nixosModules.printing
+    self.nixosModules.storage
     self.nixosModules.security
     self.nixosModules.shell
     self.nixosModules.xdg

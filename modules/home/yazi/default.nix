@@ -3,8 +3,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   stylix.targets.yazi.enable = true;
 
   home.packages = with pkgs-unstable; [
