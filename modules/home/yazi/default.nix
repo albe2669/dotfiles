@@ -9,7 +9,7 @@
   home.packages = with pkgs-unstable; [
     exiftool
     mediainfo
-    poppler_utils
+    poppler-utils
     ueberzugpp
     dragon-drop
     wl-clipboard

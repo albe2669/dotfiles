@@ -32,7 +32,7 @@
 in {
   home.packages = with pkgs-unstable; [
     uv
-    poppler_utils
+    poppler-utils
 
     ((python3.withPackages python-packages).override (args: {ignoreCollisions = true;}))
   ];
