@@ -37,7 +37,8 @@
           natural_scroll = true;
         };
 
-        follow_mouse = 2; # Cursor focus will be detached from keyboard focus. Clicking on a window will move keyboard focus to that window.
+        follow_mouse = 1;
+        mouse_refocus = false;
       };
 
       general = {
@@ -61,6 +62,7 @@
         "size 20% 40%, class:(jetbrains-)(.*), title:^$, initialTitle:^$, floating:1"
         "center, class:(jetbrains-)(.*), title:^$, initialTitle:^$, floating:1"
         "center, class:(jetbrains-)(.*), initialTitle:(.+), floating:1"
+        "noinitialfocus, class:(jetbrains-)(.*), initialTitle:(.+), floating:1"
       ];
 
       "$mod" = "SUPER";
