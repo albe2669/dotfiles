@@ -37,7 +37,6 @@
   hyprland = ./hyprland.nix;
   i3 = ./i3.nix;
   programs = ./programs.nix;
-  storage = ./storage.nix;
   system-packages = ./system-packages.nix;
   touchpad = ./touchpad.nix;
   user-groups = ./user-groups.nix;
