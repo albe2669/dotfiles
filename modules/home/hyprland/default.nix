@@ -20,6 +20,7 @@
     nwg-displays
     grim
     slurp
+    wayfreeze
   ];
 
   wayland.windowManager.hyprland = {
@@ -83,7 +84,7 @@
           "$mod CONTROL, u, exec, hyprctl switchxkblayout current 0"
           "$mod CONTROL, d, exec, hyprctl switchxkblayout current 1"
 
-          ",        print, exec, grim -g \"$(slurp)\" - | wl-copy"
+          ",        print, exec, wayfreeze & PID=$!; sleep .1; grim -g \"$(slurp)\" - | wl-copy; kill $PID"
           "SHIFT,   print, exec, grim -g \"$(slurp)\" - | satty -f -"
 
           "$mod, d,       exec, rofi -show drun"
