@@ -32,6 +32,7 @@ local servers = lu.load_servers({
   "cmake-server",
   "dagger-server",
   "eslint-server",
+  "erlang-server",
   "go-server",
   "graphql-server",
   -- "java-server",

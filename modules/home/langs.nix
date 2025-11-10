@@ -2,7 +2,8 @@
   pkgs,
   pkgs-unstable,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     nodejs_22
 
@@ -35,5 +36,8 @@
     # AI
     pkgs-unstable.claude-code
     pkgs-unstable.gemini-cli
+
+    # Erlang
+    erlang_28
   ];
 }
