@@ -46,6 +46,7 @@
   utils = ./utils.nix;
   vscode = ./vscode.nix;
   wallpapers = ./wallpapers;
+  walker = ./walker.nix;
   work = ./work.nix;
   yaak = ./yaak.nix;
   yazi = ./yazi;

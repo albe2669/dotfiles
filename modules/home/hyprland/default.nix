@@ -87,7 +87,7 @@
           ",        print, exec, wayfreeze & PID=$!; sleep .1; grim -g \"$(slurp)\" - | wl-copy; kill $PID"
           "SHIFT,   print, exec, grim -g \"$(slurp)\" - | satty -f -"
 
-          "$mod, d,       exec, rofi -show drun"
+          "$mod, d,       exec, nc -U /run/user/1000/walker/walker.sock"
           "$mod SHIFT, d, exec, rofi -show p modi p:~/.config/rofi/rofi-power-menu -width 20 -lines 6"
 
           "$mod, j,     movefocus, d"
