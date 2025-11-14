@@ -5,6 +5,7 @@
 
   home = ./home.nix;
 
+  "1password" = ./1password.nix;
   amd = ./amd.nix;
   battery = ./battery.nix;
   bootloader = ./bootloader.nix;
