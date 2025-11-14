@@ -1,7 +1,10 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  self,
+  ...
+}: {
   imports = [
-    ./insomnia.nix
+    self.homeModules.yaak
   ];
 
   home.packages = with pkgs; [

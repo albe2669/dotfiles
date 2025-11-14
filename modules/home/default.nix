@@ -20,7 +20,6 @@
   hpgp = ./hpgp;
   hyprland = ./hyprland;
   i3 = ./i3;
-  insomnia = ./insomnia.nix;
   jetbrains = ./jetbrains.nix;
   k8 = ./k8.nix;
   kitty = ./kitty;
@@ -48,6 +47,7 @@
   vscode = ./vscode.nix;
   wallpapers = ./wallpapers;
   work = ./work.nix;
+  yaak = ./yaak.nix;
   yazi = ./yazi;
   zathura = ./zathura;
   zen = ./zen;
