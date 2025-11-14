@@ -14,6 +14,8 @@
     self.nixosModules.bluetooth
     self.nixosModules.wireless
 
+    self.nixosModules."1password"
+
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen
   ];
 
