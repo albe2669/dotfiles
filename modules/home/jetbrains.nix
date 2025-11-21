@@ -16,7 +16,7 @@
     ide = overrideIde jetbrains ide-name;
   in
     jetbrains.plugins.addPlugins ide ([
-        "github-copilot"
+        "github-copilot--your-ai-pair-programmer"
       ]
       ++ builtins.map (p: inputs.nix-jetbrains-plugins.plugins."${system}"."${ide.pname}"."${ide.version}"."${p}") [
         "IdeaVIM"
