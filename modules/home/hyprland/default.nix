@@ -59,11 +59,9 @@
       ];
 
       windowrule = [
-        "minsize 50% 80%, class:jetbrains-rider"
-        "size 20% 40%, class:(jetbrains-)(.*), title:^$, initialTitle:^$, floating:1"
-        "center, class:(jetbrains-)(.*), title:^$, initialTitle:^$, floating:1"
-        "center, class:(jetbrains-)(.*), initialTitle:(.+), floating:1"
-        "noinitialfocus, class:(jetbrains-)(.*), initialTitle:(.+), floating:1"
+        "match:class jetbrains-rider, min_size 50% 80%"
+        "match:class (jetbrains-)(.*), match:title ^$, match:initial_title ^$, match:float 1, center 1, size 20% 40%"
+        "match:class (jetbrains-)(.*), match:initial_title (.+), match:float 1, center 1"
       ];
 
       "$mod" = "SUPER";
