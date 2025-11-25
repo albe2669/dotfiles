@@ -41,6 +41,7 @@
     self.homeModules.zen
     self.homeModules.yazi
     self.homeModules.spicetify
+    self.homeModules.zellij
 
     {
       wayland.windowManager.hyprland = {

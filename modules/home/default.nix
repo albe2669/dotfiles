@@ -51,5 +51,6 @@
   yaak = ./yaak.nix;
   yazi = ./yazi;
   zathura = ./zathura;
+  zellij = ./zellij.nix;
   zen = ./zen;
 }
