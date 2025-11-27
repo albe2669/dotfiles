@@ -1,4 +1,5 @@
-{self, ...}: {
+{ self, ... }:
+{
   hm.imports = [
     self.homeModules.home
     self.homeModules.ags
@@ -36,9 +37,11 @@
     self.homeModules.guiutils
     self.homeModules.utils
     self.homeModules.vscode
+    self.homeModules.walker
     self.homeModules.work
     self.homeModules.zen
     self.homeModules.yazi
     self.homeModules.spicetify
+    self.homeModules.zellij
   ];
 }
