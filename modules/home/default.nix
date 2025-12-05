@@ -1,4 +1,5 @@
 {
+  advent-of-code = ./advent-of-code.nix;
   ags = ./ags;
   alacritty = ./alacritty;
   anytype = ./anytype.nix;

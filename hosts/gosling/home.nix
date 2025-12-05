@@ -1,7 +1,7 @@
-{ self, ... }:
-{
+{self, ...}: {
   hm.imports = [
     self.homeModules.home
+    self.homeModules.advent-of-code
     self.homeModules.ags
     self.homeModules.alacritty
     self.homeModules.betterlockscreen
