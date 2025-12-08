@@ -8,7 +8,7 @@
     self.nixosModules.core-server
 
     self.nixosModules.pipewire
-    self.nixosModules.printing
+    # self.nixosModules.printing
     self.nixosModules.storage
     self.nixosModules.security
     self.nixosModules.shell
