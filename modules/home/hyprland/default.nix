@@ -59,9 +59,28 @@
       ];
 
       windowrule = [
-        "match:class jetbrains-rider, min_size 50% 80%"
-        "match:class (jetbrains-)(.*), match:title ^$, match:initial_title ^$, match:float 1, center 1, size 20% 40%"
-        "match:class (jetbrains-)(.*), match:initial_title (.+), match:float 1, center 1"
+        # Stolen and rewritten to the new syntax from https://github.com/basecamp/omarchy/blob/master/default/hypr/apps/jetbrains.conf
+        # Fix splash screen showing in weird places and prevent annoying focus takeovers
+        "match:class ^(jetbrains-.*)$, match:title ^(splash)$, match:float true, tag +jetbrains-splash"
+        "match:tag jetbrains-splash, center on"
+        "match:tag jetbrains-splash, no_focus on"
+        "match:tag jetbrains-splash, border_size 0"
+
+        # Center popups and find windows
+        "match:class ^(jetbrains-.*), match:title ^()$, match:float 1, tag +jetbrains"
+        "match:tag jetbrains, center on"
+        # Enabling this makes it possible to provide input in popup dialogs (search window, new file, etc.)
+        "match:tag jetbrains, stay_focused on"
+        "match:tag jetbrains, border_size 0"
+        
+        # For some reason tag:jetbrains does not work for size rule
+        "match:class ^(jetbrains-.*), match:title ^()$, match:float true, size >50% >50%"
+
+        # Disable window flicker when autocomplete or tooltips appear
+        "match:class ^(jetbrains-.*)$, match:title ^(win.*)$, match:float true, no_initial_focus on"
+
+        # # Disable mouse focus
+        "match:class ^(jetbrains-.*)$, no_follow_mouse on"
       ];
 
       "$mod" = "SUPER";
