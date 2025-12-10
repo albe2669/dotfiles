@@ -19,10 +19,20 @@ local opts = {
           command = "clippy"
         },
         cargo = {
+          features = "all",
           buildScripts = {
             enable = true
           }
-        }
+        },
+        procMacro = {
+          ignored = {
+            leptos_macro = {
+              -- optional: --
+              -- "component",
+              "server",
+            },
+          },
+        },
       }
     }
   },

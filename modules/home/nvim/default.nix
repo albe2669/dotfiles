@@ -11,7 +11,6 @@
     lua5_1
     lua51Packages.luarocks
     lua-language-server
-    rust-analyzer
   ];
 in {
   home.packages = with pkgs-unstable;
@@ -27,6 +26,7 @@ in {
       # roslyn-ls
       jdt-language-server
       google-java-format
+    rust-analyzer
     ]
     ++ normalPackages;
 

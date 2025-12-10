@@ -11,10 +11,10 @@
     pkgs-unstable.golangci-lint
 
     # Rust
-    cargo
-    rustc
-    rustfmt
-    clippy
+    pkgs-unstable.cargo
+    pkgs-unstable.rustc
+    pkgs-unstable.rustfmt
+    pkgs-unstable.clippy
     openssl # openssl-sys
     pkg-config # openssl-sys
 
