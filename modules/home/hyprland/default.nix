@@ -43,16 +43,16 @@
       };
 
       general = {
-        layout = "master";
+        # layout = "master";
       };
 
       xwayland = {
         force_zero_scaling = true;
       };
 
-      master = {
-        orientation = "center";
-      };
+      # master = {
+      #   orientation = "center";
+      # };
 
       exec-once = [
         "nm-applet"
@@ -81,6 +81,8 @@
 
         # # Disable mouse focus
         "match:class ^(jetbrains-.*)$, no_follow_mouse on"
+
+        "match:class ^(Unity)$, match:title ^(UnityTooltipWindow)$, no_initial_focus on"
       ];
 
       "$mod" = "SUPER";
