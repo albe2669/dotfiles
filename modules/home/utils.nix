@@ -21,7 +21,7 @@
     bandwhich
     bottom
     procs
-    glxinfo
+    mesa-demos  # Renamed from glxinfo
     brightnessctl
   ];
 }

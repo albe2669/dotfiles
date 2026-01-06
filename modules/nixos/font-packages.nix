@@ -1,10 +1,9 @@
 {pkgs}: {
   packages = with pkgs; [
     # fonts
-    noto-fonts
+    noto-fonts  # Now includes noto-fonts-extra
     noto-fonts-cjk-sans
-    noto-fonts-emoji
-    noto-fonts-extra
+    noto-fonts-color-emoji  # Renamed from noto-fonts-emoji
 
     # nerd fonts
     nerd-fonts.fira-code

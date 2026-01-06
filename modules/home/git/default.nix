@@ -10,10 +10,13 @@
 
   programs.git = {
     enable = true;
-    userName = config.opts.variables.git.username;
-    userEmail = config.opts.variables.git.email;
 
-    extraConfig = {
+    settings = {
+      user = {
+        name = config.opts.variables.git.username;
+        email = config.opts.variables.git.email;
+      };
+
       pull.rebase = true;
       credential.helper = "store";
       init.defaultBranch = "master";

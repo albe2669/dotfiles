@@ -1,5 +1,5 @@
 final: prev: let
-  version = "2.0.13";
+  version = "2.0.76";
 in {
   claude-code = prev.claude-code.overrideAttrs (old: {
     inherit version;

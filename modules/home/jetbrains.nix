@@ -15,10 +15,8 @@
   createIde = jetbrains: ide-name: let
     ide = overrideIde jetbrains ide-name;
   in
-    jetbrains.plugins.addPlugins ide ([
-        "github-copilot--your-ai-pair-programmer"
-      ]
-      ++ builtins.map (p: inputs.nix-jetbrains-plugins.plugins."${system}"."${ide.pname}"."${ide.version}"."${p}") [
+    jetbrains.plugins.addPlugins ide (builtins.map (p: inputs.nix-jetbrains-plugins.plugins."${system}"."${ide.pname}"."${ide.version}"."${p}") [
+        # Note: github.copilot removed - not available via nix-jetbrains-plugins
         "IdeaVIM"
         "dev.turingcomplete.intellijdevelopertoolsplugins"
         "com.intellij.resharper.azure"

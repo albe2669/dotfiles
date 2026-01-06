@@ -16,9 +16,7 @@
     # TODO: This might horribly break if you ever switch to an AMD CPU
     thermald.enable = true;
 
-    logind.extraConfig = ''
-      HoldoffTimeoutSec=0
-    '';
+    logind.settings.Login.HoldoffTimeoutSec = 0;
 
     upower.enable = true;
   };
