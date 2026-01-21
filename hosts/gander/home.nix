@@ -45,10 +45,19 @@
 
     {
       wayland.windowManager.hyprland = {
-        settings.monitor = [
-          "HDMI-A-1,1920x1080@60.0,2560x0,1.0"
-          "DP-3,2560x1440@59.95,0x0,1.0"
-        ];
+        settings = {
+          monitor = [
+            "DP-1,2560x1440@59.95,3640x213,1.0"
+            "DP-2,2560x1440@119.88,1080x213,1.0"
+            "HDMI-A-2,1920x1080@60.0,0x0,1.0,transform,3"
+          ];
+
+          workspace = [
+            "1,monitor:DP-2,default:true"
+            "9,monitor:HDMI-A-2,default:true"
+            "2,monitor:DP-1,default:true"
+          ];
+        };
       };
     }
   ];
