@@ -6,7 +6,6 @@
     self.homeModules.dunst
     self.homeModules.fish
     self.homeModules.git
-    self.homeModules.hpgp
     self.homeModules.hyprland
     self.homeModules.kitty
     self.homeModules.lazydocker
@@ -25,6 +24,7 @@
     self.homeModules.gcloud
     self.homeModules.hidpi
     self.homeModules.libreoffice
+    self.homeModules.modelling
     self.homeModules.obs
     self.homeModules.jetbrains
     self.homeModules.php

@@ -16,7 +16,6 @@
   guiutils = ./guiutils.nix;
   home = ./home.nix;
   hidpi = ./hidpi.nix;
-  hpgp = ./hpgp;
   hyprland = ./hyprland;
   jetbrains = ./jetbrains.nix;
   k8 = ./k8.nix;
@@ -26,6 +25,7 @@
   lazydocker = ./lazydocker;
   lazygit = ./lazygit;
   libreoffice = ./libreoffice.nix;
+  modelling = ./modelling.nix;
   nixgl = ./nixgl.nix;
   nvim = ./nvim;
   obs = ./obs.nix;
