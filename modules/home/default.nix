@@ -31,6 +31,7 @@
   nixgl = ./nixgl.nix;
   nvim = ./nvim;
   obs = ./obs.nix;
+  opencode = ./opencode;
   php = ./php.nix;
   picom = ./picom;
   polybar = ./polybar;

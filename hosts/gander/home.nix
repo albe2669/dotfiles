@@ -28,6 +28,7 @@
     self.homeModules.hidpi
     self.homeModules.libreoffice
     self.homeModules.obs
+    self.homeModules.opencode
     self.homeModules.jetbrains
     self.homeModules.php
     self.homeModules.programs
