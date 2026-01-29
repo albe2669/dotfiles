@@ -3,7 +3,7 @@
     self.homeModules.home
     self.homeModules.advent-of-code
     self.homeModules.ags
-    self.homeModules.alacritty
+    self.homeModules.rio
     self.homeModules.betterlockscreen
     self.homeModules.dunst
     self.homeModules.fish

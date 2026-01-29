@@ -1,7 +1,7 @@
 {self, ...}: {
   hm.imports = [
     self.homeModules.home
-    self.homeModules.alacritty
+    self.homeModules.rio
     self.homeModules.betterlockscreen
     self.homeModules.dunst
     self.homeModules.fish

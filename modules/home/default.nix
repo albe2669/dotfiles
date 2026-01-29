@@ -1,7 +1,7 @@
 {
   advent-of-code = ./advent-of-code.nix;
   ags = ./ags;
-  alacritty = ./alacritty;
+  rio = ./rio;
   anytype = ./anytype.nix;
   azure-cli = ./azure-cli.nix;
   betterlockscreen = ./betterlockscreen;

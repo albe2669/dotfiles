@@ -86,7 +86,7 @@
       ];
 
       "$mod" = "SUPER";
-      "$terminal" = "alacritty";
+      "$terminal" = "rio";
       "$fileManager" = "nautilus";
 
       bind =

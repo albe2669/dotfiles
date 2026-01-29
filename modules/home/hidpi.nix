@@ -22,7 +22,7 @@ in {
       "Xft.dpi" = opts.variables.screen.dpi;
     };
 
-    programs.alacritty.settings.font.size = lib.mkForce 11;
+    programs.rio.settings.fonts.size = lib.mkForce 11;
 
     # home.file.".Xresources" = {
     #   text = ''
