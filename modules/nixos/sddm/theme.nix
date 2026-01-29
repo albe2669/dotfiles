@@ -42,22 +42,21 @@
       '';
     };
 
-  theme = themes.sugar-candy;
+  theme = themes.eucalyptus-drop;
   themeName = theme.pkg.name;
   packages = [(buildTheme theme.pkg)] ++ theme.runtimeDeps;
 
   themes = {
-    sugar-candy = {
+    eucalyptus-drop = {
       pkg = rec {
-        name = "sddm-sugar-candy";
-        version = "2b72ef6c6f720fe0ffde5ea5c7c48152e02f6c4f";
+        name = "sddm-eucalyptus-drop";
+        version = "0b82ca465b7dac6d7ff15ebaf1b2f26daba5d126";
 
         src = pkgs.fetchFromGitLab {
-          domain = "framagit.org";
-          owner = "MarianArlt";
+          owner = "Matt.Jolly";
           repo = "${name}";
           rev = "${version}";
-          sha256 = "sha256-XggFVsEXLYklrfy1ElkIp9fkTw4wvXbyVkaVCZq4ZLU=";
+          sha256 = "sha256-SUOqcK7fGb5OnWmB4Wenqr9PPiagYUoEHjLd5CM6fyk=";
         };
 
         nativeBuildInputs = with pkgs.libsForQt5.qt5; [
