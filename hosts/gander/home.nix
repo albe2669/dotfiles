@@ -41,7 +41,7 @@
     self.homeModules.work
     self.homeModules.zen
     self.homeModules.yazi
-    self.homeModules.spicetify
+    self.homeModules.spotify
     self.homeModules.zellij
 
     {

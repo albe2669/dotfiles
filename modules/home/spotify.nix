@@ -1,13 +1,17 @@
 {
   inputs,
   system,
+  pkgs-unstable,
   ...
 }: {
   imports = [
     inputs.spicetify-nix.homeManagerModules.default
   ];
 
-  stylix.targets.spicetify.enable = true;
+  stylix.targets = {
+    spicetify.enable = true;
+    spotify-player.enable = true;
+  };
 
   programs.spicetify = let
     spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
@@ -36,4 +40,8 @@
       ncsVisualizer
     ];
   };
+
+  home.packages = with pkgs-unstable; [
+    spotify-player
+  ];
 }
