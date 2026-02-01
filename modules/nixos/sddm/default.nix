@@ -6,16 +6,16 @@
   services = {
     xserver = {
       enable = true;
-      displayManager = {
-        lightdm.enable = false;
-        gdm.enable = false;
-      };
+      displayManager.lightdm.enable = false;
     };
 
-    displayManager.sddm = {
-      enable = true;
-      wayland = {
-        enable = false;
+    displayManager = {
+      gdm.enable = false;
+      sddm = {
+        enable = true;
+        wayland = {
+          enable = false;
+        };
       };
     };
   };
