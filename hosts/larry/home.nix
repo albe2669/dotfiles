@@ -4,7 +4,6 @@
     self.homeModules.ags
     self.homeModules.rio
     self.homeModules.azure-cli
-    self.homeModules.betterlockscreen
     self.homeModules.dunst
     self.homeModules.fish
     self.homeModules.git
@@ -13,7 +12,6 @@
     self.homeModules.lazydocker
     self.homeModules.lazygit
     self.homeModules.nvim
-    self.homeModules.polybar
     self.homeModules.rofi
     self.homeModules.sioyek
     self.homeModules.wallpapers

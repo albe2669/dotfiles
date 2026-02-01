@@ -36,7 +36,6 @@
   fonts = ./fonts.nix;
   hidpi = ./hidpi.nix;
   hyprland = ./hyprland.nix;
-  i3 = ./i3.nix;
   programs = ./programs.nix;
   system-packages = ./system-packages.nix;
   touchpad = ./touchpad.nix;

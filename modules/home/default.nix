@@ -4,7 +4,6 @@
   rio = ./rio;
   anytype = ./anytype.nix;
   azure-cli = ./azure-cli.nix;
-  betterlockscreen = ./betterlockscreen;
   bluetooth = ./bluetooth.nix;
   courses = ./courses;
   default = ./default.nix;
@@ -20,7 +19,6 @@
   hidpi = ./hidpi.nix;
   hpgp = ./hpgp;
   hyprland = ./hyprland;
-  i3 = ./i3;
   jetbrains = ./jetbrains.nix;
   k8 = ./k8.nix;
   kittykat = ./kittykat;
@@ -33,8 +31,6 @@
   obs = ./obs.nix;
   opencode = ./opencode;
   php = ./php.nix;
-  picom = ./picom;
-  polybar = ./polybar;
   programs = ./programs.nix;
   python3 = ./python3.nix;
   satty = ./satty.nix;
