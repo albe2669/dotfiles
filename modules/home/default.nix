@@ -23,7 +23,7 @@
   i3 = ./i3;
   jetbrains = ./jetbrains.nix;
   k8 = ./k8.nix;
-  kitty = ./kitty;
+  kittykat = ./kittykat;
   langs = ./langs.nix;
   lazydocker = ./lazydocker;
   lazygit = ./lazygit;

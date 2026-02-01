@@ -7,12 +7,12 @@
   openssl,
 }:
 rustPlatform.buildRustPackage rec {
-  pname = "kitty";
+  pname = "kittykat";
   version = "v0.9.0";
 
   src = fetchFromGitHub {
     owner = "avborup";
-    repo = pname;
+    repo = "kitty";
     rev = version;
     sha256 = "sha256-6/ednV6hpTObID8VgSxu0xw23DI9Njvz1UuGVWrQH0g=";
   };
@@ -24,9 +24,13 @@ rustPlatform.buildRustPackage rec {
 
   doCheck = false;
 
+  postInstall = ''
+    mv $out/bin/kitty $out/bin/kittykat
+  '';
+
   doInstallCheck = true;
   installCheckPhase = ''
-    $out/bin/kitty --help
+    $out/bin/kittykat --help
   '';
 
   meta = with lib; {
@@ -34,6 +38,6 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://github.com/avborup/kitty";
     license = with licenses; [mit];
     maintainers = ["Adrian Borup" "Albert Rise Nielsen"];
-    mainProgram = "kitty";
+    mainProgram = "kittykat";
   };
 }
