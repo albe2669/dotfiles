@@ -22,7 +22,7 @@ in {
       "Xft.dpi" = opts.variables.screen.dpi;
     };
 
-    programs.rio.settings.fonts.size = lib.mkForce 11;
+    stylix.fonts.sizes.terminal = lib.mkForce 11;
 
     # home.file.".Xresources" = {
     #   text = ''

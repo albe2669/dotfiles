@@ -1,7 +1,6 @@
 {self, ...}: {
   hm.imports = [
     self.homeModules.home
-    self.homeModules.rio
     self.homeModules.dunst
     self.homeModules.fish
     self.homeModules.git

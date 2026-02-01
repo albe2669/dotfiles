@@ -1,7 +1,6 @@
 {
   advent-of-code = ./advent-of-code.nix;
   ags = ./ags;
-  rio = ./rio;
   anytype = ./anytype.nix;
   azure-cli = ./azure-cli.nix;
   bluetooth = ./bluetooth.nix;
@@ -21,6 +20,7 @@
   hyprland = ./hyprland;
   jetbrains = ./jetbrains.nix;
   k8 = ./k8.nix;
+  kitty = ./kitty.nix;
   kittykat = ./kittykat;
   langs = ./langs.nix;
   lazydocker = ./lazydocker;

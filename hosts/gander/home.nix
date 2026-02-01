@@ -1,7 +1,6 @@
 {self, ...}: {
   hm.imports = [
     self.homeModules.home
-    self.homeModules.rio
     self.homeModules.azure-cli
     self.homeModules.dunst
     self.homeModules.fish

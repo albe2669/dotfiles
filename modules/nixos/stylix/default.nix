@@ -24,7 +24,10 @@
     };
 
     fonts = {
-      serif = config.stylix.fonts.monospace;
+      sizes = {
+        terminal = 11;
+      };
+
       sansSerif = {
         package = pkgs.nerd-fonts.iosevka;
         name = "Iosevka Nerd Font";
@@ -33,6 +36,7 @@
         package = pkgs.nerd-fonts.iosevka;
         name = "Iosevka Nerd Font Mono";
       };
+      serif = config.stylix.fonts.monospace;
     };
   };
 }

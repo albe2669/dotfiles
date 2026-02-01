@@ -2,7 +2,6 @@
   hm.imports = [
     self.homeModules.home
     self.homeModules.ags
-    self.homeModules.rio
     self.homeModules.azure-cli
     self.homeModules.dunst
     self.homeModules.fish

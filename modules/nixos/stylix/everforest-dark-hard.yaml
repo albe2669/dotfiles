@@ -3,23 +3,22 @@ name: "Everforest Dark Hard"
 author: "Sainnhe Park (https://github.com/sainnhe)"
 variant: "dark"
 palette:
-  base00: "#272e33" # bg0,       palette1 dark
-  base01: "#2e383c" # bg1,       palette1 dark
-  base02: "#414b50" # bg3,       palette1 dark
-  base03: "#859289" # grey1,     palette2 dark
-  base04: "#9da9a0" # grey2,     palette2 dark
-  base05: "#d3c6aa" # fg,        palette2 dark
-  base06: "#e4e1cd" # bg3,       palette1 light
-  base07: "#fdf6e3" # bg0,       palette1 light
-
-  base08: "#7fbbb3" # blue
-  base09: "#d699b6" # peach
-  base0A: "#dbbc7f" # yellow
-  base0B: "#83c092" # green
-  base0C: "#e69875" # orange
-  base0D: "#a7c080" # light green
-  base0E: "#e67e80" # red
-  base0F: "#4c3743" # maroon
+  base00: "#272e33" # background,             dark hard palette1
+  base01: "#2e383c" # alternative background, dark hard palette1
+  base02: "#414b50" # selection background,   dark hard palette1
+  base03: "#859289" # comments,               dark palette2, marked as comment text in everforest
+  base04: "#7a8478" # alternative text,       dark palette2, marked as foreground UI elements in everforest
+  base05: "#d3c6aa" # default text,           dark palette2
+  base06: "#5c6a72" # light foreground,       light hard palette1
+  base07: "#fffbef" # light background,       light hard palette1
+  base08: "#e67e80" # red,    dark palette2
+  base09: "#e69875" # orange
+  base0A: "#dbbc7f" # yellow, dark palette2
+  base0B: "#a7c080" # green,  dark palette2
+  base0C: "#83c092" # aqua/cyan
+  base0D: "#7fbbb3" # blue,   dark palette2
+  base0E: "#d699b6" # purple, dark palette2
+  base0F: "#4c3743" # brown
 
 # system: "base16"
 # name: "Catppuccin Mocha"

@@ -3,7 +3,6 @@
     self.homeModules.home
     self.homeModules.advent-of-code
     self.homeModules.ags
-    self.homeModules.rio
     self.homeModules.dunst
     self.homeModules.fish
     self.homeModules.git
