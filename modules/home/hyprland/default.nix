@@ -72,7 +72,7 @@
         # Enabling this makes it possible to provide input in popup dialogs (search window, new file, etc.)
         "match:tag jetbrains, stay_focused on"
         "match:tag jetbrains, border_size 0"
-        
+
         # For some reason tag:jetbrains does not work for size rule
         "match:class ^(jetbrains-.*), match:title ^()$, match:float true, size >50% >50%"
 

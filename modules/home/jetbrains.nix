@@ -16,19 +16,19 @@
     ide = overrideIde jetbrains ide-name;
   in
     jetbrains.plugins.addPlugins ide (builtins.map (p: inputs.nix-jetbrains-plugins.plugins."${system}"."${ide.pname}"."${ide.version}"."${p}") [
-        # Note: github.copilot removed - not available via nix-jetbrains-plugins
-        "IdeaVIM"
-        "dev.turingcomplete.intellijdevelopertoolsplugins"
-        "com.intellij.resharper.azure"
-        "mobi.hsz.idea.gitignore"
-        "com.github.catppuccin.jetbrains"
-        "com.github.catppuccin.jetbrains_icons"
-        "com.intellij.lang.jsgraphql"
-        "com.wakatime.intellij.plugin"
-        "com.github.lppedd.idea-conventional-commit"
-        "org.intellij.plugins.hcl"
-        "org.jetbrains.plugins.github"
-      ]);
+      # Note: github.copilot removed - not available via nix-jetbrains-plugins
+      "IdeaVIM"
+      "dev.turingcomplete.intellijdevelopertoolsplugins"
+      "com.intellij.resharper.azure"
+      "mobi.hsz.idea.gitignore"
+      "com.github.catppuccin.jetbrains"
+      "com.github.catppuccin.jetbrains_icons"
+      "com.intellij.lang.jsgraphql"
+      "com.wakatime.intellij.plugin"
+      "com.github.lppedd.idea-conventional-commit"
+      "org.intellij.plugins.hcl"
+      "org.jetbrains.plugins.github"
+    ]);
 in {
   home.packages = with pkgs-unstable; [
     (createIde jetbrains "rider")

@@ -1,4 +1,8 @@
-{pkgs-unstable, config, ...}: {
+{
+  pkgs-unstable,
+  config,
+  ...
+}: {
   home.packages = with pkgs-unstable; [
     opencode
   ];

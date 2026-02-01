@@ -26,7 +26,7 @@ in {
       # roslyn-ls
       jdt-language-server
       google-java-format
-    rust-analyzer
+      rust-analyzer
     ]
     ++ normalPackages;
 
