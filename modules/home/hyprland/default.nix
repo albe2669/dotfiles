@@ -83,6 +83,9 @@
         "match:class ^(jetbrains-.*)$, no_follow_mouse on"
 
         "match:class ^(Unity)$, match:title ^(UnityTooltipWindow)$, no_initial_focus on"
+
+        # Ueberzug(pp)
+        "match:class ^(ueberzug.*)$, float on, no_initial_focus on, no_anim on, no_shadow on, no_focus on, border_size 0"
       ];
 
       "$mod" = "SUPER";
