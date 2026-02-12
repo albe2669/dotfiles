@@ -29,6 +29,7 @@
   nixgl = ./nixgl.nix;
   nvim = ./nvim;
   obs = ./obs.nix;
+  ollama = ./ollama.nix;
   opencode = ./opencode;
   php = ./php.nix;
   programs = ./programs.nix;
