@@ -1,5 +1,12 @@
-# Make the host the one in /etc/hostname
+# Detect OS
+os != uname -s
+
+# Make the host the one in /etc/hostname (Linux) or scutil (macOS)
+ifeq ($(os),Darwin)
+host != scutil --get LocalHostName 2>/dev/null || hostname -s
+else
 host != cat /etc/hostname
+endif
 # If not found, use skein
 host ?= skein
 
@@ -16,10 +23,21 @@ update:
 	nix --extra-experimental-features "nix-command flakes" flake update
 
 build:
+ifeq ($(os),Darwin)
+	darwin-rebuild build --show-trace --flake .#$(host)
+else
 	sudo nixos-rebuild build --show-trace --flake .#$(host)
+endif
 
 rebuild:
+ifeq ($(os),Darwin)
+	darwin-rebuild switch --show-trace --flake .#$(host)
+else
 	sudo nixos-rebuild switch --show-trace --flake .#$(host)
+endif
+
+darwin-rebuild:
+	darwin-rebuild switch --show-trace --flake .#$(host)
 
 upgrade: update rebuild
 

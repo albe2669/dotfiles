@@ -34,6 +34,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nixgl = {
@@ -108,6 +113,8 @@
 
       systems = [
         "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
       ];
 
       perSystem = {

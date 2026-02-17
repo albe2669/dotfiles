@@ -2,17 +2,73 @@
   self,
   inputs,
   config,
+  lib,
   ...
 }: let
-  createNixosConfiguration = machine: system: specialArgs:
-    inputs.nixpkgs.lib.nixosSystem {
+  allHosts = [
+    "gander"
+    "gosling"
+    "skein"
+    "larry"
+    "nene"
+  ];
+
+  hostInfos = builtins.listToAttrs (map (host: {
+      name = host;
+      value = import ./${host}/info.nix;
+    })
+    allHosts);
+
+  isDarwinSystem = system: builtins.match ".*-darwin" system != null;
+
+  linuxHosts = lib.filterAttrs (_: info: !(isDarwinSystem info.system)) hostInfos;
+  darwinHosts = lib.filterAttrs (_: info: isDarwinSystem info.system) hostInfos;
+
+  mkInfoModule = info: {lib, ...}: {
+    options.opts.info = {
+      name = lib.mkOption {
+        type = lib.types.str;
+        default = info.name;
+        description = "System name";
+      };
+      system = lib.mkOption {
+        type = lib.types.str;
+        default = info.system;
+        description = "System architecture";
+      };
+    };
+  };
+
+  mkSpecialArgs = system: rec {
+    inherit self inputs system;
+
+    username = config.opts.variables.username;
+
+    pkgs-unstable = import inputs.nixpkgs-unstable {
       inherit system;
 
-      specialArgs = specialArgs;
+      config.allowUnfree = true;
+
+      config.permittedInsecurePackages = [
+        "electron-29.4.6"
+      ];
+
+      overlays = import ../overlays {};
+    };
+  };
+
+  createNixosConfiguration = name: info: let
+    system = info.system;
+    specialArgs = mkSpecialArgs system;
+  in
+    inputs.nixpkgs.lib.nixosSystem {
+      inherit system specialArgs;
 
       modules = [
         ../variables.nix
         ../theme.nix
+
+        (mkInfoModule info)
 
         self.nixosModules.state
         self.nixosModules.stylix
@@ -21,62 +77,54 @@
         inputs.disko.nixosModules.disko
 
         inputs.nixos-generators.nixosModules.all-formats
-        {
-        }
 
         {
-          # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
           nix.registry.nixpkgs.flake = inputs.nixpkgs;
-
-          # make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
           environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
           nix.nixPath = ["/etc/nix/inputs"];
         }
 
-        ./${machine}
+        ./${name}
       ];
     };
 
-  system = "x86_64-linux";
+  createDarwinConfiguration = name: info: let
+    system = info.system;
+    specialArgs = mkSpecialArgs system;
+  in
+    inputs.nix-darwin.lib.darwinSystem {
+      inherit system specialArgs;
 
-  specialArgs = rec {
-    inherit self inputs system;
+      modules = [
+        ../variables.nix
+        ../theme.nix
 
-    username = config.opts.variables.username;
+        (mkInfoModule info)
 
-    pkgs-unstable = import inputs.nixpkgs-unstable {
-      system = system;
+        {
+          opts.variables.isDarwin = true;
+        }
 
-      # Necessary for installing paid or non-free software
-      config.allowUnfree = true;
+        (import ../modules/darwin/home.nix {inherit specialArgs;})
 
-      config.permittedInsecurePackages = [
-        "electron-29.4.6"
+        {
+          nix.registry.nixpkgs.flake = inputs.nixpkgs;
+        }
+
+        ./${name}
       ];
-
-      # Overlays are only applied to the unstable channel, since they probably are
-      overlays = import ../overlays {};
     };
-  };
 
-  allHosts = [
-    "gander"
-    "gosling"
-    "skein"
-    "larry"
-  ];
+  nixosConfigurations = builtins.mapAttrs createNixosConfiguration linuxHosts;
+  darwinConfigurations = builtins.mapAttrs createDarwinConfiguration darwinHosts;
 
-  nixosConfigurations = builtins.listToAttrs (builtins.map (host: {
-      name = host;
-      value = createNixosConfiguration host system specialArgs;
-    })
-    allHosts);
   installers =
     builtins.mapAttrs (
       hostName: nixosConfig:
         import ../lib/install/configure-installer.nix {
           host = nixosConfig.config.opts.info;
-          inherit self system inputs;
+          inherit self inputs;
+          system = nixosConfig.config.opts.info.system;
           inherit (nixosConfig.config.opts) variables theme;
           lib = inputs.nixpkgs.lib;
           config = nixosConfig.config;
@@ -85,8 +133,9 @@
     nixosConfigurations;
 in {
   flake.nixosConfigurations = nixosConfigurations;
-  flake.installers.${system} = installers;
-  flake.legacyPackages.${system} =
+  flake.darwinConfigurations = darwinConfigurations;
+  flake.installers.x86_64-linux = installers;
+  flake.legacyPackages.x86_64-linux =
     builtins.mapAttrs (
       name: config: config.config.formats
     )

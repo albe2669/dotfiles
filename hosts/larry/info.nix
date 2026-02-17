@@ -1,18 +1,4 @@
 {
-  lib,
-  config,
-  ...
-}: let
-  cfg = config.opts.info;
-in {
-  options.opts.info = {
-    name = lib.mkOption {
-      type = lib.types.str;
-      default = "larry";
-      description = "System name";
-    };
-  };
-
-  config = {
-  };
+  name = "larry";
+  system = "x86_64-linux";
 }

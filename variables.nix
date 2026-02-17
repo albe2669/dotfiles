@@ -16,6 +16,12 @@ in {
         description = "System username";
       };
 
+      isDarwin = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Whether this is a Darwin/macOS host";
+      };
+
       isHidpi = mkOption {
         type = types.bool;
         default = false;
@@ -82,7 +88,10 @@ in {
 
   config.opts = {
     # Set computed values based on other options
-    variables.homeDirectory.path = builtins.toPath "/home/${cfg.username}";
+    variables.homeDirectory.path =
+      if cfg.isDarwin
+      then builtins.toPath "/Users/${cfg.username}"
+      else builtins.toPath "/home/${cfg.username}";
     variables.dotfilesLocation = cfg.homeDirectory.path + (builtins.toPath "/Documents/Coding/Other/dotfiles");
     variables.screen.scaleFactor =
       if cfg.isHidpi
