@@ -57,6 +57,13 @@
     };
   };
 
+  sharedModules = [
+    ../variables.nix
+    ../theme.nix
+    ../overlays/lix.nix
+    self.nixosModules.stylix
+  ];
+
   createNixosConfiguration = name: info: let
     system = info.system;
     specialArgs = mkSpecialArgs system;
@@ -64,14 +71,10 @@
     inputs.nixpkgs.lib.nixosSystem {
       inherit system specialArgs;
 
-      modules = [
-        ../variables.nix
-        ../theme.nix
-
+      modules = sharedModules ++ [
         (mkInfoModule info)
 
         self.nixosModules.state
-        self.nixosModules.stylix
         (import ../modules/nixos/home.nix {inherit specialArgs;})
 
         inputs.disko.nixosModules.disko
@@ -95,10 +98,7 @@
     inputs.nix-darwin.lib.darwinSystem {
       inherit system specialArgs;
 
-      modules = [
-        ../variables.nix
-        ../theme.nix
-
+      modules = sharedModules ++ [
         (mkInfoModule info)
 
         {
