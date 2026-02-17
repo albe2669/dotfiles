@@ -1,23 +1,28 @@
 {
   inputs,
   config,
+  lib,
   ...
 }: let
   username = config.opts.variables.username;
 
   sharedArgs = {
-    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFile = ./secrets/secrets.yaml;
     age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
 
     secrets = {
       wakatime_api_key = {
+        sopsFile = ./secrets/wakatime.yaml;
       };
       git_credentials = {
+        sopsFile = ./secrets/git_credentials.yaml;
       };
       ssh_private_key = {
+        sopsFile = ./secrets/ssh.yaml;
         mode = "0600";
       };
       ssh_public_key = {
+        sopsFile = ./secrets/ssh.yaml;
         mode = "0644";
       };
     };
@@ -27,17 +32,14 @@ in {
     inputs.sops-nix.homeManagerModules.sops
     {
       sops =
-        sharedArgs
-        // {
-          # defaultSymlinkPath = "/run/user/1000/secrets";
-          # defaultSecretsMountPoint = "/run/user/1000/secrets.d";
-        };
+        sharedArgs;
     }
   ];
 
   sops =
+    lib.recursiveUpdate
     sharedArgs
-    // {
+    {
       secrets = {
         wakatime_api_key = {
           owner = username;

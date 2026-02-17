@@ -1,4 +1,4 @@
 {
-  sops = ./sops.nix;
+  sops = ./sops;
   stylix = ./stylix;
 }

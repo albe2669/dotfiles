@@ -1,9 +1,3 @@
-# sops-nix age key configuration
-# Each host's age public key is derived from its SSH host key:
-#   ssh-to-age -i /etc/ssh/ssh_host_ed25519_key.pub
-# Or remotely:
-#   ssh-keyscan <host> | ssh-to-age
-#
 # After adding/changing keys, re-encrypt with:
 #   sops updatekeys secrets/secrets.yaml
 keys:
@@ -13,7 +7,7 @@ keys:
   # - &larry age1XXXX_REPLACE_WITH_ssh-to-age_OUTPUT
   # - &nene age1XXXX_REPLACE_WITH_ssh-to-age_OUTPUT
 creation_rules:
-  - path_regex: secrets/[^/]+\.yaml$
+  - path_regex: modules/shared/sops/secrets/[^/]+\.yaml$
     key_groups:
       - age:
           - *gander
