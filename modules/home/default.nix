@@ -35,6 +35,7 @@
   programs = ./programs.nix;
   python3 = ./python3.nix;
   satty = ./satty.nix;
+  sops = ./sops.nix;
   rofi = ./rofi;
   sioyek = ./sioyek;
   spacedrive = ./spacedrive.nix;
