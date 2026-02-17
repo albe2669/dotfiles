@@ -85,7 +85,13 @@ This file imports system-level modules. When creating this file you should decid
 ### Step 8: Register the host
 Add the host name to the `allHosts` list in `hosts/default.nix`. Since the `system` field in `info.nix` is `x86_64-linux`, it will automatically be built as a NixOS configuration.
 
-### Step 9: Build
+### Step 9: Secrets setup
+See [secrets.md](./secrets.md) for full details. In short:
+1. Get the host's age public key: `ssh-to-age -i /etc/ssh/ssh_host_ed25519_key.pub`
+2. Add it to `.sops.yaml` with a new anchor
+3. Re-encrypt: `sops updatekeys secrets/secrets.yaml`
+
+### Step 10: Build
 ```sh
 make rebuild
 # or
@@ -158,7 +164,10 @@ Import only cross-platform home modules (avoid Linux-specific ones like hyprland
 ### Step 6: Register the host
 Add the host name to the `allHosts` list in `hosts/default.nix`. Since the `system` field in `info.nix` contains `-darwin`, it will automatically be built as a Darwin configuration.
 
-### Step 7: Build
+### Step 7: Secrets setup
+See [secrets.md](./secrets.md) for full details. In short:
+
+### Step 8: Build
 ```sh
 make rebuild
 # or
