@@ -61,7 +61,6 @@
     ../variables.nix
     ../theme.nix
     ../overlays/lix.nix
-    self.nixosModules.stylix
 
     {
       nix.registry.nixpkgs.flake = inputs.nixpkgs;
@@ -81,6 +80,7 @@
           (mkInfoModule info)
 
           self.nixosModules.state
+          self.nixosModules.stylix
           (import ../modules/nixos/home.nix {inherit specialArgs;})
 
           inputs.disko.nixosModules.disko
@@ -112,6 +112,7 @@
             opts.variables.isDarwin = true;
           }
 
+          self.darwinModules.stylix
           (import ../modules/darwin/home.nix {inherit specialArgs;})
 
           ./${name}
