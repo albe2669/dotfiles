@@ -62,6 +62,10 @@
     ../theme.nix
     ../overlays/lix.nix
     self.nixosModules.stylix
+
+        {
+          nix.registry.nixpkgs.flake = inputs.nixpkgs;
+        }
   ];
 
   createNixosConfiguration = name: info: let
@@ -82,7 +86,6 @@
         inputs.nixos-generators.nixosModules.all-formats
 
         {
-          nix.registry.nixpkgs.flake = inputs.nixpkgs;
           environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
           nix.nixPath = ["/etc/nix/inputs"];
         }
@@ -106,10 +109,6 @@
         }
 
         (import ../modules/darwin/home.nix {inherit specialArgs;})
-
-        {
-          nix.registry.nixpkgs.flake = inputs.nixpkgs;
-        }
 
         ./${name}
       ];
