@@ -1,8 +1,6 @@
-{ config }:
-let 
+{config}: let
   username = config.opts.variables.username;
 in {
-
   sharedArgs = {
     defaultSopsFile = ./secrets/secrets.yaml;
     age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
