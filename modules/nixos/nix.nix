@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}: {
+{lib, ...}: {
   nix = {
     # optimise = {
     #   automatic = lib.mkDefault true;

@@ -63,9 +63,9 @@
     ../overlays/lix.nix
     self.nixosModules.stylix
 
-        {
-          nix.registry.nixpkgs.flake = inputs.nixpkgs;
-        }
+    {
+      nix.registry.nixpkgs.flake = inputs.nixpkgs;
+    }
   ];
 
   createNixosConfiguration = name: info: let
@@ -75,23 +75,25 @@
     inputs.nixpkgs.lib.nixosSystem {
       inherit system specialArgs;
 
-      modules = sharedModules ++ [
-        (mkInfoModule info)
+      modules =
+        sharedModules
+        ++ [
+          (mkInfoModule info)
 
-        self.nixosModules.state
-        (import ../modules/nixos/home.nix {inherit specialArgs;})
+          self.nixosModules.state
+          (import ../modules/nixos/home.nix {inherit specialArgs;})
 
-        inputs.disko.nixosModules.disko
+          inputs.disko.nixosModules.disko
 
-        inputs.nixos-generators.nixosModules.all-formats
+          inputs.nixos-generators.nixosModules.all-formats
 
-        {
-          environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
-          nix.nixPath = ["/etc/nix/inputs"];
-        }
+          {
+            environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
+            nix.nixPath = ["/etc/nix/inputs"];
+          }
 
-        ./${name}
-      ];
+          ./${name}
+        ];
     };
 
   createDarwinConfiguration = name: info: let
@@ -101,17 +103,19 @@
     inputs.nix-darwin.lib.darwinSystem {
       inherit system specialArgs;
 
-      modules = sharedModules ++ [
-        (mkInfoModule info)
+      modules =
+        sharedModules
+        ++ [
+          (mkInfoModule info)
 
-        {
-          opts.variables.isDarwin = true;
-        }
+          {
+            opts.variables.isDarwin = true;
+          }
 
-        (import ../modules/darwin/home.nix {inherit specialArgs;})
+          (import ../modules/darwin/home.nix {inherit specialArgs;})
 
-        ./${name}
-      ];
+          ./${name}
+        ];
     };
 
   nixosConfigurations = builtins.mapAttrs createNixosConfiguration linuxHosts;
