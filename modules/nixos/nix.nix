@@ -1,11 +1,8 @@
 {
-  pkgs,
   lib,
   ...
 }: {
   nix = {
-    package = pkgs.nix;
-
     # optimise = {
     #   automatic = lib.mkDefault true;
     #   dates = [
