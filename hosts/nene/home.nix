@@ -9,6 +9,7 @@
     self.homeModules.tmux
     self.homeModules.utils
     self.homeModules.yazi
+    self.homeModules.wakatime
     self.homeModules.zellij
   ];
 }

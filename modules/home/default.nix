@@ -44,6 +44,7 @@
   todo = ./todo.nix;
   utils = ./utils.nix;
   vscode = ./vscode.nix;
+  wakatime = ./wakatime.nix;
   wallpapers = ./wallpapers;
   walker = ./walker.nix;
   work = ./work.nix;

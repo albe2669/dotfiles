@@ -27,6 +27,7 @@
   sddm = ./sddm;
   security = ./security.nix;
   shell = ./shell.nix;
+  sops = ./sops.nix;
   tailscale = ./tailscale.nix;
   virtualbox = ./virtualbox.nix;
   wireless = ./wireless.nix;

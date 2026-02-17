@@ -81,6 +81,7 @@
 
           self.nixosModules.state
           self.nixosModules.stylix
+          self.nixosModules.sops
           (import ../modules/nixos/home.nix {inherit specialArgs;})
 
           inputs.disko.nixosModules.disko
@@ -113,6 +114,7 @@
           }
 
           self.darwinModules.stylix
+          self.darwinModules.sops
           (import ../modules/darwin/home.nix {inherit specialArgs;})
 
           ./${name}

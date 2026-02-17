@@ -5,5 +5,6 @@
   system-packages = ./system-packages.nix;
   user = ./user.nix;
   homebrew = ./homebrew.nix;
+  sops = ./sops.nix;
   stylix = ./stylix.nix;
 }

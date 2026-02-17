@@ -19,6 +19,7 @@
           imports = [
             ../../variables.nix
             ../../theme.nix
+            inputs.sops-nix.homeManagerModules.sops
           ];
         };
       };

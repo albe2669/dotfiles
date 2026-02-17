@@ -40,6 +40,7 @@
     self.homeModules.yazi
     self.homeModules.spotify
     self.homeModules.zellij
+    self.homeModules.wakatime
 
     {
       wayland.windowManager.hyprland = {
