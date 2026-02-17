@@ -71,6 +71,10 @@
     libxcrypt-legacy
     libxkbcommon
     libxml2
+    libxcursor
+    libxcb
+    libxcb-render-util
+    libxcb-wm
     mesa
     nspr
     nss
@@ -90,7 +94,6 @@
     xorg.libX11
     xorg.libXScrnSaver
     xorg.libXcomposite
-    xorg.libXcursor
     xorg.libXdamage
     xorg.libXext
     xorg.libXfixes
@@ -104,12 +107,9 @@
     xorg.libXtst
     xorg.libXxf86vm
     xorg.libpciaccess
-    xorg.libxcb
     xorg.xcbutil
     xorg.xcbutilimage
     xorg.xcbutilkeysyms
-    xorg.xcbutilrenderutil
-    xorg.xcbutilwm
     xorg.xkeyboardconfig
     xz
     zlib
