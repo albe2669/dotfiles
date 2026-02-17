@@ -28,10 +28,13 @@
       "com.github.lppedd.idea-conventional-commit"
       "org.intellij.plugins.hcl"
       "org.jetbrains.plugins.github"
+      "com.github.copilot"
+      "com.laravel_idea.plugin"
+      "com.kalessil.phpStorm.phpInspectionsEA"
     ]);
 in {
   home.packages = with pkgs-unstable; [
-    (createIde jetbrains "rider")
+    (createIde jetbrains "phpstorm")
   ];
 
   home.file."${config.opts.variables.homeDirectory.path}/.ideavimrc" = {
