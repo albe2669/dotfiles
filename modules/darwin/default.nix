@@ -5,4 +5,5 @@
   system-packages = ./system-packages.nix;
   user = ./user.nix;
   homebrew = ./homebrew.nix;
+  stylix = ./stylix.nix;
 }

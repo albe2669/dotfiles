@@ -17,7 +17,7 @@
   nvidia = ./nvidia.nix;
   state = ./state.nix;
   storage = ./storage.nix;
-  stylix = ./stylix;
+  stylix = ./stylix.nix;
   bluetooth = ./bluetooth.nix;
   docker = ./docker.nix;
   pipewire = ./pipewire.nix;

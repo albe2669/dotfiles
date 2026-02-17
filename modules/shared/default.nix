@@ -1,0 +1,3 @@
+{
+  stylix = ./stylix;
+}
