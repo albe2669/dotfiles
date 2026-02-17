@@ -26,7 +26,7 @@
     # dunst # notification daemon
     feh # wallpaper
     acpi # battery
-    xorg.xbacklight # screen brightness
+    xbacklight # screen brightness
     xorg.xdpyinfo # screen information
     nautilus # file manager
   ];

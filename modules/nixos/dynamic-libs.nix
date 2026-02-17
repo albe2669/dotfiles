@@ -75,6 +75,9 @@
     libxcb
     libxcb-render-util
     libxcb-wm
+    libxcb-util
+    libxcb-image
+    libxcb-keysyms
     mesa
     nspr
     nss
@@ -89,28 +92,25 @@
     udev
     vulkan-loader
     wayland
-    xorg.libICE
-    xorg.libSM
-    xorg.libX11
-    xorg.libXScrnSaver
-    xorg.libXcomposite
-    xorg.libXdamage
-    xorg.libXext
-    xorg.libXfixes
-    xorg.libXft
-    xorg.libXi
-    xorg.libXinerama
-    xorg.libXmu
-    xorg.libXrandr
-    xorg.libXrender
-    xorg.libXt
-    xorg.libXtst
-    xorg.libXxf86vm
-    xorg.libpciaccess
-    xorg.xcbutil
-    xorg.xcbutilimage
-    xorg.xcbutilkeysyms
-    xorg.xkeyboardconfig
+    libice
+    libsm
+    libx11
+    libxscrnsaver
+    libxcomposite
+    libxdamage
+    libxext
+    libxfixes
+    libxft
+    libxi
+    libxinerama
+    libxmu
+    libxrandr
+    libxrender
+    libxt
+    libxtst
+    libxxf86vm
+    libpciaccess
+    xkeyboard-config
     xz
     zlib
   ];
