@@ -1,8 +1,10 @@
-{...}: {
+let
+  info = import ./info.nix;
+in {
   imports = [
-    ./info.nix
     ./os.nix
     ./home.nix
     ./hardware-configuration.nix
+    (import ./disko.nix {diskPath = info.diskPath;})
   ];
 }
