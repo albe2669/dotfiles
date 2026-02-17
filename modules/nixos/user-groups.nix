@@ -1,6 +1,7 @@
 {config, ...}:
 with config.opts; let
   username = variables.username;
+  secrets = config.sops.secrets;
 in {
   nix.settings.trusted-users = [username];
 
@@ -11,7 +12,7 @@ in {
 
   users.users."${username}" = {
     home = "/home/${username}";
-    initialPassword = variables.initialPassword;
+    hashedPasswordFile = secrets.password.path;
     createHome = true;
     isNormalUser = true;
     description = "User ${username}";

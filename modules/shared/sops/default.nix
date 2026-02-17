@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   ...
 }: let
   username = config.opts.variables.username;
@@ -10,6 +9,11 @@ in {
   sops =
     sharedArgs
     // {
-      secrets = builtins.mapAttrs (key: value: value // {owner = username;}) sharedArgs.secrets;
+      secrets = {
+        password = {
+          sopsFile = ./secrets/passwd.yaml;
+          neededForUsers = true;
+        };
+      } // builtins.mapAttrs (key: value: value // {owner = username;}) sharedArgs.secrets;
     };
 }
