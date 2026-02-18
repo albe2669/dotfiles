@@ -6,7 +6,6 @@
   ...
 }: let
   inherit (config.lib.stylix) colors;
-  inherit (config.stylix) fonts;
 
   mkLockedAttrs = builtins.mapAttrs (_: value: {
     Value = value;
@@ -49,6 +48,32 @@ in {
     };
 
     profiles."default" = {
+      extensions.packages = with inputs.firefox-addons.packages."${system}"; [
+        ublock-origin
+        darkreader
+        vimium
+      ];
+
+      settings = {
+        toolkit.legacyUserProfileCustomizations.stylesheets = {
+          Value = true;
+          Status = "locked";
+        };
+
+        browser = {
+          tabs.closeWindowWithLastTab = false;
+          search.suggest.enabled = true;
+        };
+
+        zen.view = {
+          compact.should-enable-at-startup = true;
+          use-single-toolbar = false;
+          welcome-screen.seen = true;
+        };
+      };
+
+      userChrome = import ./userChrome.nix {inherit colors;};
+      # userContent = import ./userContent.nix {inherit colors;};
       containersForce = true;
       containers = {
         Personal = {
@@ -90,18 +115,6 @@ in {
           container = containers."School".id;
         };
       };
-
-      settings = {
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "browser.search.suggest.enabled" = true;
-        "browser.tabs.closeWindowWithLastTab" = false;
-        "zen.view.compact.should-enable-at-startup" = true;
-        "zen.view.use-single-toolbar" = false;
-        "zen.view.welcome-screen.seen" = true;
-      };
-
-      userChrome = import ./userChrome.nix {inherit colors;};
-      # userContent = import ./userContent.nix {inherit colors;};
     };
   };
 }
