@@ -8,6 +8,4 @@
 
   # Load amd driver for Xorg and Wayland
   services.xserver.videoDrivers = ["amd"];
-
-  nixpkgs.config.rocmSupport = true;
 }
