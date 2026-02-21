@@ -12,6 +12,7 @@
   fonts = ./fonts.nix;
   gcloud = ./gcloud.nix;
   git = ./git;
+  gfxutils = ./gfxutils.nix;
   gnome = ./gnome.nix;
   guiutils = ./guiutils.nix;
   home = ./home.nix;
