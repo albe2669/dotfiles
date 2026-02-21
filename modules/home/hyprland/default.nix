@@ -21,6 +21,7 @@
     grim
     slurp
     wayfreeze
+    brightnessctl
   ];
 
   wayland.windowManager.hyprland = {

@@ -21,6 +21,5 @@
     bandwhich
     bottom
     procs
-    brightnessctl
   ];
 }
