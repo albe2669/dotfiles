@@ -4,7 +4,7 @@
   ...
 }: {
   nix = {
-    package = pkgs.nix;
+    # package = pkgs.nix;
 
     gc = {
       automatic = lib.mkDefault true;
