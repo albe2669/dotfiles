@@ -36,13 +36,10 @@
   python3 = ./python3.nix;
   satty = ./satty.nix;
   sops = ./sops.nix;
-  rofi = ./rofi;
   sioyek = ./sioyek;
   spacedrive = ./spacedrive.nix;
   spotify = ./spotify.nix;
   tex = ./tex.nix;
-  tmux = ./tmux.nix;
-  todo = ./todo.nix;
   utils = ./utils.nix;
   vscode = ./vscode.nix;
   wakatime = ./wakatime.nix;

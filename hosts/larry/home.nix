@@ -11,7 +11,6 @@
     self.homeModules.lazydocker
     self.homeModules.lazygit
     self.homeModules.nvim
-    self.homeModules.rofi
     self.homeModules.sioyek
     self.homeModules.wallpapers
     self.homeModules.zathura
@@ -28,8 +27,6 @@
     self.homeModules.jetbrains
     self.homeModules.php
     self.homeModules.programs
-    self.homeModules.tmux
-    self.homeModules.todo
     self.homeModules.guiutils
     self.homeModules.utils
     self.homeModules.vscode

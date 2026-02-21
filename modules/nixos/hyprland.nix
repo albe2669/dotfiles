@@ -22,7 +22,6 @@
   security.pam.services.hyprlock.text = "auth include login";
 
   environment.systemPackages = with pkgs; [
-    rofi # application launcer
     # dunst # notification daemon
     feh # wallpaper
     acpi # battery
