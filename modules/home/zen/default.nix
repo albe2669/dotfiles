@@ -19,6 +19,7 @@ in {
   programs.zen-browser = {
     enable = true;
     package = lib.mkForce (config.lib.nixGL.wrapOffload inputs.zen-browser.packages."${system}".default);
+		suppressXdgMigrationWarning = true;
 
     policies = {
       AutofillAddressEnabled = true;
