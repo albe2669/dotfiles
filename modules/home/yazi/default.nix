@@ -14,7 +14,7 @@ in {
       mediainfo
       poppler-utils
       ueberzugpp
-			ripdrag
+      ripdrag
     ]
     ++ lib.optionals (!isDarwin) [
       wl-clipboard
@@ -26,26 +26,25 @@ in {
     enableFishIntegration = true;
 
     keymap = {
-      mgr.prepend_keymap =
-        [
-          {
-            on = "<C-n>";
-            run = "shell -- ${lib.getExe pkgs-unstable.ripdrag} --no-click --and-exit --icon-size 64 --target --all \"$@\"";
-          }
-          {
-            on = "z";
-            run = "plugin zoxide";
-          }
-          {
-            on = "Z";
-            run = "plugin fzf";
-          }
-          {
-            on = "<C-u>";
-            run = "shell --confirm 'unzip $@'";
-            desc = "Unzip files";
-          }
-        ];
+      mgr.prepend_keymap = [
+        {
+          on = "<C-n>";
+          run = "shell -- ${lib.getExe pkgs-unstable.ripdrag} --no-click --and-exit --icon-size 64 --target --all \"$@\"";
+        }
+        {
+          on = "z";
+          run = "plugin zoxide";
+        }
+        {
+          on = "Z";
+          run = "plugin fzf";
+        }
+        {
+          on = "<C-u>";
+          run = "shell --confirm 'unzip $@'";
+          desc = "Unzip files";
+        }
+      ];
     };
 
     settings = {
