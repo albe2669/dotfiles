@@ -1,9 +1,8 @@
 {
-  self,
-  system,
+	pkgs-unstable,
   ...
 }: {
-  home.packages = [
-    self.packages.${system}.anytype
+  home.packages = with pkgs-unstable; [
+    anytype
   ];
 }
