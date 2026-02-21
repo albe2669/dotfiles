@@ -3,17 +3,22 @@
   config,
   lib,
   ...
-}: {
+}: let
+  isDarwin = config.opts.variables.isDarwin;
+in {
   stylix.targets.yazi.enable = true;
 
-  home.packages = with pkgs-unstable; [
-    exiftool
-    mediainfo
-    poppler-utils
-    ueberzugpp
-    dragon-drop
-    wl-clipboard
-  ];
+  home.packages = with pkgs-unstable;
+    [
+      exiftool
+      mediainfo
+      poppler-utils
+      ueberzugpp
+			ripdrag
+    ]
+    ++ lib.optionals (!isDarwin) [
+      wl-clipboard
+    ];
 
   programs.yazi = {
     enable = true;
@@ -21,25 +26,26 @@
     enableFishIntegration = true;
 
     keymap = {
-      mgr.prepend_keymap = [
-        {
-          on = "<C-n>";
-          run = "shell -- ${lib.getExe pkgs-unstable.dragon-drop} -x -i -T -A \"$@\"";
-        }
-        {
-          on = "z";
-          run = "plugin zoxide";
-        }
-        {
-          on = "Z";
-          run = "plugin fzf";
-        }
-        {
-          on = "<C-u>";
-          run = "shell --confirm 'unzip $@'";
-          desc = "Unzip files";
-        }
-      ];
+      mgr.prepend_keymap =
+        [
+          {
+            on = "<C-n>";
+            run = "shell -- ${lib.getExe pkgs-unstable.ripdrag} --no-click --and-exit --icon-size 64 --target --all \"$@\"";
+          }
+          {
+            on = "z";
+            run = "plugin zoxide";
+          }
+          {
+            on = "Z";
+            run = "plugin fzf";
+          }
+          {
+            on = "<C-u>";
+            run = "shell --confirm 'unzip $@'";
+            desc = "Unzip files";
+          }
+        ];
     };
 
     settings = {
