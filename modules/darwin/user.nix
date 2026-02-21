@@ -9,5 +9,5 @@ in {
     description = "User ${username}";
   };
 
-	system.primaryUser = username;
+  system.primaryUser = username;
 }
