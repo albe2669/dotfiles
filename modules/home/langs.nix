@@ -27,11 +27,6 @@
 
     opentofu
 
-    # C#
-    dotnetCorePackages.dotnet_9.sdk
-    azure-functions-core-tools
-    azurite
-
     # AI
     pkgs-unstable.claude-code
     pkgs-unstable.gemini-cli
