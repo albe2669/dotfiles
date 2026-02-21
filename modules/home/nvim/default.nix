@@ -18,7 +18,6 @@ in {
       neovim
       nil
       gopls
-      wl-clipboard
       tree-sitter
       basedpyright
       ruff
@@ -28,7 +27,9 @@ in {
       google-java-format
       rust-analyzer
     ]
-    ++ normalPackages;
+    ++ normalPackages ++ lib.optionals (!isDarwin) [
+      wl-clipboard
+    ];
 
   xdg.configFile.nvim = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/home/nvim/config");
