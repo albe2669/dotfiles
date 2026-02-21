@@ -8,4 +8,6 @@ in {
     home = "/Users/${username}";
     description = "User ${username}";
   };
+
+	system.primaryUser = username;
 }
