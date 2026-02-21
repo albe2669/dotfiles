@@ -6,5 +6,6 @@
   user = ./user.nix;
   homebrew = ./homebrew.nix;
   sops = ./sops.nix;
+  state = ./state.nix;
   stylix = ./stylix.nix;
 }

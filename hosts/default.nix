@@ -113,6 +113,7 @@
             opts.variables.isDarwin = true;
           }
 
+          self.darwinModules.state
           self.darwinModules.stylix
           self.darwinModules.sops
           (import ../modules/darwin/home.nix {inherit specialArgs;})

@@ -21,6 +21,8 @@
             inputs.sops-nix.homeManagerModules.sops
             self.homeModules.sops
           ];
+
+          opts.variables.isDarwin = config.opts.variables.isDarwin;
         };
       };
     }
