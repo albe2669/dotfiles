@@ -83,6 +83,12 @@ in {
         default = "24.05";
         description = "NixOS state version";
       };
+
+      darwinStateVersion = mkOption {
+        type = types.int;
+        default = 6;
+        description = "nix-darwin state version";
+      };
     };
   };
 
