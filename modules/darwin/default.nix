@@ -6,6 +6,7 @@
   system-settings = ./system-settings.nix;
   user = ./user.nix;
   homebrew = ./homebrew.nix;
+  mac-app-util = ./mac-app-util.nix;
   shell = ./shell.nix;
   sops = ./sops.nix;
   state = ./state.nix;

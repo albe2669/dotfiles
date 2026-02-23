@@ -107,6 +107,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.elephant.follows = "elephant";
     };
+
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:
