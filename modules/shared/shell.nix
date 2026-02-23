@@ -1,4 +1,9 @@
-{config, pkgs, ...}: with config.opts; let
+{
+  config,
+  pkgs,
+  ...
+}:
+with config.opts; let
   username = variables.username;
 in {
   programs = {

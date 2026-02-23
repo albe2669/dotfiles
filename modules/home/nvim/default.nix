@@ -27,7 +27,8 @@ in {
       google-java-format
       rust-analyzer
     ]
-    ++ normalPackages ++ lib.optionals (!config.opts.variables.isDarwin) [
+    ++ normalPackages
+    ++ lib.optionals (!config.opts.variables.isDarwin) [
       wl-clipboard
     ];
 
