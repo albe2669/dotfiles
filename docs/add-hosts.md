@@ -153,7 +153,6 @@ Import only cross-platform home modules (avoid Linux-specific ones like hyprland
     self.homeModules.lazygit
     self.homeModules.nvim
     self.homeModules.direnv
-    self.homeModules.tmux
     self.homeModules.utils
     self.homeModules.yazi
     self.homeModules.zellij
@@ -167,9 +166,26 @@ Add the host name to the `allHosts` list in `hosts/default.nix`. Since the `syst
 ### Step 7: Secrets setup
 See [secrets.md](./secrets.md) for full details. In short:
 
-### Step 8: Build
+### Step 8: Install
+
+Assuming a completely fresh macOS installation, you will need to first install Nix and git:
+```sh
+sh <(curl -L https://nixos.org/nix/install)
+nix-shell -p git
+mkdir -p ~/Documents/Coding/Other/dotfiles
+cd ~/Documents/Coding/Other/dotfiles
+git clone <repo-url> .
+```
+
+Then you can run the initial darwin-rebuild command:
+```sh
+sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#<host>
+```
+
+### Step 9: Subsequent builds
+After the initial setup, you can use `darwin-rebuild` for subsequent builds:
 ```sh
 make rebuild
 # or
-darwin-rebuild switch --flake .#<host>
+darwin-rebuild switch --flake .#
 ```
