@@ -24,14 +24,14 @@ update:
 
 build:
 ifeq ($(os),Darwin)
-	darwin-rebuild build --show-trace --flake .#$(host)
+	sudo darwin-rebuild build --show-trace --flake .#$(host)
 else
 	sudo nixos-rebuild build --show-trace --flake .#$(host)
 endif
 
 rebuild:
 ifeq ($(os),Darwin)
-	darwin-rebuild switch --show-trace --flake .#$(host)
+	sudo darwin-rebuild switch --show-trace --flake .#$(host)
 else
 	sudo nixos-rebuild switch --show-trace --flake .#$(host)
 endif
