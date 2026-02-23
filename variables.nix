@@ -16,6 +16,12 @@ in {
         description = "System username";
       };
 
+      uid = mkOption {
+        type = types.int;
+        default = -1;
+        description = "UID of the user (Only used on darwin)";
+      };
+
       isDarwin = mkOption {
         type = types.bool;
         default = false;
@@ -107,5 +113,9 @@ in {
       if cfg.isHidpi
       then 180
       else 96;
+    variables.uid =
+      if cfg.isDarwin
+      then 502
+      else -1;
   };
 }
