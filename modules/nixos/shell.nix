@@ -1,11 +1,6 @@
-{pkgs, ...}: {
-  programs = {
-    fish.enable = true;
-  };
-
-  environment.shells = with pkgs; [
-    bash
-    fish
+{self, pkgs, ...}: {
+  imports = [
+    self.sharedModules.shell
   ];
 
   users.defaultUserShell = pkgs.fish;
