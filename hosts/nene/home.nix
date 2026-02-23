@@ -12,13 +12,11 @@
     self.homeModules.zathura
     self.homeModules.langs
     self.homeModules.python3
-    self.homeModules.anytype
     self.homeModules.direnv
-    self.homeModules.programs
     self.homeModules.utils
     self.homeModules.vscode
     self.homeModules.work
-    self.homeModules.zen
+    # self.homeModules.zen
     self.homeModules.yazi
     self.homeModules.spotify
     self.homeModules.zellij
