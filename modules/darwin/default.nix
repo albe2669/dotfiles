@@ -11,4 +11,5 @@
   sops = ./sops.nix;
   state = ./state.nix;
   stylix = ./stylix.nix;
+  docker = ./docker.nix;
 }
