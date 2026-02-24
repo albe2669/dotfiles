@@ -1,4 +1,4 @@
-{config, ...}: {
+{config, lib, pkgs, ...}: {
   stylix.targets.kitty = {
     enable = true;
     colors.enable = true;
@@ -17,6 +17,9 @@
     settings = {
       scrollback_lines = 5000;
       cursor_shape = "block";
-    };
+    } // lib.optionalAttrs config.opts.variables.isDarwin {
+    background_blur = 32;
+    shell = "${pkgs.fish}/bin/fish";
+  };
   };
 }
