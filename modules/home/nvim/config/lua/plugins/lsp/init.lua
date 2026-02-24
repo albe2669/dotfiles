@@ -55,7 +55,7 @@ local servers = lu.load_servers({
 for _, server in pairs(servers) do
   if type(server.server_name) == "table" then
     lu.merge_arrays(opts.ensure_installed, server.server_name)
-  elseif server.server_name ~= "" then
+  elseif server.server_name ~= "" and server.dont_install ~= true then
     table.insert(opts.ensure_installed, server.server_name)
   end
 
