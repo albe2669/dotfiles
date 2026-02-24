@@ -1,9 +1,9 @@
 {config}: let
-  username = config.opts.variables.username;
+  homePath = config.opts.variables.homeDirectory.path;
 in {
   sharedArgs = {
     defaultSopsFile = ./secrets/secrets.yaml;
-    age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
+    age.keyFile = "${homePath}/.config/sops/age/keys.txt";
 
     secrets = {
       wakatime_api_key = {
