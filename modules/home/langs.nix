@@ -1,6 +1,8 @@
 {
   pkgs,
   pkgs-unstable,
+  lib,
+  config,
   ...
 }: {
   home.packages = with pkgs; [
@@ -33,5 +35,13 @@
 
     # Erlang
     erlang_28
+  ] ++ lib.optionals config.opts.variables.isDarwin [
+    pkgs.apple-sdk
   ];
+
+  home.sessionVariables = lib.mkIf config.opts.variables.isDarwin {
+    LIBRARY_PATH = lib.makeLibraryPath [
+      pkgs.darwin.libresolv
+    ];
+  };
 }

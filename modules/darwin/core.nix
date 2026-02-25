@@ -8,4 +8,5 @@
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true;
+  documentation.enable = false;
 }
