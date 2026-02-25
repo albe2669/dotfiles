@@ -21,5 +21,6 @@
     self.homeModules.spotify
     self.homeModules.zellij
     self.homeModules.wakatime
+    self.homeModules.claude
   ];
 }

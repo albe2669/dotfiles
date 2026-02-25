@@ -4,8 +4,8 @@
   anytype = ./anytype.nix;
   azure-cli = ./azure-cli.nix;
   bluetooth = ./bluetooth.nix;
+  claude = ./claude.nix;
   courses = ./courses;
-  default = ./default.nix;
   direnv = ./direnv.nix;
   dunst = ./dunst;
   fish = ./fish;
