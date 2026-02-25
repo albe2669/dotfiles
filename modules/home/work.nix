@@ -7,7 +7,6 @@
     act
     insomnia
     slack
-    code
   ];
 
   programs.fish.shellInit = ''

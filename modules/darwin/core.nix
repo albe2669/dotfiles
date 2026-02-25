@@ -8,5 +8,13 @@
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true;
-  documentation.enable = false;
+  documentation = {
+    enable = false;
+    man.enable = false;
+    info.enable = false;
+  };
+
+  hm.imports = [
+    {programs.man.enable = false;}
+  ];
 }
