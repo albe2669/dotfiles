@@ -8,6 +8,6 @@
   ];
 
   homebrew.casks = [
-    "docker"
+    "docker-desktop"
   ];
 }
