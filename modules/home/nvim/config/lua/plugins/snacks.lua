@@ -46,10 +46,26 @@ return {
       image = { enabled = true },
     },
     keys = {
-      { "<c-p>", function() Snacks.picker.files() end },
-      { ";r",    function() Snacks.picker.grep() end },
-      { "\\\\",  function() Snacks.picker.buffers() end },
-      { ";;",    function() Snacks.picker.help() end },
+      { "<c-p>", function()
+        local win = vim.api.nvim_get_current_win()
+        local picker = Snacks.picker.files()
+        if picker then picker.main = win end
+      end },
+      { ";r", function()
+        local win = vim.api.nvim_get_current_win()
+        local picker = Snacks.picker.grep()
+        if picker then picker.main = win end
+      end },
+      { "\\\\", function()
+        local win = vim.api.nvim_get_current_win()
+        local picker = Snacks.picker.buffers()
+        if picker then picker.main = win end
+      end },
+      { ";;", function()
+        local win = vim.api.nvim_get_current_win()
+        local picker = Snacks.picker.help()
+        if picker then picker.main = win end
+      end },
     }
   },
 }
