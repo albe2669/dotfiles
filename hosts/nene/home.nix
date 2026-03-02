@@ -23,7 +23,6 @@
     self.homeModules.wakatime
     self.homeModules.k8
     self.homeModules.azure-cli
-    self.homeModules.aerospace
     self.homeModules.claude
   ];
 }

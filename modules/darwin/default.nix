@@ -12,5 +12,4 @@
   state = ./state.nix;
   stylix = ./stylix.nix;
   docker = ./docker.nix;
-  aerospace = ./aerospace.nix;
 }
