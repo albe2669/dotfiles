@@ -24,5 +24,6 @@
     self.homeModules.k8
     self.homeModules.azure-cli
     self.homeModules.claude
+    self.homeModules.aerospace
   ];
 }

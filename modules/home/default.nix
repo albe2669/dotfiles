@@ -1,5 +1,6 @@
 {
   advent-of-code = ./advent-of-code.nix;
+  aerospace = ./aerospace.nix;
   ags = ./ags;
   anytype = ./anytype.nix;
   azure-cli = ./azure-cli.nix;
