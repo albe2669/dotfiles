@@ -25,5 +25,6 @@
     self.homeModules.azure-cli
     self.homeModules.claude
     self.homeModules.aerospace
+    self.homeModules.wtf
   ];
 }

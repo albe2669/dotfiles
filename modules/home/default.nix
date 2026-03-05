@@ -52,4 +52,5 @@
   zathura = ./zathura;
   zellij = ./zellij.nix;
   zen = ./zen;
+  wtf = ./wtf;
 }
