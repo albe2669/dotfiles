@@ -13,8 +13,7 @@
           -Dawt.toolkit.name=WLToolkit
         '';
       }
-    else
-      pkgs-unstable.jetbrains."${ide}";
+    else pkgs-unstable.jetbrains."${ide}";
 
   commonPlugins = [
     "IdeaVIM"
