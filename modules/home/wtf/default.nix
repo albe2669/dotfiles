@@ -2,6 +2,7 @@
   pkgs-unstable,
   pkgs,
   config,
+  lib,
   ...
 }: {
   home.packages = with pkgs-unstable; [
@@ -9,7 +10,7 @@
   ];
 
   programs.fish.shellInit = ''
-    set -x WTF_GITHUB_TOKEN (${pkgs.gh} auth token)
+    set -x WTF_GITHUB_TOKEN (${lib.getExe pkgs.gh} auth token)
   '';
 
   xdg.configFile.wtf = {
