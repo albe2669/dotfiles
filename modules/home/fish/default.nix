@@ -25,6 +25,8 @@
       g = "git";
       j = "z";
       hm = "home-manager";
+      lg = "lazygit";
+      ldo = "lazydocker";
     };
 
     shellInit = ''
