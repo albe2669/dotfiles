@@ -25,6 +25,7 @@
     self.homeModules.obs
     self.homeModules.opencode
     self.homeModules.jetbrains
+    self.homeModules.jetbrains-phpstorm
     self.homeModules.php
     self.homeModules.programs
     self.homeModules.guiutils

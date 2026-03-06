@@ -19,7 +19,9 @@
   home = ./home.nix;
   hidpi = ./hidpi.nix;
   hyprland = ./hyprland;
-  jetbrains = ./jetbrains.nix;
+  jetbrains = ./jetbrains;
+  jetbrains-phpstorm = ./jetbrains/phpstorm.nix;
+  jetbrains-goland = ./jetbrains/goland.nix;
   k8 = ./k8.nix;
   kitty = ./kitty.nix;
   kittykat = ./kittykat;

@@ -1,42 +1,4 @@
-{
-  config,
-  system,
-  pkgs-unstable,
-  inputs,
-  ...
-}: let
-  overrideIde = jetbrains: ide:
-    jetbrains."${ide}".override {
-      vmopts = ''
-        -Dawt.toolkit.name=WLToolkit
-      '';
-    };
-
-  createIde = jetbrains: ide-name: let
-    ide = overrideIde jetbrains ide-name;
-  in
-    jetbrains.plugins.addPlugins ide (builtins.map (p: inputs.nix-jetbrains-plugins.plugins."${system}"."${ide.pname}"."${ide.version}"."${p}") [
-      # Note: github.copilot removed - not available via nix-jetbrains-plugins
-      "IdeaVIM"
-      "dev.turingcomplete.intellijdevelopertoolsplugins"
-      "com.intellij.resharper.azure"
-      "mobi.hsz.idea.gitignore"
-      "com.github.catppuccin.jetbrains"
-      "com.github.catppuccin.jetbrains_icons"
-      "com.intellij.lang.jsgraphql"
-      "com.wakatime.intellij.plugin"
-      "com.github.lppedd.idea-conventional-commit"
-      "org.intellij.plugins.hcl"
-      "org.jetbrains.plugins.github"
-      "com.github.copilot"
-      "com.laravel_idea.plugin"
-      "com.kalessil.phpStorm.phpInspectionsEA"
-    ]);
-in {
-  home.packages = with pkgs-unstable; [
-    (createIde jetbrains "phpstorm")
-  ];
-
+{config, ...}: {
   home.file."${config.opts.variables.homeDirectory.path}/.ideavimrc" = {
     text = ''
       set ideavimr

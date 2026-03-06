@@ -26,5 +26,7 @@
     self.homeModules.claude
     self.homeModules.aerospace
     self.homeModules.wtf
+    self.homeModules.jetbrains
+    self.homeModules.jetbrains-goland
   ];
 }

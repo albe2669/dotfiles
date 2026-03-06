@@ -25,6 +25,8 @@
     self.homeModules.libreoffice
     self.homeModules.obs
     self.homeModules.jetbrains
+    self.homeModules.jetbrains-phpstorm
+    self.homeModules.jetbrains-goland
     self.homeModules.php
     self.homeModules.programs
     self.homeModules.guiutils
