@@ -1,6 +1,7 @@
 {
   self,
   pkgs-unstable,
+  pkgs,
   ...
 }: {
   home.packages = with pkgs-unstable; [
@@ -10,6 +11,6 @@
   ];
 
   programs.fish.shellInit = ''
-    set -x GIT_TOKEN (gh auth token)
+    set -x GIT_TOKEN (${pkgs.gh} auth token)
   '';
 }

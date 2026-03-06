@@ -1,9 +1,16 @@
-{pkgs-unstable, config, ...}: {
+{
+  pkgs-unstable,
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = with pkgs-unstable; [
     wtfutil
   ];
 
-  system.environment."WTF_GITHUB_TOKEN" = config.sops.secrets.git_credentials.value;
+  programs.fish.shellInit = ''
+    set -x WTF_GITHUB_TOKEN (${pkgs.gh} auth token)
+  '';
 
   xdg.configFile.wtf = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/home/wtf/config");
