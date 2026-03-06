@@ -64,15 +64,14 @@
     		git worktree add -b $branch $path
     	end
 
+			set files ".env" ".claude/settings.local.json" "./claude/claude.md"
 
-    	if test -f .env
-    		cp .env $path/.env
-    	end
-
-    	if test -f .claude/settings.local.json
-    		mkdir -p $path/.claude
-    		cp .claude/settings.local.json $path/.claude/settings.local.json
-    	end
+			for file in $files
+				if test -f $file
+					mkdir -p $path/(dirname $file)
+					cp $file $path/$file
+				end
+			end
 
     	echo "Worktree for branch $branch created at $path"
     	echo "Starting claude-code in $path..."
