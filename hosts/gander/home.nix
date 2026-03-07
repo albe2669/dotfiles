@@ -1,7 +1,9 @@
-{self, ...}: {
+{ self, ... }:
+{
   hm.imports = [
     self.homeModules.home
     self.homeModules.azure-cli
+    self.homeModules.claude
     self.homeModules.dunst
     self.homeModules.fish
     self.homeModules.git

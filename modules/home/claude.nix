@@ -1,7 +1,11 @@
-{pkgs-unstable, ...}: {
+{ pkgs-unstable, ... }:
+let
+  pkg = pkgs-unstable.claude-code;
+in
+{
   programs.claude-code = {
     enable = true;
-    package = pkgs-unstable.claude-code;
+    package = pkg;
 
     settings = {
       permissions = {
@@ -47,36 +51,36 @@
 
   # Fish function to create a worktree with a name, and copy .env file to it if it exists
   programs.fish.shellInit = ''
-    function claw
-    	if test (count $argv) -ne 1
-    		echo "Usage: git-worktree-add <branch>"
-    		return 1
+     function claw
+     	if test (count $argv) -ne 1
+     		echo "Usage: git-worktree-add <branch>"
+     		return 1
+     	end
+
+     	set branch $argv[1]
+     	set path "./.claude/worktrees/$branch"
+
+     	# Check if the branch already exists
+     	if git rev-parse --verify $branch > /dev/null 2>&1
+     		echo "Branch $branch already exists. Please choose a different name."
+     		git worktree add $path $branch
+     	else
+     		git worktree add -b $branch $path
+     	end
+
+    set files ".env" ".claude/settings.local.json" "./claude/claude.md"
+
+    for file in $files
+    	if test -f $file
+    		mkdir -p $path/(dirname $file)
+    		cp $file $path/$file
     	end
-
-    	set branch $argv[1]
-    	set path "./.claude/worktrees/$branch"
-
-    	# Check if the branch already exists
-    	if git rev-parse --verify $branch > /dev/null 2>&1
-    		echo "Branch $branch already exists. Please choose a different name."
-    		git worktree add $path $branch
-    	else
-    		git worktree add -b $branch $path
-    	end
-
-			set files ".env" ".claude/settings.local.json" "./claude/claude.md"
-
-			for file in $files
-				if test -f $file
-					mkdir -p $path/(dirname $file)
-					cp $file $path/$file
-				end
-			end
-
-    	echo "Worktree for branch $branch created at $path"
-    	echo "Starting claude-code in $path..."
-    	cd $path
-    	claude
     end
+
+     	echo "Worktree for branch $branch created at $path"
+     	echo "Starting claude-code in $path..."
+     	cd $path
+     	claude
+     end
   '';
 }
