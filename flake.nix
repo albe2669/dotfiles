@@ -89,7 +89,7 @@
     };
 
     nix-jetbrains-plugins = {
-      url = "github:theCapypara/nix-jetbrains-plugins";
+      url = "github:nix-community/nix-jetbrains-plugins";
     };
 
     spicetify-nix = {

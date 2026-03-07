@@ -557,11 +557,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1772723663,
-        "narHash": "sha256-OKaOxpeK42A0QdlUkl68/4l32EZzQRHjKzBHXI3Q2a8=",
+        "lastModified": 1772814788,
+        "narHash": "sha256-+UlE/TlmP8wNhP/A3abCs3lBwi3gGK1FwHBKL6wk2Gk=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "ae9ca17b40e04cd11b53b82e9292d3070710df18",
+        "rev": "42f0a6005b7c502b1486f1f3b4d9883035be3dd8",
         "type": "github"
       },
       "original": {
@@ -882,15 +882,15 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1772266606,
-        "narHash": "sha256-oY2w5MGPY/MHbgo47Wxzo8K/uHcCYKPcOnDKMbpWW1I=",
-        "owner": "theCapypara",
+        "lastModified": 1772890031,
+        "narHash": "sha256-ENuWIVAOGeHADC0JZYYXmwzf6Dn6GbM23nhlXkcJrNs=",
+        "owner": "nix-community",
         "repo": "nix-jetbrains-plugins",
-        "rev": "3034024962516d52a638134efaed55acdbbf8dc1",
+        "rev": "3e8808a9583bd1034f9205270c67c7778a7808e6",
         "type": "github"
       },
       "original": {
-        "owner": "theCapypara",
+        "owner": "nix-community",
         "repo": "nix-jetbrains-plugins",
         "type": "github"
       }

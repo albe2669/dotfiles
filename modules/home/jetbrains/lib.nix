@@ -2,11 +2,10 @@
   system,
   pkgs-unstable,
   inputs,
+  isDarwin,
 }: let
-  isLinux = builtins.match ".*-linux" system != null;
-
   overrideIde = ide:
-    if isLinux
+    if !isDarwin
     then
       pkgs-unstable.jetbrains."${ide}".override {
         vmopts = ''
@@ -32,14 +31,15 @@
 
   createIde = ide-name: extraPlugins: let
     ide = overrideIde ide-name;
-    plugins = builtins.map (p: inputs.nix-jetbrains-plugins.plugins."${system}"."${ide.pname}"."${ide.version}"."${p}") (commonPlugins ++ extraPlugins);
+    # pluginsForIdeWith with dontOverride for copilot so addPlugins patches it correctly
+    plugins =
+      inputs.nix-jetbrains-plugins.lib.pluginsForIdeWith {
+        applyPluginOverrides = true;
+      }
+      pkgs-unstable
+      ide (commonPlugins ++ extraPlugins);
   in
-    # Workaround for https://github.com/NixOS/nixpkgs/issues/417137
-    # addPlugins only patches text files in bin/, but IDE binaries elsewhere
-    # still reference the unwrapped store path, failing disallowedReferences.
-    (pkgs-unstable.jetbrains.plugins.addPlugins ide plugins).overrideAttrs {
-      disallowedReferences = [];
-    };
+    pkgs-unstable.jetbrains.plugins.addPlugins ide (builtins.attrValues plugins);
 in {
   inherit createIde;
 }
