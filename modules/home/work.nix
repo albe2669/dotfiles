@@ -2,7 +2,7 @@
   self,
   pkgs-unstable,
   pkgs,
-	lib,
+  lib,
   ...
 }: {
   home.packages = with pkgs-unstable; [
