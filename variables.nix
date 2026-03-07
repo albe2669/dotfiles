@@ -12,7 +12,7 @@ in {
     variables = {
       username = mkOption {
         type = types.str;
-        default = "arn";
+        default = "goose";
         description = "System username";
       };
 
