@@ -39,7 +39,9 @@
       pkgs-unstable
       ide (commonPlugins ++ extraPlugins);
   in
-    pkgs-unstable.jetbrains.plugins.addPlugins ide (builtins.attrValues plugins);
+    (pkgs-unstable.jetbrains.plugins.addPlugins ide (builtins.attrValues plugins)).overrideAttrs {
+			disallowedReferences = [];
+		};
 in {
   inherit createIde;
 }
