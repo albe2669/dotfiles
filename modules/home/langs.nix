@@ -44,5 +44,7 @@
     LIBRARY_PATH = lib.makeLibraryPath [
       pkgs.darwin.libresolv
     ];
+
+		GOROOT = "${pkgs-unstable.go}/share/go";
   };
 }
