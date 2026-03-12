@@ -1,8 +1,6 @@
-{ pkgs-unstable, ... }:
-let
+{pkgs-unstable, ...}: let
   pkg = pkgs-unstable.claude-code;
-in
-{
+in {
   programs.claude-code = {
     enable = true;
     package = pkg;

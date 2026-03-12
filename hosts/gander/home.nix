@@ -1,5 +1,4 @@
-{ self, ... }:
-{
+{self, ...}: {
   hm.imports = [
     self.homeModules.home
     self.homeModules.azure-cli
