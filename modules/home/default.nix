@@ -37,6 +37,7 @@
   php = ./php.nix;
   programs = ./programs.nix;
   python3 = ./python3.nix;
+  rtk = ./rtk.nix;
   satty = ./satty.nix;
   sops = ./sops.nix;
   sioyek = ./sioyek;
