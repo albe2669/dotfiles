@@ -1,18 +1,3 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "opencode-gemini-auth@latest"
-  ],
-  "provider": {
-    "opencode": {
-      "models": {
-        "opencode/trinity-large-preview-free": {
-          "limit": {
-            "context": 131000,
-            "output": 131000,
-          }
-        }
-      }
-    }
-  }
 }

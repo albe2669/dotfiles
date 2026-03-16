@@ -29,5 +29,6 @@
     self.homeModules.jetbrains
     self.homeModules.jetbrains-goland
     self.homeModules.rtk
+    self.homeModules.opencode
   ];
 }
