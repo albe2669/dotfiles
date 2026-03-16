@@ -51,7 +51,7 @@ in {
   programs.fish.shellInit = ''
      function claw
      	if test (count $argv) -ne 1
-     		echo "Usage: git-worktree-add <branch>"
+     		echo "Usage: claw <branch>"
      		return 1
      	end
 
@@ -74,6 +74,42 @@ in {
     		cp $file $path/$file
     	end
     end
+
+     	echo "Worktree for branch $branch created at $path"
+     	echo "Starting claude-code in $path..."
+     	cd $path
+     	claude
+     end
+
+     # Checks out an existing branch into a worktree, and copy .env file to it if it exists
+     function clawe
+     	if test (count $argv) -ne 1
+     		echo "Usage: clawe <existing-branch>"
+     		return 1
+     	end
+
+     	set branch $argv[1]
+      set basepath "./.claude/worktrees"
+     	set path "$basepath/$branch"
+
+      mkdir -p $basepath
+
+      # Check if the branch doesnt exist
+      if not git rev-parse --verify $branch > /dev/null 2>&1
+     		echo "Branch $branch does not exist. Please choose an existing branch."
+     		return 1
+     	end
+
+      git worktree add --checkout $path $branch
+
+      set files ".env" ".claude/settings.local.json" "./claude/claude.md"
+
+      for file in $files
+        if test -f $file
+          mkdir -p $path/(dirname $file)
+          cp $file $path/$file
+        end
+      end
 
      	echo "Worktree for branch $branch created at $path"
      	echo "Starting claude-code in $path..."
