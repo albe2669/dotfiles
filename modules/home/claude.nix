@@ -48,6 +48,9 @@ in {
           # Git tools
           "Bash(git add:*)"
           "Bash(git:*)"
+
+          # RTK
+          "Bash(rtk:*)"
         ];
       };
     };
