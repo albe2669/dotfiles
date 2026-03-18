@@ -13,6 +13,7 @@
 
     NSGlobalDomain = {
       AppleShowAllExtensions = lib.mkDefault true;
+      ApplePressAndHoldEnabled = lib.mkDefault false;
       InitialKeyRepeat = lib.mkDefault 14;
       KeyRepeat = lib.mkDefault 1;
     };
