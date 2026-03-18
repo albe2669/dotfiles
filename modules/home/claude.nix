@@ -1,4 +1,9 @@
-{pkgs-unstable, ...}: let
+{
+  self,
+  system,
+  pkgs-unstable,
+  ...
+}: let
   pkg = pkgs-unstable.claude-code;
 in {
   programs.claude-code = {
@@ -15,6 +20,7 @@ in {
 
           # Nix tools
           "Bash(nix flake metadata:*)"
+          "Bash(nix eval*)"
 
           # Go tools
           "Bash(go vet:*)"
@@ -63,7 +69,7 @@ in {
      		echo "Branch $branch already exists. Please choose a different name."
      		git worktree add $path $branch
      	else
-     		git worktree add -b $branch $path
+     		git worktree add -b $branch $path main
      	end
 
     set files ".env" ".claude/settings.local.json" "./claude/claude.md"
@@ -117,4 +123,8 @@ in {
      	claude
      end
   '';
+
+  home.packages = [
+    self.packages.${system}.ccusage
+  ];
 }
