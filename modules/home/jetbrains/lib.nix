@@ -27,6 +27,7 @@
     "org.intellij.plugins.hcl"
     "org.jetbrains.plugins.github"
     "com.github.copilot"
+    "net.ashald.envfile"
   ];
 
   createIde = ide-name: extraPlugins: let
