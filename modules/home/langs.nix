@@ -4,13 +4,16 @@
   lib,
   config,
   ...
-}: {
+}:
+let 
+ go_pkg = pkgs-unstable.go_1_26;
+in {
   home.packages = with pkgs;
     [
       nodejs_22
 
       # Go
-      pkgs-unstable.go
+      go_pkg
       pkgs-unstable.golangci-lint
 
       # Rust
@@ -45,6 +48,6 @@
       pkgs.darwin.libresolv
     ];
 
-    GOROOT = "${pkgs-unstable.go}/share/go";
+    GOROOT = "${go_pkg}/share/go";
   };
 }
