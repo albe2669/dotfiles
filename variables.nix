@@ -117,9 +117,6 @@ in {
       if cfg.isDarwin
       then 502
       else -1;
-    variables.username =
-      if cfg.isDarwin
-      then "arn"
-      else cfg.username;
+    variables.username = lib.mkIf cfg.isDarwin "arn";
   };
 }
