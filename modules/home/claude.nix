@@ -56,75 +56,104 @@ in {
     };
   };
 
-  # Fish function to create a worktree with a name, and copy .env file to it if it exists
+  # Fish functions to manage git worktrees for AI coding sessions
   programs.fish.shellInit = ''
-     function claw
-     	if test (count $argv) -ne 1
-     		echo "Usage: claw <branch>"
-     		return 1
-     	end
-
-     	set branch $argv[1]
-     	set path "./.claude/worktrees/$branch"
-
-     	# Check if the branch already exists
-     	if git rev-parse --verify $branch > /dev/null 2>&1
-     		echo "Branch $branch already exists. Please choose a different name."
-     		git worktree add $path $branch
-     	else
-     		git worktree add -b $branch $path main
-     	end
-
-    set files ".env" ".claude/settings.local.json" "./claude/claude.md"
-
-    for file in $files
-    	if test -f $file
-    		mkdir -p $path/(dirname $file)
-    		cp $file $path/$file
-    	end
-    end
-
-     	echo "Worktree for branch $branch created at $path"
-     	echo "Starting claude-code in $path..."
-     	cd $path
-     	claude
-     end
-
-     # Checks out an existing branch into a worktree, and copy .env file to it if it exists
-     function clawe
-     	if test (count $argv) -ne 1
-     		echo "Usage: clawe <existing-branch>"
-     		return 1
-     	end
-
-     	set branch $argv[1]
-      set basepath "./.claude/worktrees"
-     	set path "$basepath/$branch"
-
-      mkdir -p $basepath
-
-      # Check if the branch doesnt exist
-      if not git rev-parse --verify $branch > /dev/null 2>&1
-     		echo "Branch $branch does not exist. Please choose an existing branch."
-     		return 1
-     	end
-
-      git worktree add --checkout $path $branch
-
+    # Shared helper: copy common config files into a worktree
+    function __worktree_copy_files
+      set path $argv[1]
       set files ".env" ".claude/settings.local.json" "./claude/claude.md"
-
       for file in $files
         if test -f $file
           mkdir -p $path/(dirname $file)
           cp $file $path/$file
         end
       end
+    end
 
-     	echo "Worktree for branch $branch created at $path"
-     	echo "Starting claude-code in $path..."
-     	cd $path
-     	claude
-     end
+    # Shared helper: announce and launch an AI tool inside a worktree
+    function __worktree_launch
+      set path $argv[1]
+      set tool $argv[2]
+      set branch $argv[3]
+      echo "Worktree for branch $branch created at $path"
+      echo "Starting $tool in $path..."
+      cd $path
+      $tool
+    end
+
+    # Create a new branch worktree and open it in claude-code
+    function claw
+      if test (count $argv) -ne 1
+        echo "Usage: claw <branch>"
+        return 1
+      end
+      set branch $argv[1]
+      set path "./.claude/worktrees/$branch"
+      if git rev-parse --verify $branch > /dev/null 2>&1
+        echo "Branch $branch already exists. Please choose a different name."
+        git worktree add $path $branch
+      else
+        git worktree add -b $branch $path main
+      end
+      __worktree_copy_files $path
+      __worktree_launch $path claude $branch
+    end
+
+    # Checkout an existing branch into a worktree and open it in claude-code
+    function clawe
+      if test (count $argv) -ne 1
+        echo "Usage: clawe <existing-branch>"
+        return 1
+      end
+      set branch $argv[1]
+      set basepath "./.claude/worktrees"
+      set path "$basepath/$branch"
+      mkdir -p $basepath
+      if not git rev-parse --verify $branch > /dev/null 2>&1
+        echo "Branch $branch does not exist. Please choose an existing branch."
+        return 1
+      end
+      git worktree add --checkout $path $branch
+      __worktree_copy_files $path
+      __worktree_launch $path claude $branch
+    end
+
+    # Create a new branch worktree and open it in opencode
+    function oclaw
+      if test (count $argv) -ne 1
+        echo "Usage: oclaw <branch>"
+        return 1
+      end
+      set branch $argv[1]
+      set path "./.claude/worktrees/$branch"
+      if git rev-parse --verify $branch > /dev/null 2>&1
+        echo "Branch $branch already exists. Please choose a different name."
+        git worktree add $path $branch
+      else
+        git worktree add -b $branch $path main
+      end
+      __worktree_copy_files $path
+      __worktree_launch $path opencode $branch
+    end
+
+    # Checkout an existing branch into a worktree and open it in opencode
+    function oclawe
+      if test (count $argv) -ne 1
+        echo "Usage: oclawe <existing-branch>"
+        return 1
+      end
+      set branch $argv[1]
+      set basepath "./.claude/worktrees"
+      set path "$basepath/$branch"
+      mkdir -p $basepath
+      if not git rev-parse --verify $branch > /dev/null 2>&1
+        echo "Branch $branch does not exist. Please choose an existing branch."
+        return 1
+      end
+      git worktree add --checkout $path $branch
+      __worktree_copy_files $path
+      __worktree_launch $path opencode $branch
+    end
   '';
 
   home.packages = [
