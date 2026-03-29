@@ -28,4 +28,8 @@
     spiceUSBRedirection.enable = true;
   };
   services.spice-vdagentd.enable = true;
+
+  boot.extraModprobeConfig = ''
+    options kvm ignore_msrs=1
+  '';
 }

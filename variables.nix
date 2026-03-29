@@ -5,9 +5,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.opts.variables;
-in {
+in
+{
   options.opts = {
     variables = {
       username = mkOption {
@@ -42,7 +44,14 @@ in {
 
         directories = mkOption {
           type = types.listOf types.str;
-          default = ["Documents" "Downloads" "Music" "Pictures" "Pictures/FScreenshots" "Videos"];
+          default = [
+            "Documents"
+            "Downloads"
+            "Music"
+            "Pictures"
+            "Pictures/FScreenshots"
+            "Videos"
+          ];
           description = "Directories to create in home directory";
         };
       };
@@ -101,25 +110,15 @@ in {
   config.opts = {
     # Set computed values based on other options
     variables.homeDirectory.path =
-      if cfg.isDarwin
-      then builtins.toPath "/Users/${cfg.username}"
-      else builtins.toPath "/home/${cfg.username}";
-    variables.dotfilesLocation = cfg.homeDirectory.path + (builtins.toPath "/Documents/Coding/Other/dotfiles");
-    variables.screen.scaleFactor =
-      if cfg.isHidpi
-      then 2
-      else 1;
-    variables.screen.dpi =
-      if cfg.isHidpi
-      then 180
-      else 96;
-    variables.uid =
-      if cfg.isDarwin
-      then 502
-      else -1;
-    variables.username =
-      if cfg.isDarwin
-      then "arn"
-      else cfg.username;
+      if cfg.isDarwin then
+        builtins.toPath "/Users/${cfg.username}"
+      else
+        builtins.toPath "/home/${cfg.username}";
+    variables.dotfilesLocation =
+      cfg.homeDirectory.path + (builtins.toPath "/Documents/Coding/Other/dotfiles");
+    variables.screen.scaleFactor = if cfg.isHidpi then 2 else 1;
+    variables.screen.dpi = if cfg.isHidpi then 180 else 96;
+    variables.uid = if cfg.isDarwin then 502 else -1;
+    variables.username = lib.mkIf cfg.isDarwin "arn";
   };
 }
