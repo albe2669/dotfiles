@@ -56,6 +56,11 @@
 
       overlays = import ../overlays {};
     };
+
+    pkgs-goland = import inputs.nixpkgs-goland {
+      inherit system;
+      config.allowUnfree = true;
+    };
   };
 
   sharedModules = [

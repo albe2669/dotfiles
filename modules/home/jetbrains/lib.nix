@@ -1,18 +1,19 @@
 {
   system,
   pkgs-unstable,
+  pkgs-ide ? pkgs-unstable,
   inputs,
   isDarwin,
 }: let
   overrideIde = ide:
     if !isDarwin
     then
-      pkgs-unstable.jetbrains."${ide}".override {
+      pkgs-ide.jetbrains."${ide}".override {
         vmopts = ''
           -Dawt.toolkit.name=WLToolkit
         '';
       }
-    else pkgs-unstable.jetbrains."${ide}";
+    else pkgs-ide.jetbrains."${ide}";
 
   commonPlugins = [
     "IdeaVIM"

@@ -1005,6 +1005,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-goland": {
+      "locked": {
+        "lastModified": 1774859295,
+        "narHash": "sha256-AFhOwfdnY4CMfHR7dhpr86wcE6oIRPhyVEAqqvha3s8=",
+        "owner": "albe2669",
+        "repo": "nixpkgs",
+        "rev": "f8fedea71baaec4e0092655c190ea138fd583315",
+        "type": "github"
+      },
+      "original": {
+        "owner": "albe2669",
+        "ref": "goland-2026.1",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1772328832,
@@ -1214,6 +1230,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_7",
+        "nixpkgs-goland": "nixpkgs-goland",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
