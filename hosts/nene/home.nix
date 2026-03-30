@@ -16,7 +16,7 @@
     self.homeModules.utils
     self.homeModules.vscode
     self.homeModules.work
-    # self.homeModules.zen
+    self.homeModules.zen
     self.homeModules.yazi
     self.homeModules.spotify
     self.homeModules.zellij
