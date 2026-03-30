@@ -1,10 +1,11 @@
 {
   self,
   system,
+  pkgs-unstable,
   ...
 }: {
-  home.packages = [
-    self.packages.${system}.rtk
+  home.packages = with pkgs-unstable; [
+    rtk
   ];
 
   programs.claude-code.settings.hooks = {
