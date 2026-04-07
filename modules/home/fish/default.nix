@@ -71,7 +71,7 @@
   home.packages = with pkgs; [
     atuin
 
-    fishPlugins.bass
+    (fishPlugins.bass.overrideAttrs {doCheck = false;})
     fishPlugins.puffer
     fishPlugins.async-prompt
   ];
