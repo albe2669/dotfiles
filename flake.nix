@@ -13,7 +13,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; # Use stable for now
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-goland.url = "github:albe2669/nixpkgs/goland-2026.1";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
