@@ -10,6 +10,10 @@ let
 in {
   home.packages = with pkgs;
     [
+		  # Command runner
+			just
+
+			# NodeJS
       nodejs_22
 
       # Go
