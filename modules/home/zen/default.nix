@@ -16,6 +16,8 @@ let
       Status = "locked";
     }
   );
+
+  profileName = "bkxkrjhl.Default (release)";
 in
 {
   imports = [
@@ -55,7 +57,7 @@ in
       };
     };
 
-    profiles."default" = {
+    profiles."${profileName}" = {
       extensions.packages = with firefox-addons; [
         dashlane
 onepassword-password-manager
@@ -196,8 +198,8 @@ onepassword-password-manager
       pinsForce = true;
       pins =
         let
-          workspaceId = config.programs.zen-browser.profiles."default".spaces."Work".id;
-          workContainerId = config.programs.zen-browser.profiles."default".containers."Work".id;
+          workspaceId = config.programs.zen-browser.profiles."${profileName}".spaces."Work".id;
+          workContainerId = config.programs.zen-browser.profiles."${profileName}".containers."Work".id;
           mkWorkPin = id: url: title: pos: {
             inherit id url title;
             workspace = workspaceId;
@@ -235,7 +237,7 @@ onepassword-password-manager
       spacesForce = true;
       spaces =
         let
-          containers = config.programs.zen-browser.profiles."default".containers;
+          containers = config.programs.zen-browser.profiles."${profileName}".containers;
         in
         {
           "Personal" = {
