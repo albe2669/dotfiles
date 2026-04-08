@@ -4,16 +4,15 @@
   lib,
   config,
   ...
-}:
-let 
- go_pkg = pkgs-unstable.go_1_26;
+}: let
+  go_pkg = pkgs-unstable.go_1_26;
 in {
   home.packages = with pkgs;
     [
-		  # Command runner
-			just
+      # Command runner
+      just
 
-			# NodeJS
+      # NodeJS
       nodejs_22
 
       # Go
