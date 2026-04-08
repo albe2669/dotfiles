@@ -1,11 +1,29 @@
 {
   self,
+  lib,
   system,
   pkgs-unstable,
   ...
 }: let
   pkg = pkgs-unstable.claude-code;
+  notifyScript = ''
+    #!/usr/bin/env bash
+    input=$(cat)
+    msg=$(printf '%s' "$input" | jq -r '.message // "Task complete"' 2>/dev/null || echo "Task complete")
+    title="Claude Code"
+
+    if [[ "$(uname)" == "Darwin" ]]; then
+      osascript -e "display notification \"$msg\" with title \"$title\""
+    elif command -v notify-send &>/dev/null; then
+      notify-send "$title" "$msg"
+    fi
+  '';
 in {
+  home.file.".claude/hooks/notify.sh" = {
+    executable = true;
+    text = notifyScript;
+  };
+
   programs.claude-code = {
     enable = true;
     package = pkg;
@@ -51,6 +69,29 @@ in {
 
           # RTK
           "Bash(rtk:*)"
+        ];
+      };
+
+      hooks = {
+        Notification = [
+          {
+            hooks = [
+              {
+                type = "command";
+                command = "~/.claude/hooks/notify.sh";
+              }
+            ];
+          }
+        ];
+        Stop = [
+          {
+            hooks = [
+              {
+                type = "command";
+                command = "~/.claude/hooks/notify.sh";
+              }
+            ];
+          }
         ];
       };
     };
@@ -156,7 +197,11 @@ in {
     end
   '';
 
-  home.packages = [
-    self.packages.${system}.ccusage
-  ];
+  home.packages =
+    lib.optionals (builtins.match ".*-linux" system != null) [
+      pkgs-unstable.libnotify
+    ]
+    ++ [
+      self.packages.${system}.ccusage
+    ];
 }
