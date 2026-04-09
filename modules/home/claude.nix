@@ -95,6 +95,51 @@ in {
         ];
       };
     };
+
+    memory.text = ''
+      ## Commands
+      If a just or make file is present, then read the commands and their descriptions before guessing at which commands to run for tasks like linting, testing, or building. Do not assume which commands are used without checking for existing definitions.
+
+      Always run the command directly instead of through make/just, but derive it from the make/just file if it exists.
+
+      ## Development
+
+      When debugging issues, confirm the correct target (host, service, file) with the user before starting investigation. Do not assume which component is affected.
+
+      ## Go Development
+
+      Always run `golangci-lint run ./...` after making Go code changes and fix any issues before presenting work as complete. Do not dismiss or skip linter output.
+
+      Always run the relevant test suite (`go test ./...` or specific package tests) after making changes. Do not explore code extensively without running tests first when debugging test failures.
+
+      ## Nix development
+
+      Always run `nix flake metadata` and `nix eval` to understand the structure of the flake and available outputs before making changes.
+
+      Always build the package/flake being modified to confirm it builds successfully after changes. Do not assume changes are correct without building.
+
+      Always run the formatter on Nix files to ensure consistent formatting. Do not make manual formatting changes.
+
+      ## Infrastructure / Docker
+
+      When working with Docker/Azurite/external services, read existing config files (docker config.json, connection strings) before guessing at values like auth keys or API versions.
+    '';
+
+    skills = {
+      fix-lint = ''
+        ---
+        name: fix-lint
+        description: "For fixing go code. Run golangci-lint, fix all issues, and confirm tests pass"
+        ---
+
+        # Fix Lint Errors
+        1. Run `golangci-lint run ./...` and capture output
+        2. Fix ALL reported issues across all files
+        3. Re-run linter to confirm zero issues
+        4. Run `go test ./...` to ensure fixes don't break tests
+        5. Only report done when both linter and tests pass clean
+      '';
+    };
   };
 
   # Fish functions to manage git worktrees for AI coding sessions
