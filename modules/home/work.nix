@@ -9,6 +9,7 @@
     act
     insomnia
     slack
+    pup
   ];
 
   programs.fish.shellInit = ''

@@ -3,4 +3,5 @@
   # anytype = pkgs.callPackage ./anytype {};
   yuckls = pkgs.callPackage ./yuckls {};
   ccusage = pkgs.callPackage ./ccusage {};
+  pup = pkgs.callPackage ./pup {};
 }
