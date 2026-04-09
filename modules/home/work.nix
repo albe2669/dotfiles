@@ -1,5 +1,6 @@
 {
   self,
+  system,
   pkgs-unstable,
   pkgs,
   lib,
@@ -9,7 +10,7 @@
     act
     insomnia
     slack
-    pup
+    self.packages.${system}.pup
   ];
 
   programs.fish.shellInit = ''
