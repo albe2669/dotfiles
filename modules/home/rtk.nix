@@ -21,4 +21,12 @@
       }
     ];
   };
+
+
+  xdg.configFile."rtk/config.toml" = {
+    text = ''
+      [telemetry]
+      enabled = false
+    '';
+  };
 }
