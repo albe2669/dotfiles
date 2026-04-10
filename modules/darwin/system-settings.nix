@@ -1,21 +1,67 @@
 {lib, ...}: {
   system.defaults = {
     dock = {
-      autohide = lib.mkDefault true;
-      mru-spaces = lib.mkDefault false;
-      minimize-to-application = lib.mkDefault true;
+      autohide = true;
+      mru-spaces = false;
+      minimize-to-application = true;
+      expose-animation-duration = 0.0;
     };
 
     finder = {
-      AppleShowAllExtensions = lib.mkDefault true;
-      QuitMenuItem = lib.mkDefault true;
+      AppleShowAllExtensions = true;
+      QuitMenuItem = true;
     };
 
     NSGlobalDomain = {
-      AppleShowAllExtensions = lib.mkDefault true;
-      ApplePressAndHoldEnabled = lib.mkDefault false;
-      InitialKeyRepeat = lib.mkDefault 14;
-      KeyRepeat = lib.mkDefault 1;
+      AppleInterfaceStyle = "Dark";
+
+      AppleShowAllExtensions = true;
+
+      ApplePressAndHoldEnabled = false;
+      InitialKeyRepeat = 14;
+      KeyRepeat = 1;
+
+      NSWindowShouldDragOnGesture = true;
+      "com.apple.keyboard.fnState" = true;
+      "com.apple.springing.delay" = 0.5;
+      "com.apple.springing.enabled" = true;
+      "com.apple.trackpad.forceClick" = true;
+    };
+
+    ActivityMonitor = {
+      OpenMainWindow = false;
+      ShowCategory = 102;
+    };
+
+    menuExtraClock = {
+      ShowAMPM = true;
+      ShowDate = 0;
+      ShowDayOfWeek = true;
+    };
+
+    spaces = {
+      spans-displays = true;
+    };
+
+    trackpad = {
+      Clicking = true;
+      TrackpadCornerSecondaryClick = 0;
+      # TrackpadFiveFingerPinchGesture = 2;
+      TrackpadFourFingerHorizSwipeGesture = 2;
+      TrackpadFourFingerPinchGesture = 2;
+      TrackpadFourFingerVertSwipeGesture = 2;
+      # TrackpadHandResting = true;
+      # TrackpadHorizScroll = true;
+      TrackpadMomentumScroll = true;
+      TrackpadPinch = true;
+      TrackpadRotate = true;
+      # TrackpadScroll = true;
+      TrackpadThreeFingerHorizSwipeGesture = 2;
+      TrackpadThreeFingerTapGesture = 0;
+      TrackpadThreeFingerVertSwipeGesture = 2;
+      TrackpadTwoFingerDoubleTapGesture = true;
+      TrackpadTwoFingerFromRightEdgeSwipeGesture = 3;
+      # USBMouseStopsTrackpad = false;
     };
   };
 }
