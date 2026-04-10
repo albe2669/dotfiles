@@ -13,14 +13,18 @@
 
   networking.hostName = config.opts.info.name;
 
-  system.keyboard = {
-    remapCapsLockToControl = false; # set other options here if needed
-    userKeyMapping = [
-      {
-        # Globe (fn) → Command
-        HIDKeyboardModifierMappingSrc = 1095216660483; # 0xFF00000003
-        HIDKeyboardModifierMappingDst = 1095216660480; # 0xFF00000000 (left command...
-      }
-    ];
+  # Remap § (ISO key 0x64) ↔ ` ~ (0x35)
+  launchd.daemons.remap-tilde = {
+    serviceConfig = {
+      Label = "org.custom.tilde-switch";
+      ProgramArguments = [
+        "/usr/bin/hidutil"
+        "property"
+        "--set"
+        ''{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000064,"HIDKeyboardModifierMappingDst":0x700000035},{"HIDKeyboardModifierMappingSrc":0x700000035,"HIDKeyboardModifierMappingDst":0x700000064}]}''
+      ];
+      RunAtLoad = true;
+      KeepAlive = false;
+    };
   };
 }
