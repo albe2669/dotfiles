@@ -5,6 +5,7 @@
       mru-spaces = false;
       minimize-to-application = true;
       expose-animation-duration = 0.0;
+      expose-group-apps = true;
     };
 
     finder = {
