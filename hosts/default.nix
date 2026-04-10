@@ -12,7 +12,7 @@
     "larry"
     "nene"
     "barnacle"
-		"brant"
+    "brant"
   ];
 
   hostInfos = builtins.listToAttrs (map (host: {
