@@ -26,7 +26,7 @@ function utils.formatting()
     if name == "null-ls" or name == "clangd" or name == "roslyn" then
       return
     end
-    if client.supports_method("textDocument/formatting") then
+    if client:supports_method("textDocument/formatting") then
       print("Formatting with " .. client.name)
       local params = lsp.util.make_formatting_params()
       local result, err = client.request_sync("textDocument/formatting", params, 5000, bufnr)
@@ -69,11 +69,11 @@ function utils.on_attach(client, bufnr)
   u.buf_map(bufnr, "n", "<Leader>ld", ":LspDiagLine<CR>")
   u.buf_map(bufnr, "i", "<Leader>lh", "<cmd> LspSignatureHelp<CR>")
 
-  if client.supports_method("textDocument/formatting") then
+  if client:supports_method("textDocument/formatting") then
     vim.cmd("autocmd BufWritePre <buffer> lua global.lsp.formatting()")
   end
 
-  if client.supports_method("textDocument/completion") then
+  if client:supports_method("textDocument/completion") then
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
     u.buf_map(bufnr, "i", "<C-Space>", "<C-x><C-o>")
   end

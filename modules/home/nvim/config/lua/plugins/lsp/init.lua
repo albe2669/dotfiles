@@ -1,12 +1,9 @@
 local lu = require("plugins.lsp.lsp-utils")
-local lsp = vim.lsp
 
 local border_opts = { border = "single", focusable = false, scope = "line" }
 
+vim.o.winborder = "single"
 vim.diagnostic.config({ virtual_text = true, float = border_opts })
-
-lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, border_opts)
-lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, border_opts)
 
 global.lsp = {
   border_opts = border_opts,
