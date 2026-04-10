@@ -67,6 +67,7 @@
 
   system.keyboard = {
     remapCapsLockToControl = false; # set other options here if needed
+		enableKeyMapping = true;
     userKeyMapping = [
       {
         # Globe (fn) → Command
