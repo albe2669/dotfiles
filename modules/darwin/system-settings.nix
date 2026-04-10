@@ -67,12 +67,17 @@
 
   system.keyboard = {
     remapCapsLockToControl = false; # set other options here if needed
-		enableKeyMapping = true;
+    enableKeyMapping = true;
     userKeyMapping = [
       {
-        # Globe (fn) → Command
-        HIDKeyboardModifierMappingSrc = 1095216660483; # 0xFF00000003
-        HIDKeyboardModifierMappingDst = 1095216660480; # 0xFF00000000 (left command...
+        # Command → Globe
+        HIDKeyboardModifierMappingSrc = 1095216660480; # 0xFF00000000 Left Command
+        HIDKeyboardModifierMappingDst = 1095216660483; # 0xFF00000003 Globe
+      }
+      {
+        # fn → Command
+        HIDKeyboardModifierMappingSrc = 30064771202; # fn key HID usage
+        HIDKeyboardModifierMappingDst = 1095216660480; # 0xFF00000000 Left Command
       }
     ];
   };

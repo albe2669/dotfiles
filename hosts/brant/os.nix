@@ -13,18 +13,19 @@
 
   networking.hostName = config.opts.info.name;
 
-  # Remap § (ISO key 0x64) ↔ ` ~ (0x35)
-  launchd.daemons.remap-tilde = {
-    serviceConfig = {
-      Label = "org.custom.tilde-switch";
-      ProgramArguments = [
-        "/usr/bin/hidutil"
-        "property"
-        "--set"
-        ''{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000064,"HIDKeyboardModifierMappingDst":0x700000035},{"HIDKeyboardModifierMappingSrc":0x700000035,"HIDKeyboardModifierMappingDst":0x700000064}]}''
-      ];
-      RunAtLoad = true;
-      KeepAlive = false;
-    };
+  system.keyboard = {
+    enableKeyMapping = true;
+    userKeyMapping = [
+      {
+        # ` -> §
+        HIDKeyboardModifierMappingSrc = 30064771172;
+        HIDKeyboardModifierMappingDst = 30064771125;
+      }
+      {
+        # § -> `
+        HIDKeyboardModifierMappingSrc = 30064771125;
+        HIDKeyboardModifierMappingDst = 30064771172;
+      }
+    ];
   };
 }
