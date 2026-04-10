@@ -6,6 +6,7 @@ keys:
   # - &skein age1XXXX_REPLACE_WITH_ssh-to-age_OUTPUT
   # - &larry age1XXXX_REPLACE_WITH_ssh-to-age_OUTPUT
   - &nene age1h5jug42d2tfxewk376t2hnv9zmd6j2nwztfew374u50fu0vr4arslhmn4j
+  - &brant age1facme2rg903na3zf4hkfuxvpatsfy7v5h2gtcrrtqwdgg3fk3vpqaahwkw
 creation_rules:
   - path_regex: modules/shared/sops/secrets/[^/]+\.yaml$
     key_groups:
@@ -15,3 +16,4 @@ creation_rules:
           # - *skein
           # - *larry
           - *nene
+          - *brant
