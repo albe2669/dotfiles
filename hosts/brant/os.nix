@@ -12,4 +12,15 @@
   ];
 
   networking.hostName = config.opts.info.name;
+
+  system.keyboard = {
+    remapCapsLockToControl = false; # set other options here if needed
+    userKeyMapping = [
+      {
+        # Globe (fn) → Command
+        HIDKeyboardModifierMappingSrc = 1095216660483; # 0xFF00000003
+        HIDKeyboardModifierMappingDst = 1095216660480; # 0xFF00000000 (left command...
+      }
+    ];
+  };
 }
