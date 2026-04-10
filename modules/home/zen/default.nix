@@ -142,7 +142,7 @@ in {
           id = 3;
         };
       };
-      keyboardShortcutsVersion = 16;
+      keyboardShortcutsVersion = 17;
       keyboardShortcuts = [
         # Sidebar
         {
