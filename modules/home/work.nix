@@ -9,6 +9,7 @@
   home.packages = with pkgs-unstable; [
     act
     insomnia
+    bruno
     slack
     self.packages.${system}.pup
   ];
