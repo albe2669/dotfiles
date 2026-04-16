@@ -106,6 +106,8 @@ in {
 
       When debugging issues, confirm the correct target (host, service, file) with the user before starting investigation. Do not assume which component is affected.
 
+      Always update and run tests and documentation after making a change.
+
       ## Go Development
 
       Always run `golangci-lint run ./...` after making Go code changes and fix any issues before presenting work as complete. Do not dismiss or skip linter output.
@@ -139,6 +141,32 @@ in {
         4. Run `go test ./...` to ensure fixes don't break tests
         5. Only report done when both linter and tests pass clean
       '';
+    };
+
+    marketplaces = {
+      claude-plugins-official = pkgs-unstable.fetchFromGitHub {
+        owner = "anthropics";
+        repo = "claude-plugins-official";
+        rev = "7ed523140f506611c968a0ec32e1dfc40a1d5673";
+        sha256 = "sha256-wt+D1LKRWQDPuLA0f4X2deV5LDL7+x0iz7+2BHkkAYs=";
+      };
+      superpowers-marketplace = pkgs-unstable.fetchFromGitHub {
+        owner = "obra";
+        repo = "superpowers-marketplace";
+        rev = "0b73e2556d4ecf4fe54dbb32b248b5e17ed0c0f5";
+        sha256 = "sha256-uKDVcw6C1uzpiIY+hjgHxr4AU9wM1KF7t3v6zd9XBHk=";
+      };
+    };
+    settings = {
+      enabledPlugins = {
+        "gopls-lsp@claude-plugins-official" = true;
+        "lua-lsp@claude-plugins-official" = true;
+        "pr-review-toolkit@claude-plugins-official" = true;
+        "frontend-design@claude-plugins-official" = true;
+        "code-review@claude-plugins-official" = true;
+        "commit-commands@claude-plugins-official" = true;
+        "superpowers@superpowers-marketplace" = true;
+      };
     };
   };
 
