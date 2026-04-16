@@ -29,7 +29,7 @@ else
 	sudo nixos-rebuild build --show-trace --flake .#$(host)
 endif
 
-rebuild:
+rebuild: fmt
 ifeq ($(os),Darwin)
 	sudo darwin-rebuild switch --show-trace --flake .#$(host)
 else
