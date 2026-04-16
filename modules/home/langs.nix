@@ -12,6 +12,9 @@ in {
       # Command runner
       just
 
+      # Precommit
+      lefthook
+
       # NodeJS
       nodejs_22
 
