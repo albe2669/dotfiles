@@ -156,6 +156,12 @@ in {
         rev = "0b73e2556d4ecf4fe54dbb32b248b5e17ed0c0f5";
         sha256 = "sha256-uKDVcw6C1uzpiIY+hjgHxr4AU9wM1KF7t3v6zd9XBHk=";
       };
+      context-mode = pkgs-unstable.fetchFromGitHub {
+        owner = "mksglu";
+        repo = "context-mode";
+        rev = "a2f108247ba6d60b04f2fc448f6322afac91cd71";
+        sha256 = "sha256-myMNTAUFcx1ba9PgVMRbfV+O/UKrzm+CBy1VdBIvfI0=";
+      };
     };
     settings = {
       enabledPlugins = {
@@ -166,12 +172,28 @@ in {
         "code-review@claude-plugins-official" = true;
         "commit-commands@claude-plugins-official" = true;
         "superpowers@superpowers-marketplace" = true;
+        "context-mode@context-mode" = true;
       };
     };
   };
 
+  home.activation.installBetterSqlite3 = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    export PATH="${pkgs-unstable.nodejs}/bin:$PATH"
+    MODULES_DIR="$HOME/.local/share/claude-node-modules"
+    SQLITE_DIR="$MODULES_DIR/node_modules/better-sqlite3"
+    NODE_VER=$(node --version 2>/dev/null || echo "unknown")
+    VERSION_FILE="$MODULES_DIR/.node-version"
+    if [ ! -d "$SQLITE_DIR" ] || [ "$(cat "$VERSION_FILE" 2>/dev/null)" != "$NODE_VER" ]; then
+      mkdir -p "$MODULES_DIR"
+      npm install 'better-sqlite3@^12.6.2' --prefix "$MODULES_DIR" --no-save --loglevel error 2>&1 || true
+      printf '%s' "$NODE_VER" > "$VERSION_FILE"
+    fi
+  '';
+
   # Fish functions to manage git worktrees for AI coding sessions
   programs.fish.shellInit = ''
+    set -x NODE_PATH $HOME/.local/share/claude-node-modules/node_modules $NODE_PATH
+
     # Shared helper: copy common config files into a worktree
     function __worktree_copy_files
       set path $argv[1]
@@ -276,5 +298,6 @@ in {
     ]
     ++ [
       self.packages.${system}.ccusage
+      pkgs-unstable.bun
     ];
 }
