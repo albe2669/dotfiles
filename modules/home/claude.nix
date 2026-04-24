@@ -30,6 +30,13 @@ in {
 
     settings = {
       permissions = {
+        deny = [
+          "Bash(sudo *)"
+          "Bash(rm -rf /*)"
+          "Read(.env)"
+          "Read(**/.env*)"
+        ];
+
         allow = [
           # Shell tools
           "Bash(find:*)"
