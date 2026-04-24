@@ -10,6 +10,7 @@
     act
     insomnia
     bruno
+    bruno-cli
     slack
     self.packages.${system}.pup
   ];
