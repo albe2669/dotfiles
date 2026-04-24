@@ -29,6 +29,23 @@
       ldo = "lazydocker";
     };
 
+    interactiveShellInit = ''
+      if not set -q ZELLIJ
+        set -l sessions (zellij list-sessions 2>/dev/null | string replace -ra '\x1b\[[0-9;]*[A-Za-z]' "" | string replace -r '\s.*' "")
+        set -l result (printf '%s\n' $sessions | fzf --print-query --prompt="zellij> " --header="[enter] attach  [type name + enter] create new" --bind "tab:accept")
+        set -l query $result[1]
+        set -l selected $result[2]
+
+        if test -n "$selected"
+          zellij attach $selected
+        else if test -n "$query"
+          zellij --session $query
+        else
+          zellij
+        end
+      end
+    '';
+
     shellInit = ''
       # Go stuff
       set -x GOPATH $HOME/.local/go
@@ -70,6 +87,7 @@
 
   home.packages = with pkgs; [
     atuin
+    fzf
 
     (fishPlugins.bass.overrideAttrs {doCheck = false;})
     fishPlugins.puffer

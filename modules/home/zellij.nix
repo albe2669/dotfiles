@@ -4,7 +4,7 @@
   programs.zellij = {
     enable = true;
     package = pkgs-unstable.zellij;
-    enableFishIntegration = true;
+    enableFishIntegration = false;
     settings = {
       theme = "everforest-dark";
 
