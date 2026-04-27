@@ -8,6 +8,7 @@
     self.darwinModules.shell
     self.darwinModules.mac-app-util
     self.darwinModules.docker
+    self.darwinModules."1password"
     self.darwinModules.aerospace
   ];
 

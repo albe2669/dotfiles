@@ -1,4 +1,5 @@
 {
+  "1password" = ./1password.nix;
   core = ./core.nix;
   home = ./home.nix;
   nix = ./nix.nix;
