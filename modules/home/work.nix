@@ -17,5 +17,6 @@
 
   programs.fish.shellInit = ''
     set -x GIT_TOKEN (${lib.getExe pkgs.gh} auth token)
+    set -x GOPRIVATE "github.com/corticph/*"
   '';
 }
