@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -20,6 +21,7 @@
       auto-optimise-store = true;
       builders-use-substitutes = true;
       experimental-features = ["nix-command" "flakes"];
+      netrc-file = config.sops.secrets.nix_netrc.path;
     };
   };
 

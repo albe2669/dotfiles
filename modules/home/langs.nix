@@ -44,10 +44,17 @@ in {
 
       # Erlang
       erlang_28
+
+      # Per project setup
+      devenv
     ]
     ++ lib.optionals config.opts.variables.isDarwin [
       pkgs.apple-sdk
     ];
+
+  programs.fish.shellInit = ''
+    set -x GOROOT "${go_pkg}/share/go"
+  '';
 
   home.sessionVariables = lib.mkIf config.opts.variables.isDarwin {
     LIBRARY_PATH = lib.makeLibraryPath [

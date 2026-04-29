@@ -12,6 +12,9 @@ in {
             sopsFile = ./secrets/passwd.yaml;
             neededForUsers = true;
           };
+          nix_netrc = {
+            sopsFile = ./secrets/nix_netrc.yaml;
+          };
         }
         // builtins.mapAttrs (key: value: value // {owner = username;}) sharedArgs.secrets;
     };

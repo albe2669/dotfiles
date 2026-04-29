@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   nix = {
     # optimise = {
     #   automatic = lib.mkDefault true;
@@ -21,6 +25,7 @@
       builders-use-substitutes = true;
       # enable flakes globally
       experimental-features = ["nix-command" "flakes"];
+      netrc-file = config.sops.secrets.nix_netrc.path;
     };
   };
 
