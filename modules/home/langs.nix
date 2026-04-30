@@ -46,7 +46,7 @@ in {
       erlang_28
 
       # Per project setup
-      devenv
+      pkgs-unstable.devenv
     ]
     ++ lib.optionals config.opts.variables.isDarwin [
       pkgs.apple-sdk
