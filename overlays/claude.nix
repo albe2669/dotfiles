@@ -1,15 +1,13 @@
 final: prev: let
-  version = "2.1.114";
+  version = "2.1.126";
   baseUrl = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases";
   platformKey = "${prev.stdenv.hostPlatform.node.platform}-${prev.stdenv.hostPlatform.node.arch}";
 
   checksums = {
-    "darwin-arm64" = "bf1b4da368da7970f0d1d4a1675acea99b6f2ad94f24e9f8ccfcc7940ac67894";
-    "darwin-x64" = "1a30360b6240056a58ba9187c8f9d2e88e949e0f970d5cf81f8d69bc65568f6a";
-    "linux-arm64" = "9556b74e2c912e7dcaef90c91fd0dd5095364f8a9d71398de3c5c669612b828a";
-    "linux-x64" = "12bd4b0916deb06be17ffc7b2f0485e140bf00b2db3dcb78469d66723d73c27f";
-    "linux-arm64-musl" = "20c68c312e76fb81f52cd2006b1461a0eedd470798f44b9b4a833ad583ccc05b";
-    "linux-x64-musl" = "fbbcfa225e948d9263c39f8be29a956ea4bd3a445f79aa9396cdc3263ea05690";
+    "darwin-arm64" = "87a1d05018ceadfc1fe616bfc10262b0503f51986f4af2dc42d1ed856ed3f7bb";
+    "darwin-x64" = "49a90c474383a9eda11310bd71f7ea6bb91361ec99443b733cb5003f6e703ccb";
+    "linux-arm64" = "88a6dca613a40559f3bac8a946a2ec6e60a870b91938d3df93dcac1dec4848cb";
+    "linux-x64" = "fce96968d275161ff65a4c19fc6434efc6973d9f6d35dc3992a2ba0553cac18e";
   };
 
   src = prev.fetchurl {
@@ -17,8 +15,9 @@ final: prev: let
     sha256 = checksums.${platformKey};
   };
 in {
-  claude-code = prev.claude-code-bin.overrideAttrs (_: {
-    pname = "claude-code";
+  # claude-code-bin was aliased to claude-code in nixpkgs (2026-04-18).
+  # Using prev.claude-code avoids the cycle that prev.claude-code-bin creates.
+  claude-code = prev.claude-code.overrideAttrs (_: {
     inherit version src;
   });
 }
