@@ -11,6 +11,7 @@
 
       # Programming
       gh
+      gh-dash
       gnumake
       jq
 
