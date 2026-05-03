@@ -6,6 +6,7 @@
     lib,
     ...
   }: let
+    isDarwin = builtins.match ".*-darwin" system != null;
     inherit (config.lib.stylix) colors;
 
     mkLockedAttrs = builtins.mapAttrs (_: value: {
@@ -13,11 +14,11 @@
       Status = "locked";
     });
   in {
-    imports = [
+    imports = lib.optionals (!isDarwin) [
       inputs.zen-browser.homeModules.twilight
     ];
 
-    programs.zen-browser = {
+    programs.zen-browser = lib.mkIf (!isDarwin) {
       enable = true;
       package = lib.mkForce (config.lib.nixGL.wrapOffload inputs.zen-browser.packages."${system}".default);
       policies = {
@@ -119,7 +120,9 @@
     };
   };
 
-  flake.modules.combined.zen = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.zen ];
+  flake.modules.combined.zen = {system, ...}: let
+    isDarwin = builtins.match ".*-darwin" system != null;
+  in {
+    hm.imports = if isDarwin then [] else [ config.flake.modules.homeManager.zen ];
   };
 }

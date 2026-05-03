@@ -1,7 +1,7 @@
 { config, ... }: {
-  flake.modules.homeManager.anytype = { pkgs-unstable, ... }: {
-    home.packages = with pkgs-unstable; [
-      anytype
+  flake.modules.homeManager.anytype = {pkgs-unstable, lib, ...}: {
+    home.packages = lib.optionals (!pkgs-unstable.stdenv.isDarwin) [
+      pkgs-unstable.anytype
     ];
   };
 

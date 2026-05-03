@@ -2,6 +2,7 @@
   flake.modules.combined.darwin-core = {...}: {
     imports = with config.flake.modules.combined; [
       nix-settings
+      state
       system-packages
       system-settings
       user
