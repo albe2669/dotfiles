@@ -4,15 +4,19 @@
     system,
     config,
     lib,
+    pkgs,
     ...
   }: let
     isDarwin = builtins.match ".*-darwin" system != null;
     inherit (config.lib.stylix) colors;
+    firefox-addons = (pkgs.extend inputs.firefox-addons.overlays.default).firefox-addons;
 
     mkLockedAttrs = builtins.mapAttrs (_: value: {
       Value = value;
       Status = "locked";
     });
+
+    profileName = "bkxkrjhl.Default (release)";
   in {
     imports = lib.optionals (!isDarwin) [
       inputs.zen-browser.homeModules.twilight
@@ -48,8 +52,8 @@
         };
       };
 
-      profiles."default" = {
-        extensions.packages = with inputs.firefox-addons.packages."${system}"; [
+      profiles."${profileName}" = {
+        extensions.packages = with firefox-addons; [
           ublock-origin
           darkreader
           vimium
@@ -95,7 +99,7 @@
         };
         spacesForce = true;
         spaces = let
-          containers = config.programs.zen-browser.profiles."default".containers;
+          containers = config.programs.zen-browser.profiles."${profileName}".containers;
         in {
           "Personal" = {
             id = "1c126ea4-93cc-406b-b724-de6274eefc48";
