@@ -26,7 +26,7 @@ function utils.formatting()
     if name == "null-ls" or name == "clangd" or name == "roslyn" then
       return
     end
-    if client.supports_method("textDocument/formatting") then
+    if client:supports_method("textDocument/formatting") then
       print("Formatting with " .. client.name)
       local params = lsp.util.make_formatting_params()
       local result, err = client.request_sync("textDocument/formatting", params, 5000, bufnr)
