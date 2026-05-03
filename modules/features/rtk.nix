@@ -1,8 +1,6 @@
 {config, ...}: {
   flake.modules.homeManager.rtk = {pkgs-unstable, ...}: {
-    home.packages = [
-      (pkgs-unstable.callPackage ../../pkgs/rtk {})
-    ];
+    home.packages = with pkgs-unstable; [rtk];
 
     programs.claude-code.settings.hooks = {
       PreToolUse = [
@@ -16,6 +14,13 @@
           ];
         }
       ];
+    };
+
+    xdg.configFile."rtk/config.toml" = {
+      text = ''
+        [telemetry]
+        enabled = false
+      '';
     };
   };
 
