@@ -5,11 +5,17 @@
     lib,
     ...
   }: {
-    home.packages = with pkgs-unstable; [
-      act
-      insomnia
-      slack
-    ];
+    home.packages =
+      (with pkgs-unstable; [
+        act
+        insomnia
+        bruno
+        bruno-cli
+        slack
+      ])
+      ++ [
+        (pkgs.callPackage ../../pkgs/pup {})
+      ];
 
     programs.fish.shellInit = ''
       set -x GIT_TOKEN (${lib.getExe pkgs.gh} auth token)
