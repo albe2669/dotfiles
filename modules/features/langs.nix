@@ -8,6 +8,12 @@
   }: {
     home.packages = with pkgs;
       [
+        # Command runner
+        just
+
+        # Precommit
+        lefthook
+
         nodejs_22
 
         # Go
