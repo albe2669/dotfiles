@@ -1,5 +1,5 @@
 final: prev: let
-  version = "2.11.4";
+  version = "2.12.1";
 in {
   golangci-lint = prev.golangci-lint.overrideAttrs (old: {
     inherit version;
