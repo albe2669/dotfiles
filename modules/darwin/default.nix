@@ -13,5 +13,6 @@
   state = ./state.nix;
   stylix = ./stylix.nix;
   docker = ./docker.nix;
+  git-widget = ./git-widget.nix;
   aerospace = ./aerospace.nix;
 }

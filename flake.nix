@@ -112,6 +112,12 @@
       url = "github:hraban/mac-app-util";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    git-widget = {
+      url = "github:albe2669/git-widget";
+      # url = "path:../git-widget";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:

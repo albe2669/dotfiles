@@ -14,6 +14,7 @@
   gcloud = ./gcloud.nix;
   git = ./git;
   gfxutils = ./gfxutils.nix;
+  git-widget = ./git-widget.nix;
   gnome = ./gnome.nix;
   guiutils = ./guiutils.nix;
   home = ./home.nix;

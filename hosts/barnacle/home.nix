@@ -3,6 +3,7 @@
     self.homeModules.home
     self.homeModules.fish
     self.homeModules.git
+    self.homeModules.git-widget
     self.homeModules.kitty
     self.homeModules.lazydocker
     self.homeModules.lazygit
