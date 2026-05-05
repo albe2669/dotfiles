@@ -8,7 +8,6 @@
   imports = [
     {
       home-manager = {
-        useGlobalPkgs = true;
         backupFileExtension = "backup";
         useUserPackages = true;
 
