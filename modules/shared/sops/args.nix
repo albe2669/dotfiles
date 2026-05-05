@@ -12,6 +12,9 @@ in {
       git_credentials = {
         sopsFile = ./secrets/git_credentials.yaml;
       };
+      gh_token = {
+        sopsFile = ./secrets/git_credentials.yaml;
+      };
       ssh_private_key = {
         sopsFile = ./secrets/ssh.yaml;
         mode = "0600";
