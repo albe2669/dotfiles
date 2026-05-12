@@ -1,5 +1,5 @@
 final: prev: let
-  version = "2.12.1";
+  version = "2.12.2";
 in {
   golangci-lint = prev.golangci-lint.overrideAttrs (old: {
     inherit version;
@@ -8,9 +8,9 @@ in {
       owner = "golangci";
       repo = "golangci-lint";
       tag = "v${version}";
-      hash = "sha256-B19aLvfNRY9TOYw/71f2vpNUuSIz8OI4dL0ijGezsas=";
+      hash = "sha256-qR7fp1x2S+EwEAcplRHTvA3jWwLr/XSiYKSZtAwkrNU=";
     };
 
-    vendorHash = "sha256-xuoj4+U4tB5gpABKq4Dbp2cxnljxdYoBbO8A7DqPM5E=";
+    vendorHash = "sha256-AG5wtLwWLz55bdp1oi3cW+9O3yj1W1P7MV9zxym7Pb4=";
   });
 }
