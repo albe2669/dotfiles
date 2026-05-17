@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.sioyek = {
     pkgs,
     config,
@@ -13,7 +13,7 @@
     };
   };
 
-  flake.modules.combined.sioyek = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.sioyek ];
+  flake.modules.combined.sioyek = {...}: {
+    hm.imports = [config.flake.modules.homeManager.sioyek];
   };
 }

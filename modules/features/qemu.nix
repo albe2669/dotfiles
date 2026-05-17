@@ -1,5 +1,9 @@
-{ config, ... }: {
-  flake.modules.nixos.qemu = { username, pkgs, ... }: {
+{config, ...}: {
+  flake.modules.nixos.qemu = {
+    username,
+    pkgs,
+    ...
+  }: {
     programs.dconf.enable = true;
 
     users.extraGroups.libvirtd.members = [username];
@@ -27,7 +31,7 @@
     services.spice-vdagentd.enable = true;
   };
 
-  flake.modules.combined.qemu = { ... }: {
-    imports = [ config.flake.modules.nixos.qemu ];
+  flake.modules.combined.qemu = {...}: {
+    imports = [config.flake.modules.nixos.qemu];
   };
 }

@@ -13,9 +13,11 @@ in {
     isDarwin = builtins.match ".*-darwin" system != null;
   in {
     imports = [
-      (if isDarwin
-      then flakeConfig.flake.modules.darwin.state
-      else flakeConfig.flake.modules.nixos.state)
+      (
+        if isDarwin
+        then flakeConfig.flake.modules.darwin.state
+        else flakeConfig.flake.modules.nixos.state
+      )
     ];
   };
 }

@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.nixos.pipewire = { pkgs-unstable, ... }: {
+{config, ...}: {
+  flake.modules.nixos.pipewire = {pkgs-unstable, ...}: {
     services.pipewire = {
       enable = true;
       package = pkgs-unstable.pipewire;
@@ -21,7 +21,7 @@
     ];
   };
 
-  flake.modules.combined.pipewire = { ... }: {
-    imports = [ config.flake.modules.nixos.pipewire ];
+  flake.modules.combined.pipewire = {...}: {
+    imports = [config.flake.modules.nixos.pipewire];
   };
 }

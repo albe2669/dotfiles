@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.jetbrains = {
     config,
     lib,
@@ -268,15 +268,15 @@
   flake.modules.homeManager.jetbrains-phpstorm = import ./phpstorm.nix;
   flake.modules.homeManager.jetbrains-goland = import ./goland.nix;
 
-  flake.modules.combined.jetbrains = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.jetbrains ];
+  flake.modules.combined.jetbrains = {...}: {
+    hm.imports = [config.flake.modules.homeManager.jetbrains];
   };
 
-  flake.modules.combined.jetbrains-phpstorm = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.jetbrains-phpstorm ];
+  flake.modules.combined.jetbrains-phpstorm = {...}: {
+    hm.imports = [config.flake.modules.homeManager.jetbrains-phpstorm];
   };
 
-  flake.modules.combined.jetbrains-goland = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.jetbrains-goland ];
+  flake.modules.combined.jetbrains-goland = {...}: {
+    hm.imports = [config.flake.modules.homeManager.jetbrains-goland];
   };
 }

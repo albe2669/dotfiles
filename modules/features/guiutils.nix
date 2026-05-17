@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.guiutils = {pkgs, ...}: {
     home.packages = with pkgs; [
       # Networks
@@ -6,7 +6,7 @@
     ];
   };
 
-  flake.modules.combined.guiutils = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.guiutils ];
+  flake.modules.combined.guiutils = {...}: {
+    hm.imports = [config.flake.modules.homeManager.guiutils];
   };
 }

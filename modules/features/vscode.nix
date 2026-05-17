@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.homeManager.vscode = { pkgs-unstable, ... }: {
+{config, ...}: {
+  flake.modules.homeManager.vscode = {pkgs-unstable, ...}: {
     programs.vscode = {
       enable = true;
       package = pkgs-unstable.vscode;
@@ -17,7 +17,7 @@
     };
   };
 
-  flake.modules.combined.vscode = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.vscode ];
+  flake.modules.combined.vscode = {...}: {
+    hm.imports = [config.flake.modules.homeManager.vscode];
   };
 }

@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.nixos.xdg = { pkgs, ... }: {
+{config, ...}: {
+  flake.modules.nixos.xdg = {pkgs, ...}: {
     xdg = {
       portal = {
         enable = true;
@@ -19,7 +19,7 @@
     };
   };
 
-  flake.modules.combined.xdg = { ... }: {
-    imports = [ config.flake.modules.nixos.xdg ];
+  flake.modules.combined.xdg = {...}: {
+    imports = [config.flake.modules.nixos.xdg];
   };
 }

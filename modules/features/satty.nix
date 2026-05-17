@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.satty = {
     pkgs-unstable,
     config,
@@ -17,7 +17,7 @@
     };
   };
 
-  flake.modules.combined.satty = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.satty ];
+  flake.modules.combined.satty = {...}: {
+    hm.imports = [config.flake.modules.homeManager.satty];
   };
 }

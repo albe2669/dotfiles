@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.lazygit = {
     pkgs,
     config,
@@ -14,7 +14,7 @@
     };
   };
 
-  flake.modules.combined.lazygit = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.lazygit ];
+  flake.modules.combined.lazygit = {...}: {
+    hm.imports = [config.flake.modules.homeManager.lazygit];
   };
 }

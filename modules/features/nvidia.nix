@@ -1,6 +1,6 @@
 # SOURCE: https://nixos.wiki/wiki/Nvidia
-{ config, ... }: {
-  flake.modules.nixos.nvidia = { config, ... }: {
+{config, ...}: {
+  flake.modules.nixos.nvidia = {config, ...}: {
     # Enable OpenGL
     hardware.graphics = {
       enable = true;
@@ -42,7 +42,7 @@
     };
   };
 
-  flake.modules.combined.nvidia = { ... }: {
-    imports = [ config.flake.modules.nixos.nvidia ];
+  flake.modules.combined.nvidia = {...}: {
+    imports = [config.flake.modules.nixos.nvidia];
   };
 }

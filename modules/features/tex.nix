@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.tex = {pkgs-unstable, ...}: let
     tex = pkgs-unstable.texlive.combine {
       inherit
@@ -28,7 +28,7 @@
     ];
   };
 
-  flake.modules.combined.tex = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.tex ];
+  flake.modules.combined.tex = {...}: {
+    hm.imports = [config.flake.modules.homeManager.tex];
   };
 }

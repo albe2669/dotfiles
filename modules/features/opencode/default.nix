@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.opencode = {
     pkgs-unstable,
     config,
@@ -13,7 +13,7 @@
     };
   };
 
-  flake.modules.combined.opencode = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.opencode ];
+  flake.modules.combined.opencode = {...}: {
+    hm.imports = [config.flake.modules.homeManager.opencode];
   };
 }

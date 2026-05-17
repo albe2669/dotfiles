@@ -1,5 +1,9 @@
-{ config, inputs, ... }: {
-  flake.modules.darwin.mac-app-util = { ... }: let
+{
+  config,
+  inputs,
+  ...
+}: {
+  flake.modules.darwin.mac-app-util = {...}: let
     mac-app-util = inputs.mac-app-util;
   in {
     imports = [
@@ -11,7 +15,7 @@
     ];
   };
 
-  flake.modules.combined.mac-app-util = { ... }: {
-    imports = [ config.flake.modules.darwin.mac-app-util ];
+  flake.modules.combined.mac-app-util = {...}: {
+    imports = [config.flake.modules.darwin.mac-app-util];
   };
 }

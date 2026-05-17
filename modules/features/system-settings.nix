@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.darwin.system-settings = { lib, ... }: {
+{config, ...}: {
+  flake.modules.darwin.system-settings = {lib, ...}: {
     system.defaults = {
       dock = {
         autohide = lib.mkDefault true;
@@ -20,7 +20,7 @@
     };
   };
 
-  flake.modules.combined.system-settings = { ... }: {
-    imports = [ config.flake.modules.darwin.system-settings ];
+  flake.modules.combined.system-settings = {...}: {
+    imports = [config.flake.modules.darwin.system-settings];
   };
 }

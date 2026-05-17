@@ -1,7 +1,6 @@
-{ config, ... }: {
-  flake.modules.nixos.user-groups = { config, ... }:
-    with config.opts;
-    let
+{config, ...}: {
+  flake.modules.nixos.user-groups = {config, ...}:
+    with config.opts; let
       username = variables.username;
       secrets = config.sops.secrets;
     in {
@@ -44,7 +43,7 @@
       ];
     };
 
-  flake.modules.combined.user-groups = { ... }: {
-    imports = [ config.flake.modules.nixos.user-groups ];
+  flake.modules.combined.user-groups = {...}: {
+    imports = [config.flake.modules.nixos.user-groups];
   };
 }

@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.nixos.dynamic-libs = { pkgs, ... }: {
+{config, ...}: {
+  flake.modules.nixos.dynamic-libs = {pkgs, ...}: {
     programs.nix-ld.enable = true;
     programs.nix-ld.libraries = with pkgs; [
       SDL
@@ -117,7 +117,7 @@
     ];
   };
 
-  flake.modules.combined.dynamic-libs = { ... }: {
-    imports = [ config.flake.modules.nixos.dynamic-libs ];
+  flake.modules.combined.dynamic-libs = {...}: {
+    imports = [config.flake.modules.nixos.dynamic-libs];
   };
 }

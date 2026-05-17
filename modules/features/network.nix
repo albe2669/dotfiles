@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.nixos.network = { pkgs, ... }: {
+{config, ...}: {
+  flake.modules.nixos.network = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       speedtest-cli
       bandwhich
@@ -35,7 +35,7 @@
     # };
   };
 
-  flake.modules.combined.network = { ... }: {
-    imports = [ config.flake.modules.nixos.network ];
+  flake.modules.combined.network = {...}: {
+    imports = [config.flake.modules.nixos.network];
   };
 }

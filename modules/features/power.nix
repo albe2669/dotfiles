@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.nixos.power = { pkgs, ... }: {
+{config, ...}: {
+  flake.modules.nixos.power = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       powertop
     ];
@@ -10,7 +10,7 @@
     };
   };
 
-  flake.modules.combined.power = { ... }: {
-    imports = [ config.flake.modules.nixos.power ];
+  flake.modules.combined.power = {...}: {
+    imports = [config.flake.modules.nixos.power];
   };
 }

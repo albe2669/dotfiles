@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.kitty = {
     config,
     lib,
@@ -65,7 +65,7 @@
     };
   };
 
-  flake.modules.combined.kitty = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.kitty ];
+  flake.modules.combined.kitty = {...}: {
+    hm.imports = [config.flake.modules.homeManager.kitty];
   };
 }

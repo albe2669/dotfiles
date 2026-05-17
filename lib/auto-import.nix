@@ -9,7 +9,8 @@ lib: dir: let
   nixFiles = builtins.filter (name: let
     type = entries.${name};
   in
-    type == "regular"
+    type
+    == "regular"
     && lib.hasSuffix ".nix" name
     && name != "default.nix"
     && !lib.hasPrefix "_" name)
@@ -18,7 +19,8 @@ lib: dir: let
   subDirs = builtins.filter (name: let
     type = entries.${name};
   in
-    type == "directory"
+    type
+    == "directory"
     && !lib.hasPrefix "_" name
     && builtins.pathExists (dir + "/${name}/default.nix"))
   (builtins.attrNames entries);

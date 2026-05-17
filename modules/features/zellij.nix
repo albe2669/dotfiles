@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.homeManager.zellij = { pkgs-unstable, ... }: {
+{config, ...}: {
+  flake.modules.homeManager.zellij = {pkgs-unstable, ...}: {
     # stylix.targets.zellij.enable = true;
 
     programs.zellij = {
@@ -65,7 +65,7 @@
     };
   };
 
-  flake.modules.combined.zellij = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.zellij ];
+  flake.modules.combined.zellij = {...}: {
+    hm.imports = [config.flake.modules.homeManager.zellij];
   };
 }

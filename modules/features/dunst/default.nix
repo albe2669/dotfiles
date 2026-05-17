@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.dunst = {
     pkgs,
     config,
@@ -13,7 +13,7 @@
     };
   };
 
-  flake.modules.combined.dunst = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.dunst ];
+  flake.modules.combined.dunst = {...}: {
+    hm.imports = [config.flake.modules.homeManager.dunst];
   };
 }

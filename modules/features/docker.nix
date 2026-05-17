@@ -18,10 +18,7 @@ in {
     };
   };
 
-  flake.modules.darwin.docker = {
-    pkgs,
-    ...
-  }: {
+  flake.modules.darwin.docker = {pkgs, ...}: {
     environment.systemPackages = [pkgs.docker-compose];
 
     homebrew.casks = [
@@ -33,9 +30,11 @@ in {
     isDarwin = builtins.match ".*-darwin" system != null;
   in {
     imports = [
-      (if isDarwin
-      then flakeConfig.flake.modules.darwin.docker
-      else flakeConfig.flake.modules.nixos.docker)
+      (
+        if isDarwin
+        then flakeConfig.flake.modules.darwin.docker
+        else flakeConfig.flake.modules.nixos.docker
+      )
     ];
   };
 }

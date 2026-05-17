@@ -1,8 +1,7 @@
-{ config, ... }:
-let
+{config, ...}: let
   flakeConfig = config;
 in {
-  flake.modules.nixos.system-packages = { pkgs, ... }: {
+  flake.modules.nixos.system-packages = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       neovim
       wget
@@ -13,7 +12,7 @@ in {
     environment.variables.EDITOR = "nvim";
   };
 
-  flake.modules.darwin.system-packages = { pkgs, ... }: {
+  flake.modules.darwin.system-packages = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       neovim
       wget
@@ -24,13 +23,15 @@ in {
     environment.variables.EDITOR = "nvim";
   };
 
-  flake.modules.combined.system-packages = { system, ... }: let
+  flake.modules.combined.system-packages = {system, ...}: let
     isDarwin = builtins.match ".*-darwin" system != null;
   in {
     imports = [
-      (if isDarwin
-       then flakeConfig.flake.modules.darwin.system-packages
-       else flakeConfig.flake.modules.nixos.system-packages)
+      (
+        if isDarwin
+        then flakeConfig.flake.modules.darwin.system-packages
+        else flakeConfig.flake.modules.nixos.system-packages
+      )
     ];
   };
 }

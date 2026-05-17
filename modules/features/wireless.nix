@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.nixos.wireless = { ... }: {
+{config, ...}: {
+  flake.modules.nixos.wireless = {...}: {
     networking = {
       wireless.iwd = {
         enable = true;
@@ -18,7 +18,7 @@
     };
   };
 
-  flake.modules.combined.wireless = { ... }: {
-    imports = [ config.flake.modules.nixos.wireless ];
+  flake.modules.combined.wireless = {...}: {
+    imports = [config.flake.modules.nixos.wireless];
   };
 }

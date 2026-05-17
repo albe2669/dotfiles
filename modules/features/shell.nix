@@ -39,10 +39,12 @@ in {
       shellAliases = config.shell.aliases;
       shellAbbrs = config.shell.abbreviations;
       shellInit = let
-        envLines = lib.concatStringsSep "\n"
-        (lib.mapAttrsToList (k: v: "set -gx ${k} ${v}") config.shell.envVars);
-        pathLines = lib.concatStringsSep "\n"
-        (map (p: "fish_add_path ${p}") config.shell.paths);
+        envLines =
+          lib.concatStringsSep "\n"
+          (lib.mapAttrsToList (k: v: "set -gx ${k} ${v}") config.shell.envVars);
+        pathLines =
+          lib.concatStringsSep "\n"
+          (map (p: "fish_add_path ${p}") config.shell.paths);
       in ''
         ${envLines}
         ${pathLines}
@@ -55,9 +57,11 @@ in {
     isDarwin = builtins.match ".*-darwin" system != null;
   in {
     imports = [
-      (if isDarwin
-      then flakeConfig.flake.modules.darwin.shell
-      else flakeConfig.flake.modules.nixos.shell)
+      (
+        if isDarwin
+        then flakeConfig.flake.modules.darwin.shell
+        else flakeConfig.flake.modules.nixos.shell
+      )
     ];
     hm.imports = [flakeConfig.flake.modules.homeManager.shell];
   };

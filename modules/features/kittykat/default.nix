@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.kittykat = {
     self,
     system,
@@ -15,7 +15,7 @@
     };
   };
 
-  flake.modules.combined.kittykat = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.kittykat ];
+  flake.modules.combined.kittykat = {...}: {
+    hm.imports = [config.flake.modules.homeManager.kittykat];
   };
 }

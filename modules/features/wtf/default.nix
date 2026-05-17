@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.wtf = {
     pkgs-unstable,
     pkgs,
@@ -19,7 +19,7 @@
     };
   };
 
-  flake.modules.combined.wtf = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.wtf ];
+  flake.modules.combined.wtf = {...}: {
+    hm.imports = [config.flake.modules.homeManager.wtf];
   };
 }

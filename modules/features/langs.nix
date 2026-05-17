@@ -5,7 +5,9 @@
     lib,
     config,
     ...
-  }: {
+  }: let
+    go_pkg = pkgs-unstable.go_1_26;
+  in {
     home.packages = with pkgs;
       [
         # Command runner
@@ -17,7 +19,7 @@
         nodejs_22
 
         # Go
-        pkgs-unstable.go
+        go_pkg
         pkgs-unstable.golangci-lint
 
         # Rust
@@ -42,17 +44,24 @@
 
         # Erlang
         erlang_28
+
+        # Per project setup
+        pkgs-unstable.devenv
       ]
       ++ lib.optionals config.opts.variables.isDarwin [
         pkgs.apple-sdk
       ];
+
+    programs.fish.shellInit = ''
+      set -x GOROOT "${go_pkg}/share/go"
+    '';
 
     home.sessionVariables = lib.mkIf config.opts.variables.isDarwin {
       LIBRARY_PATH = lib.makeLibraryPath [
         pkgs.darwin.libresolv
       ];
 
-      GOROOT = "${pkgs-unstable.go}/share/go";
+      GOROOT = "${go_pkg}/share/go";
     };
   };
 

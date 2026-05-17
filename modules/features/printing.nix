@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.nixos.printing = { pkgs, ... }: {
+{config, ...}: {
+  flake.modules.nixos.printing = {pkgs, ...}: {
     services.avahi = {
       enable = false;
     };
@@ -16,7 +16,7 @@
     };
   };
 
-  flake.modules.combined.printing = { ... }: {
-    imports = [ config.flake.modules.nixos.printing ];
+  flake.modules.combined.printing = {...}: {
+    imports = [config.flake.modules.nixos.printing];
   };
 }

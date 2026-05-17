@@ -1,4 +1,8 @@
-{ config, inputs, ... }: {
+{
+  config,
+  inputs,
+  ...
+}: {
   flake.modules.homeManager.zen = {
     inputs,
     system,
@@ -127,6 +131,9 @@
   flake.modules.combined.zen = {system, ...}: let
     isDarwin = builtins.match ".*-darwin" system != null;
   in {
-    hm.imports = if isDarwin then [] else [ config.flake.modules.homeManager.zen ];
+    hm.imports =
+      if isDarwin
+      then []
+      else [config.flake.modules.homeManager.zen];
   };
 }

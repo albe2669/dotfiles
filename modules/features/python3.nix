@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.python3 = {pkgs-unstable, ...}: let
     python-packages = ps:
       with ps; [
@@ -39,7 +39,7 @@
     ];
   };
 
-  flake.modules.combined.python3 = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.python3 ];
+  flake.modules.combined.python3 = {...}: {
+    hm.imports = [config.flake.modules.homeManager.python3];
   };
 }

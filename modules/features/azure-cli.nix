@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.azure-cli = {pkgs, ...}: {
     home.packages = with pkgs; [
       (azure-cli.withExtensions [])
@@ -6,7 +6,7 @@
     ];
   };
 
-  flake.modules.combined.azure-cli = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.azure-cli ];
+  flake.modules.combined.azure-cli = {...}: {
+    hm.imports = [config.flake.modules.homeManager.azure-cli];
   };
 }

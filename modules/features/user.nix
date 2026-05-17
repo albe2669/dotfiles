@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.darwin.user = { config, ... }:
+{config, ...}: {
+  flake.modules.darwin.user = {config, ...}:
     with config.opts; let
       username = variables.username;
     in {
@@ -16,7 +16,7 @@
       system.primaryUser = username;
     };
 
-  flake.modules.combined.user = { ... }: {
-    imports = [ config.flake.modules.darwin.user ];
+  flake.modules.combined.user = {...}: {
+    imports = [config.flake.modules.darwin.user];
   };
 }

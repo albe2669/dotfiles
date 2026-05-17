@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.lazydocker = {
     pkgs,
     config,
@@ -13,7 +13,7 @@
     };
   };
 
-  flake.modules.combined.lazydocker = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.lazydocker ];
+  flake.modules.combined.lazydocker = {...}: {
+    hm.imports = [config.flake.modules.homeManager.lazydocker];
   };
 }

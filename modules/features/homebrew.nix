@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.darwin.homebrew = { lib, ... }: {
+{config, ...}: {
+  flake.modules.darwin.homebrew = {lib, ...}: {
     homebrew = {
       enable = lib.mkDefault true;
       onActivation = {
@@ -9,7 +9,7 @@
     };
   };
 
-  flake.modules.combined.homebrew = { ... }: {
-    imports = [ config.flake.modules.darwin.homebrew ];
+  flake.modules.combined.homebrew = {...}: {
+    imports = [config.flake.modules.darwin.homebrew];
   };
 }

@@ -1,4 +1,8 @@
-{ config, inputs, ... }: {
+{
+  config,
+  inputs,
+  ...
+}: {
   flake.modules.homeManager.ags = {
     config,
     inputs,
@@ -6,44 +10,44 @@
     lib,
     ...
   }:
-  with config.opts; let
-    colorScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: color: "\\\$${name}: ${color};\n") theme.colors));
+    with config.opts; let
+      colorScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: color: "\\\$${name}: ${color};\n") theme.colors));
 
-    fontScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: font: "\\\$font_${name}: \"${font}\";\n") theme.font));
+      fontScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: font: "\\\$font_${name}: \"${font}\";\n") theme.font));
 
-    generatedFile = variables.dotfilesLocation + (builtins.toPath "/modules/features/ags/config/generated.scss");
-  in {
-    imports = [
-      inputs.ags.homeManagerModules.default
-    ];
+      generatedFile = variables.dotfilesLocation + (builtins.toPath "/modules/features/ags/config/generated.scss");
+    in {
+      imports = [
+        inputs.ags.homeManagerModules.default
+      ];
 
-    home.activation = {
-      createAgsColors = lib.hm.dag.entryBefore ["writeBoundary"] ''
-        cat <<EOF > ${generatedFile}
-        ${colorScss}
+      home.activation = {
+        createAgsColors = lib.hm.dag.entryBefore ["writeBoundary"] ''
+          cat <<EOF > ${generatedFile}
+          ${colorScss}
 
-        ${fontScss}
-        EOF
-      '';
-    };
+          ${fontScss}
+          EOF
+        '';
+      };
 
-    programs.ags = {
-      enable = true;
+      programs.ags = {
+        enable = true;
 
-      configDir = ./config;
+        configDir = ./config;
 
-      extraPackages = [
-        inputs.astal.packages.${system}.battery
+        extraPackages = [
+          inputs.astal.packages.${system}.battery
+        ];
+      };
+
+      home.packages = [
+        inputs.astal.packages.${system}.io
+        inputs.astal.packages.${system}.notifd
       ];
     };
 
-    home.packages = [
-      inputs.astal.packages.${system}.io
-      inputs.astal.packages.${system}.notifd
-    ];
-  };
-
-  flake.modules.combined.ags = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.ags ];
+  flake.modules.combined.ags = {...}: {
+    hm.imports = [config.flake.modules.homeManager.ags];
   };
 }

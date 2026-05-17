@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.k8 = {pkgs-unstable, ...}: {
     home.packages = with pkgs-unstable; [
       kubectl
@@ -7,7 +7,7 @@
     ];
   };
 
-  flake.modules.combined.k8 = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.k8 ];
+  flake.modules.combined.k8 = {...}: {
+    hm.imports = [config.flake.modules.homeManager.k8];
   };
 }

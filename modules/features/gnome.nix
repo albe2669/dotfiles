@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   flake.modules.homeManager.gnome = {
     config,
     pkgs,
@@ -136,7 +136,7 @@
       };
     };
 
-  flake.modules.combined.gnome = { ... }: {
-    hm.imports = [ config.flake.modules.homeManager.gnome ];
+  flake.modules.combined.gnome = {...}: {
+    hm.imports = [config.flake.modules.homeManager.gnome];
   };
 }
