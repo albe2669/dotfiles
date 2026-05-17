@@ -98,7 +98,7 @@
     };
 
     elephant = {
-      url = "github:albe2669/elephant";
+      url = "github:abenz1267/elephant";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -120,8 +120,9 @@
     };
   };
 
-  outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
       imports = [
         ./variables.nix
@@ -138,22 +139,24 @@
         "x86_64-darwin"
       ];
 
-      perSystem = {
-        config,
-        pkgs,
-        lib,
-        system,
-        ...
-      }: {
-        _module.args.pkgs = import inputs.nixpkgs-unstable {
-          inherit system;
+      perSystem =
+        {
+          config,
+          pkgs,
+          lib,
+          system,
+          ...
+        }:
+        {
+          _module.args.pkgs = import inputs.nixpkgs-unstable {
+            inherit system;
 
-          # Necessary for installing paid or non-free software
-          config.allowUnfree = true;
+            # Necessary for installing paid or non-free software
+            config.allowUnfree = true;
+          };
+
+          formatter = pkgs.alejandra;
+          packages = import ./pkgs { inherit pkgs; };
         };
-
-        formatter = pkgs.alejandra;
-        packages = import ./pkgs {inherit pkgs;};
-      };
     };
 }

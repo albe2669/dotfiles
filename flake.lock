@@ -193,15 +193,15 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1763116335,
-        "narHash": "sha256-2sjeV2NxRa1gDDHRiwAC2gZ6WgtyfSq1LUlgKopZPJ4=",
-        "owner": "albe2669",
+        "lastModified": 1775706155,
+        "narHash": "sha256-h7Rw0vlb0n0Jsk21WJPm7H+1T1bG+PEuxE5cJ2TZl8A=",
+        "owner": "abenz1267",
         "repo": "elephant",
-        "rev": "7a9b5624b4a68ddf535cd304e597ab13bab854bc",
+        "rev": "376ee71c66db38683daabd57350bf3f6f086eaf8",
         "type": "github"
       },
       "original": {
-        "owner": "albe2669",
+        "owner": "abenz1267",
         "repo": "elephant",
         "type": "github"
       }
