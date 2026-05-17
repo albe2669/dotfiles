@@ -23,6 +23,11 @@ in {
               neededForUsers = true;
             };
           }
+          // {
+            nix_netrc = {
+              sopsFile = ./secrets/nix_netrc.yaml;
+            };
+          }
           // builtins.mapAttrs (key: value: value // {owner = username;}) sharedArgs.secrets;
       };
   };
@@ -67,9 +72,11 @@ in {
     isDarwin = builtins.match ".*-darwin" system != null;
   in {
     imports = [
-      (if isDarwin
-      then flakeConfig.flake.modules.darwin.sops
-      else flakeConfig.flake.modules.nixos.sops)
+      (
+        if isDarwin
+        then flakeConfig.flake.modules.darwin.sops
+        else flakeConfig.flake.modules.nixos.sops
+      )
     ];
     hm.imports = [flakeConfig.flake.modules.homeManager.sops];
   };
