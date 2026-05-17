@@ -39,7 +39,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       pnpmWorkspaces
       ;
     fetcherVersion = 2;
-    hash = "sha256-nygy6LEb1AMDFdDkJZ0zHCX3r2DAJM7PylzUNgOO8Hc=";
+    hash = "sha256-d3rG2BqJGL83eTveel0CiBo93CB9y15cJv25cI3h2Vw=";
   };
 
   postPatch = ''
