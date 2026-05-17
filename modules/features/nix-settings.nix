@@ -1,8 +1,11 @@
-{ config, ... }:
-let
+{config, ...}: let
   flakeConfig = config;
 in {
-  flake.modules.nixos.nix-settings = { lib, ... }: {
+  flake.modules.nixos.nix-settings = {
+    config,
+    lib,
+    ...
+  }: {
     nix = {
       # optimise = {
       #   automatic = lib.mkDefault true;
@@ -25,13 +28,19 @@ in {
         builders-use-substitutes = true;
         # enable flakes globally
         experimental-features = ["nix-command" "flakes"];
+        netrc-file = config.sops.secrets.nix_netrc.path;
       };
     };
 
     nixpkgs.config.allowUnfree = true;
   };
 
-  flake.modules.darwin.nix-settings = { pkgs, lib, ... }: {
+  flake.modules.darwin.nix-settings = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: {
     nix = {
       # package = pkgs.nix;
 
@@ -49,19 +58,22 @@ in {
         auto-optimise-store = true;
         builders-use-substitutes = true;
         experimental-features = ["nix-command" "flakes"];
+        netrc-file = config.sops.secrets.nix_netrc.path;
       };
     };
 
     nixpkgs.config.allowUnfree = true;
   };
 
-  flake.modules.combined.nix-settings = { system, ... }: let
+  flake.modules.combined.nix-settings = {system, ...}: let
     isDarwin = builtins.match ".*-darwin" system != null;
   in {
     imports = [
-      (if isDarwin
-       then flakeConfig.flake.modules.darwin.nix-settings
-       else flakeConfig.flake.modules.nixos.nix-settings)
+      (
+        if isDarwin
+        then flakeConfig.flake.modules.darwin.nix-settings
+        else flakeConfig.flake.modules.nixos.nix-settings
+      )
     ];
   };
 }
