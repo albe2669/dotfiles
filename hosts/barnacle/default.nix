@@ -27,6 +27,7 @@
     self.modules.combined.utils
     self.modules.combined.vscode
     self.modules.combined.work
+    self.modules.combined.git-widget
     self.modules.combined.zen
     self.modules.combined.yazi
     self.modules.combined.spotify
