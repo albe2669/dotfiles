@@ -29,11 +29,11 @@
     "org.jetbrains.plugins.github"
     "com.github.copilot"
     "net.ashald.envfile"
+    "org.mvnsearch.plugins.justPlugin"
   ];
 
   createIde = ide-name: extraPlugins: let
     ide = overrideIde ide-name;
-    # pluginsForIdeWith with dontOverride for copilot so addPlugins patches it correctly
     plugins =
       inputs.nix-jetbrains-plugins.lib.pluginsForIdeWith {
         applyPluginOverrides = true;
