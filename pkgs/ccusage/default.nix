@@ -9,13 +9,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "ccusage";
-  version = "18.0.10";
+  version = "19.0.3";
 
   src = fetchFromGitHub {
     owner = "ryoppippi";
     repo = "ccusage";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-6KmSj2wgnkwJNnKaTmscbY+7fy2l6JHci3x3m/CV/Qg=";
+    hash = "sha256-proGDzyEA2iKiEOOugoPqKFR5w2guqM0hnaevSyCB3U=";
   };
 
   nativeBuildInputs = [
@@ -39,7 +39,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       pnpmWorkspaces
       ;
     fetcherVersion = 2;
-    hash = "sha256-nygy6LEb1AMDFdDkJZ0zHCX3r2DAJM7PylzUNgOO8Hc=";
+    hash = "sha256-ILUGZBhzgwrG054DEKqAScdHPgGiUXqhP8Sn8euLBFE=";
   };
 
   postPatch = ''
@@ -73,6 +73,9 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     makeWrapper ${lib.getExe nodejs_24} $out/bin/ccusage \
       --inherit-argv0 \
       --add-flags $out/lib/ccusage/apps/ccusage/dist/index.js
+
+    # pnpm symlinks bun/node into node_modules pointing at a tmp dir that isn't copied to $out
+    find $out -type l ! -exec test -e {} \; -delete
 
     runHook postInstall
   '';
