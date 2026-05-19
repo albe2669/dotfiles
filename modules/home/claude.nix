@@ -115,6 +115,8 @@ in {
 
       Always update and run tests and documentation after making a change.
 
+      If the tests are failing due to missing infrastructure, then explore the infrastructure setup (docker compose files, connection strings, etc) before exploring code changes. If the insfrastructure is not started, then start it and rerun tests before exploring code changes.
+
       ## Go Development
 
       Always run `golangci-lint run ./...` after making Go code changes and fix any issues before presenting work as complete. Do not dismiss or skip linter output.
