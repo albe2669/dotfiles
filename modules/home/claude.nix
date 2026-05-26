@@ -1,5 +1,5 @@
 {
-  self,
+  inputs,
   lib,
   system,
   pkgs-unstable,
@@ -306,7 +306,7 @@ in {
       pkgs-unstable.libnotify
     ]
     ++ [
-      self.packages.${system}.ccusage
+      inputs.ccusage.outputs.packages.${system}.default
       pkgs-unstable.bun
     ];
 }
