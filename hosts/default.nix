@@ -55,7 +55,7 @@
         "electron-29.4.6"
       ];
 
-      overlays = import ../overlays {};
+      overlays = import ../overlays {inherit inputs;};
     };
   };
 
