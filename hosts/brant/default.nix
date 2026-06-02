@@ -46,13 +46,17 @@
   ];
 
   system.keyboard = {
-    remapCapsLockToControl = false;
     enableKeyMapping = true;
     userKeyMapping = [
       {
-        # Globe (fn) → Command
-        HIDKeyboardModifierMappingSrc = 1095216660483; # 0xFF00000003
-        HIDKeyboardModifierMappingDst = 1095216660480; # 0xFF00000000 Left Command
+        # ` -> §
+        HIDKeyboardModifierMappingSrc = 30064771172;
+        HIDKeyboardModifierMappingDst = 30064771125;
+      }
+      {
+        # § -> `
+        HIDKeyboardModifierMappingSrc = 30064771125;
+        HIDKeyboardModifierMappingDst = 30064771172;
       }
     ];
   };
