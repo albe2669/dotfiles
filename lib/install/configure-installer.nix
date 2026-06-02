@@ -11,7 +11,7 @@ with config.opts; let
   defaultModule = {self, ...}: {
     imports = [
       inputs.disko.nixosModules.disko
-      self.nixosModules.core-server
+      self.modules.combined.server
 
       {
         # Override conflicting options for installer environment

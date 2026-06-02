@@ -47,27 +47,22 @@
     trackpad = {
       Clicking = true;
       TrackpadCornerSecondaryClick = 0;
-      # TrackpadFiveFingerPinchGesture = 2;
       TrackpadFourFingerHorizSwipeGesture = 2;
       TrackpadFourFingerPinchGesture = 2;
       TrackpadFourFingerVertSwipeGesture = 2;
-      # TrackpadHandResting = true;
-      # TrackpadHorizScroll = true;
       TrackpadMomentumScroll = true;
       TrackpadPinch = true;
       TrackpadRotate = true;
-      # TrackpadScroll = true;
       TrackpadThreeFingerHorizSwipeGesture = 2;
       TrackpadThreeFingerTapGesture = 0;
       TrackpadThreeFingerVertSwipeGesture = 2;
       TrackpadTwoFingerDoubleTapGesture = true;
       TrackpadTwoFingerFromRightEdgeSwipeGesture = 3;
-      # USBMouseStopsTrackpad = false;
     };
   };
 
   system.keyboard = {
-    remapCapsLockToControl = false; # set other options here if needed
+    remapCapsLockToControl = false;
     enableKeyMapping = true;
     userKeyMapping = [
       {

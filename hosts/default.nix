@@ -41,24 +41,6 @@
     };
   };
 
-  mkSpecialArgs = system: rec {
-    inherit self inputs system;
-
-    username = config.opts.variables.username;
-
-    pkgs-unstable = import inputs.nixpkgs-unstable {
-      inherit system;
-
-      config.allowUnfree = true;
-
-      config.permittedInsecurePackages = [
-        "electron-29.4.6"
-      ];
-
-      overlays = import ../overlays {inherit inputs;};
-    };
-  };
-
   sharedModules = [
     ../variables.nix
     ../theme.nix
@@ -71,23 +53,24 @@
 
   createNixosConfiguration = name: info: let
     system = info.system;
-    specialArgs = mkSpecialArgs system;
   in
     inputs.nixpkgs.lib.nixosSystem {
-      inherit system specialArgs;
+      inherit system;
+
+      specialArgs = {
+        inherit self inputs system;
+      };
 
       modules =
         sharedModules
         ++ [
           (mkInfoModule info)
 
-          self.nixosModules.state
-          self.nixosModules.stylix
-          self.nixosModules.sops
-          (import ../modules/nixos/home.nix {inherit specialArgs;})
+          self.modules.nixos.home-manager-wiring
+          self.modules.combined.stylix
+          self.modules.combined.sops
 
           inputs.disko.nixosModules.disko
-
           inputs.nixos-generators.nixosModules.all-formats
 
           {
@@ -101,10 +84,13 @@
 
   createDarwinConfiguration = name: info: let
     system = info.system;
-    specialArgs = mkSpecialArgs system;
   in
     inputs.nix-darwin.lib.darwinSystem {
-      inherit system specialArgs;
+      inherit system;
+
+      specialArgs = {
+        inherit self inputs system;
+      };
 
       modules =
         sharedModules
@@ -115,10 +101,9 @@
             opts.variables.isDarwin = true;
           }
 
-          self.darwinModules.state
-          self.darwinModules.stylix
-          self.darwinModules.sops
-          (import ../modules/darwin/home.nix {inherit specialArgs;})
+          self.modules.darwin.home-manager-wiring
+          self.modules.combined.stylix
+          self.modules.combined.sops
 
           ./${name}
         ];

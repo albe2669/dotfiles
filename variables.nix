@@ -42,14 +42,7 @@ in {
 
         directories = mkOption {
           type = types.listOf types.str;
-          default = [
-            "Documents"
-            "Downloads"
-            "Music"
-            "Pictures"
-            "Pictures/FScreenshots"
-            "Videos"
-          ];
+          default = ["Documents" "Downloads" "Music" "Pictures" "Pictures/FScreenshots" "Videos"];
           description = "Directories to create in home directory";
         };
       };
@@ -111,8 +104,7 @@ in {
       if cfg.isDarwin
       then builtins.toPath "/Users/${cfg.username}"
       else builtins.toPath "/home/${cfg.username}";
-    variables.dotfilesLocation =
-      cfg.homeDirectory.path + (builtins.toPath "/Documents/Coding/Other/dotfiles");
+    variables.dotfilesLocation = cfg.homeDirectory.path + (builtins.toPath "/Documents/Coding/Other/dotfiles");
     variables.screen.scaleFactor =
       if cfg.isHidpi
       then 2
