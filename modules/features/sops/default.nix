@@ -33,6 +33,7 @@ in {
   };
 
   flake.modules.darwin.sops = {config, ...}: let
+    username = config.opts.variables.username;
     sharedArgs = (import ./args.nix {inherit config;}).sharedArgs;
   in {
     imports = [
@@ -49,7 +50,12 @@ in {
               neededForUsers = true;
             };
           }
-          // sharedArgs.secrets;
+          // {
+            nix_netrc = {
+              sopsFile = ./secrets/nix_netrc.yaml;
+            };
+          }
+          // builtins.mapAttrs (key: value: value // {owner = username;}) sharedArgs.secrets;
       };
   };
 

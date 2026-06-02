@@ -26,7 +26,7 @@ in {
       ];
 
       # Overlays are only applied to the unstable channel, since they probably are
-      overlays = import ../overlays {};
+      overlays = import ../overlays {inherit inputs;};
     };
   };
 }

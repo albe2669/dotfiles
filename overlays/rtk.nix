@@ -1,5 +1,5 @@
 final: prev: let
-  version = "0.37.2";
+  version = "0.42.0";
 in {
   rtk = prev.rtk.overrideAttrs (old: rec {
     inherit version;
@@ -8,9 +8,10 @@ in {
       owner = "rtk-ai";
       repo = "rtk";
       tag = "v${version}";
-      hash = "sha256-rNuu8B5TnKZHrbVSV8HkcTeTdcol26259GGJEPEMPZY=";
+      hash = "sha256-ZCDVS/AFljljMac+cAzQztYPQgvQrcEhKIHHRhkMsv8=";
     };
 
+    # Requires IFD
     cargoDeps = prev.rustPlatform.importCargoLock {
       lockFile = src + "/Cargo.lock";
       allowBuiltinFetchGit = true;

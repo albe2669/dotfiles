@@ -2,6 +2,7 @@
   flake.modules.homeManager.claude = {
     self,
     lib,
+    inputs,
     system,
     pkgs-unstable,
     ...
@@ -304,7 +305,7 @@
         pkgs-unstable.libnotify
       ]
       ++ [
-        # self.packages.${system}.ccusage
+        inputs.ccusage.outputs.packages.${system}.default
         pkgs-unstable.bun
       ];
   };

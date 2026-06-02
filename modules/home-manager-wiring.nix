@@ -16,7 +16,7 @@
       config.permittedInsecurePackages = [
         "electron-29.4.6"
       ];
-      overlays = import ../overlays {};
+      overlays = import ../overlays {inherit inputs;};
     };
   in {
     imports = [
@@ -64,7 +64,7 @@
       config.permittedInsecurePackages = [
         "electron-29.4.6"
       ];
-      overlays = import ../overlays {};
+      overlays = import ../overlays {inherit inputs;};
     };
   in {
     imports = [
@@ -78,9 +78,12 @@
     };
 
     home-manager = {
-      useGlobalPkgs = true;
       backupFileExtension = "backup";
       useUserPackages = true;
+
+      sharedModules = [
+        {_module.args.pkgs = lib.mkForce pkgs-unstable;}
+      ];
 
       extraSpecialArgs = {
         inherit inputs self pkgs-unstable;
