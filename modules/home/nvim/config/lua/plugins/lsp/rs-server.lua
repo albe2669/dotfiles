@@ -1,55 +1,40 @@
 -- WARNING: If for some reason you get an error related to not being able to load the rust-analyzer server dynamically then try and delete ~/.local/share/nvim/mason/bin/rust_analyzer. This file may exist and be first in the path compared to the one installed correctly by nix itself.
 
 local opts = {
-  -- Rust tools options
-  tools = {
-    enable_clippy = true,
-  },
-
-  -- LSP server configuration
-  -- see https://rust-analyzer.github.io/manual.html#configuration
   server = {
+    -- https://rust-analyzer.github.io/book/configuration.html
     default_settings = {
-      -- to enable rust-analyzer settings visit:
-      -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
       ["rust-analyzer"] = {
-        -- enable clippy on save
-        checkOnSave = true,
         check = {
-          command = "clippy"
+          command = "clippy",
         },
         cargo = {
           features = "all",
-          buildScripts = {
-            enable = true
-          }
         },
         procMacro = {
           ignored = {
             leptos_macro = {
-              -- optional: --
               -- "component",
               "server",
             },
           },
         },
-      }
-    }
+      },
+    },
   },
 }
-
 
 return {
   server_name = {},
   dependencies = {
     {
       "mrcjkb/rustaceanvim",
-      version = "^5",
+      version = "^9",
       lazy = false,
-    }
+    },
   },
   setup = function(on_attach)
-    opts.server.on_attach = on_attach -- Add the callback to the object
+    opts.server.on_attach = on_attach
     vim.g.rustaceanvim = opts
-  end
+  end,
 }
