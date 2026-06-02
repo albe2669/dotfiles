@@ -1,19 +1,19 @@
 {
-  variables,
+  inputs,
   theme,
   nixpkgs-unstable,
   nixos-hardware,
   zen-browser,
+  hyprland,
+  hyprland-plugins,
 }: let
   x64System = "x86_64-linux";
 in {
   x64System = x64System;
   x64SpecialArgs = {
-    inherit variables theme nixos-hardware zen-browser;
+    inherit inputs theme nixos-hardware zen-browser;
 
     system = x64System;
-
-    username = variables.username;
 
     pkgs-unstable = import nixpkgs-unstable {
       system = x64System;
@@ -26,7 +26,7 @@ in {
       ];
 
       # Overlays are only applied to the unstable channel, since they probably are
-      overlays = [];
+      overlays = import ../overlays {inherit inputs;};
     };
   };
 }

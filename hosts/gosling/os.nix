@@ -1,29 +1,33 @@
-{nixos-hardware, ...}: let
-  info = import ./info.nix {};
-in {
+{
+  self,
+  inputs,
+  lib,
+  config,
+  ...
+}: {
   imports = [
-    (import ../../modules/core-desktop.nix {diskPath = info.diskPath;})
-    ../../modules/core-laptop.nix
-    ../../modules/core/nvidia.nix
-    ../../modules/core/nvidia-prime.nix
-    ../../modules/configs/dynamic-libs.nix
-    ../../modules/configs/touchpad.nix
-    ../../modules/configs/hidpi.nix
-    ../../modules/services/bluetooth.nix
-    ../../modules/services/wireless.nix
+    self.nixosModules.core-desktop
+    self.nixosModules.core-laptop
+    self.nixosModules.bootloader-uefi
+    self.nixosModules.nvidia
+    self.nixosModules.nvidia-prime
+    self.nixosModules.dynamic-libs
+    self.nixosModules.touchpad
+    self.nixosModules.hidpi
+    self.nixosModules.bluetooth
+    self.nixosModules.qemu
+    # self.nixosModules.tailscale
+    self.nixosModules.wireless
 
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
-
-    info.disko
+    inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
   ];
 
-  networking.hostName = info.name; # Define your hostname.
+  opts.variables.isHidpi = lib.mkForce true;
+  hm.imports = [
+    {
+      opts.variables.isHidpi = lib.mkForce true;
+    }
+  ];
 
-  hardware.nvidia.prime = {
-    # Make sure to use the correct Bus ID values for your system!
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
+  networking.hostName = config.opts.info.name; # Define your hostname.
 }

@@ -1,5 +1,12 @@
-# Make the host the one in /etc/hostname
+# Detect OS
+os != uname -s
+
+# Make the host the one in /etc/hostname (Linux) or scutil (macOS)
+ifeq ($(os),Darwin)
+host != scutil --get LocalHostName 2>/dev/null || hostname -s
+else
 host != cat /etc/hostname
+endif
 # If not found, use skein
 host ?= skein
 
@@ -10,13 +17,29 @@ show:
 	nix --extra-experimental-features "nix-command flakes" flake show
 
 fmt:
-	nix --extra-experimental-features "nix-command flakes" fmt
+	nix --extra-experimental-features "nix-command flakes" fmt *
 
 update:
 	nix --extra-experimental-features "nix-command flakes" flake update
 
-rebuild:
+build:
+ifeq ($(os),Darwin)
+	sudo darwin-rebuild build --show-trace --flake .#$(host)
+else
+	sudo nixos-rebuild build --show-trace --flake .#$(host)
+endif
+
+rebuild: fmt
+ifeq ($(os),Darwin)
+	sudo darwin-rebuild switch --show-trace --flake .#$(host)
+else
 	sudo nixos-rebuild switch --show-trace --flake .#$(host)
+endif
+
+darwin-rebuild:
+	darwin-rebuild switch --show-trace --flake .#$(host)
+
+upgrade: update rebuild
 
 vm:
 	rm -rf result
@@ -30,7 +53,7 @@ installer:
 	nix --extra-experimental-features "nix-command flakes" build --show-trace --option eval-cache false .#installers.x86_64-linux.$(host)
 
 hms:
-	home-manager switch -b backup --extra-experimental-features "nix-command flakes repl-flake" --show-trace --flake .#$(host)
+	NIXPKGS_ALLOW_UNFREE=1 home-manager switch -b backup --extra-experimental-features "nix-command flakes repl-flake" --show-trace --impure --flake .#$(host)
 
 nixprofiles != ls -dv /nix/var/nix/profiles/system-*-link/|tail -2
 homeprofiles != ls -dv ~/.local/state/nix/profiles/home-manager-*-link/|tail -2

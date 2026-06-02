@@ -1,9 +1,5 @@
-{...}: let
+{
   name = "skein";
+  system = "x86_64-linux";
   diskPath = "/dev/sda";
-  disko = import ./disko.nix {diskPath = diskPath;};
-in {
-  name = name;
-  diskPath = diskPath;
-  disko = disko;
 }

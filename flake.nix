@@ -2,16 +2,20 @@
   description = "A NixOS configuration made by a silly goose way over their head";
 
   nixConfig = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
   # These urls should coincide with the stateVersion variable in the variables.nix file
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Use stable for now
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; # Use stable for now
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -20,82 +24,146 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-  };
-
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    nixos-generators,
-    nixos-hardware,
-    home-manager,
-    zen-browser,
-    ...
-  }: let
-    extraArgs = {
-      variables = import ./variables.nix;
-      theme = import ./theme.nix;
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    specialArgs = import ./lib/special-args.nix ({
-        inherit nixpkgs-unstable nixos-hardware zen-browser;
-      }
-      // extraArgs);
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    configurations =
-      builtins.mapAttrs (_: hostConf: {
-        inherit (hostConf) info nixosModules homeModules;
-        homeManager = import ./lib/home-manager.nix {
-          inherit nixpkgs home-manager;
-          specialArgs = specialArgs.x64SpecialArgs;
-          host = hostConf;
-        };
-      }) {
-        gander = import ./hosts/gander {};
-        gosling = import ./hosts/gosling {};
-        skein = import ./hosts/skein {};
-      };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    osConfigurations =
-      nixpkgs.lib.filterAttrs (_: hostConf: builtins.hasAttr "nixosModules" hostConf) configurations;
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
-    args =
-      {
-        inherit specialArgs home-manager;
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
-        configurations = osConfigurations;
-      }
-      // inputs;
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    hosts = import ./hosts args;
-    installers = import ./hosts/installers.nix ({
-        hosts = hosts.hosts;
-        systems = hosts.allSystems;
-      }
-      // args);
-  in {
-    confs = configurations;
-    homeConfigurations =
-      builtins.mapAttrs (
-        _: hostConf:
-          hostConf.homeManager.configuration
-      )
-      configurations;
-    hosts = hosts;
-    nixosConfigurations = hosts.nixosConfigurations;
-    packages = hosts.packages;
-    installers = installers;
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable"; # Commented so it uses the cache
+    };
 
-    formatter = nixpkgs.lib.genAttrs hosts.allSystems (
-      system: nixpkgs.legacyPackages.${system}.alejandra
-    );
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    astal = {
+      url = "github:aylur/astal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ags = {
+      url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.astal.follows = "astal";
+    };
+
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-jetbrains-plugins = {
+      url = "github:nix-community/nix-jetbrains-plugins";
+    };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    elephant = {
+      url = "github:albe2669/elephant";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.elephant.follows = "elephant";
+    };
+
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    git-widget = {
+      url = "github:albe2669/git-widget";
+      # url = "path:../git-widget";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    ccusage = {
+      url = "github:ryoppippi/ccusage";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
+
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      debug = true;
+      imports = [
+        ./variables.nix
+        ./theme.nix
+
+        ./modules
+
+        ./hosts
+      ];
+
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+
+      perSystem = {
+        config,
+        pkgs,
+        lib,
+        system,
+        ...
+      }: {
+        _module.args.pkgs = import inputs.nixpkgs-unstable {
+          inherit system;
+
+          # Necessary for installing paid or non-free software
+          config.allowUnfree = true;
+        };
+
+        formatter = pkgs.alejandra;
+        packages = import ./pkgs {inherit pkgs;};
+      };
+    };
 }

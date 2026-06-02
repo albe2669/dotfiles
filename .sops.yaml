@@ -1,0 +1,19 @@
+# After adding/changing keys, re-encrypt with:
+#   sops updatekeys secrets/secrets.yaml
+keys:
+  - &gander age124mal4k3zzdt3ukhh7rvv5ug5m5ee68j00dpp3zd4s3s6ryv55rs45vypj
+  - &gosling age16v5a232erumg78vupdzwp4qsl2s6vkcg7nzxujv96mn6q5q7yvcsl3xx48
+  # - &skein age1XXXX_REPLACE_WITH_ssh-to-age_OUTPUT
+  # - &larry age1XXXX_REPLACE_WITH_ssh-to-age_OUTPUT
+  - &nene age1h5jug42d2tfxewk376t2hnv9zmd6j2nwztfew374u50fu0vr4arslhmn4j
+  - &brant age1facme2rg903na3zf4hkfuxvpatsfy7v5h2gtcrrtqwdgg3fk3vpqaahwkw
+creation_rules:
+  - path_regex: modules/shared/sops/secrets/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *gander
+          - *gosling
+          # - *skein
+          # - *larry
+          - *nene
+          - *brant

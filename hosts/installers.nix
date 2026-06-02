@@ -4,10 +4,10 @@
   disko,
   nixpkgs,
   nixos-generators,
-  variables,
-  theme,
+  config,
   ...
-}: let
+}:
+with config.opts; let
   configureInstaller = import ../lib/install/configure-installer.nix;
 
   args = {

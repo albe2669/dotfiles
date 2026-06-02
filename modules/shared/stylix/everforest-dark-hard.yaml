@@ -1,0 +1,45 @@
+system: "base16"
+name: "Everforest Dark Hard"
+author: "Sainnhe Park (https://github.com/sainnhe)"
+variant: "dark"
+palette:
+  base00: "#272e33" # background,             dark hard palette1
+  base01: "#2e383c" # alternative background, dark hard palette1
+  base02: "#414b50" # selection background,   dark hard palette1
+  base03: "#859289" # comments,               dark palette2, marked as comment text in everforest
+  base04: "#7a8478" # alternative text,       dark palette2, marked as foreground UI elements in everforest
+  base05: "#d3c6aa" # default text,           dark palette2
+  base06: "#5c6a72" # light foreground,       light hard palette1
+  base07: "#fffbef" # light background,       light hard palette1
+  base08: "#e67e80" # red,    dark palette2
+  base09: "#e69875" # orange
+  base0A: "#dbbc7f" # yellow, dark palette2
+  base0B: "#a7c080" # green,  dark palette2
+  base0C: "#83c092" # aqua/cyan
+  base0D: "#7fbbb3" # blue,   dark palette2
+  base0E: "#d699b6" # purple, dark palette2
+  base0F: "#4c3743" # brown
+
+# system: "base16"
+# name: "Catppuccin Mocha"
+# author: "https://github.com/catppuccin/catppuccin"
+# variant: "dark"
+# palette:
+#   base00: "#1e1e2e" # base
+#   base01: "#181825" # mantle
+#   base02: "#313244" # surface0
+#   base03: "#45475a" # surface1
+#   base04: "#585b70" # surface2
+#   base05: "#cdd6f4" # text
+#   base06: "#f5e0dc" # rosewater
+#   base07: "#b4befe" # lavender
+#
+#   base08: "#f38ba8" # red
+#   base09: "#fab387" # peach
+#   base0A: "#f9e2af" # yellow
+#   base0B: "#a6e3a1" # green
+#   base0C: "#94e2d5" # teal
+#   base0D: "#89b4fa" # blue
+#   base0E: "#cba6f7" # mauve
+#   base0F: "#f2cdcd" # flamingo
+#

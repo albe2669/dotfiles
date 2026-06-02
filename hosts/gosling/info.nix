@@ -1,9 +1,5 @@
-{...}: let
+{
   name = "gosling";
+  system = "x86_64-linux";
   diskPath = "/dev/nvme0n1";
-  disko = import ./disko.nix {diskPath = diskPath;};
-in {
-  name = name;
-  diskPath = diskPath;
-  disko = disko;
 }

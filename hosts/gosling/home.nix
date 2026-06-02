@@ -1,43 +1,43 @@
-{...}: {
-  imports = [
-    ../../home/common.nix
-    ../../home/alacritty
-    ../../home/betterlockscreen
-    ../../home/dunst
-    ../../home/fish
-    ../../home/git
-    ../../home/i3
-    ../../home/kitty
-    ../../home/lazygit
-    ../../home/nvim
-    (import ../../home/picom {nvidiaDrivers = true;})
-    ../../home/polybar
-    ../../home/yazi
-    ../../home/rofi
-    ../../home/wallpapers
-    ../../home/zathura
-
-    ../../home/k8.nix
-    ../../home/langs.nix
-    ../../home/python3.nix
-    ../../home/tex.nix
-
-    ../../home/anytype.nix
-    ../../home/bluetooth.nix
-    ../../home/gcloud.nix
-    ../../home/libreoffice.nix
-    ../../home/obs.nix
-    ../../home/phpstorm.nix
-    ../../home/php.nix
-    ../../home/programs.nix
-    ../../home/spacedrive.nix
-    ../../home/teams.nix
-    ../../home/tmux.nix
-    ../../home/todo.nix
-    ../../home/utils.nix
-    ../../home/vscode.nix
-    ../../home/zen.nix
-
-    ../../home/courses/htmaa.nix
+{self, ...}: {
+  hm.imports = [
+    self.homeModules.home
+    self.homeModules.advent-of-code
+    self.homeModules.ags
+    self.homeModules.dunst
+    self.homeModules.fish
+    self.homeModules.git
+    self.homeModules.hyprland
+    self.homeModules.kitty
+    self.homeModules.lazydocker
+    self.homeModules.lazygit
+    self.homeModules.nvim
+    self.homeModules.sioyek
+    self.homeModules.wallpapers
+    self.homeModules.zathura
+    self.homeModules.langs
+    self.homeModules.python3
+    self.homeModules.tex
+    self.homeModules.anytype
+    self.homeModules.bluetooth
+    self.homeModules.direnv
+    self.homeModules.gcloud
+    self.homeModules.hidpi
+    self.homeModules.libreoffice
+    self.homeModules.modelling
+    self.homeModules.obs
+    self.homeModules.jetbrains
+    self.homeModules.jetbrains-phpstorm
+    self.homeModules.jetbrains-goland
+    self.homeModules.php
+    self.homeModules.programs
+    self.homeModules.guiutils
+    self.homeModules.utils
+    self.homeModules.vscode
+    self.homeModules.walker
+    self.homeModules.work
+    self.homeModules.zen
+    self.homeModules.yazi
+    self.homeModules.spotify
+    self.homeModules.zellij
   ];
 }

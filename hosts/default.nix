@@ -1,59 +1,152 @@
 {
-  nixpkgs,
-  nixos-generators,
-  home-manager,
-  disko,
   self,
-  specialArgs,
-  configurations,
+  inputs,
+  config,
+  lib,
   ...
 }: let
-  x64System = specialArgs.x64System;
-  x64SpecialArgs = specialArgs.x64SpecialArgs;
+  allHosts = [
+    "gander"
+    "gosling"
+    "skein"
+    "larry"
+    "nene"
+    "barnacle"
+    "brant"
+  ];
 
-  allSystems = [x64System];
+  hostInfos = builtins.listToAttrs (map (host: {
+      name = host;
+      value = import ./${host}/info.nix;
+    })
+    allHosts);
 
-  nixosSystem = import ../lib/nixos-system.nix;
+  isDarwinSystem = system: builtins.match ".*-darwin" system != null;
 
-  baseArgs = {
-    inherit nixpkgs;
-    specialArgs = x64SpecialArgs;
+  linuxHosts = lib.filterAttrs (_: info: !(isDarwinSystem info.system)) hostInfos;
+  darwinHosts = lib.filterAttrs (_: info: isDarwinSystem info.system) hostInfos;
+
+  mkInfoModule = info: {lib, ...}: {
+    options.opts.info = {
+      name = lib.mkOption {
+        type = lib.types.str;
+        default = info.name;
+        description = "System name";
+      };
+      system = lib.mkOption {
+        type = lib.types.str;
+        default = info.system;
+        description = "System architecture";
+      };
+    };
   };
 
-  systemArgs =
+  mkSpecialArgs = system: rec {
+    inherit self inputs system;
+
+    username = config.opts.variables.username;
+
+    pkgs-unstable = import inputs.nixpkgs-unstable {
+      inherit system;
+
+      config.allowUnfree = true;
+
+      config.permittedInsecurePackages = [
+        "electron-29.4.6"
+      ];
+
+      overlays = import ../overlays {inherit inputs;};
+    };
+  };
+
+  sharedModules = [
+    ../variables.nix
+    ../theme.nix
+    ../overlays/lix.nix
+
     {
-      inherit nixos-generators home-manager disko;
-      system = x64System;
+      nix.registry.nixpkgs.flake = inputs.nixpkgs;
     }
-    // baseArgs;
+  ];
 
-  hosts =
-    builtins.mapAttrs (host: hostConf: {
-      name = hostConf.info.name;
-      disko = hostConf.info.disko;
-      diskPath = hostConf.info.diskPath;
-      configuration = {
-        inherit (hostConf) nixosModules homeModules;
-      };
-      homeManager = hostConf.homeManager;
-    })
-    configurations;
+  createNixosConfiguration = name: info: let
+    system = info.system;
+    specialArgs = mkSpecialArgs system;
+  in
+    inputs.nixpkgs.lib.nixosSystem {
+      inherit system specialArgs;
+
+      modules =
+        sharedModules
+        ++ [
+          (mkInfoModule info)
+
+          self.nixosModules.state
+          self.nixosModules.stylix
+          self.nixosModules.sops
+          (import ../modules/nixos/home.nix {inherit specialArgs;})
+
+          inputs.disko.nixosModules.disko
+
+          inputs.nixos-generators.nixosModules.all-formats
+
+          {
+            environment.etc."nix/inputs/nixpkgs".source = "${inputs.nixpkgs}";
+            nix.nixPath = ["/etc/nix/inputs"];
+          }
+
+          ./${name}
+        ];
+    };
+
+  createDarwinConfiguration = name: info: let
+    system = info.system;
+    specialArgs = mkSpecialArgs system;
+  in
+    inputs.nix-darwin.lib.darwinSystem {
+      inherit system specialArgs;
+
+      modules =
+        sharedModules
+        ++ [
+          (mkInfoModule info)
+
+          {
+            opts.variables.isDarwin = true;
+          }
+
+          self.darwinModules.state
+          self.darwinModules.stylix
+          self.darwinModules.sops
+          (import ../modules/darwin/home.nix {inherit specialArgs;})
+
+          ./${name}
+        ];
+    };
+
+  nixosConfigurations = builtins.mapAttrs createNixosConfiguration linuxHosts;
+  darwinConfigurations = builtins.mapAttrs createDarwinConfiguration darwinHosts;
+
+  installers =
+    builtins.mapAttrs (
+      hostName: nixosConfig:
+        import ../lib/install/configure-installer.nix {
+          host = nixosConfig.config.opts.info;
+          inherit self inputs;
+          system = nixosConfig.config.opts.info.system;
+          inherit (nixosConfig.config.opts) variables theme;
+          lib = inputs.nixpkgs.lib;
+          config = nixosConfig.config;
+        }
+    )
+    nixosConfigurations;
 in {
-  nixosConfigurations =
+  flake.nixosConfigurations = nixosConfigurations;
+  flake.darwinConfigurations = darwinConfigurations;
+  flake.installers.x86_64-linux = installers;
+  flake.legacyPackages.x86_64-linux =
     builtins.mapAttrs (
-      _: hostConf:
-        nixosSystem ({host = hostConf;} // systemArgs)
+      name: config: config.config.formats
     )
-    hosts;
-
-  packages."${x64System}" =
-    builtins.mapAttrs (
-      _: hostConf:
-        self.nixosConfigurations.${hostConf.name}.config.formats
-    )
-    hosts;
-
-  hosts = hosts;
-
-  allSystems = allSystems;
+    nixosConfigurations;
 }
