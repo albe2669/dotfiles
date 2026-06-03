@@ -3,21 +3,26 @@
   self,
   config,
   ...
-}: {
-  flake.modules.nixos.home-manager-wiring = {
-    config,
-    lib,
-    pkgs,
-    ...
-  }: let
-    pkgs-unstable = import inputs.nixpkgs-unstable {
-      system = pkgs.system;
+}: let
+  # Single definition of the unstable package set, reused across nixos/darwin
+  # wiring so nixpkgs-unstable is only instantiated once per build.
+  mkPkgsUnstable = system:
+    import inputs.nixpkgs-unstable {
+      inherit system;
       config.allowUnfree = true;
       config.permittedInsecurePackages = [
         "electron-29.4.6"
       ];
       overlays = import ../overlays {inherit inputs;};
     };
+in {
+  flake.modules.nixos.home-manager-wiring = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: let
+    pkgs-unstable = mkPkgsUnstable pkgs.system;
   in {
     imports = [
       inputs.home-manager.nixosModules.home-manager
@@ -58,14 +63,7 @@
     pkgs,
     ...
   }: let
-    pkgs-unstable = import inputs.nixpkgs-unstable {
-      system = pkgs.system;
-      config.allowUnfree = true;
-      config.permittedInsecurePackages = [
-        "electron-29.4.6"
-      ];
-      overlays = import ../overlays {inherit inputs;};
-    };
+    pkgs-unstable = mkPkgsUnstable pkgs.system;
   in {
     imports = [
       inputs.home-manager.darwinModules.home-manager

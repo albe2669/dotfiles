@@ -44,7 +44,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixgl = {
       url = "github:nix-community/nixGL";
@@ -110,7 +113,8 @@
 
     mac-app-util = {
       url = "github:hraban/mac-app-util";
-      # inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # NOTE: do NOT make nixpkgs follow ours. mac-app-util builds itself via
+      # cl-nix-lite, and its Common Lisp deps break everything 
     };
 
     git-widget = {
