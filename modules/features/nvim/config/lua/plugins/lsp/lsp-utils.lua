@@ -59,8 +59,6 @@ function utils.on_attach(client, bufnr)
   vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
 
   u.buf_map(bufnr, "n", "gd", ":LspDef<CR>")
-  u.buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>")
-  u.buf_map(bufnr, "n", "gI", ":LspImplementation<CR>")
   u.buf_map(bufnr, "n", "K", ":LspHover<CR>")
   u.buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>")
   u.buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>")

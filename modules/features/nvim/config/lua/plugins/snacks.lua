@@ -66,6 +66,21 @@ return {
         local picker = Snacks.picker.help()
         if picker then picker.main = win end
       end },
+      { "gI", function()
+        local win = vim.api.nvim_get_current_win()
+        local picker = Snacks.picker.lsp_implementations()
+        if picker then picker.main = win end
+      end },
+      { "gy", function()
+        local win = vim.api.nvim_get_current_win()
+        local picker = Snacks.picker.lsp_type_definitions()
+        if picker then picker.main = win end
+      end },
+      { "<leader>gr", function()
+        local win = vim.api.nvim_get_current_win()
+        local picker = Snacks.picker.lsp_references()
+        if picker then picker.main = win end
+      end },
     }
   },
 }
