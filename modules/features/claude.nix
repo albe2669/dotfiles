@@ -8,6 +8,7 @@
     ...
   }: let
     pkg = pkgs-unstable.claude-code;
+    ccstatusline = self.packages.${system}.ccstatusline;
     notifyScript = ''
       #!/usr/bin/env bash
       input=$(cat)
@@ -32,13 +33,14 @@
 
       settings = {
         # ccstatusline: a configurable status line for Claude Code.
-        # The status line is produced by running ccstatusline through bunx
-        # (bun is installed in home.packages below). ccstatusline keeps its own
-        # configuration in ~/.config/ccstatusline/settings.json, edited
-        # interactively with `bunx -y ccstatusline@latest`.
+        # Rendered by the pinned, Nix-built ccstatusline package (see
+        # pkgs/ccstatusline) rather than fetching it from npm at runtime, so the
+        # binary is fully declarative and reproducible. ccstatusline's own
+        # appearance config lives in ~/.config/ccstatusline/settings.json and is
+        # edited interactively with `ccstatusline`.
         statusLine = {
           type = "command";
-          command = "bunx -y ccstatusline@latest";
+          command = lib.getExe ccstatusline;
           padding = 0;
         };
 
@@ -323,6 +325,7 @@
       ]
       ++ [
         inputs.ccusage.outputs.packages.${system}.default
+        ccstatusline
         pkgs-unstable.bun
       ];
   };
