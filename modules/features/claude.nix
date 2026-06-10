@@ -140,8 +140,8 @@
 
         ## Git
 
-        Never commit anything unless explicitly asked to. Never change PR descriptions, titles, comments or similar. Never reply to comments without explicit instruction. Also, never push unless explicitly asked to. 
-        '';
+        Never commit anything unless explicitly asked to. Never change PR descriptions, titles, comments or similar. Never reply to comments without explicit instruction. Also, never push unless explicitly asked to.
+      '';
 
       skills = {
         fix-lint = ''

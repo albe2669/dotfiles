@@ -114,7 +114,7 @@
     mac-app-util = {
       url = "github:hraban/mac-app-util";
       # NOTE: do NOT make nixpkgs follow ours. mac-app-util builds itself via
-      # cl-nix-lite, and its Common Lisp deps break everything 
+      # cl-nix-lite, and its Common Lisp deps break everything
     };
 
     git-widget = {
