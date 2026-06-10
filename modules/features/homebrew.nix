@@ -5,6 +5,7 @@
       onActivation = {
         autoUpdate = lib.mkDefault true;
         cleanup = lib.mkDefault "zap";
+        extraFlags = ["--force-cleanup"];
       };
     };
   };
