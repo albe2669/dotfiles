@@ -79,6 +79,7 @@
             # RTK
             "Bash(rtk:*)"
           ];
+          model = "claude-sonnet-4-6";
         };
 
         hooks = {
@@ -136,7 +137,11 @@
         ## Infrastructure / Docker
 
         When working with Docker/Azurite/external services, read existing config files (docker config.json, connection strings) before guessing at values like auth keys or API versions.
-      '';
+
+        ## Git
+
+        Never commit anything unless explicitly asked to. Never change PR descriptions, titles, comments or similar. Never reply to comments without explicit instruction. Also, never push unless explicitly asked to. 
+        '';
 
       skills = {
         fix-lint = ''
@@ -158,20 +163,20 @@
         claude-plugins-official = pkgs-unstable.fetchFromGitHub {
           owner = "anthropics";
           repo = "claude-plugins-official";
-          rev = "7ed523140f506611c968a0ec32e1dfc40a1d5673";
-          sha256 = "sha256-wt+D1LKRWQDPuLA0f4X2deV5LDL7+x0iz7+2BHkkAYs=";
+          rev = "de573bd84695c6657b28f05ffe32c37bb54d1f55";
+          sha256 = "sha256-L9Q9ruBMPnUA4/a+7NFS/+PuzqZI6zxBEjpUk2Gn/bY=";
         };
         superpowers-marketplace = pkgs-unstable.fetchFromGitHub {
           owner = "obra";
           repo = "superpowers-marketplace";
-          rev = "0b73e2556d4ecf4fe54dbb32b248b5e17ed0c0f5";
-          sha256 = "sha256-uKDVcw6C1uzpiIY+hjgHxr4AU9wM1KF7t3v6zd9XBHk=";
+          rev = "6fd4507659784c351abbd2bc264c7162cfd386dc";
+          sha256 = "sha256-6FuI+4fTxcp3kp1WpJFMRUZnAGRRcTGJ1ZzOLgpMWVE=";
         };
         context-mode = pkgs-unstable.fetchFromGitHub {
           owner = "mksglu";
           repo = "context-mode";
-          rev = "a2f108247ba6d60b04f2fc448f6322afac91cd71";
-          sha256 = "sha256-myMNTAUFcx1ba9PgVMRbfV+O/UKrzm+CBy1VdBIvfI0=";
+          rev = "e17427240897ea8b07006382fecfac825d66e003";
+          sha256 = "sha256-6FuI+4fTxcp3kp1WpJFMRUZnAGRRcTGJ1ZzOLgpMWVE=";
         };
       };
       settings = {
