@@ -5,10 +5,10 @@
     inputs,
     system,
     pkgs-unstable,
+    config,
     ...
   }: let
     pkg = pkgs-unstable.claude-code;
-    ccstatusline = self.packages.${system}.ccstatusline;
     notifyScript = ''
       #!/usr/bin/env bash
       input=$(cat)
@@ -27,20 +27,23 @@
       text = notifyScript;
     };
 
+    # ccstatusline package + declarative settings.json (programs.ccstatusline
+    # module). Claude Code's statusLine below points at this package.
+    programs.ccstatusline.enable = true;
+
     programs.claude-code = {
       enable = true;
       package = pkg;
 
       settings = {
-        # ccstatusline: a configurable status line for Claude Code.
-        # Rendered by the pinned, Nix-built ccstatusline package (see
-        # pkgs/ccstatusline) rather than fetching it from npm at runtime, so the
-        # binary is fully declarative and reproducible. ccstatusline's own
-        # appearance config lives in ~/.config/ccstatusline/settings.json and is
-        # edited interactively with `ccstatusline`.
+        # Status line is rendered by the pinned, Nix-built ccstatusline package
+        # (see pkgs/ccstatusline and the programs.ccstatusline module) rather
+        # than fetching it from npm at runtime, so it is fully declarative and
+        # reproducible. Its appearance is configured declaratively via
+        # programs.ccstatusline.settings.
         statusLine = {
           type = "command";
-          command = lib.getExe ccstatusline;
+          command = lib.getExe config.programs.ccstatusline.package;
           padding = 0;
         };
 
@@ -325,12 +328,14 @@
       ]
       ++ [
         inputs.ccusage.outputs.packages.${system}.default
-        ccstatusline
         pkgs-unstable.bun
       ];
   };
 
   flake.modules.combined.claude = {...}: {
-    hm.imports = [config.flake.modules.homeManager.claude];
+    hm.imports = [
+      config.flake.modules.homeManager.claude
+      config.flake.modules.homeManager.ccstatusline
+    ];
   };
 }
