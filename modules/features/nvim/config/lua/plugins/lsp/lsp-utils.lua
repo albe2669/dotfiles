@@ -72,8 +72,9 @@ function utils.on_attach(client, bufnr)
   end
 
   if client.supports_method("textDocument/completion") then
+    -- Completion is driven by blink.cmp; keep omnifunc as a fallback but don't
+    -- claim <C-Space>, which blink uses to toggle the completion menu/docs.
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-    u.buf_map(bufnr, "i", "<C-Space>", "<C-x><C-o>")
   end
 end
 
@@ -92,6 +93,17 @@ function utils.load_servers(servers)
   end
 
   return loaded
+end
+
+-- Build LSP client capabilities, enriched with blink.cmp's completion
+-- capabilities when available.
+function utils.capabilities()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local ok, blink = pcall(require, "blink.cmp")
+  if ok then
+    capabilities = blink.get_lsp_capabilities(capabilities)
+  end
+  return capabilities
 end
 
 return utils

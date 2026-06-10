@@ -77,6 +77,9 @@ return {
       })
       require("mason-lspconfig").setup(opts)
 
+      -- Apply blink.cmp-enriched capabilities to every LSP server by default.
+      vim.lsp.config("*", { capabilities = lu.capabilities() })
+
       for _, server in pairs(servers) do
         server.setup(lu.on_attach)
       end
