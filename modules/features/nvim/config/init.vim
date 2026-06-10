@@ -52,8 +52,11 @@ set confirm
 set showcmd
 set cmdheight=1
 
-" Always show status line
-set laststatus=2
+" Always show a single global status line (lualine globalstatus)
+set laststatus=3
+
+" Always show the bufferline (tabs)
+set showtabline=2
 
 " Disable this perhaps
 set scrolloff=10

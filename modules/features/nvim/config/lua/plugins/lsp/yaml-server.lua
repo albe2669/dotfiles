@@ -3,7 +3,7 @@ return {
   setup = function(on_attach)
     vim.lsp.config('yamlls', {
       on_attach = on_attach,
-      capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+      capabilities = require("plugins.lsp.lsp-utils").capabilities(),
       settings = {
         yaml = {
           schemas = {

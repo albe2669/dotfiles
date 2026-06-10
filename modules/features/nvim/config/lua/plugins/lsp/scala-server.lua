@@ -16,7 +16,7 @@ return {
           "com.github.swagger.akka.javadsl"
         },
       },
-      capabilities = require("cmp_nvim_lsp").default_capabilities(),
+      capabilities = require("plugins.lsp.lsp-utils").capabilities(),
       on_attach = on_attach,
     }
 

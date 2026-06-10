@@ -1,14 +1,22 @@
+-- copilot.lua: the maintained Lua rewrite of Copilot for Neovim.
+-- Inline ghost text / panel are disabled because Copilot is surfaced through
+-- blink.cmp (via blink-copilot) as a normal completion source instead.
 return {
   {
-    "github/copilot.vim",
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
     config = function()
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-      vim.g.copilot_tab_fallback = true
-
-      vim.g.copilot_filetypes = {
-        markdown = true,
-      }
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+        filetypes = {
+          markdown = true,
+          gitcommit = true,
+          yaml = true,
+          ["*"] = true,
+        },
+      })
     end,
   },
 }

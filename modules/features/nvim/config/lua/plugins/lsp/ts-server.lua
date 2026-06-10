@@ -18,7 +18,7 @@ return {
         "vue"
       },
       settings = {
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        capabilities = require("plugins.lsp.lsp-utils").capabilities(),
         single_file_support = false,
         tsserver_plugins = {
           "@vue/typescript-plugin",
