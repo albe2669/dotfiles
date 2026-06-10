@@ -31,6 +31,28 @@
       package = pkg;
 
       settings = {
+        # ccstatusline: a configurable status line for Claude Code.
+        # The status line is produced by running ccstatusline through bunx
+        # (bun is installed in home.packages below). ccstatusline keeps its own
+        # configuration in ~/.config/ccstatusline/settings.json, edited
+        # interactively with `bunx -y ccstatusline@latest`.
+        statusLine = {
+          type = "command";
+          command = "bunx -y ccstatusline@latest";
+          padding = 0;
+        };
+
+        enabledPlugins = {
+          "gopls-lsp@claude-plugins-official" = true;
+          "lua-lsp@claude-plugins-official" = true;
+          "pr-review-toolkit@claude-plugins-official" = true;
+          "frontend-design@claude-plugins-official" = true;
+          "code-review@claude-plugins-official" = true;
+          "commit-commands@claude-plugins-official" = true;
+          "superpowers@superpowers-marketplace" = true;
+          "context-mode@context-mode" = true;
+        };
+
         permissions = {
           deny = [
             "Bash(sudo *)"
@@ -177,18 +199,6 @@
           repo = "context-mode";
           rev = "e17427240897ea8b07006382fecfac825d66e003";
           sha256 = "sha256-6FuI+4fTxcp3kp1WpJFMRUZnAGRRcTGJ1ZzOLgpMWVE=";
-        };
-      };
-      settings = {
-        enabledPlugins = {
-          "gopls-lsp@claude-plugins-official" = true;
-          "lua-lsp@claude-plugins-official" = true;
-          "pr-review-toolkit@claude-plugins-official" = true;
-          "frontend-design@claude-plugins-official" = true;
-          "code-review@claude-plugins-official" = true;
-          "commit-commands@claude-plugins-official" = true;
-          "superpowers@superpowers-marketplace" = true;
-          "context-mode@context-mode" = true;
         };
       };
     };
