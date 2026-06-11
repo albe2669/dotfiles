@@ -29,7 +29,118 @@
 
     # ccstatusline package + declarative settings.json (programs.ccstatusline
     # module). Claude Code's statusLine below points at this package.
-    programs.ccstatusline.enable = true;
+    programs.ccstatusline = {
+      enable = true;
+      settings = {
+        version = 3;
+        lines = [
+          [
+            {
+              id = "1";
+              type = "model";
+              color = "cyan";
+            }
+            {
+              id = "2";
+              type = "separator";
+            }
+            {
+              id = "3";
+              type = "tokens-input";
+              color = "brightBlack";
+            }
+            {
+              id = "fe38dc05-fda2-4d3a-9fde-2021140e392d";
+              type = "separator";
+            }
+            {
+              id = "94349446-72cb-4aec-9fec-f371bdc34689";
+              type = "tokens-output";
+            }
+            {
+              id = "7892b992-08d7-4ef9-b613-66e12ae8b057";
+              type = "flex-separator";
+            }
+            {
+              id = "5";
+              type = "git-branch";
+              color = "magenta";
+            }
+            {
+              id = "6";
+              type = "separator";
+            }
+            {
+              id = "7";
+              type = "git-changes";
+              color = "yellow";
+            }
+            {
+              id = "0ecb9131-2c89-48e7-8738-0056522d39b6";
+              type = "separator";
+            }
+            {
+              id = "4f3f24ce-fc7c-4e52-a43c-feaae9664ad6";
+              type = "free-memory";
+            }
+          ]
+          [
+            {
+              id = "14210628-bbae-4fca-a09b-6f0f067813a6";
+              type = "session-clock";
+            }
+            {
+              id = "7850b984-405f-44ad-a7fc-1be46a5c5bfc";
+              type = "separator";
+            }
+            {
+              id = "3aa35e41-7c5f-4691-819b-5d6652b9eb35";
+              type = "session-cost";
+            }
+            {
+              id = "fb764e15-4ce0-416b-b67d-da943e7d606f";
+              type = "separator";
+            }
+            {
+              id = "7a881317-6ed7-4e6b-a5c2-a7b8fac91ce5";
+              type = "skills";
+            }
+            {
+              id = "2f486639-3611-4ba1-bcbe-d1de8868f7c5";
+              type = "flex-separator";
+            }
+            {
+              id = "5c862902-53f5-43ad-b3ff-afd5af4ddf8b";
+              type = "context-bar";
+            }
+          ]
+          [
+          ]
+        ];
+        flexMode = "full-minus-40";
+        compactThreshold = 60;
+        colorLevel = 2;
+        inheritSeparatorColors = false;
+        globalBold = false;
+        gitCacheTtlSeconds = 5;
+        minimalistMode = false;
+        powerline = {
+          enabled = false;
+          separators = [
+            ""
+          ];
+          separatorInvertBackground = [
+            false
+          ];
+          startCaps = [
+          ];
+          endCaps = [
+          ];
+          autoAlign = false;
+          continueThemeAcrossLines = false;
+        };
+      };
+    };
 
     programs.claude-code = {
       enable = true;
