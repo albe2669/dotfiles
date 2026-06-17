@@ -117,28 +117,12 @@
           [
           ]
         ];
-        flexMode = "full-minus-40";
+        flexMode = "full-until-compact";
         compactThreshold = 60;
         colorLevel = 2;
         inheritSeparatorColors = false;
         globalBold = false;
         gitCacheTtlSeconds = 5;
-        minimalistMode = false;
-        powerline = {
-          enabled = false;
-          separators = [
-            ""
-          ];
-          separatorInvertBackground = [
-            false
-          ];
-          startCaps = [
-          ];
-          endCaps = [
-          ];
-          autoAlign = false;
-          continueThemeAcrossLines = false;
-        };
       };
     };
 
@@ -361,16 +345,31 @@
       # Create a new branch worktree and open it in claude-code
       function claw
         if test (count $argv) -ne 1
-          echo "Usage: claw <branch>"
+          echo "Usage: claw <branch> <?base>"
           return 1
         end
         set branch $argv[1]
+
+        set base ""
+        if test (count $arbv) -eq 2
+          set base $argv[2]
+        else
+          set base "main"
+        end
+
+        if git rev-parse --verify $base > /dev/null 2>&1
+          echo "Using base branch $base"
+        else
+          echo "Base branch $base does not exist. Please choose an existing branch or omit the base to use main."
+          return 1
+        end
+
         set path "./.claude/worktrees/$branch"
         if git rev-parse --verify $branch > /dev/null 2>&1
           echo "Branch $branch already exists. Please choose a different name."
-          git worktree add $path $branch
+          return 1
         else
-          git worktree add -b $branch $path main
+          git worktree add -b $branch $path $base
         end
         __worktree_copy_files $path
         __worktree_launch $path claude $branch
