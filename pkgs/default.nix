@@ -5,4 +5,5 @@
   ccusage = pkgs.callPackage ./ccusage {};
   ccstatusline = pkgs.callPackage ./ccstatusline {};
   pup = pkgs.callPackage ./pup {};
+  omp = pkgs.callPackage ./omp {};
 }
