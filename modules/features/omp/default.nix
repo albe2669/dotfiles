@@ -54,7 +54,7 @@
         enabled: true
         lazy: true
         diagnosticsOnWrite: true
-        formatOnWrite: false
+        formatOnWrite: true
 
       bash:
         enabled: true
@@ -64,10 +64,14 @@
         notify: on
 
       # Appearance
+      theme: 
+        dark: titanium
+      symbolPreset: nerd
       statusLine:
-        preset: default
+        preset: nerd
         separator: powerline-thin
         sessionAccent: true
+
 
       # Use extended thinking for better quality (matches Claude Code's Sonnet defaults)
       defaultThinkingLevel: high
@@ -82,6 +86,17 @@
       eval:
         py: true
         js: true
+
+      memory: 
+        backend: mnemopi
+
+      power: 
+        preventSystemSleep: true
+      
+      github: 
+        enabled: true
+
+      setupVersion: 1
     '';
   in {
     home.packages =

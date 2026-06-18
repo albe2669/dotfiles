@@ -43,6 +43,7 @@
     self.modules.combined.jetbrains-goland
     self.modules.combined.rtk
     self.modules.combined.opencode
+    self.modules.combined.omp
   ];
 
   system.keyboard = {

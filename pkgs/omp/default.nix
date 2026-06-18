@@ -1,20 +1,3 @@
-# oh-my-pi (omp) — TypeScript+Rust hybrid built with bun build --compile.
-#
-# Build architecture:
-#   1. bunDeps  — fixed-output derivation: runs `bun install` with network to
-#                 vendor all JS/TS workspace dependencies; the outputHash locks
-#                 the result so subsequent builds are fully sandboxed.
-#   2. nativesAddon — rustPlatform.buildRustPackage: compiles the NAPI Rust
-#                 addon (packages/natives) that provides grep, PTY, clipboard,
-#                 syntax highlighting, and shell operations to the TypeScript layer.
-#   3. final    — sandboxed: symlinks vendored deps, places the .node addon, then
-#                 runs `bun build --compile` to produce a self-contained binary
-#                 that embeds the Bun runtime.
-#
-# Hash update workflow:
-#   nix build .#omp 2>&1 | grep "got:"   (repeat for each placeholder that fires)
-#
-# Alternatively, use `nix store prefetch-file <url>` for fetchFromGitHub hashes.
 {
   lib,
   stdenv,
@@ -26,23 +9,18 @@
   pkg-config,
   openssl,
 }: let
-  version = "16.0.5";
+  version = "16.0.6";
 
   src = fetchFromGitHub {
     owner = "can1357";
     repo = "oh-my-pi";
     rev = "v${version}";
-    # Run: nix-prefetch-github can1357 oh-my-pi --rev v16.0.5
-    hash = lib.fakeHash;
+    hash = "sha256-BVxWF6pb7JGXeU1byeoKF3WxLauc7MF7ia+OI0YekPE=";
   };
 
   # --------------------------------------------------------------------------
-  # Stage 1 — Bun/npm dependency vendoring (fixed-output derivation)
+  # Stage 1 — Bun/npm dependency fetch (fixed-output derivation)
   # --------------------------------------------------------------------------
-  # Fixed-output derivations may access the network; their outputHash pins the
-  # result so the build is reproducible after the hash is filled in.
-  #
-  # To compute: rm the placeholder, run `nix build .#omp`, copy the "got:" hash.
   bunDeps = stdenvNoCC.mkDerivation {
     name = "omp-bun-deps-${version}";
     inherit src;
@@ -51,52 +29,57 @@
 
     buildPhase = ''
       export HOME=$(mktemp -d)
-      # --frozen-lockfile: aborts if bun.lock is out of date (ensures reproducibility)
       bun install --frozen-lockfile --no-progress
     '';
 
     installPhase = ''
+      # bun workspaces links @oh-my-pi/* → ../../packages/* and robomp-web →
+      # ../../python/robomp/web. These symlinks are valid in the build tree
+      # but break in the Nix store (packages/ is absent there). Remove them
+      # explicitly; the final build recreates them from the source tree.
+      rm -rf node_modules/@oh-my-pi
+      rm -f node_modules/robomp-web
+      # .bin entries for workspace bins also become dangling; remove them.
+      find node_modules/.bin -maxdepth 1 -type l ! -exec test -e {} \; -delete
       cp -r node_modules $out
     '';
 
-    outputHash = lib.fakeHash;
+    outputHash = "sha256-9aVQL8UuJ2/WmeSca7R4Q8rtTuIKn2v1kTImkklGPtU=";
     outputHashMode = "recursive";
     outputHashAlgo = "sha256";
   };
 
   # --------------------------------------------------------------------------
-  # Stage 2 — Rust NAPI native addon
+  # Stage 2 — Rust NAPI addon
   # --------------------------------------------------------------------------
-  # packages/natives provides pi_natives.<platform>.node — a shared library
-  # loaded by the TypeScript layer for native ops (grep, PTY, clipboard, etc.).
-  #
-  # The natives package is part of the root Cargo workspace (crates/* + any
-  # package.json-declared workspaces that also have Cargo.toml members).
-  # We build only the pi-natives crate and skip the test suite (it needs a
-  # running Node host to load the .node file).
   nativesAddon = rustPlatform.buildRustPackage {
     pname = "pi-natives";
     inherit version src;
 
-    # To compute: nix hash path --type sha256 --base64 \
-    #   $(nix-prefetch-github can1357 oh-my-pi --rev v16.0.5 | jq -r .outPath)
-    cargoHash = lib.fakeHash;
+    cargoHash = "sha256-FkntxI2yVAJdmiAJ+uqyz0qaioka6tx6yB0v6oAP01A=";
 
-    # Build only the native addon crate; skip the rest of the workspace.
+    # pi-natives uses #![feature(alloc_error_hook)] which requires nightly;
+    # RUSTC_BOOTSTRAP=1 lets stable Rust compile nightly feature gates.
+    env.RUSTC_BOOTSTRAP = "1";
+
     cargoBuildFlags = ["--package" "pi-natives" "--lib"];
 
     nativeBuildInputs = [nodejs pkg-config];
     buildInputs = [openssl];
 
-    # NAPI-RS outputs a shared library; rename to the .node convention that the
-    # TypeScript loader discovers by platform suffix.
     installPhase = let
-      nodeTriple = {
-        "x86_64-linux" = "linux-x64-gnu";
-        "aarch64-linux" = "linux-arm64-gnu";
-        "x86_64-darwin" = "darwin-x64";
-        "aarch64-darwin" = "darwin-arm64";
-      }.${stdenv.hostPlatform.system};
+      nodeTriple =
+        {
+          "x86_64-linux" = "linux-x64-gnu";
+          "aarch64-linux" = "linux-arm64-gnu";
+          "x86_64-darwin" = "darwin-x64";
+          "aarch64-darwin" = "darwin-arm64";
+        }.${
+          stdenv.hostPlatform.system
+        };
+      # nixpkgs's cargoBuildHook passes --target <rustcTarget>, so cargo puts
+      # artifacts in target/<rustcTarget>/release/ rather than target/release/.
+      rustTarget = stdenv.hostPlatform.rust.rustcTarget;
       ext =
         if stdenv.hostPlatform.isDarwin
         then "dylib"
@@ -104,7 +87,7 @@
     in ''
       runHook preInstall
       mkdir -p $out/lib
-      install -m755 target/release/libpi_natives.${ext} \
+      install -m755 target/${rustTarget}/release/libpi_natives.${ext} \
         $out/lib/pi_natives.${nodeTriple}.node
       runHook postInstall
     '';
@@ -112,14 +95,15 @@
     doCheck = false;
   };
 
-  # The naming convention used by packages/natives/native/index.js when loading
-  # the .node file on the current platform.
-  nodeTriple = {
-    "x86_64-linux" = "linux-x64-gnu";
-    "aarch64-linux" = "linux-arm64-gnu";
-    "x86_64-darwin" = "darwin-x64";
-    "aarch64-darwin" = "darwin-arm64";
-  }.${stdenv.hostPlatform.system};
+  nodeTriple =
+    {
+      "x86_64-linux" = "linux-x64-gnu";
+      "aarch64-linux" = "linux-arm64-gnu";
+      "x86_64-darwin" = "darwin-x64";
+      "aarch64-darwin" = "darwin-arm64";
+    }.${
+      stdenv.hostPlatform.system
+    };
 in
   stdenvNoCC.mkDerivation {
     pname = "omp";
@@ -131,8 +115,29 @@ in
       runHook preBuild
       export HOME=$(mktemp -d)
 
-      # Use the vendored node_modules (bun resolves from the symlink at cwd)
-      ln -sfn ${bunDeps} node_modules
+      # Copy vendored deps to a mutable node_modules (a symlink to the
+      # read-only store path cannot have workspace links added to it).
+      cp -r ${bunDeps} node_modules
+      chmod -R u+w node_modules
+
+      # Recreate workspace package symlinks that bun install created but that
+      # were stripped from bunDeps. Read each packages/*/package.json for the
+      # canonical name, then link node_modules/@scope/name → ../../packages/x.
+      for pkg_json in packages/*/package.json; do
+        [ -f "$pkg_json" ] || continue
+        pkg_dir="$(dirname "$pkg_json")"
+        pkg_name="$(grep -o '"name"[[:space:]]*:[[:space:]]*"[^"]*"' "$pkg_json" \
+                    | head -1 | grep -o '"[^"]*"$' | tr -d '"')"
+        [ -n "$pkg_name" ] || continue
+        case "$pkg_name" in
+          @*/*)
+            scope="''${pkg_name%%/*}"
+            bare="''${pkg_name#*/}"
+            mkdir -p "node_modules/$scope"
+            ln -sfn "../../$pkg_dir" "node_modules/$scope/$bare"
+            ;;
+        esac
+      done
 
       # Place the compiled native addon where packages/natives/native/index.js
       # expects to find it on this platform.
@@ -140,8 +145,16 @@ in
       cp ${nativesAddon}/lib/pi_natives.${nodeTriple}.node \
          packages/natives/native/
 
-      # Produce a standalone self-contained binary (embeds the Bun runtime +
-      # all TypeScript source; no external Bun required at runtime).
+      # Generate build-time artefacts required by bun build --compile.
+      # 1. Embed native .node into a tar.gz + generate embedded-addon.js shim.
+      (cd packages/natives && bun scripts/embed-native.ts)
+      # 2. docs-index.generated.ts — embeds docs/ Markdown into the binary.
+      (cd packages/coding-agent && bun scripts/generate-docs-index.ts)
+      # 3. tool-views.generated.js — React tool-view bundle for HTML exports.
+      (cd packages/collab-web && bun scripts/build-tool-views.ts)
+
+      # Compile the self-contained binary. Entrypoints mirror build-binary.ts
+      # so that legacy pi-* extension shims land in bunfs.
       bun build --compile \
         --no-compile-autoload-bunfig \
         --no-compile-autoload-dotenv \
@@ -150,7 +163,17 @@ in
         --keep-names \
         --define 'process.env.PI_COMPILED="true"' \
         --external mupdf \
+        --external fastembed \
+        --external onnxruntime-node \
+        --root . \
         ./packages/coding-agent/src/cli.ts \
+        ./packages/agent/src/index.ts \
+        ./packages/natives/native/index.js \
+        ./packages/tui/src/index.ts \
+        ./packages/utils/src/index.ts \
+        ./packages/coding-agent/src/extensibility/typebox.ts \
+        ./packages/coding-agent/src/extensibility/legacy-pi-ai-shim.ts \
+        ./packages/coding-agent/src/extensibility/legacy-pi-coding-agent-shim.ts \
         --outfile $TMPDIR/omp
 
       runHook postBuild
