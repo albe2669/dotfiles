@@ -18,10 +18,12 @@
         };
         "x86_64-linux" = pkgs.fetchurl {
           url = "https://github.com/oven-sh/bun/releases/download/bun-v${finalAttrs.version}/bun-linux-x64.zip";
-          hash = pkgs.lib.fakeHash;
+          hash = "sha256-lR7iruhV8IWVruxiJSJqKY0/6oOj3NZGXAnLzN9+hI8=";
         };
       }
-      .${pkgs.stdenv.hostPlatform.system};
+      .${
+        pkgs.stdenv.hostPlatform.system
+      };
   });
 in {
   kittykat = pkgs.callPackage ./kittykat {};

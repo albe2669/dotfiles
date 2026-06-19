@@ -53,6 +53,7 @@ in {
     self.modules.combined.spotify
     self.modules.combined.zellij
     self.modules.combined.wakatime
+    self.modules.combined.omp
 
     # Hardware
     ./hardware-configuration.nix

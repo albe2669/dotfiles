@@ -36,7 +36,7 @@ in {
 
     home-manager = {
       useGlobalPkgs = true;
-      backupFileExtension = "backup";
+      backupFileExtension = "backup2";
       useUserPackages = true;
 
       extraSpecialArgs = {

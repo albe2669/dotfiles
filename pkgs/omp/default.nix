@@ -44,7 +44,7 @@
       cp -r node_modules $out
     '';
 
-    outputHash = "sha256-x1zGWnP1MEXLkrKfudPc9/6WGJ1UPn7N9KkuqQAoWCM=";
+    outputHash = "sha256-/c4UPGYLgBpluNputevnq0VxBIvq+wasQib/B4BsQUY=";
     outputHashMode = "recursive";
     outputHashAlgo = "sha256";
   };
@@ -70,9 +70,9 @@
     installPhase = let
       nodeTriple =
         {
-          "x86_64-linux" = "linux-x64-gnu";
-          "aarch64-linux" = "linux-arm64-gnu";
-          "x86_64-darwin" = "darwin-x64";
+          "x86_64-linux" = "linux-x64-baseline";
+          "aarch64-linux" = "linux-arm64";
+          "x86_64-darwin" = "darwin-x64-baseline";
           "aarch64-darwin" = "darwin-arm64";
         }.${
           stdenv.hostPlatform.system
@@ -97,9 +97,9 @@
 
   nodeTriple =
     {
-      "x86_64-linux" = "linux-x64-gnu";
-      "aarch64-linux" = "linux-arm64-gnu";
-      "x86_64-darwin" = "darwin-x64";
+      "x86_64-linux" = "linux-x64-baseline";
+      "aarch64-linux" = "linux-arm64";
+      "x86_64-darwin" = "darwin-x64-baseline";
       "aarch64-darwin" = "darwin-arm64";
     }.${
       stdenv.hostPlatform.system
