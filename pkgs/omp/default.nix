@@ -9,13 +9,13 @@
   pkg-config,
   openssl,
 }: let
-  version = "16.0.6";
+  version = "16.1.0";
 
   src = fetchFromGitHub {
     owner = "can1357";
     repo = "oh-my-pi";
     rev = "v${version}";
-    hash = "sha256-BVxWF6pb7JGXeU1byeoKF3WxLauc7MF7ia+OI0YekPE=";
+    hash = "sha256-zCPE2Be7nSj9HPQh4GHAMoTZgRG2e3v77oFB3Gy+4NM=";
   };
 
   # --------------------------------------------------------------------------
@@ -44,7 +44,7 @@
       cp -r node_modules $out
     '';
 
-    outputHash = "sha256-9aVQL8UuJ2/WmeSca7R4Q8rtTuIKn2v1kTImkklGPtU=";
+    outputHash = "sha256-x1zGWnP1MEXLkrKfudPc9/6WGJ1UPn7N9KkuqQAoWCM=";
     outputHashMode = "recursive";
     outputHashAlgo = "sha256";
   };
@@ -56,7 +56,7 @@
     pname = "pi-natives";
     inherit version src;
 
-    cargoHash = "sha256-FkntxI2yVAJdmiAJ+uqyz0qaioka6tx6yB0v6oAP01A=";
+    cargoHash = "sha256-qvD1OLm4JDkIneDiNjfy9tWHAeJrUikpQv9kNdp6sIk=";
 
     # pi-natives uses #![feature(alloc_error_hook)] which requires nightly;
     # RUSTC_BOOTSTRAP=1 lets stable Rust compile nightly feature gates.

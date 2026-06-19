@@ -22,82 +22,6 @@
         notify-send "omp" "Agent stopped"
       fi
     '';
-
-    # YAML for ~/.omp/agent/config.yml.
-    # Enterprise Anthropic auth is handled via environment variables — no secrets here:
-    #   ANTHROPIC_API_KEY       – standard API key
-    #   ANTHROPIC_OAUTH_TOKEN   – takes precedence over API key when set
-    #   ANTHROPIC_BASE_URL      – custom gateway URL (corporate proxy)
-    #   ANTHROPIC_CUSTOM_HEADERS – extra headers for the gateway (comma-separated "key: value")
-    # Foundry / Azure gateway:
-    #   CLAUDE_CODE_USE_FOUNDRY=true  FOUNDRY_BASE_URL=<url>  ANTHROPIC_FOUNDRY_API_KEY=<key>
-    # Auth broker (centralised credential vault across machines):
-    #   OMP_AUTH_BROKER_URL=<url>  OMP_AUTH_BROKER_TOKEN=<token>
-    # Set these in SOPS-managed home.sessionVariables or in ~/.omp/agent/.env.
-    configYaml = ''
-      # oh-my-pi (omp) user configuration
-      # Managed by Nix — do not edit by hand.
-
-      # Match the model used by Claude Code
-      modelRoles:
-        default: anthropic/claude-sonnet-4-6
-
-      # Tool approval mirrors Claude Code's broad allow-list approach.
-      # "yolo" auto-approves all tools; restrict individual tools below if needed.
-      tools:
-        approvalMode: yolo
-        approval:
-          bash: allow
-
-      # LSP — built-in; covers gopls, lua-ls, and others automatically
-      lsp:
-        enabled: true
-        lazy: true
-        diagnosticsOnWrite: true
-        formatOnWrite: true
-
-      bash:
-        enabled: true
-
-      # Desktop notifications when omp stops waiting for input
-      ask:
-        notify: on
-
-      # Appearance
-      theme: 
-        dark: titanium
-      symbolPreset: nerd
-      statusLine:
-        preset: nerd
-        separator: powerline-thin
-        sessionAccent: true
-
-
-      # Use extended thinking for better quality (matches Claude Code's Sonnet defaults)
-      defaultThinkingLevel: high
-
-      # Automatic context compaction keeps long sessions healthy
-      compaction:
-        enabled: true
-        strategy: context-full
-        autoContinue: true
-
-      # Eval backends — Python and JS repls are available as tools
-      eval:
-        py: true
-        js: true
-
-      memory: 
-        backend: mnemopi
-
-      power: 
-        preventSystemSleep: true
-      
-      github: 
-        enabled: true
-
-      setupVersion: 1
-    '';
   in {
     home.packages =
       [pkg]
@@ -107,7 +31,7 @@
 
     # Main config
     home.file.".omp/agent/config.yml" = {
-      text = configYaml;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/features/omp/config.yml");
     };
 
     # Shared context appended to omp's built-in system prompt.

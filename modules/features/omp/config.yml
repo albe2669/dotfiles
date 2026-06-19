@@ -1,0 +1,44 @@
+modelRoles: 
+  default: anthropic/claude-sonnet-4-6
+  smol: anthropic/claude-haiku-4-5
+  slow: anthropic/claude-opus-4-8
+  plan: anthropic/claude-opus-4-8
+  task: anthropic/claude-sonnet-4-6
+tools: 
+  approvalMode: yolo
+  approval: 
+    bash: allow
+lsp: 
+  enabled: true
+  lazy: true
+  diagnosticsOnWrite: true
+  formatOnWrite: true
+bash: 
+  enabled: true
+ask: 
+  notify: "on"
+theme: 
+  dark: titanium
+symbolPreset: nerd
+statusLine: 
+  preset: default
+  separator: powerline-thin
+  sessionAccent: true
+  transparent: true
+defaultThinkingLevel: auto
+compaction: 
+  enabled: true
+  strategy: context-full
+  autoContinue: true
+eval: 
+  py: true
+  js: true
+memory: 
+  backend: mnemopi
+power: 
+  preventSystemSleep: true
+github: 
+  enabled: true
+providers: 
+  tinyModel: online
+setupVersion: 1
