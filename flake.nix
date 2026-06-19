@@ -136,7 +136,7 @@
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      debug = true;
+      debug = false;
       imports = [
         ./variables.nix
         ./theme.nix
