@@ -5,6 +5,8 @@
   fetchFromGitHub,
   rustPlatform,
   bun,
+  bunSrc,
+  unzip,
   nodejs,
   pkg-config,
   openssl,
@@ -109,7 +111,14 @@ in
     pname = "omp";
     inherit version src;
 
-    nativeBuildInputs = [bun];
+    nativeBuildInputs = [bun unzip];
+
+    # bun build --compile appends a payload past the ELF section table.
+    # The default fixup phase's strip/patchelf rewrites section headers
+    # and breaks the embedded payload — the resulting binary segfaults in
+    # ld-linux's dl_main on launch.
+    dontStrip = true;
+    dontPatchELF = true;
 
     buildPhase = ''
       runHook preBuild
@@ -153,9 +162,23 @@ in
       # 3. tool-views.generated.js — React tool-view bundle for HTML exports.
       (cd packages/collab-web && bun scripts/build-tool-views.ts)
 
+      # Extract the upstream bun ZIP unmodified to embed in the output. The
+      # bun binary in $PATH is patchelf'd by nixpkgs to run on NixOS, but
+      # patchelf rewrites bun's ELF section table — and bun --compile
+      # appends a payload past that table. Embedding the patched binary
+      # produces an output that segfaults in ld.so dl_main. Pass the raw
+      # binary via --compile-executable-path instead.
+      mkdir -p $TMPDIR/bun-raw
+      unzip -q ${bunSrc} -d $TMPDIR/bun-raw
+      bunRawBin=$(find $TMPDIR/bun-raw -maxdepth 2 -name bun -type f -executable | head -1)
+      if [ -z "$bunRawBin" ]; then
+        echo "could not locate unpacked bun binary" >&2; exit 1
+      fi
+
       # Compile the self-contained binary. Entrypoints mirror build-binary.ts
       # so that legacy pi-* extension shims land in bunfs.
       bun build --compile \
+        --compile-executable-path="$bunRawBin" \
         --no-compile-autoload-bunfig \
         --no-compile-autoload-dotenv \
         --no-compile-autoload-tsconfig \

@@ -3,9 +3,11 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   info = import ./info.nix;
-in {
+in
+{
   imports = [
     # Configurations
     self.modules.combined.desktop
@@ -57,7 +59,7 @@ in {
 
     # Hardware
     ./hardware-configuration.nix
-    (import ./disko.nix {diskPath = info.diskPath;})
+    (import ./disko.nix { diskPath = info.diskPath; })
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-gpu-amd
   ];
@@ -66,19 +68,25 @@ in {
     {
       wayland.windowManager.hyprland = {
         settings = {
-          monitor = [
-            "DP-2,2560x1440@59.95,1080x220,1.0"
-            "HDMI-A-2,1920x1080@60.0,0x0,1.0,transform,3"
-            #"DP-1,2560x1440@119.82,1080x213,1.0"
-            #"DP-2,1920x1080@59.95,3640x213,1.0"
-            #"HDMI-A-2,1920x1080@60.0,0x0,1.0,transform,3"
+          monitorv2 = [
+            {
+              output = "DP-2";
+              mode = "2560x1440@59.95";
+              position = "1080x220";
+              scale = "1.0";
+            }
+            {
+              output = "HDMI-A-2";
+              mode = "1920x1080@60.0";
+              position = "0x0";
+              scale = "1.0";
+              transform = 3;
+            }
           ];
 
-          workspace = [
-            "1,monitor:DP-2,default:true"
-            "9,monitor:HDMI-A-2,default:true"
-
-            # "1,monitor:DP-1,default:true"
+          workspace_rule = [
+            "1, monitor:DP-2, default:true"
+            "9, monitor:HDMI-A-2, default:true"
           ];
         };
       };

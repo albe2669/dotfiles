@@ -31,7 +31,7 @@
       fuse
       fuse3
       gdk-pixbuf
-      glew110
+      glew_1_10
       glib
       gmp
       gst_all_1.gst-plugins-base
