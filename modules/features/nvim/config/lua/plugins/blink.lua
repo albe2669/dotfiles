@@ -10,11 +10,6 @@ return {
     event = "InsertEnter",
     dependencies = {
       "rafamadriz/friendly-snippets",
-      -- Copilot suggestions surfaced as a regular completion source.
-      -- copilot.lua is listed so it is set up before blink-copilot queries it
-      -- (its config lives in plugins/copilot.lua; lazy merges the specs).
-      "zbirenbaum/copilot.lua",
-      "fang2hou/blink-copilot",
     },
     opts = {
       -- "super-tab": Tab selects/accepts the current item (and jumps snippets),
@@ -46,8 +41,8 @@ return {
             -- Treesitter-highlight the LSP completion labels.
             treesitter = { "lsp" },
             columns = {
-              { "label", "label_description", gap = 1 },
-              { "kind_icon", "kind", gap = 1 },
+              { "label",      "label_description", gap = 1 },
+              { "kind_icon",  "kind",              gap = 1 },
               { "source_name" },
             },
           },
@@ -57,16 +52,8 @@ return {
       signature = { enabled = true },
 
       sources = {
-        default = { "copilot", "lsp", "path", "snippets", "buffer" },
-        providers = {
-          copilot = {
-            name = "copilot",
-            module = "blink-copilot",
-            -- Float Copilot suggestions to the top of the menu.
-            score_offset = 100,
-            async = true,
-          },
-        },
+        default = { "lsp", "path", "snippets", "buffer" },
+        providers = {},
       },
 
       -- Use the Rust implementation, downloading a prebuilt binary if needed.

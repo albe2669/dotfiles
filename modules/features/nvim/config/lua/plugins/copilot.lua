@@ -6,9 +6,18 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
+    dependencies = {
+      "copilotlsp-nvim/copilot-lsp",
+    },
     config = function()
       require("copilot").setup({
-        suggestion = { enabled = false },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          keymap = {
+            accept = "<C-l>",
+          }
+        },
         panel = { enabled = false },
         filetypes = {
           markdown = true,
@@ -16,7 +25,29 @@ return {
           yaml = true,
           ["*"] = true,
         },
+        nes = {
+          enable = true,
+          keymap = {
+            accept_and_goto = "C-p",
+            accept = false,
+            dismiss = "<Esc>",
+          }
+        }
       })
+
+      -- vim.api.nvim_create_autocmd("User", {
+      --   pattern = "BlinkCmpMenuOpen",
+      --   callback = function()
+      --     vim.b.copilot_suggestion_hidden = true
+      --   end,
+      -- })
+      --
+      -- vim.api.nvim_create_autocmd("User", {
+      --   pattern = "BlinkCmpMenuClose",
+      --   callback = function()
+      --     vim.b.copilot_suggestion_hidden = false
+      --   end,
+      -- })
     end,
   },
 }
