@@ -50,12 +50,20 @@ in
       inputs,
       system,
       pkgs,
+      config,
+      lib,
       ...
     }:
+    let
+      inherit (config.opts.theme) colors;
+      # Hyprland wants bare RRGGBB(AA) inside rgba()/rgb(), no leading '#'.
+      hex = c: lib.removePrefix "#" c;
+      rgba = c: a: "rgba(${hex c}${a})";
+    in
     {
       imports = [
         ./hypridle.nix
-        ./wayle.nix
+        ./wayle
         ./hyprpaper.nix
         ./hyprlock.nix
         flakeConfig.flake.modules.homeManager.satty
@@ -95,8 +103,36 @@ in
             repeat_rate = 67;
           };
 
+          # Layout/borders/gaps tuned to match the Hyprland Desktop design:
+          # rounded tiles, generous gaps, a green->aqua focus border.
           general = {
             # layout = "master";
+
+            gaps_in = 5; # 2x => 10px between tiles, as in the design
+            gaps_out = 12; # 12px margin to the screen edge
+            border_size = 2;
+
+            "col.active_border" = "${rgba colors.green "ff"} ${rgba colors.aqua "ff"} 45deg";
+            "col.inactive_border" = rgba colors.bg2 "ff";
+          };
+
+          decoration = {
+            rounding = 12; # matches the 12px tiles / "lg" bar rounding in Wayle
+
+            blur = {
+              enabled = true;
+              size = 6;
+              passes = 3;
+              new_optimizations = true;
+              ignore_opacity = true;
+            };
+
+            shadow = {
+              enabled = true;
+              range = 30;
+              render_power = 3;
+              color = rgba colors.bg_dim "ee";
+            };
           };
 
           xwayland = {
