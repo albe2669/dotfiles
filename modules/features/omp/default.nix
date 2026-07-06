@@ -7,7 +7,16 @@
     config,
     ...
   }: let
-    pkg = self.packages.${system}.omp;
+    apiKeyEnvName = "CORTI_API_KEY";
+
+    pkg = self.packages.${system}.omp.overrideAttrs (oldAttrs: {
+      nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs-unstable.makeWrapper];
+
+      postFixup = ''
+        wrapProgram $out/bin/omp \
+          --run 'export ${apiKeyEnvName}=$(cat ${config.sops.secrets.corti_bearer.path})'
+      '';
+    });
 
     # Shared context — same source as Claude Code's context field.
     # Mounted as ~/.omp/agent/APPEND_SYSTEM.md so it is appended after
@@ -24,14 +33,51 @@
     '';
   in {
     home.packages =
-      [pkg]
+      [
+        pkg
+      ]
       ++ lib.optionals (builtins.match ".*-linux" system != null) [
         pkgs-unstable.libnotify
       ];
 
     # Main config
     home.file.".omp/agent/config.yml" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/features/omp/config.yml");
+      source =
+        config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}"
+        + (builtins.toPath "/modules/features/omp/config.yml");
+    };
+
+    sops.templates."models.yaml" = {
+      content = ''
+        providers:
+          corti:
+            baseUrl: ${config.sops.placeholder.corti_base_url}
+            apiKey: ${apiKeyEnvName}
+            api: openai-completions
+            auth: apiKey
+            models:
+              - id: "corti-s1"
+                name: "Corti S1 (GLM5.2)"
+                reasoning: true
+                input: [text]
+                contextWindow: 1000000
+              - id: "corti-s1-instant"
+                name: "Corti S1 Instant (GLM5.2-nothinking)"
+                reasoning: false
+                input: [text]
+                contextWindow: 1000000
+              - id: "corti-s1-mini"
+                name: "Corti S1 Mini (Qwen3.6)"
+                reasoning: true
+                input: [text]
+                contextWindow: 1000000
+              - id: "corti-s1-mini-instant"
+                name: "Corti S1 Mini Instant (Qwen3.6-nothinking)"
+                reasoning: false
+                input: [text]
+                contextWindow: 1000000
+      '';
+      path = "${config.home.homeDirectory}/.omp/agent/models.yml";
     };
 
     # Shared context appended to omp's built-in system prompt.

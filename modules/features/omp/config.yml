@@ -6,39 +6,40 @@ modelRoles:
   task: anthropic/claude-sonnet-5
 tools:
   approvalMode: yolo
-  approval: 
+  approval:
     bash: allow
-lsp: 
+lsp:
   enabled: true
   lazy: true
   diagnosticsOnWrite: true
   formatOnWrite: true
-bash: 
+bash:
   enabled: true
-ask: 
+ask:
   notify: "on"
-theme: 
+theme:
   dark: titanium
 symbolPreset: nerd
-statusLine: 
+statusLine:
   preset: default
   separator: powerline-thin
   sessionAccent: true
   transparent: true
 defaultThinkingLevel: auto
-compaction: 
+compaction:
   enabled: true
   strategy: context-full
   autoContinue: true
-eval: 
+eval:
   py: true
   js: true
-memory: 
+memory:
   backend: mnemopi
-power: 
+power:
   preventSystemSleep: true
-github: 
+github:
   enabled: true
-providers: 
+providers:
   tinyModel: online
 setupVersion: 1
+
