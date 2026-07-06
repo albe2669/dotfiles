@@ -3,11 +3,9 @@
   inputs,
   config,
   ...
-}:
-let
+}: let
   info = import ./info.nix;
-in
-{
+in {
   imports = [
     # Configurations
     self.modules.combined.desktop
@@ -59,7 +57,7 @@ in
 
     # Hardware
     ./hardware-configuration.nix
-    (import ./disko.nix { diskPath = info.diskPath; })
+    (import ./disko.nix {diskPath = info.diskPath;})
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-gpu-amd
   ];

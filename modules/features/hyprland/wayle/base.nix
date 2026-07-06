@@ -7,7 +7,7 @@
     button-label-weight = "normal";
     layout = [
       {
-        center = [ "media" ];
+        center = ["media"];
         left = [
           "dashboard"
           "hyprland-workspaces"

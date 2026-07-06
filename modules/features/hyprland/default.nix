@@ -2,174 +2,168 @@
   inputs,
   config,
   ...
-}:
-let
+}: let
   flakeConfig = config;
-in
-{
-  flake.modules.nixos.hyprland =
-    {
-      pkgs,
-      system,
-      ...
-    }:
-    {
-      imports = [
-        flakeConfig.flake.modules.nixos.sddm
-      ];
+in {
+  flake.modules.nixos.hyprland = {
+    pkgs,
+    system,
+    ...
+  }: {
+    imports = [
+      flakeConfig.flake.modules.nixos.sddm
+    ];
 
-      programs = {
-        hyprland = {
-          enable = true;
-          package = inputs.hyprland.packages.${system}.hyprland;
-          portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-
-          xwayland.enable = true;
-        };
-      };
-
-      security.pam.services.hyprlock.text = "auth include login";
-
-      environment.systemPackages = with pkgs; [
-        feh
-        acpi
-        xbacklight
-        xdpyinfo
-        nautilus
-      ];
-
-      nix.settings = {
-        substituters = [ "https://hyprland.cachix.org" ];
-        trusted-substituters = [ "https://hyprland.cachix.org" ];
-        trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-      };
-    };
-
-  flake.modules.homeManager.hyprland =
-    {
-      inputs,
-      system,
-      pkgs,
-      config,
-      lib,
-      ...
-    }:
-    let
-      inherit (config.opts.theme) colors;
-      # Hyprland wants bare RRGGBB(AA) inside rgba()/rgb(), no leading '#'.
-      hex = c: lib.removePrefix "#" c;
-      rgba = c: a: "rgba(${hex c}${a})";
-    in
-    {
-      imports = [
-        ./hypridle.nix
-        ./wayle
-        ./hyprpaper.nix
-        ./hyprlock.nix
-        flakeConfig.flake.modules.homeManager.satty
-        ./hyprsunset.nix
-      ];
-
-      home.packages = with pkgs; [
-        wev
-        playerctl
-        nwg-displays
-        grim
-        slurp
-        wayfreeze
-        brightnessctl
-      ];
-
-      wayland.windowManager.hyprland = {
+    programs = {
+      hyprland = {
         enable = true;
         package = inputs.hyprland.packages.${system}.hyprland;
         portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-        systemd.variables = [ "--all" ];
-        configType = "hyprlang";
-        settings = {
-          input = {
-            kb_layout = "us,dk";
 
-            accel_profile = "flat";
+        xwayland.enable = true;
+      };
+    };
 
-            touchpad = {
-              natural_scroll = true;
-            };
+    security.pam.services.hyprlock.text = "auth include login";
 
-            follow_mouse = 1;
-            mouse_refocus = false;
+    environment.systemPackages = with pkgs; [
+      feh
+      acpi
+      xbacklight
+      xdpyinfo
+      nautilus
+    ];
 
-            repeat_delay = 210;
-            repeat_rate = 67;
+    nix.settings = {
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    };
+  };
+
+  flake.modules.homeManager.hyprland = {
+    inputs,
+    system,
+    pkgs,
+    config,
+    lib,
+    ...
+  }: let
+    inherit (config.opts.theme) colors;
+    # Hyprland wants bare RRGGBB(AA) inside rgba()/rgb(), no leading '#'.
+    hex = c: lib.removePrefix "#" c;
+    rgba = c: a: "rgba(${hex c}${a})";
+  in {
+    imports = [
+      ./hypridle.nix
+      ./wayle
+      ./hyprpaper.nix
+      ./hyprlock.nix
+      flakeConfig.flake.modules.homeManager.satty
+      ./hyprsunset.nix
+    ];
+
+    home.packages = with pkgs; [
+      wev
+      playerctl
+      nwg-displays
+      grim
+      slurp
+      wayfreeze
+      brightnessctl
+    ];
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+      systemd.variables = ["--all"];
+      configType = "hyprlang";
+      settings = {
+        input = {
+          kb_layout = "us,dk";
+
+          accel_profile = "flat";
+
+          touchpad = {
+            natural_scroll = true;
           };
 
-          # Layout/borders/gaps tuned to match the Hyprland Desktop design:
-          # rounded tiles, generous gaps, a green->aqua focus border.
-          general = {
-            # layout = "master";
+          follow_mouse = 1;
+          mouse_refocus = false;
 
-            gaps_in = 5; # 2x => 10px between tiles, as in the design
-            gaps_out = 12; # 12px margin to the screen edge
-            border_size = 2;
+          repeat_delay = 210;
+          repeat_rate = 67;
+        };
 
-            "col.active_border" = "${rgba colors.green "ff"} ${rgba colors.aqua "ff"} 45deg";
-            "col.inactive_border" = rgba colors.bg2 "ff";
+        # Layout/borders/gaps tuned to match the Hyprland Desktop design:
+        # rounded tiles, generous gaps, a green->aqua focus border.
+        general = {
+          # layout = "master";
+
+          gaps_in = 5; # 2x => 10px between tiles, as in the design
+          gaps_out = 12; # 12px margin to the screen edge
+          border_size = 2;
+
+          "col.active_border" = "${rgba colors.green "ff"} ${rgba colors.aqua "ff"} 45deg";
+          "col.inactive_border" = rgba colors.bg2 "ff";
+        };
+
+        decoration = {
+          rounding = 12; # matches the 12px tiles / "lg" bar rounding in Wayle
+
+          blur = {
+            enabled = true;
+            size = 6;
+            passes = 3;
+            new_optimizations = true;
+            ignore_opacity = true;
           };
 
-          decoration = {
-            rounding = 12; # matches the 12px tiles / "lg" bar rounding in Wayle
-
-            blur = {
-              enabled = true;
-              size = 6;
-              passes = 3;
-              new_optimizations = true;
-              ignore_opacity = true;
-            };
-
-            shadow = {
-              enabled = true;
-              range = 30;
-              render_power = 3;
-              color = rgba colors.bg_dim "ee";
-            };
+          shadow = {
+            enabled = true;
+            range = 30;
+            render_power = 3;
+            color = rgba colors.bg_dim "ee";
           };
+        };
 
-          xwayland = {
-            force_zero_scaling = true;
-          };
+        xwayland = {
+          force_zero_scaling = true;
+        };
 
-          exec-once = [
-            "nm-applet"
-          ];
+        exec-once = [
+          "nm-applet"
+        ];
 
-          windowrule = [
-            "match:class ^(jetbrains-.*)$, match:title ^(splash)$, match:float true, tag +jetbrains-splash"
-            "match:tag jetbrains-splash, center on"
-            "match:tag jetbrains-splash, no_focus on"
-            "match:tag jetbrains-splash, border_size 0"
+        windowrule = [
+          "match:class ^(jetbrains-.*)$, match:title ^(splash)$, match:float true, tag +jetbrains-splash"
+          "match:tag jetbrains-splash, center on"
+          "match:tag jetbrains-splash, no_focus on"
+          "match:tag jetbrains-splash, border_size 0"
 
-            "match:class ^(jetbrains-.*), match:title ^()$, match:float 1, tag +jetbrains"
-            "match:tag jetbrains, center on"
-            "match:tag jetbrains, stay_focused on"
-            "match:tag jetbrains, border_size 0"
+          "match:class ^(jetbrains-.*), match:title ^()$, match:float 1, tag +jetbrains"
+          "match:tag jetbrains, center on"
+          "match:tag jetbrains, stay_focused on"
+          "match:tag jetbrains, border_size 0"
 
-            "match:class ^(jetbrains-.*), match:title ^()$, match:float true, size >50% >50%"
+          "match:class ^(jetbrains-.*), match:title ^()$, match:float true, size >50% >50%"
 
-            "match:class ^(jetbrains-.*)$, match:title ^(win.*)$, match:float true, no_initial_focus on"
+          "match:class ^(jetbrains-.*)$, match:title ^(win.*)$, match:float true, no_initial_focus on"
 
-            "match:class ^(jetbrains-.*)$, no_follow_mouse on"
+          "match:class ^(jetbrains-.*)$, no_follow_mouse on"
 
-            "match:class ^(Unity)$, match:title ^(UnityTooltipWindow)$, no_initial_focus on"
+          "match:class ^(Unity)$, match:title ^(UnityTooltipWindow)$, no_initial_focus on"
 
-            "match:class ^(ueberzug.*)$, float on, no_initial_focus on, no_anim on, no_shadow on, no_focus on, border_size 0"
-          ];
+          "match:class ^(ueberzug.*)$, float on, no_initial_focus on, no_anim on, no_shadow on, no_focus on, border_size 0"
+        ];
 
-          "$mod" = "SUPER";
-          "$terminal" = "kitty";
-          "$fileManager" = "nautilus";
+        "$mod" = "SUPER";
+        "$terminal" = "kitty";
+        "$fileManager" = "nautilus";
 
-          bind = [
+        bind =
+          [
             "$mod, return, exec, $terminal"
             "$mod SHIFT, q, killactive"
             "$mod, f, fullscreen"
@@ -217,40 +211,39 @@ in
           ]
           ++ (builtins.concatLists (
             builtins.genList (
-              i:
-              let
+              i: let
                 ws = i + 1;
-              in
-              [
+              in [
                 "$mod,       code:1${toString i}, workspace, ${toString ws}"
                 "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
               ]
-            ) 9
+            )
+            9
           ));
-          binde = [
-            ", XF86AudioRaiseVolume,  exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-            ", XF86AudioLowerVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-            ", XF86AudioMute,         exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            ", XF86AudioMicMute,      exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-            ", XF86MonBrightnessUp,   exec, brightnessctl set 10%+"
-            ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
-          ];
-          bindm = [
-            "$mod, mouse:272, movewindow"
-            "$mod, mouse:273, resizewindow"
-          ];
-          bindl = [
-            ", XF86AudioPlay, exec, playerctl play-pause"
-            ", XF86AudioNext, exec, playerctl next"
-            ", XF86AudioPrev, exec, playerctl previous"
-            ", XF86AudioStop, exec, playerctl stop"
-          ];
-        };
+        binde = [
+          ", XF86AudioRaiseVolume,  exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+          ", XF86AudioLowerVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86AudioMute,         exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioMicMute,      exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+          ", XF86MonBrightnessUp,   exec, brightnessctl set 10%+"
+          ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+        ];
+        bindm = [
+          "$mod, mouse:272, movewindow"
+          "$mod, mouse:273, resizewindow"
+        ];
+        bindl = [
+          ", XF86AudioPlay, exec, playerctl play-pause"
+          ", XF86AudioNext, exec, playerctl next"
+          ", XF86AudioPrev, exec, playerctl previous"
+          ", XF86AudioStop, exec, playerctl stop"
+        ];
       };
     };
+  };
 
-  flake.modules.combined.hyprland = { ... }: {
-    imports = [ flakeConfig.flake.modules.nixos.hyprland ];
-    hm.imports = [ flakeConfig.flake.modules.homeManager.hyprland ];
+  flake.modules.combined.hyprland = {...}: {
+    imports = [flakeConfig.flake.modules.nixos.hyprland];
+    hm.imports = [flakeConfig.flake.modules.homeManager.hyprland];
   };
 }

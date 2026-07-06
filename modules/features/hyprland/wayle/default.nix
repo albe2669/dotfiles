@@ -1,12 +1,14 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.stylix) fonts;
   inherit (config.opts.theme) colors;
 
   # Copy base from the runtime.toml file
   base = import ./base.nix;
-in
-{
+in {
   services.wayle = {
     enable = true;
 
