@@ -1,5 +1,8 @@
 {config}: let
   homePath = config.opts.variables.homeDirectory.path;
+  cortiConfig = {
+    sopsFile = ./secrets/corti.yaml;
+  };
 in {
   sharedArgs = {
     defaultSopsFile = ./secrets/secrets.yaml;
@@ -23,6 +26,11 @@ in {
         sopsFile = ./secrets/ssh.yaml;
         mode = "0644";
       };
+      corti_client_id = cortiConfig;
+      corti_client_secret = cortiConfig;
+      corti_tenant = cortiConfig;
+      corti_bearer = cortiConfig;
+      corti_base_url = cortiConfig;
     };
   };
 }
