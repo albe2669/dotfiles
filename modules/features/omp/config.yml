@@ -1,45 +1,46 @@
-modelRoles:
-  default: anthropic/claude-sonnet-5
-  smol: anthropic/claude-haiku-4-5
-  slow: anthropic/claude-opus-4-8
-  plan: anthropic/claude-opus-4-8
-  task: anthropic/claude-sonnet-5
-tools:
+modelRoles: 
+  default: corti/corti-s1
+  smol: corti/corti-s1-mini
+  slow: corti/corti-s1
+  plan: corti/corti-s1
+  task: corti/corti-s1-mini
+  commit: corti/corti-s1-mini-instant
+  tiny: corti/corti-s1-mini-instant
+tools: 
   approvalMode: yolo
-  approval:
+  approval: 
     bash: allow
-lsp:
+lsp: 
   enabled: true
   lazy: true
   diagnosticsOnWrite: true
   formatOnWrite: true
-bash:
+bash: 
   enabled: true
-ask:
+ask: 
   notify: "on"
-theme:
+theme: 
   dark: titanium
 symbolPreset: nerd
-statusLine:
+statusLine: 
   preset: default
   separator: powerline-thin
   sessionAccent: true
   transparent: true
 defaultThinkingLevel: auto
-compaction:
+compaction: 
   enabled: true
   strategy: context-full
   autoContinue: true
-eval:
+eval: 
   py: true
   js: true
-memory:
+memory: 
   backend: mnemopi
-power:
-  preventSystemSleep: true
-github:
+power: 
+  sleepPrevention: system
+github: 
   enabled: true
-providers:
+providers: 
   tinyModel: online
 setupVersion: 1
-
