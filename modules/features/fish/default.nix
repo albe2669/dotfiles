@@ -2,6 +2,10 @@
   flake.modules.homeManager.fish = {pkgs, ...}: {
     programs.fish = {
       enable = true;
+      # fish >=4.0 dropped share/fish/tools/create_manpage_completions.py, which
+      # home-manager's generateCompletions feature shells out to; disable it to
+      # avoid a hard build failure on every home.packages entry.
+      generateCompletions = false;
       plugins = [
         {
           name = "nix-env";
