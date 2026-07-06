@@ -20,6 +20,27 @@
     hash = "sha256-zCPE2Be7nSj9HPQh4GHAMoTZgRG2e3v77oFB3Gy+4NM=";
   };
 
+  platforms = {
+    "x86_64-linux" = {
+      node = "linux-x64-baseline";
+      bunChecksum = "sha256-/c4UPGYLgBpluNputevnq0VxBIvq+wasQib/B4BsQUY=";
+    };
+    "aarch64-linux" = {
+      node = "linux-arm64";
+      bunChecksum = lib.fakeHash;
+    };
+    "x86_64-darwin" = {
+      node = "darwin-x64-baseline";
+      bunChecksum = lib.fakeHash;
+    };
+    "aarch64-darwin" = {
+      node = "darwin-arm64";
+      bunChecksum = "sha256-x1zGWnP1MEXLkrKfudPc9/6WGJ1UPn7N9KkuqQAoWCM=";
+    };
+  };
+
+  platformSpecific = platforms.${stdenv.hostPlatform.system};
+
   # --------------------------------------------------------------------------
   # Stage 1 — Bun/npm dependency fetch (fixed-output derivation)
   # --------------------------------------------------------------------------
@@ -46,7 +67,7 @@
       cp -r node_modules $out
     '';
 
-    outputHash = "sha256-/c4UPGYLgBpluNputevnq0VxBIvq+wasQib/B4BsQUY=";
+    outputHash = platformSpecific.bunChecksum;
     outputHashMode = "recursive";
     outputHashAlgo = "sha256";
   };
@@ -70,15 +91,6 @@
     buildInputs = [openssl];
 
     installPhase = let
-      nodeTriple =
-        {
-          "x86_64-linux" = "linux-x64-baseline";
-          "aarch64-linux" = "linux-arm64";
-          "x86_64-darwin" = "darwin-x64-baseline";
-          "aarch64-darwin" = "darwin-arm64";
-        }.${
-          stdenv.hostPlatform.system
-        };
       # nixpkgs's cargoBuildHook passes --target <rustcTarget>, so cargo puts
       # artifacts in target/<rustcTarget>/release/ rather than target/release/.
       rustTarget = stdenv.hostPlatform.rust.rustcTarget;
@@ -90,22 +102,12 @@
       runHook preInstall
       mkdir -p $out/lib
       install -m755 target/${rustTarget}/release/libpi_natives.${ext} \
-        $out/lib/pi_natives.${nodeTriple}.node
+        $out/lib/pi_natives.${platformSpecific.node}.node
       runHook postInstall
     '';
 
     doCheck = false;
   };
-
-  nodeTriple =
-    {
-      "x86_64-linux" = "linux-x64-baseline";
-      "aarch64-linux" = "linux-arm64";
-      "x86_64-darwin" = "darwin-x64-baseline";
-      "aarch64-darwin" = "darwin-arm64";
-    }.${
-      stdenv.hostPlatform.system
-    };
 in
   stdenvNoCC.mkDerivation {
     pname = "omp";
@@ -151,7 +153,7 @@ in
       # Place the compiled native addon where packages/natives/native/index.js
       # expects to find it on this platform.
       mkdir -p packages/natives/native
-      cp ${nativesAddon}/lib/pi_natives.${nodeTriple}.node \
+      cp ${nativesAddon}/lib/pi_natives.${platformSpecific.node}.node \
          packages/natives/native/
 
       # Generate build-time artefacts required by bun build --compile.
