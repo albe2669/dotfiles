@@ -11,13 +11,13 @@
   pkg-config,
   openssl,
 }: let
-  version = "16.1.0";
+  version = "16.3.10";
 
   src = fetchFromGitHub {
     owner = "can1357";
     repo = "oh-my-pi";
     rev = "v${version}";
-    hash = "sha256-zCPE2Be7nSj9HPQh4GHAMoTZgRG2e3v77oFB3Gy+4NM=";
+    hash = "sha256-fvCZxd0r7+s0DG/OvPxr2xnyRV69BqSiL/Xgez02tmg=";
   };
 
   platforms = {
@@ -35,7 +35,7 @@
     };
     "aarch64-darwin" = {
       node = "darwin-arm64";
-      bunChecksum = "sha256-x1zGWnP1MEXLkrKfudPc9/6WGJ1UPn7N9KkuqQAoWCM=";
+      bunChecksum = "sha256-S+ptZXObcOlZ7rRDK3ro7ORrUWEzwYC8iDmGgLZQKJw=";
     };
   };
 
@@ -79,7 +79,7 @@
     pname = "pi-natives";
     inherit version src;
 
-    cargoHash = "sha256-qvD1OLm4JDkIneDiNjfy9tWHAeJrUikpQv9kNdp6sIk=";
+    cargoHash = "sha256-Oy4xCMX/MA8c1UoC63a7eLEHF1N9BZ75fFjRcuL+yNE=";
 
     # pi-natives uses #![feature(alloc_error_hook)] which requires nightly;
     # RUSTC_BOOTSTRAP=1 lets stable Rust compile nightly feature gates.
@@ -163,6 +163,13 @@ in
       (cd packages/coding-agent && bun scripts/generate-docs-index.ts)
       # 3. tool-views.generated.js — React tool-view bundle for HTML exports.
       (cd packages/collab-web && bun scripts/build-tool-views.ts)
+      # 4. legacy-pi-bundled-registry.ts — static-import registry for legacy
+      #    pi-* extension compat surfaces. Bun 1.3.14+ made bunfs filesystem
+      #    APIs unreachable at runtime (upstream issue #3423), so these
+      #    surfaces can no longer be reached as extra --compile entrypoints
+      #    landed at computed /$bunfs/root/... paths; they must instead be
+      #    statically imported through this generated registry.
+      (cd packages/coding-agent && bun scripts/generate-legacy-pi-bundled-registry.ts --generate)
 
       # Extract the upstream bun ZIP unmodified to embed in the output. The
       # bun binary in $PATH is patchelf'd by nixpkgs to run on NixOS, but
@@ -179,6 +186,9 @@ in
 
       # Compile the self-contained binary. Entrypoints mirror build-binary.ts
       # so that legacy pi-* extension shims land in bunfs.
+      # Legacy pi-* extension compat surfaces are no longer listed as extra
+      # --compile entrypoints (see the registry generation step above) — the
+      # bundler now includes them via the main module graph instead.
       bun build --compile \
         --compile-executable-path="$bunRawBin" \
         --no-compile-autoload-bunfig \
@@ -192,13 +202,6 @@ in
         --external onnxruntime-node \
         --root . \
         ./packages/coding-agent/src/cli.ts \
-        ./packages/agent/src/index.ts \
-        ./packages/natives/native/index.js \
-        ./packages/tui/src/index.ts \
-        ./packages/utils/src/index.ts \
-        ./packages/coding-agent/src/extensibility/typebox.ts \
-        ./packages/coding-agent/src/extensibility/legacy-pi-ai-shim.ts \
-        ./packages/coding-agent/src/extensibility/legacy-pi-coding-agent-shim.ts \
         --outfile $TMPDIR/omp
 
       runHook postBuild
