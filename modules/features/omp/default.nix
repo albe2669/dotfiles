@@ -32,6 +32,7 @@
       fi
     '';
   in {
+    imports = [./theme.nix];
     home.packages =
       [
         pkg

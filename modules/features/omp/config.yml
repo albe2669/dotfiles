@@ -20,7 +20,7 @@ bash:
 ask: 
   notify: "on"
 theme: 
-  dark: titanium
+  dark: everforest
 symbolPreset: nerd
 statusLine: 
   preset: default
