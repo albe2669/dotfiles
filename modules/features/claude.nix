@@ -9,6 +9,25 @@
     ...
   }: let
     pkg = pkgs-unstable.claude-code;
+
+    # Shared model definitions — same source as omp's models.yml.
+    modelsData = import ./ai-shared/models.nix;
+
+    # ccusage pricing overrides keyed by raw model name (as recorded in omp
+    # session logs with the [pi] adapter prefix).  models.nix costs are
+    # per-million-tokens; ccusage expects per-token, so divide by 1e6.
+    ccusagePricingOverrides = builtins.listToAttrs (
+      map (m: {
+        name = "[pi] ${m.id}";
+        value = {
+          inputCostPerToken = m.cost.input / 1000000.0;
+          outputCostPerToken = m.cost.output / 1000000.0;
+          cacheReadInputTokenCost = m.cost.cacheRead / 1000000.0;
+        };
+      })
+      modelsData.models
+    );
+
     notifyScript = ''
       #!/usr/bin/env bash
       input=$(cat)
@@ -283,6 +302,9 @@
 
     programs.fish.shellInit = ''
       set -x NODE_PATH $HOME/.local/share/claude-node-modules/node_modules $NODE_PATH
+      # Point ccusage at omp session logs (pi-format) so `ccusage daily`
+      # and `ccusage pi daily` pick them up automatically.
+      set -x PI_AGENT_DIR $HOME/.omp/agent/sessions
 
       # Shared helper: copy common config files into a worktree
       function __worktree_copy_files
@@ -405,6 +427,19 @@
         inputs.ccusage.outputs.packages.${system}.default
         pkgs-unstable.bun
       ];
+
+    # ccusage configuration: pricing overrides for Corti models (not in
+    # LiteLLM) and calculate mode so overrides are used instead of the
+    # display cost embedded in omp session logs.
+    xdg.configFile."claude/ccusage.json".source =
+      (pkgs-unstable.formats.json {}).generate "ccusage.json"
+      {
+        "$schema" = "https://ccusage.com/config-schema.json";
+        defaults = {
+          mode = "calculate";
+          pricingOverrides = ccusagePricingOverrides;
+        };
+      };
   };
 
   flake.modules.combined.claude = {...}: {

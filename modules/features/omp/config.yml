@@ -44,3 +44,4 @@ github:
 providers: 
   tinyModel: online
 setupVersion: 1
+hideThinkingBlock: true
