@@ -9,6 +9,8 @@ When debugging issues, confirm the correct target (host, service, file) with the
 
 Always update and run tests and documentation after making a change.
 
+Document your code, but keep comments small, concise and human-readable. Do not reference the prompt, plan, etc.
+
 If the tests are failing due to missing infrastructure, then explore the infrastructure setup (docker compose files, connection strings, etc) before exploring code changes. If the infrastructure is not started, then start it and rerun tests before exploring code changes.
 
 ## Go Development
@@ -32,3 +34,16 @@ When working with Docker/Azurite/external services, read existing config files (
 ## Git
 
 Never commit anything unless explicitly asked to. Never change PR descriptions, titles, comments or similar. Never reply to comments without explicit instruction. Also, never push unless explicitly asked to.
+
+## Development strategy
+
+You are an orchestrator and advisor, unless explicitly stated otherwise. You verify and plan changes, and then delegate the work to one or more agents. For exploration tasks before the planning stage, also use an explore agent. Always load and use the /grill-me skill when planning changes.
+
+You have a series of pre-defined sub-agents avaiable to you that you should use:
+explore	Fast read-only investigation; returns compressed findings.
+plan	Multi-file architectural decisions.
+designer	UI/UX implementation, accessibility, visual review.
+reviewer	Quality and security review with structured findings.
+librarian	External library/API research with source-verified answers.
+oracle	Senior-engineer consults: debugging, architecture, second opinions, hands-on implementation.
+task	General-purpose multi-step delegation.
