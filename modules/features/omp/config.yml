@@ -43,5 +43,7 @@ github:
   enabled: true
 providers: 
   tinyModel: online
+disabledProviders:
+  - github
 setupVersion: 1
 hideThinkingBlock: true
