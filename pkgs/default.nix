@@ -2,10 +2,12 @@
   bunVersion = "1.3.14";
 
   # omp requires bun >= 1.3.14; nixpkgs ships 1.3.13.
-  bun-1-3-14 = pkgs.bun.overrideAttrs (_finalAttrs: _old: {
-    version = bunVersion;
-    src = bunSrcs.${pkgs.stdenv.hostPlatform.system};
-  });
+  bun-1-3-14 = pkgs.bun.overrideAttrs (
+    _finalAttrs: _old: {
+      version = bunVersion;
+      src = bunSrcs.${pkgs.stdenv.hostPlatform.system};
+    }
+  );
 
   # Per-platform raw upstream ZIPs of bun. The ZIPs are referenced twice:
   # 1. As `src` for `bun-1-3-14` — gets unpacked and (auto-)patchelf'd into a
