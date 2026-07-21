@@ -36,6 +36,7 @@
     self.modules.combined.k8
     self.modules.combined.azure-cli
     self.modules.combined.claude
+    self.modules.combined.ccusage
     self.modules.combined."1password"
     self.modules.combined.git-widget
     self.modules.combined.wtf
