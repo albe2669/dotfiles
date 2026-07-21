@@ -15,7 +15,6 @@
 
     stylix.targets = {
       spicetify.enable = true;
-      spotify-player.enable = true;
     };
 
     programs.spicetify = let
@@ -45,10 +44,6 @@
         ncsVisualizer
       ];
     };
-
-    home.packages = with pkgs-unstable; [
-      spotify-player
-    ];
   };
 
   flake.modules.combined.spotify = {...}: {
