@@ -19,14 +19,13 @@
     self.modules.combined.lazydocker
     self.modules.combined.lazygit
     self.modules.combined.nvim
-    self.modules.combined.sioyek
     self.modules.combined.wallpapers
     self.modules.combined.zathura
     self.modules.combined.langs
     self.modules.combined.python3
     self.modules.combined.direnv
     self.modules.combined.utils
-    self.modules.combined.vscode
+    # self.modules.combined.vscode
     self.modules.combined.work
     self.modules.combined.zen
     self.modules.combined.yazi
