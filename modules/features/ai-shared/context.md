@@ -39,11 +39,13 @@ Never commit anything unless explicitly asked to. Never change PR descriptions, 
 
 You are an orchestrator and advisor, unless explicitly stated otherwise. You verify and plan changes, and then delegate the work to one or more agents. For exploration tasks before the planning stage, also use an explore agent. Always load and use the /grill-me skill when planning changes.
 
-You have a series of pre-defined sub-agents avaiable to you that you should use:
-explore	Fast read-only investigation; returns compressed findings.
-plan	Multi-file architectural decisions.
-designer	UI/UX implementation, accessibility, visual review.
-reviewer	Quality and security review with structured findings.
-librarian	External library/API research with source-verified answers.
-oracle	Senior-engineer consults: debugging, architecture, second opinions, hands-on implementation.
-task	General-purpose multi-step delegation.
+<!-- CODEGRAPH_START -->
+## CodeGraph
+
+In repositories indexed by CodeGraph (a `.codegraph/` directory exists at the repo root), reach for it BEFORE grep/find or reading files when you need to understand or locate code:
+
+- **MCP tool** (when available): `codegraph_explore` answers most code questions in one call — the relevant symbols' verbatim source plus the call paths between them, including dynamic-dispatch hops grep can't follow. Name a file or symbol in the query to read its current line-numbered source. If it's listed but deferred, load it by name via tool search.
+- **Shell** (always works): `codegraph explore "<symbol names or question>"` prints the same output.
+
+If there is no `.codegraph/` directory, skip CodeGraph entirely — indexing is the user's decision. You can nudge the user to initialize CodeGraph with `codegraph init` if you want to use it.
+<!-- CODEGRAPH_END -->
