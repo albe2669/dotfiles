@@ -1,0 +1,62 @@
+# Build a flat skills directory from an agent skills repo.
+#
+# Supports upstream layouts:
+#   categorized: skills/<category>/<name>/SKILL.md  (e.g. mattpocock/skills)
+#   flat:         skills/<name>/SKILL.md            (e.g. shadcn/improve)
+#
+# Flattened output: <name>/SKILL.md (+ optional sibling files).
+lib: pkgs: {
+  name,
+  src,
+  categories ? null,
+  exclude ? [],
+}: let
+  skillsDir = "${src}/skills";
+
+  # A skill dir is a directory that directly contains a SKILL.md.
+  isSkillDir = dir: builtins.pathExists dir && (builtins.readDir dir ? "SKILL.md");
+
+  # readDir filtered to subdirectories only.
+  subDirs = dir:
+    if builtins.pathExists dir
+    then lib.attrNames (lib.filterAttrs (_: type: type == "directory") (builtins.readDir dir))
+    else [];
+
+  # Categorized layout: iterate selected categories, link each skill dir.
+  linkCategory = cat: let
+    dir = "${skillsDir}/${cat}";
+    linkSkill = skill:
+      if skill == "deprecated" || builtins.elem skill exclude
+      then ""
+      else "ln -s ${dir}/${skill} $out/${skill}";
+  in
+    lib.concatMapStringsSep "\n" linkSkill (subDirs dir);
+
+  # Flat layout: link every skill dir directly under skills/.
+  linkFlat = let
+    linkSkill = skill:
+      if builtins.elem skill exclude
+      then ""
+      else "ln -s ${skillsDir}/${skill} $out/${skill}";
+  in
+    lib.concatMapStringsSep "\n" linkSkill (subDirs skillsDir);
+
+  # Auto-detect layout when `categories` is null:
+  #   flat         — at least one top-level entry under skills/ is a skill dir
+  #                  (contains SKILL.md directly, e.g. shadcn/improve).
+  #   categorized — no top-level entry is a skill dir, so top-level dirs are
+  #                  categories; link every skill under every category
+  #                  (e.g. a repo with engineering/ + productivity/ + misc/).
+  topEntries = subDirs skillsDir;
+  isFlat = lib.any isSkillDir (map (n: "${skillsDir}/${n}") topEntries);
+  commands =
+    if categories != null
+    then lib.concatMapStringsSep "\n" linkCategory categories
+    else if isFlat
+    then linkFlat
+    else lib.concatMapStringsSep "\n" linkCategory topEntries;
+in
+  pkgs.runCommand name {} ''
+    mkdir -p $out
+    ${commands}
+  ''

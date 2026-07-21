@@ -24,6 +24,14 @@
     # omp's built-in system prompt (skills, tool inventory, etc. are preserved).
     sharedContext = ../ai-shared/context.md;
 
+    # Combined skills bundle.
+    mkSkillsBundle = import ../../../lib/skills-bundle.nix lib pkgs-unstable;
+    combinedSkillsBundle = import ../ai-shared/bundles/default.nix {
+      inherit lib;
+      pkgs = pkgs-unstable;
+      inherit mkSkillsBundle;
+    };
+
     notifyScript = ''
       #!/usr/bin/env bash
       if [[ "$(uname)" == "Darwin" ]]; then
@@ -74,12 +82,8 @@
         + (builtins.toPath "/modules/features/omp/mcp.json");
     };
 
-    # Skills
-    home.file.".omp/agent/skills/" = {
-      source =
-        config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}"
-        + (builtins.toPath "/modules/features/ai-shared/skills");
-    };
+    # Skills — shared bundle with Claude Code (mattpocock/skills + custom).
+    home.file.".omp/agent/skills".source = combinedSkillsBundle;
 
     sops.templates."models.yaml" = {
       content = ''

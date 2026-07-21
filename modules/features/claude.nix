@@ -13,6 +13,16 @@
     # Shared model definitions — same source as omp's models.yml.
     modelsData = import ./ai-shared/models.nix;
 
+    # Combined skills bundle shared with omp — downloaded skill sets
+    # (mattpocock/skills) merged with hand-written skills under
+    # ai-shared/skills/<name>/SKILL.md.
+    mkSkillsBundle = import ../../lib/skills-bundle.nix lib pkgs-unstable;
+    combinedSkillsBundle = import ./ai-shared/bundles/default.nix {
+      inherit lib;
+      pkgs = pkgs-unstable;
+      inherit mkSkillsBundle;
+    };
+
     notifyScript = ''
       #!/usr/bin/env bash
       input=$(cat)
@@ -30,6 +40,9 @@
       executable = true;
       text = notifyScript;
     };
+
+    # Shared skills bundle.
+    home.file.".claude/skills".source = combinedSkillsBundle;
 
     # ccstatusline package + declarative settings.json (programs.ccstatusline
     # module). Claude Code's statusLine below points at this package.
@@ -232,22 +245,6 @@
       };
 
       context = builtins.readFile ./ai-shared/context.md;
-
-      skills = {
-        fix-lint = ''
-          ---
-          name: fix-lint
-          description: "For fixing go code. Run golangci-lint, fix all issues, and confirm tests pass"
-          ---
-
-          # Fix Lint Errors
-          1. Run `golangci-lint run ./...` and capture output
-          2. Fix ALL reported issues across all files
-          3. Re-run linter to confirm zero issues
-          4. Run `go test ./...` to ensure fixes don't break tests
-          5. Only report done when both linter and tests pass clean
-        '';
-      };
 
       marketplaces = {
         claude-plugins-official = pkgs-unstable.fetchFromGitHub {
