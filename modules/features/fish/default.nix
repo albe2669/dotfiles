@@ -35,18 +35,18 @@
       };
 
       interactiveShellInit = ''
-        if not set -q ZELLIJ
-          set -l sessions (zellij list-sessions 2>/dev/null | string replace -ra '\x1b\[[0-9;]*[A-Za-z]' "" | string replace -r '\s.*' "")
-          set -l result (printf '%s\n' $sessions | fzf --print-query --prompt="zellij> " --header="[enter] attach  [type name + enter] create new" --bind "tab:accept")
+        if not set -q HERDR_ENV
+          set -l sessions (herdr session list --json 2>/dev/null | jq -r '.sessions[].name')
+          set -l result (printf '%s\n' $sessions | fzf --print-query --prompt="herdr> " --header="[enter] attach  [type name + enter] create new" --bind "tab:accept")
           set -l query $result[1]
           set -l selected $result[2]
 
           if test -n "$selected"
-            zellij attach $selected
+            herdr session attach $selected
           else if test -n "$query"
-            zellij --session $query
+            herdr --session $query
           else
-            zellij
+            herdr
           end
         end
       '';
@@ -93,6 +93,7 @@
     home.packages = with pkgs; [
       atuin
       fzf
+      jq
 
       (fishPlugins.bass.overrideAttrs {doCheck = false;})
       fishPlugins.puffer

@@ -31,6 +31,7 @@
     self.modules.combined.yazi
     self.modules.combined.spotify
     self.modules.combined.zellij
+    self.modules.combined.herdr
     self.modules.combined.wakatime
     self.modules.combined.k8
     self.modules.combined.azure-cli
