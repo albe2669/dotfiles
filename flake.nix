@@ -140,12 +140,18 @@
         flake-parts.follows = "flake-parts";
       };
     };
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       debug = false;
       imports = [
+        inputs.git-hooks.flakeModule
+
         ./variables.nix
         ./theme.nix
 
@@ -176,6 +182,14 @@
 
         formatter = pkgs.alejandra;
         packages = import ./pkgs {inherit pkgs;};
+        pre-commit.settings.hooks.alejandra = {
+          enable = true;
+        };
+
+        devShells.default = pkgs.mkShellNoCC {
+          packages = config.pre-commit.settings.enabledPackages;
+          shellHook = config.pre-commit.shellHook;
+        };
       };
     };
 }

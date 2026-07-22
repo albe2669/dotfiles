@@ -10,3 +10,4 @@ home/ranger/config/plugins/__pycache__
 modules/home/wtf/config/log.txt
 modules/home/wtf/config/todo.yml
 /.codegraph
+/.pre-commit-config.yaml
