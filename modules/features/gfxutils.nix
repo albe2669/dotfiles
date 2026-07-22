@@ -5,7 +5,7 @@
     ];
   };
 
-  flake.modules.combined.gfxutils = {...}: {
+  flake.modules.combined.gfxutils = _: {
     hm.imports = [config.flake.modules.homeManager.gfxutils];
   };
 }

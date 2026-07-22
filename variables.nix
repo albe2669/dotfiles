@@ -102,9 +102,9 @@ in {
     # Set computed values based on other options
     variables.homeDirectory.path =
       if cfg.isDarwin
-      then builtins.toPath "/Users/${cfg.username}"
-      else builtins.toPath "/home/${cfg.username}";
-    variables.dotfilesLocation = cfg.homeDirectory.path + (builtins.toPath "/Documents/Coding/Other/dotfiles");
+      then "/Users/${cfg.username}"
+      else "/home/${cfg.username}";
+    variables.dotfilesLocation = cfg.homeDirectory.path + "/Documents/Coding/Other/dotfiles";
     variables.screen.scaleFactor =
       if cfg.isHidpi
       then 2

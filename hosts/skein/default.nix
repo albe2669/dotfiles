@@ -32,7 +32,7 @@ in {
 
     # Hardware
     ./hardware-configuration.nix
-    (import ./disko.nix {diskPath = info.diskPath;})
+    (import ./disko.nix {inherit (info) diskPath;})
   ];
 
   networking.hostName = config.opts.info.name;

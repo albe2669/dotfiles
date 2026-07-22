@@ -106,7 +106,7 @@
     };
   };
 
-  flake.modules.combined.fish = {...}: {
+  flake.modules.combined.fish = _: {
     hm.imports = [config.flake.modules.homeManager.fish];
   };
 }

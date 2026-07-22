@@ -166,7 +166,7 @@ in {
     };
   };
 
-  flake.modules.combined.aerospace = {config, ...}: {
+  flake.modules.combined.aerospace = {...}: {
     imports = [flakeConfig.flake.modules.darwin.aerospace];
     hm.imports = [flakeConfig.flake.modules.homeManager.aerospace];
   };

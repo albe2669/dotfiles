@@ -1,8 +1,4 @@
-{
-  self,
-  lib,
-  ...
-}: {
+{self, ...}: {
   imports = [
     self.sharedModules.docker
   ];

@@ -268,15 +268,15 @@
   flake.modules.homeManager.jetbrains-phpstorm = import ./phpstorm.nix;
   flake.modules.homeManager.jetbrains-goland = import ./goland.nix;
 
-  flake.modules.combined.jetbrains = {...}: {
+  flake.modules.combined.jetbrains = _: {
     hm.imports = [config.flake.modules.homeManager.jetbrains];
   };
 
-  flake.modules.combined.jetbrains-phpstorm = {...}: {
+  flake.modules.combined.jetbrains-phpstorm = _: {
     hm.imports = [config.flake.modules.homeManager.jetbrains-phpstorm];
   };
 
-  flake.modules.combined.jetbrains-goland = {...}: {
+  flake.modules.combined.jetbrains-goland = _: {
     hm.imports = [config.flake.modules.homeManager.jetbrains-goland];
   };
 }

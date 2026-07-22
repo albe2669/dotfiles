@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{config, ...}: let
   inherit (config.lib.stylix) colors;
   inherit (config.stylix.fonts) monospace;
 in {

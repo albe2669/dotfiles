@@ -26,7 +26,7 @@
     ];
   };
 
-  flake.modules.combined.utils = {...}: {
+  flake.modules.combined.utils = _: {
     hm.imports = [config.flake.modules.homeManager.utils];
   };
 }

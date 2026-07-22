@@ -1,7 +1,7 @@
 {config, ...}: let
   flakeConfig = config;
 in {
-  flake.modules.nixos.bootloader-uefi = {lib, ...}: {
+  flake.modules.nixos.bootloader-uefi = {...}: {
     imports = [
       flakeConfig.flake.modules.nixos.bootloader
     ];

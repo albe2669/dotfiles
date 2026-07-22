@@ -5,7 +5,7 @@
     ];
   };
 
-  flake.modules.combined.advent-of-code = {...}: {
+  flake.modules.combined.advent-of-code = _: {
     hm.imports = [config.flake.modules.homeManager.advent-of-code];
   };
 }

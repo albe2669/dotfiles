@@ -1,11 +1,7 @@
 {config, ...}: let
   flakeConfig = config;
 in {
-  flake.modules.nixos.docker = {
-    pkgs,
-    config,
-    ...
-  }: {
+  flake.modules.nixos.docker = {pkgs, ...}: {
     environment.systemPackages = [pkgs.docker-compose];
 
     virtualisation.docker = {

@@ -10,11 +10,11 @@
     ]);
 
     xdg.configFile.zathura = lib.mkIf pkgs.stdenv.isLinux {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/features/zathura/config");
+      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/zathura/config";
     };
   };
 
-  flake.modules.combined.zathura = {...}: {
+  flake.modules.combined.zathura = _: {
     hm.imports = [config.flake.modules.homeManager.zathura];
   };
 }

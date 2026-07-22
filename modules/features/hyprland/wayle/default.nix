@@ -28,13 +28,13 @@ in {
           bg = colors.bg_dim; # #232A2E - hard-dark base, as in the design
           surface = colors.bg0; # #2D353B
           elevated = colors.bg1; # #343F44
-          fg = colors.fg; # #D3C6AA
+          inherit (colors) fg; # #D3C6AA
           fg-muted = colors.grey2; # #9DA9A0
           primary = colors.green; # #A7C080 - the design's active accent
-          green = colors.green; # #A7C080
-          blue = colors.blue; # #7FBBB3
-          red = colors.red; # #E67E80
-          yellow = colors.yellow; # #DBBC7F
+          inherit (colors) green; # #A7C080
+          inherit (colors) blue; # #7FBBB3
+          inherit (colors) red; # #E67E80
+          inherit (colors) yellow; # #DBBC7F
         };
       };
     };
@@ -43,6 +43,6 @@ in {
   xdg.configFile."wayle/styles/index.scss" = {
     source =
       config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}"
-      + (builtins.toPath "/modules/features/hyprland/wayle/index.scss");
+      + "/modules/features/hyprland/wayle/index.scss";
   };
 }

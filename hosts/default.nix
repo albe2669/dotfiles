@@ -52,7 +52,7 @@
   ];
 
   createNixosConfiguration = name: info: let
-    system = info.system;
+    inherit (info) system;
   in
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
@@ -83,7 +83,7 @@
     };
 
   createDarwinConfiguration = name: info: let
-    system = info.system;
+    inherit (info) system;
   in
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
@@ -114,14 +114,14 @@
 
   installers =
     builtins.mapAttrs (
-      hostName: nixosConfig:
+      _hostName: nixosConfig:
         import ../lib/install/configure-installer.nix {
           host = nixosConfig.config.opts.info;
           inherit self inputs;
           system = nixosConfig.config.opts.info.system;
           inherit (nixosConfig.config.opts) variables theme;
           lib = inputs.nixpkgs.lib;
-          config = nixosConfig.config;
+          inherit (nixosConfig) config;
         }
     )
     nixosConfigurations;
@@ -131,7 +131,7 @@ in {
   flake.installers.x86_64-linux = installers;
   flake.legacyPackages.x86_64-linux =
     builtins.mapAttrs (
-      name: config: config.config.formats
+      _name: config: config.config.formats
     )
     nixosConfigurations;
 }

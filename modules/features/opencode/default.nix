@@ -9,11 +9,11 @@
     ];
 
     xdg.configFile.opencode = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/features/opencode/config");
+      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/opencode/config";
     };
   };
 
-  flake.modules.combined.opencode = {...}: {
+  flake.modules.combined.opencode = _: {
     hm.imports = [config.flake.modules.homeManager.opencode];
   };
 }

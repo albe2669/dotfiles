@@ -2,7 +2,6 @@
   flake.modules.homeManager.herdr = {
     inputs,
     system,
-    config,
     pkgs-unstable,
     ...
   }: let
@@ -54,7 +53,7 @@
     };
   };
 
-  flake.modules.combined.herdr = {...}: {
+  flake.modules.combined.herdr = _: {
     hm.imports = [
       config.flake.modules.homeManager.herdr
     ];

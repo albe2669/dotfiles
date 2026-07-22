@@ -1,6 +1,4 @@
 {
-  lib,
-  pkgs,
   fetchFromGitHub,
   mkSkillsBundle,
 }: let

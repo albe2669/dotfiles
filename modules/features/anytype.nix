@@ -9,7 +9,7 @@
     ];
   };
 
-  flake.modules.combined.anytype = {...}: {
+  flake.modules.combined.anytype = _: {
     hm.imports = [config.flake.modules.homeManager.anytype];
   };
 }

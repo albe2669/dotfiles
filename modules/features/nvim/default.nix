@@ -33,11 +33,11 @@
       ];
 
     xdg.configFile.nvim = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/features/nvim/config");
+      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/nvim/config";
     };
   };
 
-  flake.modules.combined.nvim = {...}: {
+  flake.modules.combined.nvim = _: {
     hm.imports = [config.flake.modules.homeManager.nvim];
   };
 }

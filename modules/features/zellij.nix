@@ -65,7 +65,7 @@
     };
   };
 
-  flake.modules.combined.zellij = {...}: {
+  flake.modules.combined.zellij = _: {
     hm.imports = [config.flake.modules.homeManager.zellij];
   };
 }

@@ -17,7 +17,7 @@
     };
   };
 
-  flake.modules.combined.vscode = {...}: {
+  flake.modules.combined.vscode = _: {
     hm.imports = [config.flake.modules.homeManager.vscode];
   };
 }

@@ -1,8 +1,6 @@
 {config, ...}: {
   flake.modules.homeManager.claude = {
-    self,
     lib,
-    inputs,
     system,
     pkgs-unstable,
     config,
@@ -11,7 +9,6 @@
     pkg = pkgs-unstable.claude-code;
 
     # Shared model definitions — same source as omp's models.yml.
-    modelsData = import ./ai-shared/models.nix;
 
     # Combined skills bundle shared with omp — downloaded skill sets
     # (mattpocock/skills) merged with hand-written skills under
@@ -400,7 +397,7 @@
       ];
   };
 
-  flake.modules.combined.claude = {...}: {
+  flake.modules.combined.claude = _: {
     hm.imports = [
       config.flake.modules.homeManager.claude
       config.flake.modules.homeManager.ccstatusline

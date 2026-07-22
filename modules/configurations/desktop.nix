@@ -16,7 +16,7 @@
     environment.systemPackages = with pkgs; [
       parted
       (python3.withPackages (
-        ps:
+        _ps:
           with pkgs; [
           ]
       ))

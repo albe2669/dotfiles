@@ -1,7 +1,7 @@
 {config, ...}: {
   flake.modules.darwin.user = {config, ...}:
     with config.opts; let
-      username = variables.username;
+      inherit (variables) username;
     in {
       nix.settings.trusted-users = [username];
 

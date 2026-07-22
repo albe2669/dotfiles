@@ -28,7 +28,7 @@
     home.file.".wakatime.cfg".force = true;
   };
 
-  flake.modules.combined.wakatime = {...}: {
+  flake.modules.combined.wakatime = _: {
     hm.imports = [config.flake.modules.homeManager.wakatime];
   };
 }

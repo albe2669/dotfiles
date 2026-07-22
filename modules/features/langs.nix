@@ -65,7 +65,7 @@
     };
   };
 
-  flake.modules.combined.langs = {...}: {
+  flake.modules.combined.langs = _: {
     hm.imports = [config.flake.modules.homeManager.langs];
   };
 }

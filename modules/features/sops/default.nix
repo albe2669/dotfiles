@@ -7,7 +7,7 @@
 in {
   flake.modules.nixos.sops = {config, ...}: let
     username = config.opts.variables.username;
-    sharedArgs = (import ./args.nix {inherit config;}).sharedArgs;
+    inherit ((import ./args.nix {inherit config;})) sharedArgs;
   in {
     imports = [
       inputs.sops-nix.nixosModules.sops
@@ -28,13 +28,13 @@ in {
               sopsFile = ./secrets/nix_netrc.yaml;
             };
           }
-          // builtins.mapAttrs (key: value: value // {owner = username;}) sharedArgs.secrets;
+          // builtins.mapAttrs (_key: value: value // {owner = username;}) sharedArgs.secrets;
       };
   };
 
   flake.modules.darwin.sops = {config, ...}: let
     username = config.opts.variables.username;
-    sharedArgs = (import ./args.nix {inherit config;}).sharedArgs;
+    inherit ((import ./args.nix {inherit config;})) sharedArgs;
   in {
     imports = [
       inputs.sops-nix.darwinModules.sops
@@ -55,7 +55,7 @@ in {
               sopsFile = ./secrets/nix_netrc.yaml;
             };
           }
-          // builtins.mapAttrs (key: value: value // {owner = username;}) sharedArgs.secrets;
+          // builtins.mapAttrs (_key: value: value // {owner = username;}) sharedArgs.secrets;
       };
   };
 
@@ -64,7 +64,7 @@ in {
     pkgs,
     ...
   }: let
-    sharedArgs = (import ./args.nix {inherit config;}).sharedArgs;
+    inherit ((import ./args.nix {inherit config;})) sharedArgs;
   in {
     home.packages = with pkgs; [
       sops

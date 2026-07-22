@@ -9,11 +9,11 @@
     ];
 
     xdg.configFile.dunst = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/features/dunst/config");
+      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/dunst/config";
     };
   };
 
-  flake.modules.combined.dunst = {...}: {
+  flake.modules.combined.dunst = _: {
     hm.imports = [config.flake.modules.homeManager.dunst];
   };
 }

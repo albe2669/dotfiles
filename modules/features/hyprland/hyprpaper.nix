@@ -1,4 +1,4 @@
-{...}: {
+_: {
   stylix.targets.hyprpaper.enable = true;
 
   services.hyprpaper = {

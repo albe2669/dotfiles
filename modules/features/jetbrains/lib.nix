@@ -1,5 +1,4 @@
 {
-  system,
   pkgs-unstable,
   inputs,
   isDarwin,

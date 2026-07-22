@@ -1,6 +1,5 @@
 {config, ...}: {
   flake.modules.homeManager.omp = {
-    self,
     inputs,
     lib,
     system,
@@ -72,14 +71,14 @@
     home.file.".omp/agent/config.yml" = {
       source =
         config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}"
-        + (builtins.toPath "/modules/features/omp/config.yml");
+        + "/modules/features/omp/config.yml";
     };
 
     # MCP servers — out-of-store symlink like config.yml so edits are live.
     home.file.".omp/agent/mcp.json" = {
       source =
         config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}"
-        + (builtins.toPath "/modules/features/omp/mcp.json");
+        + "/modules/features/omp/mcp.json";
     };
 
     # Skills — shared bundle with Claude Code (mattpocock/skills + custom).
@@ -178,7 +177,7 @@
     '';
   };
 
-  flake.modules.combined.omp = {...}: {
+  flake.modules.combined.omp = _: {
     hm.imports = [config.flake.modules.homeManager.omp];
   };
 }

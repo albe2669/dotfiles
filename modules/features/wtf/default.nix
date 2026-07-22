@@ -15,11 +15,11 @@
     '';
 
     xdg.configFile.wtf = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/features/wtf/config");
+      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/wtf/config";
     };
   };
 
-  flake.modules.combined.wtf = {...}: {
+  flake.modules.combined.wtf = _: {
     hm.imports = [config.flake.modules.homeManager.wtf];
   };
 }

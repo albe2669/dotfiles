@@ -62,7 +62,7 @@ in {
 
     # Hardware
     ./hardware-configuration.nix
-    (import ./disko.nix {diskPath = info.diskPath;})
+    (import ./disko.nix {inherit (info) diskPath;})
     inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
   ];
 

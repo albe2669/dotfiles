@@ -5,7 +5,7 @@
     ];
   };
 
-  flake.modules.combined.obs = {...}: {
+  flake.modules.combined.obs = _: {
     hm.imports = [config.flake.modules.homeManager.obs];
   };
 }

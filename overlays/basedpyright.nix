@@ -1,4 +1,4 @@
-final: prev: {
+_final: prev: {
   basedpyright = prev.basedpyright.overrideAttrs (old: {
     postInstall =
       old.postInstall

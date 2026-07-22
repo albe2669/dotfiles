@@ -29,7 +29,7 @@ in {
       enableDefaultPackages = true;
       fontDir.enable = true;
 
-      packages = fontConfig.packages;
+      inherit (fontConfig) packages;
       fontconfig.defaultFonts = fontConfig.defaultFonts;
     };
   };
@@ -43,7 +43,7 @@ in {
 
     fonts.fontconfig = {
       enable = true;
-      defaultFonts = fontConfig.defaultFonts;
+      inherit (fontConfig) defaultFonts;
     };
   };
 

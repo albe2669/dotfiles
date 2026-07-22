@@ -1,4 +1,4 @@
-{lib, ...}: {
+_: {
   system.defaults = {
     dock = {
       autohide = true;

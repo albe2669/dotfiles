@@ -106,7 +106,7 @@
     };
   };
 
-  flake.modules.combined.ccstatusline = {...}: {
+  flake.modules.combined.ccstatusline = _: {
     hm.imports = [config.flake.modules.homeManager.ccstatusline];
   };
 }

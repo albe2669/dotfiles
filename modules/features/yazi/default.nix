@@ -88,7 +88,7 @@
     };
   };
 
-  flake.modules.combined.yazi = {...}: {
+  flake.modules.combined.yazi = _: {
     hm.imports = [config.flake.modules.homeManager.yazi];
   };
 }

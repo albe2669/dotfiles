@@ -1,5 +1,5 @@
 {config, ...}: {
-  flake.modules.nixos.nvidia-prime = {...}: {
+  flake.modules.nixos.nvidia-prime = _: {
     hardware.nvidia.prime = {
       offload = {
         enable = true;

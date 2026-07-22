@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   flake.modules.homeManager.ags = {
     config,
     inputs,
@@ -15,7 +11,7 @@
 
       fontScss = builtins.toString (builtins.attrValues (builtins.mapAttrs (name: font: "\\\$font_${name}: \"${font}\";\n") theme.font));
 
-      generatedFile = variables.dotfilesLocation + (builtins.toPath "/modules/features/ags/config/generated.scss");
+      generatedFile = variables.dotfilesLocation + "/modules/features/ags/config/generated.scss";
     in {
       imports = [
         inputs.ags.homeManagerModules.default
@@ -47,7 +43,7 @@
       ];
     };
 
-  flake.modules.combined.ags = {...}: {
+  flake.modules.combined.ags = _: {
     hm.imports = [config.flake.modules.homeManager.ags];
   };
 }

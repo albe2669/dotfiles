@@ -23,7 +23,7 @@ with config.opts; let
     ];
   };
 
-  isoDotfilesLocation = builtins.toPath "/boot/dotfiles";
+  isoDotfilesLocation = "/boot/dotfiles";
 in
   inputs.nixos-generators.nixosGenerate {
     inherit system;
@@ -46,8 +46,8 @@ in
         disko-format = pkgs.writeShellScriptBin "disko-format" "${config.system.build.formatScript}";
 
         # This is a bit of a hack, but it works
-        mntDotfilesLocation = (builtins.toPath "/mnt") + variables.dotfilesLocation;
-        actualIsoDotfilesLocation = (builtins.toPath "/iso") + isoDotfilesLocation;
+        mntDotfilesLocation = "/mnt" + variables.dotfilesLocation;
+        actualIsoDotfilesLocation = "/iso" + isoDotfilesLocation;
 
         install-system = pkgs.writeShellScriptBin "install-system" ''
           set -euo pipefail
@@ -78,7 +78,7 @@ in
         '';
       in {
         imports = [
-          (import ../../hosts/${host.name}/disko.nix {diskPath = host.diskPath;}) # Disgusting, but works
+          (import ../../hosts/${host.name}/disko.nix {inherit (host) diskPath;}) # Disgusting, but works
         ];
 
         disko.enableConfig = lib.mkDefault false;

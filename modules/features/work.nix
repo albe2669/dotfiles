@@ -33,7 +33,7 @@
     };
   };
 
-  flake.modules.combined.work = {...}: {
+  flake.modules.combined.work = _: {
     hm.imports = [config.flake.modules.homeManager.work];
   };
 }

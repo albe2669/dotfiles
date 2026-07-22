@@ -153,7 +153,7 @@
       };
     };
 
-  flake.modules.combined.rio = {...}: {
+  flake.modules.combined.rio = _: {
     hm.imports = [config.flake.modules.homeManager.rio];
   };
 }

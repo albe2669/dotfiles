@@ -15,7 +15,7 @@
     };
   };
 
-  flake.modules.combined.direnv = {...}: {
+  flake.modules.combined.direnv = _: {
     hm.imports = [config.flake.modules.homeManager.direnv];
   };
 }

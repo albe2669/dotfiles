@@ -1,5 +1,5 @@
 {config, ...}: {
-  flake.modules.nixos.touchpad = {...}: {
+  flake.modules.nixos.touchpad = _: {
     services.libinput = {
       enable = true;
       touchpad = {

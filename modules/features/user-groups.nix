@@ -1,7 +1,7 @@
 {config, ...}: {
   flake.modules.nixos.user-groups = {config, ...}:
     with config.opts; let
-      username = variables.username;
+      inherit (variables) username;
       secrets = config.sops.secrets;
     in {
       nix.settings.trusted-users = [username];

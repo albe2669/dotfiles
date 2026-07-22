@@ -23,7 +23,7 @@
     ];
   };
 
-  flake.modules.combined.php = {...}: {
+  flake.modules.combined.php = _: {
     hm.imports = [config.flake.modules.homeManager.php];
   };
 }

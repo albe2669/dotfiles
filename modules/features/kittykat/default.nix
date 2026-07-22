@@ -11,11 +11,11 @@
 
     # Must be installed manually
     xdg.configFile.kittykat = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/features/kittykat/config");
+      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/kittykat/config";
     };
   };
 
-  flake.modules.combined.kittykat = {...}: {
+  flake.modules.combined.kittykat = _: {
     hm.imports = [config.flake.modules.homeManager.kittykat];
   };
 }

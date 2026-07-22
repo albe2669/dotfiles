@@ -5,7 +5,7 @@
     ];
   };
 
-  flake.modules.combined.yaak = {...}: {
+  flake.modules.combined.yaak = _: {
     hm.imports = [config.flake.modules.homeManager.yaak];
   };
 }

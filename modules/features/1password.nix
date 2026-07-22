@@ -1,9 +1,5 @@
 {config, ...}: {
-  flake.modules.nixos."1password" = {
-    pkgs-unstable,
-    username,
-    ...
-  }: {
+  flake.modules.nixos."1password" = {username, ...}: {
     programs._1password = {
       enable = true;
       # pkg = pkgs-unstable._1password;
@@ -17,7 +13,7 @@
     };
   };
 
-  flake.modules.darwin."1password" = {...}: {
+  flake.modules.darwin."1password" = _: {
     homebrew.casks = [
       "1password-cli"
     ];

@@ -2,7 +2,6 @@
   flake.modules.homeManager.ccusage = {
     inputs,
     system,
-    config,
     pkgs-unstable,
     ...
   }: let
@@ -42,7 +41,7 @@
       };
   };
 
-  flake.modules.combined.ccusage = {...}: {
+  flake.modules.combined.ccusage = _: {
     hm.imports = [
       config.flake.modules.homeManager.ccusage
     ];

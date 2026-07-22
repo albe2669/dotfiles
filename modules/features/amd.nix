@@ -1,6 +1,6 @@
 # SOURCE: https://nixos.wiki/wiki/Nvidia
 {config, ...}: {
-  flake.modules.nixos.amd = {...}: {
+  flake.modules.nixos.amd = _: {
     # Enable OpenGL
     hardware.graphics = {
       enable = true;

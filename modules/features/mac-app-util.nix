@@ -3,8 +3,8 @@
   inputs,
   ...
 }: {
-  flake.modules.darwin.mac-app-util = {...}: let
-    mac-app-util = inputs.mac-app-util;
+  flake.modules.darwin.mac-app-util = _: let
+    inherit (inputs) mac-app-util;
   in {
     imports = [
       mac-app-util.darwinModules.default

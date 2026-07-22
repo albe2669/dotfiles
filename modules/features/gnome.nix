@@ -15,7 +15,7 @@
       secondary-color = "#000000000000";
     };
 
-    flameshot-dir = config.opts.variables.homeDirectory.path + (builtins.toPath "/Pictures/FScreenshots");
+    flameshot-dir = config.opts.variables.homeDirectory.path + "/Pictures/FScreenshots";
     clock-format = "24h";
   in
     with lib.hm.gvariant; {
@@ -136,7 +136,7 @@
       };
     };
 
-  flake.modules.combined.gnome = {...}: {
+  flake.modules.combined.gnome = _: {
     hm.imports = [config.flake.modules.homeManager.gnome];
   };
 }

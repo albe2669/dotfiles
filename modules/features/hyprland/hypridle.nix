@@ -30,7 +30,7 @@
         }
 
         {
-          timeout = timeout;
+          inherit timeout;
           on-timeout = "${loginctl} lock-session";
         }
 

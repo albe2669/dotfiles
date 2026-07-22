@@ -1,0 +1,3 @@
+# Rule 20 (repeated keys) is disabled: this repo's dendritic module pattern
+# intentionally assigns flake.modules.<class>.<name> multiple times per file.
+disabled = ["repeated_keys"]

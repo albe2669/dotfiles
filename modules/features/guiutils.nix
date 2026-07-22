@@ -6,7 +6,7 @@
     ];
   };
 
-  flake.modules.combined.guiutils = {...}: {
+  flake.modules.combined.guiutils = _: {
     hm.imports = [config.flake.modules.homeManager.guiutils];
   };
 }

@@ -29,7 +29,6 @@ in {
 
   flake.modules.darwin.nix-settings = {
     config,
-    pkgs,
     lib,
     ...
   }: {

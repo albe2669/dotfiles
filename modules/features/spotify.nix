@@ -1,12 +1,7 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   flake.modules.homeManager.spotify = {
     inputs,
     system,
-    pkgs-unstable,
     ...
   }: {
     imports = [
@@ -46,7 +41,7 @@
     };
   };
 
-  flake.modules.combined.spotify = {...}: {
+  flake.modules.combined.spotify = _: {
     hm.imports = [config.flake.modules.homeManager.spotify];
   };
 }

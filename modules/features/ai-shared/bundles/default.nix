@@ -3,7 +3,7 @@
   pkgs,
   mkSkillsBundle,
 }: let
-  fetchFromGitHub = pkgs.fetchFromGitHub;
+  inherit (pkgs) fetchFromGitHub;
 
   bundles = [
     (import ./herdr.nix {

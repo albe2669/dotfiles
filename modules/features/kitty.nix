@@ -65,7 +65,7 @@
     };
   };
 
-  flake.modules.combined.kitty = {...}: {
+  flake.modules.combined.kitty = _: {
     hm.imports = [config.flake.modules.homeManager.kitty];
   };
 }

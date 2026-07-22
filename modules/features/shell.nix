@@ -24,7 +24,6 @@ in {
   };
 
   flake.modules.homeManager.shell = {
-    pkgs,
     config,
     lib,
     ...

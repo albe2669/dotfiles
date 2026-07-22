@@ -5,7 +5,7 @@
     ];
   };
 
-  flake.modules.combined.libreoffice = {...}: {
+  flake.modules.combined.libreoffice = _: {
     hm.imports = [config.flake.modules.homeManager.libreoffice];
   };
 }

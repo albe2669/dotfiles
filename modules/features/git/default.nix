@@ -63,7 +63,7 @@
     };
   };
 
-  flake.modules.combined.git = {...}: {
+  flake.modules.combined.git = _: {
     hm.imports = [config.flake.modules.homeManager.git];
   };
 }

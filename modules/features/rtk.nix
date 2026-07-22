@@ -24,7 +24,7 @@
     };
   };
 
-  flake.modules.combined.rtk = {...}: {
+  flake.modules.combined.rtk = _: {
     hm.imports = [config.flake.modules.homeManager.rtk];
   };
 }

@@ -1,7 +1,7 @@
 {config, ...}: let
   flakeConfig = config;
 in {
-  flake.modules.nixos.programs = {...}: {
+  flake.modules.nixos.programs = _: {
     programs.ssh.startAgent = false; # Disabled due to conflict with services.gnome.gcr-ssh-agent
     programs.dconf.enable = true;
   };

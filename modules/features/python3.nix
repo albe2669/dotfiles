@@ -35,11 +35,11 @@
       uv
       poppler-utils
 
-      ((python3.withPackages python-packages).override (args: {ignoreCollisions = true;}))
+      ((python3.withPackages python-packages).override (_args: {ignoreCollisions = true;}))
     ];
   };
 
-  flake.modules.combined.python3 = {...}: {
+  flake.modules.combined.python3 = _: {
     hm.imports = [config.flake.modules.homeManager.python3];
   };
 }

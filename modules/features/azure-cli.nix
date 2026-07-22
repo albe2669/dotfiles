@@ -6,7 +6,7 @@
     ];
   };
 
-  flake.modules.combined.azure-cli = {...}: {
+  flake.modules.combined.azure-cli = _: {
     hm.imports = [config.flake.modules.homeManager.azure-cli];
   };
 }

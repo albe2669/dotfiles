@@ -7,7 +7,7 @@
     ];
   };
 
-  flake.modules.combined.k8 = {...}: {
+  flake.modules.combined.k8 = _: {
     hm.imports = [config.flake.modules.homeManager.k8];
   };
 }

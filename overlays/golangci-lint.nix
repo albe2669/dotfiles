@@ -1,7 +1,7 @@
-final: prev: let
+_final: prev: let
   version = "2.12.2";
 in {
-  golangci-lint = prev.golangci-lint.overrideAttrs (old: {
+  golangci-lint = prev.golangci-lint.overrideAttrs (_old: {
     inherit version;
 
     src = prev.fetchFromGitHub {

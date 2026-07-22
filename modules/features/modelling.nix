@@ -5,7 +5,7 @@
     ];
   };
 
-  flake.modules.combined.modelling = {...}: {
+  flake.modules.combined.modelling = _: {
     hm.imports = [config.flake.modules.homeManager.modelling];
   };
 }

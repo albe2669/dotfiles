@@ -11,13 +11,13 @@
     xdg.configFile."satty/config.toml".source = (pkgs-unstable.formats.toml {}).generate "something" {
       general = {
         fullscreen = true;
-        output-filename = config.opts.variables.homeDirectory.path + (builtins.toPath "/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png");
+        output-filename = config.opts.variables.homeDirectory.path + "/Pictures/Screenshots/%Y-%m-%d_%H:%M:%S.png";
         save-after-copy = true;
       };
     };
   };
 
-  flake.modules.combined.satty = {...}: {
+  flake.modules.combined.satty = _: {
     hm.imports = [config.flake.modules.homeManager.satty];
   };
 }

@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: let
-  cfg = config.opts.theme;
-in {
+{lib, ...}: {
   options.opts = {
     theme = {
       font = {

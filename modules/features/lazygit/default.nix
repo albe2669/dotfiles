@@ -10,11 +10,11 @@
     ];
 
     xdg.configFile.lazygit = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/features/lazygit/config");
+      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/lazygit/config";
     };
   };
 
-  flake.modules.combined.lazygit = {...}: {
+  flake.modules.combined.lazygit = _: {
     hm.imports = [config.flake.modules.homeManager.lazygit];
   };
 }

@@ -1,5 +1,5 @@
 {config, ...}: {
-  flake.modules.nixos.bluetooth = {...}: {
+  flake.modules.nixos.bluetooth = _: {
     hardware.bluetooth.enable = true;
     services.blueman.enable = false;
   };

@@ -9,11 +9,11 @@
     ];
 
     xdg.configFile.lazydocker = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + (builtins.toPath "/modules/features/lazydocker/config");
+      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/lazydocker/config";
     };
   };
 
-  flake.modules.combined.lazydocker = {...}: {
+  flake.modules.combined.lazydocker = _: {
     hm.imports = [config.flake.modules.homeManager.lazydocker];
   };
 }

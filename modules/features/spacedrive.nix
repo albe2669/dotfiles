@@ -5,7 +5,7 @@
     ];
   };
 
-  flake.modules.combined.spacedrive = {...}: {
+  flake.modules.combined.spacedrive = _: {
     hm.imports = [config.flake.modules.homeManager.spacedrive];
   };
 }

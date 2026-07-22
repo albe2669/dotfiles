@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   flake.modules.homeManager.walker = {inputs, ...}: {
     imports = [
       inputs.walker.homeManagerModules.default
@@ -528,7 +524,7 @@
     };
   };
 
-  flake.modules.combined.walker = {...}: {
+  flake.modules.combined.walker = _: {
     hm.imports = [config.flake.modules.homeManager.walker];
   };
 }

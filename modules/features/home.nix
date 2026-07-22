@@ -22,7 +22,7 @@
     };
   };
 
-  flake.modules.combined.home = {...}: {
+  flake.modules.combined.home = _: {
     hm.imports = [config.flake.modules.homeManager.home];
   };
 }

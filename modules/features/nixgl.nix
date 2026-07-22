@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   flake.modules.homeManager.nixgl = {inputs, ...}: {
     nixGL.packages = inputs.nixgl.packages;
     nixGL.defaultWrapper = "nvidia";
@@ -10,7 +6,7 @@
     nixGL.installScripts = ["mesa" "nvidiaPrime"];
   };
 
-  flake.modules.combined.nixgl = {...}: {
+  flake.modules.combined.nixgl = _: {
     hm.imports = [config.flake.modules.homeManager.nixgl];
   };
 }

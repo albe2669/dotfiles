@@ -20,7 +20,7 @@ in
       builtins.mapAttrs (_: hostConf:
         configureInstaller ({
             host = hostConf;
-            system = system;
+            inherit system;
           }
           // args))
       hosts

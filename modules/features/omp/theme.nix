@@ -31,8 +31,8 @@ in {
       grey0 = hex "base04";
       grey1 = hex "base03";
       grey2 = "#9da9a0";
-      bgGreen = bgGreen;
-      bgRed = bgRed;
+      inherit bgGreen;
+      inherit bgRed;
     };
     colors = {
       # Everforest highlighting semantics (sainnhe/everforest palette.md):

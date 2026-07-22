@@ -28,7 +28,7 @@
     ];
   };
 
-  flake.modules.combined.tex = {...}: {
+  flake.modules.combined.tex = _: {
     hm.imports = [config.flake.modules.homeManager.tex];
   };
 }

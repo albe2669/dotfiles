@@ -9,7 +9,7 @@
     ];
   };
 
-  flake.modules.combined.gcloud = {...}: {
+  flake.modules.combined.gcloud = _: {
     hm.imports = [config.flake.modules.homeManager.gcloud];
   };
 }

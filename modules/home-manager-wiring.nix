@@ -1,7 +1,6 @@
 {
   inputs,
   self,
-  config,
   ...
 }: let
   # Single definition of the unstable package set, reused across nixos/darwin
@@ -41,7 +40,7 @@ in {
 
       extraSpecialArgs = {
         inherit inputs self pkgs-unstable;
-        system = pkgs.system;
+        inherit (pkgs) system;
         username = config.opts.variables.username;
       };
 
@@ -85,7 +84,7 @@ in {
 
       extraSpecialArgs = {
         inherit inputs self pkgs-unstable;
-        system = pkgs.system;
+        inherit (pkgs) system;
         username = config.opts.variables.username;
       };
 

@@ -1,7 +1,7 @@
-final: prev: let
+_final: prev: let
   version = "0.42.0";
 in {
-  rtk = prev.rtk.overrideAttrs (old: rec {
+  rtk = prev.rtk.overrideAttrs (_old: rec {
     inherit version;
 
     src = prev.fetchFromGitHub {
