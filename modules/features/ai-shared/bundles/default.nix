@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   mkSkillsBundle,
 }: let
@@ -8,24 +7,18 @@
   bundles = [
     (import ./herdr.nix {
       inherit
-        lib
-        pkgs
         fetchFromGitHub
         mkSkillsBundle
         ;
     })
     (import ./mattpocock.nix {
       inherit
-        lib
-        pkgs
         fetchFromGitHub
         mkSkillsBundle
         ;
     })
     (import ./shadcn-improve.nix {
       inherit
-        lib
-        pkgs
         fetchFromGitHub
         mkSkillsBundle
         ;

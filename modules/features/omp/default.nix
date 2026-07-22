@@ -26,7 +26,6 @@
     # Combined skills bundle.
     mkSkillsBundle = import ../../../lib/skills-bundle.nix lib pkgs-unstable;
     combinedSkillsBundle = import ../ai-shared/bundles/default.nix {
-      inherit lib;
       pkgs = pkgs-unstable;
       inherit mkSkillsBundle;
     };
