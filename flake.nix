@@ -169,7 +169,6 @@
       perSystem = {
         config,
         pkgs,
-        lib,
         system,
         ...
       }: {
@@ -182,8 +181,15 @@
 
         formatter = pkgs.alejandra;
         packages = import ./pkgs {inherit pkgs;};
-        pre-commit.settings.hooks.alejandra = {
-          enable = true;
+        pre-commit.settings.hooks = {
+          alejandra = {
+            enable = true;
+          };
+          statix = {
+            enable = true;
+            settings.config = toString ./statix.toml;
+          };
+          deadnix.enable = true;
         };
 
         devShells.default = pkgs.mkShellNoCC {
