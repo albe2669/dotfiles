@@ -49,6 +49,29 @@
 
         # q -> Quit: detach exits the herdr client.
         detach = "prefix+q";
+
+        # tmux-style splits: " = stacked (horizontal), % = side-by-side (vertical).
+        split_horizontal = "prefix+double_quote";
+        split_vertical = "prefix+percent";
+
+        command = [
+          # Lazygit in a session-modal popup.
+          {
+            key = "prefix+shift+g";
+            type = "popup";
+            command = "lazygit";
+            description = "run lazygit";
+            width = "80%";
+            height = "80%";
+          }
+          {
+            # Break the focused pane into a new tab (tmux break-pane).
+            key = "prefix+!";
+            type = "shell";
+            command = ''$HERDR_BIN_PATH pane move "$HERDR_ACTIVE_PANE_ID" --new-tab --focus'';
+            description = "break pane into new tab";
+          }
+        ];
       };
     };
   };
