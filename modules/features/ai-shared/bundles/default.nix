@@ -6,6 +6,14 @@
   fetchFromGitHub = pkgs.fetchFromGitHub;
 
   bundles = [
+    (import ./herdr.nix {
+      inherit
+        lib
+        pkgs
+        fetchFromGitHub
+        mkSkillsBundle
+        ;
+    })
     (import ./mattpocock.nix {
       inherit
         lib
