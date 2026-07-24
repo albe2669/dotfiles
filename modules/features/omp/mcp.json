@@ -4,7 +4,14 @@
     "codegraph": {
       "type": "stdio",
       "command": "codegraph",
-      "args": ["serve", "--mcp"]
+      "args": [
+        "serve",
+        "--mcp"
+      ]
+    },
+    "linear-server": {
+      "type": "http",
+      "url": "https://mcp.linear.app/mcp"
     }
   }
 }

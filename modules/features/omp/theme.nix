@@ -7,10 +7,11 @@
   base = config.lib.stylix.colors;
   hex = key: "#" + base."${key}-hex";
 
-  # Extended everforest accents not present in the base16 scheme
-  # (canon everforest values, same as opts.theme.colors).
-  bgGreen = "#425047";
-  bgRed = "#514045";
+  # Extended everforest accents not present in the base16 scheme.
+  # Dark Hard variant values (matching the stylix scheme), from
+  # sainnhe/everforest palette.md dark-hard palette1.
+  bgGreen = "#3c4841";
+  bgRed = "#493b40";
 in {
   home.file.".omp/agent/themes/everforest.json".text = builtins.toJSON {
     "$schema" = "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/theme-schema.json";
