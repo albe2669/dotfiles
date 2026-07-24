@@ -1,14 +1,31 @@
 {config, ...}: {
   flake.modules.homeManager.herdr = {
     inputs,
+    lib,
     system,
     pkgs-unstable,
     ...
   }: let
     toml = pkgs-unstable.formats.toml {};
+
+    # Dotfiles/dirs copied from the source checkout into each new worktree.
+    worktreeCopyFiles = [
+      ".env"
+      ".envrc"
+      ".claude"
+      ".omp"
+    ];
+
+    # Popup script that prompts for a branch, creates the worktree through
+    # herdr's API (so it is listed as a workspace), and copies the files
+    # above from the source checkout into <project>/.worktrees/<branch>.
+    worktreeCreateScript = pkgs-unstable.writeShellScriptBin "herdr-worktree-create" (
+      builtins.readFile ./scripts/worktree-create.sh
+    );
   in {
     home.packages = [
       inputs.llm-agents.packages.${system}.herdr
+      worktreeCreateScript
     ];
 
     xdg.configFile."herdr/config.toml".source = toml.generate "herdr-config" {
@@ -54,7 +71,23 @@
         split_horizontal = "prefix+double_quote";
         split_vertical = "prefix+percent";
 
+        # new_worktree is a custom command below (prefix+shift+y) so the
+        # checkout lands in <project>/.worktrees/<branch> and dotfiles are
+        # copied in, while still registering as a herdr workspace.
+        open_worktree = "prefix+shift+u";
+
         command = [
+          # Create a project-local worktree (.worktrees/<branch>) that is
+          # registered as a herdr workspace and seeded with dotfiles.
+          # Replaces the built-in new_worktree keybind (prefix+shift+y).
+          {
+            key = "prefix+shift+y";
+            type = "popup";
+            command = ''HERDR_WORKTREE_BASE="main" HERDR_WORKTREE_COPY_FILES="${lib.concatStringsSep " " worktreeCopyFiles}" herdr-worktree-create'';
+            description = "new worktree (local)";
+            width = "60%";
+            height = 8;
+          }
           # Lazygit in a session-modal popup.
           {
             key = "prefix+shift+g";
