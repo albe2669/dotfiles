@@ -131,7 +131,7 @@
           return 1
         end
 
-        set path "./.omp/worktrees/$branch"
+        set path "./.worktrees/$branch"
         if git rev-parse --verify $branch > /dev/null 2>&1
           echo "Branch $branch already exists. Please choose a different name."
           return 1
@@ -155,7 +155,7 @@
           return 1
         end
         set branch $argv[1]
-        set basepath "./.omp/worktrees"
+        set basepath "./.worktrees"
         set path "$basepath/$branch"
         mkdir -p $basepath
         if not git rev-parse --verify $branch > /dev/null 2>&1
