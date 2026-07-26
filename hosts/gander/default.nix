@@ -55,6 +55,7 @@ in {
     self.modules.combined.wakatime
     self.modules.combined.omp
     self.modules.combined.modelling
+    self.modules.combined.herdr
 
     # Hardware
     ./hardware-configuration.nix
