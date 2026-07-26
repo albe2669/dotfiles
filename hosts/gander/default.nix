@@ -34,7 +34,7 @@ in {
     self.modules.combined.zathura
     self.modules.combined.langs
     self.modules.combined.python3
-    self.modules.combined.anytype
+    #self.modules.combined.anytype
     self.modules.combined.direnv
     self.modules.combined.gcloud
     self.modules.combined.libreoffice
@@ -54,6 +54,7 @@ in {
     self.modules.combined.zellij
     self.modules.combined.wakatime
     self.modules.combined.omp
+    self.modules.combined.modelling
 
     # Hardware
     ./hardware-configuration.nix
