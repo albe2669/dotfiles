@@ -34,46 +34,56 @@
       keys = {
         prefix = "ctrl+f";
 
-        # zellij tmux-mode entry letters -> herdr actions. Herdr's
-        # prefix is transient, so Esc cancels and Ctrl f has no
-        # passthrough equivalent; both are intentionally omitted.
+        # Pane navigation: vim-style h/j/k/l (spatial).
+        focus_pane_left = "prefix+h";
+        focus_pane_down = "prefix+j";
+        focus_pane_up = "prefix+k";
+        focus_pane_right = "prefix+l";
 
-        # g -> Locked: herdr's session navigator (default binding).
+        # Tab navigation: shift+h/l (left/right through the tab bar).
+        previous_tab = "prefix+shift+h";
+        next_tab = "prefix+shift+l";
+
+        # Workspace navigation: shift+j/k (down/up the sidebar list).
+        next_workspace = "prefix+shift+j";
+        previous_workspace = "prefix+shift+k";
+
+        # Agent navigation: alt+j/k (down/up the agent list).
+        next_agent = "prefix+alt+j";
+        previous_agent = "prefix+alt+k";
+
+        # Swap panes: ctrl+h/j/k/l (vim spatial with ctrl modifier).
+        swap_pane_left = "prefix+ctrl+h";
+        swap_pane_down = "prefix+ctrl+j";
+        swap_pane_up = "prefix+ctrl+k";
+        swap_pane_right = "prefix+ctrl+l";
+
+        # Cycle panes.
+        cycle_pane_next = "prefix+tab";
+
+        # g -> session navigator (default binding).
         goto = "prefix+g";
 
-        # p -> Pane: cycle panes (zellij's Pane mode manages panes).
-        cycle_pane_next = "prefix+p";
-
-        # t -> Tab: create a tab (zellij's Tab mode creates/switches).
+        # t -> new tab.
         new_tab = "prefix+t";
-        next_tab = "prefix+right";
-        previous_tab = "prefix+left";
 
-        # n -> Resize: herdr has a dedicated resize mode.
+        # n -> resize mode.
         resize_mode = "prefix+n";
 
-        # h -> Move: swap panes vim-style (zellij's Move mode reorders).
-        swap_pane_left = "prefix+shift+h";
-        swap_pane_down = "prefix+shift+j";
-        swap_pane_up = "prefix+shift+k";
-        swap_pane_right = "prefix+shift+l";
-
-        # s -> Scroll: herdr's copy mode opens the scrollback viewer.
+        # s -> copy mode (scrollback viewer).
         copy_mode = "prefix+s";
 
-        # o -> Session: open the workspace picker.
+        # o -> workspace picker.
         workspace_picker = "prefix+o";
 
-        # q -> Quit: detach exits the herdr client.
+        # q -> detach.
         detach = "prefix+q";
 
-        # tmux-style splits: " = stacked (horizontal), % = side-by-side (vertical).
+        # tmux-style splits: " = stacked, % = side-by-side.
         split_horizontal = "prefix+double_quote";
         split_vertical = "prefix+percent";
 
-        # new_worktree is a custom command below (prefix+shift+y) so the
-        # checkout lands in <project>/.worktrees/<branch> and dotfiles are
-        # copied in, while still registering as a herdr workspace.
+        # new_worktree is a custom command below (prefix+shift+y).
         open_worktree = "prefix+shift+u";
 
         command = [
