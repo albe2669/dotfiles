@@ -13,7 +13,7 @@
     ...
   }: {
     wayland.windowManager.hyprland.settings.env = lib.mkIf config.opts.variables.isHidpi [
-      "GDK_SCALE,2"
+      {_args = ["GDK_SCALE" "2"];}
     ];
 
     programs.kitty.font.size = lib.mkIf config.opts.variables.isHidpi (lib.mkForce 13);

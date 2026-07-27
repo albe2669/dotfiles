@@ -62,8 +62,18 @@
     {
       wayland.windowManager.hyprland = {
         settings.monitor = [
-          "eDP-1,1920x1200@60.0,5120x640,1.5"
-          "DP-1,5120x1440@59.98,0x0,1.0"
+          {
+            output = "eDP-1";
+            mode = "1920x1200@60.0";
+            position = "5120x640";
+            scale = 1.5;
+          }
+          {
+            output = "DP-1";
+            mode = "5120x1440@59.98";
+            position = "0x0";
+            scale = 1.0;
+          }
         ];
       };
     }

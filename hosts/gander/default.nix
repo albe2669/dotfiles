@@ -69,7 +69,7 @@ in {
     {
       wayland.windowManager.hyprland = {
         settings = {
-          monitorv2 = [
+          monitor = [
             {
               output = "DP-2";
               mode = "2560x1440@59.95";
@@ -86,8 +86,16 @@ in {
           ];
 
           workspace_rule = [
-            "1, monitor:DP-2, default:true"
-            "9, monitor:HDMI-A-2, default:true"
+            {
+              workspace = "1";
+              monitor = "DP-2";
+              default = true;
+            }
+            {
+              workspace = "9";
+              monitor = "HDMI-A-2";
+              default = true;
+            }
           ];
         };
       };
