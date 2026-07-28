@@ -26,7 +26,7 @@
   "nvim-treesitter": { "branch": "main", "commit": "61df84986b4b4ec469ee745a182e433d49f8c27e" },
   "nvim-web-devicons": { "branch": "master", "commit": "2ae6958df7ced50baac5035cec0c15799eedfbf7" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
-  "rustaceanvim": { "branch": "master", "commit": "e9c5aaba16fead831379d5f44617547a90b913c7" },
+  "rustaceanvim": { "branch": "main", "commit": "e9c5aaba16fead831379d5f44617547a90b913c7" },
   "snacks.nvim": { "branch": "main", "commit": "882c996cf28183f4d63640de0b4c02ec886d01f2" },
   "typescript-tools.nvim": { "branch": "master", "commit": "c2f5910074103705661e9651aa841e0d7eea9932" },
   "vim-cooklang": { "branch": "main", "commit": "ba334ed1668ddf82ad46beea5354aa6398093ec6" },
@@ -36,5 +36,5 @@
   "vim-visual-multi": { "branch": "master", "commit": "a6975e7c1ee157615bbc80fc25e4392f71c344d4" },
   "vim-wakatime": { "branch": "master", "commit": "2a856d0b7863dc34ffc80647cb52fbd1319fe144" },
   "vimtex": { "branch": "master", "commit": "853eb587873a7061a083655578be56dd8027b834" },
-  "yazi.nvim": { "branch": "main", "commit": "5fa07998df7c623bf85fdaf3e3e841b2df529f43" }
+  "yazi.nvim": { "branch": "main", "commit": "af52ba3a412b4cd63b789378370dd3b099782aaa" }
 }

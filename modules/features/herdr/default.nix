@@ -4,9 +4,14 @@
     lib,
     system,
     pkgs-unstable,
+    config,
     ...
   }: let
     toml = pkgs-unstable.formats.toml {};
+
+    base = config.lib.stylix.colors;
+    hex = key: "#" + base."${key}-hex";
+    grey2 = "#9da9a0";
 
     # Dotfiles/dirs copied from the source checkout into each new worktree.
     worktreeCopyFiles = [
@@ -29,7 +34,27 @@
     ];
 
     xdg.configFile."herdr/config.toml".source = toml.generate "herdr-config" {
-      theme.name = "terminal";
+      theme = {
+        name = "terminal";
+        custom = {
+          accent = hex "base0B"; # highlights, active borders
+          panel_bg = hex "base01"; # floating panels
+          surface0 = hex "base02"; # selected/focused bg
+          surface1 = hex "base02"; # dragged bg
+          surface_dim = hex "base01"; # active workspace bg
+          overlay0 = hex "base04"; # inactive branch, separators
+          overlay1 = hex "base03"; # brighter overlay text
+          text = hex "base05"; # active workspace name
+          subtext0 = grey2; # inactive workspace name
+          mauve = hex "base0E"; # active branch (was Gray)
+          green = hex "base0B"; # done/idle
+          yellow = hex "base0A"; # working/running
+          red = hex "base08"; # blocked/attention
+          blue = hex "base0D"; # unseen notification
+          teal = hex "base0C"; # notification accent
+          peach = hex "base09"; # interrupted/warning
+        };
+      };
 
       keys = {
         prefix = "ctrl+f";
@@ -115,6 +140,11 @@
             description = "break pane into new tab";
           }
         ];
+      };
+      # Sidebar spacing — add breathing room between top-level spaces.
+      # Worktree children stay packed as a group (enforced upstream).
+      ui = {
+        # sidebar.spaces.row_gap = 1;
       };
     };
   };
