@@ -13,7 +13,7 @@ fi
 
 # Reject names that could escape the worktree path.
 case "$branch" in
-  */*|*..*|"") echo "invalid branch name: $branch" >&2; exit 1 ;;
+  *..*|"") echo "invalid branch name: $branch" >&2; exit 1 ;;
 esac
 
 src="${HERDR_ACTIVE_PANE_CWD:-$(pwd)}"
