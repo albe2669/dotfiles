@@ -101,12 +101,12 @@ keybinding:
     nextItem: <down>
     prevItem-alt: k
     nextItem-alt: j
-    prevPage: ','
+    prevPage: ","
     nextPage: .
     scrollLeft: H
     scrollRight: L
     gotoTop: <
-    gotoBottom: '>'
+    gotoBottom: ">"
     prevBlock: <left>
     nextBlock: <right>
     prevBlock-alt: h
@@ -123,7 +123,7 @@ keybinding:
     prevMatch: "N"
     startSearch: /
     optionMenu: ""
-    optionMenu-alt1: '?'
+    optionMenu-alt1: "?"
     select: <space>
     goInto: <enter>
     confirm: <enter>
@@ -138,14 +138,14 @@ keybinding:
     scrollDownMain-alt1: J
     scrollUpMain-alt2: <c-u>
     scrollDownMain-alt2: <c-d>
-    executeShellCommand: ':'
+    executeShellCommand: ":"
     createRebaseOptionsMenu: m
     pushFiles: P
     pullFiles: p
     refresh: R
     createPatchOptionsMenu: <c-p>
-    nextTab: ']'
-    prevTab: '['
+    nextTab: "]"
+    prevTab: "["
     nextScreenMode: +
     prevScreenMode: _
     undo: z
@@ -154,12 +154,13 @@ keybinding:
     diffingMenu: W
     diffingMenu-alt: <c-e>
     copyToClipboard: <c-o>
-    openRecentRepos: <c-r>
+    openRecentRepos: <c+r>
     submitEditorText: <enter>
-    extrasMenu: '@'
+    extrasMenu: "@"
     toggleWhitespaceInDiffView: <c-w>
-    increaseContextInDiffView: '}'
-    decreaseContextInDiffView: '{'
+    increaseContextInDiffView: "}"
+    decreaseContextInDiffView: "{"
+    newWorktree: w
   status:
     checkForUpdate: u
     recentRepos: <enter>
@@ -176,7 +177,7 @@ keybinding:
     toggleStagedAll: a
     viewResetOptions: D
     fetch: f
-    toggleTreeView: '`'
+    toggleTreeView: "`"
     openMergeOptions: M
     openStatusFilter: <c-b>
   branches:
@@ -194,8 +195,6 @@ keybinding:
     pushTag: P
     setUpstream: u
     fetchRemote: f
-  worktrees:
-    viewWorktreeOptions: w
   commits:
     squashDown: s
     renameCommit: r
@@ -216,9 +215,9 @@ keybinding:
     markCommitAsBaseForRebase: B
     tagCommit: T
     checkoutCommit: <space>
-    resetCherryPick: <c-R>
+    resetCherryPick: <ctrl+r>
     copyCommitAttributeToClipboard: "y"
-    openLogMenu: <c-l>
+    openLogMenu: <ctrl+l>
     openInBrowser: o
     viewBisectOptions: b
   stash:
