@@ -9,7 +9,7 @@
           hooks = [
             {
               type = "command";
-              command = "~/.claude/hooks/rtk-rewrite.sh";
+              command = "$CLAUDE_CONFIG_DIR/hooks/rtk-rewrite.sh";
             }
           ];
         }

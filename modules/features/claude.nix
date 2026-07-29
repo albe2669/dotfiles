@@ -32,14 +32,6 @@
       fi
     '';
   in {
-    home.file.".claude/hooks/notify.sh" = {
-      executable = true;
-      text = notifyScript;
-    };
-
-    # Shared skills bundle.
-    home.file.".claude/skills".source = combinedSkillsBundle;
-
     # ccstatusline package + declarative settings.json (programs.ccstatusline
     # module). Claude Code's statusLine below points at this package.
     programs.ccstatusline = {
@@ -142,6 +134,14 @@
     programs.claude-code = {
       enable = true;
       package = pkg;
+      configDir = "${config.xdg.configHome}/claude";
+
+      # Hook script written to ${configDir}/hooks/notify.sh by the HM module.
+      hooks."notify.sh" = notifyScript;
+
+      # Shared skills bundle — written via xdg.configFile because the HM
+      # module's `skills` option rejects store derivations (reads drv
+      # metadata as skill content). See modules/features/ai-shared/bundles.
 
       settings = {
         # Status line is rendered by the pinned, Nix-built ccstatusline package
@@ -222,7 +222,7 @@
               hooks = [
                 {
                   type = "command";
-                  command = "~/.claude/hooks/notify.sh";
+                  command = "$CLAUDE_CONFIG_DIR/hooks/notify.sh";
                 }
               ];
             }
@@ -232,7 +232,7 @@
               hooks = [
                 {
                   type = "command";
-                  command = "~/.claude/hooks/notify.sh";
+                  command = "$CLAUDE_CONFIG_DIR/hooks/notify.sh";
                 }
               ];
             }
@@ -257,6 +257,9 @@
         };
       };
     };
+    # Shared skills bundle written to ${configDir}/skills via xdg.configFile
+    # (the HM module's `skills` option rejects store derivations).
+    xdg.configFile."claude/skills".source = combinedSkillsBundle;
 
     home.activation.installBetterSqlite3 = lib.hm.dag.entryAfter ["writeBoundary"] ''
       export PATH="${pkgs-unstable.nodejs}/bin:$PATH"

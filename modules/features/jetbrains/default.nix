@@ -4,7 +4,7 @@
     lib,
     ...
   }: {
-    home.file."${config.opts.variables.homeDirectory.path}/.ideavimrc" = {
+    xdg.configFile."ideavim/ideavimrc" = {
       text =
         ''
           set ideavimr

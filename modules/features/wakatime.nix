@@ -7,7 +7,7 @@
     format = pkgs.formats.ini {};
     secrets = config.sops.secrets;
   in {
-    home.file.".wakatime.cfg".source = format.generate ".wakatime.cfg" {
+    xdg.configFile."wakatime/.wakatime.cfg".source = format.generate ".wakatime.cfg" {
       settings =
         {
           debug = false;
@@ -25,7 +25,7 @@
           else {api_key = "placeholder";}
         );
     };
-    home.file.".wakatime.cfg".force = true;
+    xdg.configFile."wakatime/.wakatime.cfg".force = true;
   };
 
   flake.modules.combined.wakatime = _: {

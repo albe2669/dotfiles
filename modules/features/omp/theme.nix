@@ -13,7 +13,7 @@
   bgGreen = "#3c4841";
   bgRed = "#493b40";
 in {
-  home.file.".omp/agent/themes/everforest.json".text = builtins.toJSON {
+  xdg.configFile."omp/agent/themes/everforest.json".text = builtins.toJSON {
     "$schema" = "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/theme-schema.json";
     name = "everforest";
     vars = {

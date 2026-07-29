@@ -8,6 +8,7 @@
 in {
   imports = [
     # Configurations
+    self.modules.combined.xdg
     self.modules.combined.desktop
     self.modules.combined.laptop
 

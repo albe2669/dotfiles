@@ -65,7 +65,8 @@
 
         fish_add_path $HOME/.local/bin
         fish_add_path $HOME/.local/go/bin
-        fish_add_path $HOME/.cargo/bin
+        fish_add_path $XDG_DATA_HOME/cargo/bin
+        fish_add_path $BUN_INSTALL/bin
 
         fish_add_path $HOME/Documents/Installs/bin
         fish_add_path $HOME/Documents/Installs/nvim
