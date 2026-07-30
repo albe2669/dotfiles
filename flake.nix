@@ -56,7 +56,7 @@
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-      inputs.home-manager.follows = "home-manager";
+      # Do NOT make home-manager follow ours until ours has the `storeId` option.
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 

@@ -28,13 +28,14 @@
         enable = true;
         # On Linux the flake's packages.${system}.default is already wrapFirefox-wrapped,
         # so nixGL.wrapOffload can layer on top and home-manager's mkFirefoxModule can
-        # still .override { cfg = ... } it. On Darwin the flake now ships the .app
-        # unwrapped, forcing that package breaks mkFirefoxModule's cfg override, so
-        # leave package to the zen module (packageMode = "wrapped") instead.
+        # still .override { cfg = ... } it. On Darwin "signed" mode installs the upstream
+        # .app untouched, thereby preserving its code signature so TCC permissions (screen
+        # sharing, camera, etc.) persist across rebuilds. "wrapped" mode would re-sign
+        # adhoc with a new CDHash every build, losing TCC grants each time.
         package = lib.mkIf (!config.opts.variables.isDarwin) (
           lib.mkForce (config.lib.nixGL.wrapOffload inputs.zen-browser.packages."${system}".default)
         );
-        darwin.packageMode = lib.mkIf config.opts.variables.isDarwin "wrapped";
+        darwin.packageMode = lib.mkIf config.opts.variables.isDarwin "signed";
 
         policies = {
           AutofillAddressEnabled = true;
@@ -469,11 +470,59 @@
               container = containers."Alt".id;
             };
           };
+
+          storeId = "b2373c55";
         };
       }
       // lib.optionalAttrs config.opts.variables.isDarwin {
-        darwinDefaultsId = "org.zen.zenbrowser.plist";
+        darwinDefaultsId = "app.zen-browser.zen";
       };
+
+    # Clean stale install-hash entries from installs.ini and re-register the app
+    # with LaunchServices after each rebuild. On Darwin, profiles.ini is a
+    # read-only Nix store symlink, so Zen can't update it after an update —
+    # it writes a new install hash to installs.ini instead, leaving stale
+    # entries that trigger the profile-picker "dance". GC'd nix store paths
+    # also break LaunchServices registration, losing the default-browser
+    # link.
+    home.activation = lib.mkIf config.opts.variables.isDarwin (
+      let
+        zenConfigDir = "${config.home.homeDirectory}/Library/Application Support/Zen";
+        installsFile = "${zenConfigDir}/installs.ini";
+        # The signed .app is installed by home-manager into ~/Applications/Home Manager Apps/
+        # and a trampoline is created in ~/Applications/Home Manager Trampolines/.
+        # Re-registering both keeps LaunchServices and TCC in sync after updates.
+        lsregister = "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister";
+      in {
+        zenCleanupInstallsIni = lib.hm.dag.entryAfter ["writeBoundary" "zen-browser-${profileName}"] ''
+          if [ -f "${installsFile}" ]; then
+            tmp=$(mktemp)
+            ${pkgs.gawk}/bin/awk -v want="Default=Profiles/${profileName}" '
+              BEGIN { RS=""; FS="\n" }
+              {
+                keep = 0
+                for (i=1; i<=NF; i++) {
+                  if ($i == want) { keep = 1; break }
+                }
+                if (keep) print $0 "\n"
+              }
+            ' "${installsFile}" > "$tmp" && mv "$tmp" "${installsFile}"
+            $VERBOSE_ECHO "zen: Cleaned stale installs.ini entries"
+          fi
+        '';
+
+        zenRegisterLaunchServices = lib.hm.dag.entryAfter ["writeBoundary" "trampolineApps"] ''
+          for app in \
+            "$HOME/Applications/Home Manager Apps/Zen Browser (Twilight).app" \
+            "$HOME/Applications/Home Manager Trampolines/Zen Browser (Twilight).app"; do
+            if [ -d "$app" ]; then
+              ${lsregister} -f "$app" 2>/dev/null || true
+            fi
+          done
+          $VERBOSE_ECHO "zen: Re-registered Zen Browser with LaunchServices"
+        '';
+      }
+    );
   };
 
   flake.modules.combined.zen = _: {
