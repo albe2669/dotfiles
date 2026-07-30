@@ -18,7 +18,6 @@ in {
     environment.systemPackages = [pkgs.docker-compose];
 
     homebrew.casks = [
-      "orbstack"
       "docker-desktop"
     ];
   };
