@@ -80,9 +80,6 @@
         + "/modules/features/omp/mcp.json";
     };
 
-    # Skills — shared bundle with Claude Code (mattpocock/skills + custom).
-    xdg.configFile."omp/agent/skills".source = combinedSkillsBundle;
-
     sops.templates."models.yaml" = {
       content = ''
         providers:
@@ -97,10 +94,18 @@
       path = "${config.xdg.configHome}/omp/agent/models.yml";
     };
 
+    # Skills
+    xdg.configFile."omp/agent/skills".source = combinedSkillsBundle;
+
     # Shared context appended to omp's built-in system prompt.
     # Using APPEND rather than SYSTEM preserves omp's tool inventory and skill blocks.
     xdg.configFile."omp/agent/APPEND_SYSTEM.md" = {
-      source = sharedContext;
+      text =
+        (builtins.readFile sharedContext)
+        + ''
+
+          @${config.xdg.configHome}/omp/agent/skills/ponytail/SKILL.md
+        '';
     };
 
     # Notification hook script (invoked manually or by extensions)
