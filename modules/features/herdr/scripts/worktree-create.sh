@@ -3,6 +3,10 @@
 
 set -eu
 
+function branch_exists() {
+  git rev-parse --verify "$1" > /dev/null 2>&1
+}
+
 printf 'branch: '
 read -r branch
 
@@ -29,24 +33,42 @@ mkdir -p "$wtroot"
 
 # Create the worktree through herdr's API so it shows up in the workspace
 # list. --path must be absolute; --base comes from HERDR_WORKTREE_BASE.
-base="${HERDR_WORKTREE_BASE:-main}"
-if ! "$HERDR_BIN_PATH" worktree create \
-    --branch "$branch" \
-    --base "$base" \
-    --path "$checkout" \
-    >/dev/null; then
+base="origin/main"
+if ! branch_exists "$base"; then
+  echo "base branch does not exist: $base" >&2
+  base="origin/master"
+  echo "trying $base instead"
+fi
+if ! branch_exists "$base"; then
+  echo "base branch does not exist: $base" >&2
+  exit 1
+fi
+
+result=$("$HERDR_BIN_PATH" worktree create --branch "$branch" --base "$base" --path "$checkout" --focus)
+
+if [ $? -ne 0 ]; then
   # herdr prints the error JSON to stderr already.
   rmdir "$wtroot" 2>/dev/null || true
   exit 1
 fi
 
+workspace_id=$(echo "$result" | jq -r '.result.workspace.workspace_id')
+pane_id=$(echo "$result" | jq -r '.result.root_pane.pane_id')
+result_dir=$(echo "$result" | jq -r '.result.worktree.path')
+
 # Copy dotfiles/dirs from the source checkout into the new worktree.
 for f in ${HERDR_WORKTREE_COPY_FILES:-}; do
   src_path="$src/$f"
   [ -e "$src_path" ] || continue
-  dest_dir="$checkout/$(dirname "$f")"
+  dest_dir="$result_dir/$(dirname "$f")"
   mkdir -p "$dest_dir"
   cp -R "$src_path" "$dest_dir/"
 done
+
+"$HERDR_BIN_PATH" pane run "$pane_id" "nvim"
+result=$("$HERDR_BIN_PATH" pane split "$pane_id" --direction right)
+pane_id=$(echo "$result" | jq -r '.result.pane.pane_id')
+"$HERDR_BIN_PATH" pane run "$pane_id" "omp"
+
 
 echo "worktree ready: $checkout"
