@@ -47,7 +47,6 @@
     self.modules.combined.rtk
     self.modules.combined.opencode
     self.modules.combined.omp
-    self.modules.combined.dory
   ];
 
   system.keyboard = {
