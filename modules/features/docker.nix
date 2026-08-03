@@ -15,10 +15,14 @@ in {
   };
 
   flake.modules.darwin.docker = {pkgs, ...}: {
-    environment.systemPackages = [pkgs.docker-compose];
+    # homebrew.casks = [
+    #   "docker-desktop"
+    # ];
 
-    homebrew.casks = [
-      "docker-desktop"
+    environment.systemPackages = with pkgs; [
+      docker-compose
+      docker
+      docker-credential-helpers
     ];
   };
 
