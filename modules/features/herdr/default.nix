@@ -144,7 +144,7 @@
       # Sidebar spacing — add breathing room between top-level spaces.
       # Worktree children stay packed as a group (enforced upstream).
       ui = {
-        # sidebar.spaces.row_gap = 1;
+        sidebar.spaces.row_gap = 1;
       };
     };
   };
