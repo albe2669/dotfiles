@@ -44,7 +44,9 @@ if ! branch_exists "$base"; then
   exit 1
 fi
 
-result=$("$HERDR_BIN_PATH" worktree create --branch "$branch" --base "$base" --path "$checkout" --focus)
+workspace_id=$(herdr worktree list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.source.source_workspace_id')
+
+result=$("$HERDR_BIN_PATH" worktree create --workspace $workspace_id --branch "$branch" --base "$base" --path "$checkout" --focus)
 
 if [ $? -ne 0 ]; then
   # herdr prints the error JSON to stderr already.
@@ -55,6 +57,9 @@ fi
 workspace_id=$(echo "$result" | jq -r '.result.workspace.workspace_id')
 pane_id=$(echo "$result" | jq -r '.result.root_pane.pane_id')
 result_dir=$(echo "$result" | jq -r '.result.worktree.path')
+
+# herdr creates the new branch tracking origin/main. Drop the tracking so the first push sets up origin/$branch.
+git -C "$result_dir" branch --unset-upstream
 
 # Copy dotfiles/dirs from the source checkout into the new worktree.
 for f in ${HERDR_WORKTREE_COPY_FILES:-}; do
