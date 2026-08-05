@@ -19,6 +19,8 @@
       ".envrc"
       ".claude"
       ".omp"
+      ".codegraph/.gitignore"
+      ".codegraph/codegraph.db"
     ];
 
     # Popup script that prompts for a branch, creates the worktree through
