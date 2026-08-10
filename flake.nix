@@ -6,6 +6,8 @@
       "nix-command"
       "flakes"
     ];
+    extra-substituters = ["https://cache.numtide.com"];
+    extra-trusted-public-keys = ["niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="];
   };
 
   # These urls should coincide with the stateVersion variable in the variables.nix file
@@ -142,6 +144,10 @@
     };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    preflight = {
+      url = "github:albe2669/preflight/6b6395db84f2b5943b9fa347b37d4043dfbabf13";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
