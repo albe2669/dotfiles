@@ -1,3 +1,7 @@
+## Language
+
+Always write in ASD-STE100 Simplified Technical English for all text, comments and documentation.
+
 ## Commands
 If a just or make file is present, then read the commands and their descriptions before guessing at which commands to run for tasks like linting, testing, or building. Do not assume which commands are used without checking for existing definitions.
 
