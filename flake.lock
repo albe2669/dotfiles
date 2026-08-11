@@ -1657,18 +1657,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1786358811,
-        "narHash": "sha256-VmbHgbUhTaykeOpLih3w97ECy+pRjk0unYIjWAxS+TE=",
-        "owner": "albe2669",
-        "repo": "preflight",
-        "rev": "6b6395db84f2b5943b9fa347b37d4043dfbabf13",
-        "type": "github"
+        "lastModified": 1786450557,
+        "narHash": "sha256-0DswpkX4WbdNOCOBGsSmbLnsqRI31a7l+PuK+4ZO9x4=",
+        "ref": "refs/heads/master",
+        "rev": "9b3b0029fad5219a9f20d261a6d58238d685bc7f",
+        "revCount": 86,
+        "type": "git",
+        "url": "https://github.com/albe2669/preflight"
       },
       "original": {
-        "owner": "albe2669",
-        "repo": "preflight",
-        "rev": "6b6395db84f2b5943b9fa347b37d4043dfbabf13",
-        "type": "github"
+        "rev": "9b3b0029fad5219a9f20d261a6d58238d685bc7f",
+        "type": "git",
+        "url": "https://github.com/albe2669/preflight"
       }
     },
     "root": {

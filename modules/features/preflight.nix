@@ -30,27 +30,37 @@
           github.filters = [
             {
               repo = "corticph/agent-api";
-              exclude_drafts = true;
+              excludeOthersDrafts = true;
             }
             {
               repo = "corticph/agent-memory";
-              exclude_drafts = true;
+              excludeOthersDrafts = true;
             }
             {
               repo = "corticph/ml-service-llm-reasoning";
-              author = "albe2669";
+              author = "@me";
+            }
+            {
+              repo = "corticph/ml-service-llm-reasoning";
+              reviewer = "@me";
             }
             {
               repo = "corticph/api-specs";
-              author = "albe2669";
-              reviewing_team = "corticph/ai-agents";
-              exclude_drafts = true;
+              author = "@me";
+            }
+            {
+              repo = "corticph/api-specs";
+              reviewingTeam = "corticph/ai-agents";
+              excludeOthersDrafts = true;
             }
             {
               repo = "corticph/gocomo";
-              author = "albe2669";
-              reviewing_team = "corticph/ai-agents";
-              exclude_drafts = true;
+              author = "@me";
+            }
+            {
+              repo = "corticph/gocomo";
+              reviewer = "@me";
+              excludeOthersDrafts = true;
             }
           ];
         };
