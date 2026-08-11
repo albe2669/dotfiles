@@ -54,10 +54,10 @@ gui:
   border: single
   animateExplosion: true
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: ""
       useConfig: false
+      type: rawGit
   commit:
     signOff: false
   merging:
