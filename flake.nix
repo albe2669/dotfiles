@@ -147,7 +147,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     preflight = {
-      url = "git+https://github.com/albe2669/preflight?rev=2193f62225aff83df547f12197b53562266a0857";
+      url = "git+https://github.com/albe2669/preflight?rev=03786de7ae442de64b266f7f5b54ad7d02b069d9";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

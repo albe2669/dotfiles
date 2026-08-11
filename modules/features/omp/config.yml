@@ -1,5 +1,5 @@
-modelRoles: 
-  default: corti/corti-s1
+modelRoles:
+  default: corti/corti-s1-ultra-beta
   smol: corti/corti-s1-mini
   slow: corti/corti-s1
   plan: corti/corti-s1
