@@ -45,14 +45,19 @@
     # template.  Each entry is indented 6 spaces to sit under `models:`
     # (4 spaces) in the rendered file.
     modelsYaml =
-      lib.concatMapStringsSep "\n" (
+      lib.concatMapStrings (
         m:
           "      - id: \"${m.id}\"\n"
           + "        name: \"${m.name}\"\n"
           + "        reasoning: ${lib.boolToString m.reasoning}\n"
-          + "        input: [${lib.concatMapStringsSep ", " (i: i) m.input}]\n"
+          + "        input: [${lib.concatStringsSep ", " m.input}]\n"
           + "        contextWindow: ${toString m.contextWindow}\n"
-          + "        cost: { input: ${toString m.cost.input}, output: ${toString m.cost.output}, cacheRead: ${toString m.cost.cacheRead}, cacheWrite: ${toString m.cost.cacheWrite} }"
+          + "        cost: { input: ${toString m.cost.input}, output: ${toString m.cost.output}, cacheRead: ${toString m.cost.cacheRead}, cacheWrite: ${toString m.cost.cacheWrite} }\n"
+          + lib.optionalString (m ? thinking) (
+            "        thinking:\n"
+            + "          mode: ${toString m.thinking.mode}\n"
+            + "          efforts: [${lib.concatStringsSep ", " m.thinking.efforts}]\n"
+          )
       )
       modelsData.models;
   in {
