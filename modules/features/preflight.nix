@@ -62,6 +62,30 @@
               reviewer = "@me";
               excludeOthersDrafts = true;
             }
+            {
+              repo = "corticph/deployments";
+              author = "@me";
+            }
+            {
+              repo = "corticph/deployments";
+              reviewer = "@me";
+            }
+            {
+              repo = "corticph/charts";
+              author = "@me";
+            }
+            {
+              repo = "corticph/charts";
+              reviewer = "@me";
+            }
+            {
+              repo = "corticph/actions";
+              author = "@me";
+            }
+            {
+              repo = "corticph/actions";
+              reviewer = "@me";
+            }
           ];
         };
       };
