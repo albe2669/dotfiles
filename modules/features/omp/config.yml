@@ -1,49 +1,50 @@
 modelRoles:
-  default: corti/corti-s1-ultra-beta
+  default: corti/corti-s1
   smol: corti/corti-s1-mini
   slow: corti/corti-s1
   plan: corti/corti-s1
-  task: corti/corti-s1-mini
+  task: corti/corti-s1
   commit: corti/corti-s1-mini-instant
   tiny: corti/corti-s1-mini-instant
-tools: 
+tools:
   approvalMode: yolo
-  approval: 
+  approval:
     bash: allow
-lsp: 
+lsp:
   enabled: true
   lazy: true
   diagnosticsOnWrite: true
   formatOnWrite: true
-bash: 
+bash:
   enabled: true
-ask: 
+ask:
   notify: "on"
-theme: 
+theme:
   dark: everforest
 symbolPreset: nerd
-statusLine: 
+statusLine:
   preset: default
   separator: powerline-thin
   sessionAccent: true
   transparent: true
 defaultThinkingLevel: auto
-compaction: 
+compaction:
   enabled: true
   strategy: context-full
   autoContinue: true
-eval: 
+eval:
   py: true
   js: true
-memory: 
+memory:
   backend: mnemopi
-power: 
-  sleepPrevention: system
-github: 
+power:
+  sleepPrevention: idle
+github:
   enabled: true
-providers: 
+providers:
   tinyModel: online
 disabledProviders:
   - github
 setupVersion: 1
-hideThinkingBlock: true
+hideThinkingBlock: false
+
