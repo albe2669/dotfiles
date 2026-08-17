@@ -2,7 +2,7 @@
   fetchFromGitHub,
   mkSkillsBundle,
 }: let
-  version = "16f29800fd2681bdf24f3eb4ccffe38be3baec6b";
+  version = "2ed6c52c9d7e5e56942508591085fd45dea277d3";
 in
   mkSkillsBundle {
     name = "ponytail";
@@ -10,6 +10,6 @@ in
       owner = "DietrichGebert";
       repo = "ponytail";
       rev = version;
-      sha256 = "sha256-Y7d4s7uqjH6IbEXhqAiQ+yaxr6iiGcv2X64LuMtG1T8=";
+      sha256 = "sha256-bGdXvzhWPwGdz3T2Yh2h6lf+3PBRFAfdBxP5pESmCHI=";
     };
   }
