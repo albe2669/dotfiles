@@ -50,6 +50,7 @@
     self.modules.combined.ai
     self.modules.combined.preflight
     self.modules.combined.cliamp
+    self.modules.combined.tailscale
   ];
 
   system.keyboard = {
