@@ -55,7 +55,7 @@ disabledProviders:
 setupVersion: 1
 hideThinkingBlock: false
 advisor: 
-  enabled: true
+  enabled: false
 python: 
   kernelMode: session
 inspect_image: 
@@ -70,3 +70,6 @@ startup:
   checkUpdate: false
 features: 
   unexpectedStopDetection: true
+mnemopi: 
+  llmMode: smol
+  embeddingModel: ""
