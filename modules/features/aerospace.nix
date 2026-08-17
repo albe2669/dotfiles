@@ -28,7 +28,7 @@ in {
       enable = true;
       launchd.enable = true;
 
-      userSettings = {
+      settings = {
         automatically-unhide-macos-hidden-apps = true;
         key-mapping.preset = "qwerty";
         on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
