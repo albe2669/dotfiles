@@ -49,6 +49,7 @@
     self.modules.combined.omp
     self.modules.combined.ai
     self.modules.combined.preflight
+    self.modules.combined.cliamp
   ];
 
   system.keyboard = {

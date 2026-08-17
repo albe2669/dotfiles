@@ -31,6 +31,12 @@ in {
       corti_tenant = cortiConfig;
       corti_bearer = cortiConfig;
       corti_base_url = cortiConfig;
+      spotify_client_id = {
+        sopsFile = ./secrets/spotify.yaml;
+      };
+      spotify_client_secret = {
+        sopsFile = ./secrets/spotify.yaml;
+      };
     };
   };
 }
