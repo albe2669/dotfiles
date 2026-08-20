@@ -1639,16 +1639,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1786620777,
-        "narHash": "sha256-k36SdrtBXCGMhWALz+UFeK/4W2R4vcqpGter3XyyKdQ=",
+        "lastModified": 1787210768,
+        "narHash": "sha256-Bw3eAa2+mAM6c/s0P/DHVBT9u1rIW3LcVnAZBZEXxTM=",
         "ref": "refs/heads/master",
-        "rev": "de9cbe8e8ddfbd199306a88047b9d93fa2e5b8c4",
-        "revCount": 91,
+        "rev": "80abe4caee74a6780867a908dc1a8958e5f1ddb4",
+        "revCount": 105,
         "type": "git",
         "url": "https://github.com/albe2669/preflight"
       },
       "original": {
-        "rev": "de9cbe8e8ddfbd199306a88047b9d93fa2e5b8c4",
+        "rev": "80abe4caee74a6780867a908dc1a8958e5f1ddb4",
         "type": "git",
         "url": "https://github.com/albe2669/preflight"
       }
