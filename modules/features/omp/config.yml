@@ -5,7 +5,7 @@ modelRoles:
   plan: corti/corti-s1
   task: corti/corti-s1
   commit: corti/corti-s1-mini-instant
-  tiny: corti/corti-s1-mini-instant
+  tiny: corti/corti-s1-tiny
   advisor: corti/corti-s1
   vision: corti/corti-s1-mini
 tools: 
