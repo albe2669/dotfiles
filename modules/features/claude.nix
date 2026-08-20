@@ -6,31 +6,8 @@
     config,
     ...
   }: let
+    aiShared = import ./ai-shared/mkAiTool.nix lib pkgs-unstable;
     pkg = pkgs-unstable.claude-code;
-
-    # Shared model definitions — same source as omp's models.yml.
-
-    # Combined skills bundle shared with omp — downloaded skill sets
-    # (mattpocock/skills) merged with hand-written skills under
-    # ai-shared/skills/<name>/SKILL.md.
-    mkSkillsBundle = import ../../lib/skills-bundle.nix lib pkgs-unstable;
-    combinedSkillsBundle = import ./ai-shared/bundles/default.nix {
-      pkgs = pkgs-unstable;
-      inherit mkSkillsBundle;
-    };
-
-    notifyScript = ''
-      #!/usr/bin/env bash
-      input=$(cat)
-      msg=$(printf '%s' "$input" | jq -r '.message // "Task complete"' 2>/dev/null || echo "Task complete")
-      title="Claude Code"
-
-      if [[ "$(uname)" == "Darwin" ]]; then
-        osascript -e "display notification \"$msg\" with title \"$title\""
-      elif command -v notify-send &>/dev/null; then
-        notify-send "$title" "$msg"
-      fi
-    '';
   in {
     # ccstatusline package + declarative settings.json (programs.ccstatusline
     # module). Claude Code's statusLine below points at this package.
@@ -137,7 +114,10 @@
       configDir = "${config.xdg.configHome}/claude";
 
       # Hook script written to ${configDir}/hooks/notify.sh by the HM module.
-      hooks."notify.sh" = notifyScript;
+      hooks."notify.sh" = aiShared.notifyScript {
+        title = "Claude Code";
+        defaultMsg = "Task complete";
+      };
 
       # Shared skills bundle — written via xdg.configFile because the HM
       # module's `skills` option rejects store derivations (reads drv
@@ -240,7 +220,7 @@
         };
       };
 
-      context = builtins.readFile ./ai-shared/context.md;
+      context = builtins.readFile aiShared.sharedContext;
 
       marketplaces = {
         claude-plugins-official = pkgs-unstable.fetchFromGitHub {
@@ -259,7 +239,7 @@
     };
     # Shared skills bundle written to ${configDir}/skills via xdg.configFile
     # (the HM module's `skills` option rejects store derivations).
-    xdg.configFile."claude/skills".source = combinedSkillsBundle;
+    xdg.configFile."claude/skills".source = aiShared.combinedSkillsBundle;
 
     home.activation.installBetterSqlite3 = lib.hm.dag.entryAfter ["writeBoundary"] ''
       export PATH="${pkgs-unstable.nodejs}/bin:$PATH"
@@ -277,116 +257,40 @@
     programs.fish.shellInit = ''
       set -x NODE_PATH $HOME/.local/share/claude-node-modules/node_modules $NODE_PATH
 
-      # Shared helper: copy common config files into a worktree
-      function __worktree_copy_files
-        set path $argv[1]
-        set files ".env" ".claude/settings.local.json" "./claude/claude.md"
-        for file in $files
-          if test -f $file
-            mkdir -p $path/(dirname $file)
-            cp $file $path/$file
-          end
-        end
-      end
-
-      # Shared helper: announce and launch an AI tool inside a worktree
-      function __worktree_launch
-        set path $argv[1]
-        set tool $argv[2]
-        set branch $argv[3]
-        echo "Worktree for branch $branch created at $path"
-        echo "Starting $tool in $path..."
-        cd $path
-        $tool
-      end
-
       # Create a new branch worktree and open it in claude-code
       function claw
-        if test (count $argv) -ne 1
-          echo "Usage: claw <branch> <?base>"
+        if test (count $argv) -lt 1
+          echo "Usage: claw <branch> [base]"
           return 1
         end
-        set branch $argv[1]
-
-        set base ""
-        if test (count $arbv) -eq 2
-          set base $argv[2]
-        else
-          set base "main"
-        end
-
-        if git rev-parse --verify $base > /dev/null 2>&1
-          echo "Using base branch $base"
-        else
-          echo "Base branch $base does not exist. Please choose an existing branch or omit the base to use main."
-          return 1
-        end
-
-        set path "./.worktrees/$branch"
-        if git rev-parse --verify $branch > /dev/null 2>&1
-          echo "Branch $branch already exists. Please choose a different name."
-          return 1
-        else
-          git worktree add -b $branch $path $base
-        end
-        __worktree_copy_files $path
-        __worktree_launch $path claude $branch
+        __worktree_create_new claude ".env .claude/settings.local.json ./claude/claude.md" $argv
       end
 
-      # Checkout an existing branch into a worktree and open it in claude-code
+      # Check out an existing branch into a worktree and open it in claude-code
       function clawe
         if test (count $argv) -ne 1
           echo "Usage: clawe <existing-branch>"
           return 1
         end
-        set branch $argv[1]
-        set basepath "./.worktrees"
-        set path "$basepath/$branch"
-        mkdir -p $basepath
-        if not git rev-parse --verify $branch > /dev/null 2>&1
-          echo "Branch $branch does not exist. Please choose an existing branch."
-          return 1
-        end
-        git worktree add --checkout $path $branch
-        __worktree_copy_files $path
-        __worktree_launch $path claude $branch
+        __worktree_checkout claude ".env .claude/settings.local.json ./claude/claude.md" $argv[1]
       end
 
       # Create a new branch worktree and open it in opencode
       function oclaw
-        if test (count $argv) -ne 1
-          echo "Usage: oclaw <branch>"
+        if test (count $argv) -lt 1
+          echo "Usage: oclaw <branch> [base]"
           return 1
         end
-        set branch $argv[1]
-        set path "./.worktrees/$branch"
-        if git rev-parse --verify $branch > /dev/null 2>&1
-          echo "Branch $branch already exists. Please choose a different name."
-          git worktree add $path $branch
-        else
-          git worktree add -b $branch $path main
-        end
-        __worktree_copy_files $path
-        __worktree_launch $path opencode $branch
+        __worktree_create_new opencode ".env .claude/settings.local.json" $argv
       end
 
-      # Checkout an existing branch into a worktree and open it in opencode
+      # Check out an existing branch into a worktree and open it in opencode
       function oclawe
         if test (count $argv) -ne 1
           echo "Usage: oclawe <existing-branch>"
           return 1
         end
-        set branch $argv[1]
-        set basepath "./.claude/worktrees"
-        set path "$basepath/$branch"
-        mkdir -p $basepath
-        if not git rev-parse --verify $branch > /dev/null 2>&1
-          echo "Branch $branch does not exist. Please choose an existing branch."
-          return 1
-        end
-        git worktree add --checkout $path $branch
-        __worktree_copy_files $path
-        __worktree_launch $path opencode $branch
+        __worktree_checkout opencode ".env .claude/settings.local.json" $argv[1]
       end
     '';
 

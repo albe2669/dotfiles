@@ -35,6 +35,7 @@
     self.modules.combined.wakatime
     self.modules.combined.k8
     self.modules.combined.azure-cli
+    self.modules.combined.worktree
     self.modules.combined.claude
     self.modules.combined.wtf
     self.modules.combined.jetbrains

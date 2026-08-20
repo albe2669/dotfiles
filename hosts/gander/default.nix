@@ -22,6 +22,7 @@ in {
     # Home-only features
     self.modules.combined.home
     self.modules.combined.azure-cli
+    self.modules.combined.worktree
     self.modules.combined.claude
     self.modules.combined.dunst
     self.modules.combined.fish

@@ -37,6 +37,7 @@
     self.modules.combined.wakatime
     self.modules.combined.k8
     self.modules.combined.azure-cli
+    self.modules.combined.worktree
     self.modules.combined.claude
     self.modules.combined.ccusage
     self.modules.combined."1password"
