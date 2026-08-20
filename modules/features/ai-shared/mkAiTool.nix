@@ -1,7 +1,7 @@
 lib: pkgs: {
   combinedSkillsBundle = import ./bundles/default.nix {
     inherit pkgs;
-    mkSkillsBundle = import ../../lib/skills-bundle.nix lib pkgs;
+    mkSkillsBundle = import ../../../lib/skills-bundle.nix lib pkgs;
   };
 
   sharedContext = ./context.md;
