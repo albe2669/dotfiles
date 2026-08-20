@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.omp = {
     inputs,
     lib,
@@ -7,6 +7,8 @@
     config,
     ...
   }: let
+    helpers = import ../../../lib/helpers.nix;
+    aiShared = import ../ai-shared/mkAiTool.nix lib pkgs-unstable;
     apiKeyEnvName = "CORTI_API_KEY";
 
     pkg = inputs.llm-agents.packages.${system}.omp.overrideAttrs (oldAttrs: {
@@ -18,31 +20,10 @@
       '';
     });
 
-    # Shared context — same source as Claude Code's context field.
-    # Mounted as ~/.omp/agent/APPEND_SYSTEM.md so it is appended after
-    # omp's built-in system prompt (skills, tool inventory, etc. are preserved).
-    sharedContext = ../ai-shared/context.md;
-
-    # Combined skills bundle.
-    mkSkillsBundle = import ../../../lib/skills-bundle.nix lib pkgs-unstable;
-    combinedSkillsBundle = import ../ai-shared/bundles/default.nix {
-      pkgs = pkgs-unstable;
-      inherit mkSkillsBundle;
-    };
-
-    notifyScript = ''
-      #!/usr/bin/env bash
-      if [[ "$(uname)" == "Darwin" ]]; then
-        osascript -e "display notification \"Agent stopped\" with title \"omp\""
-      elif command -v notify-send &>/dev/null; then
-        notify-send "omp" "Agent stopped"
-      fi
-    '';
-
     modelsData = import ../ai-shared/models.nix;
 
     # Format the shared model definitions as YAML list items for the sops
-    # template.  Each entry is indented 6 spaces to sit under `models:`
+    # template. Each entry is indented 6 spaces to sit under `models:`
     # (4 spaces) in the rendered file.
     modelsYaml =
       lib.concatMapStrings (
@@ -73,16 +54,12 @@
 
     # Main config
     xdg.configFile."omp/agent/config.yml" = {
-      source =
-        config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}"
-        + "/modules/features/omp/config.yml";
+      source = helpers.mkDotfilesSymlink config "features/omp/config.yml";
     };
 
     # MCP servers — out-of-store symlink like config.yml so edits are live.
     xdg.configFile."omp/agent/mcp.json" = {
-      source =
-        config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}"
-        + "/modules/features/omp/mcp.json";
+      source = helpers.mkDotfilesSymlink config "features/omp/mcp.json";
     };
 
     sops.templates."models.yaml" = {
@@ -100,13 +77,13 @@
     };
 
     # Skills
-    xdg.configFile."omp/agent/skills".source = combinedSkillsBundle;
+    xdg.configFile."omp/agent/skills".source = aiShared.combinedSkillsBundle;
 
     # Shared context appended to omp's built-in system prompt.
     # Using APPEND rather than SYSTEM preserves omp's tool inventory and skill blocks.
     xdg.configFile."omp/agent/APPEND_SYSTEM.md" = {
       text =
-        (builtins.readFile sharedContext)
+        (builtins.readFile aiShared.sharedContext)
         + ''
 
           @${config.xdg.configHome}/omp/agent/skills/ponytail/SKILL.md
@@ -116,7 +93,7 @@
     # Notification hook script (invoked manually or by extensions)
     xdg.configFile."omp/hooks/notify.sh" = {
       executable = true;
-      text = notifyScript;
+      text = aiShared.notifyScript {title = "omp";};
     };
 
     programs.fish.shellInit = ''
@@ -124,69 +101,23 @@
       # and `ccusage pi daily` pick them up automatically.
       set -x PI_AGENT_DIR $XDG_CONFIG_HOME/omp/agent/sessions
 
-        # Create a new branch worktree and open it in omp
-        function ompw
-          if test (count $argv) -lt 1
-            echo "Usage: ompw <branch> [base]"
-            return 1
-          end
-          set branch $argv[1]
-          set base "main"
-          if test (count $argv) -ge 2
-            set base $argv[2]
-          end
-
-          if not git rev-parse --verify $base > /dev/null 2>&1
-            echo "Base branch $base does not exist."
-            return 1
-          end
-
-          set path "./.worktrees/$branch"
-          if git rev-parse --verify $branch > /dev/null 2>&1
-            echo "Branch $branch already exists. Please choose a different name."
-            return 1
-          end
-          git worktree add -b $branch $path $base
-          for file in ".env" ".claude/settings.local.json"
-            if test -f $file
-              mkdir -p $path/(dirname $file)
-              cp $file $path/$file
-            end
-          end
-          echo "Worktree for branch $branch created at $path"
-          echo "Starting omp in $path..."
-          cd $path && omp
+      # Create a new branch worktree and open it in omp
+      function ompw
+        if test (count $argv) -lt 1
+          echo "Usage: ompw <branch> [base]"
+          return 1
         end
+        __worktree_create_new omp ".env .claude/settings.local.json" $argv
+      end
 
-        # Check out an existing branch into a worktree and open it in omp
-        function ompwe
-          if test (count $argv) -ne 1
-            echo "Usage: ompwe <existing-branch>"
-            return 1
-          end
-          set branch $argv[1]
-          set basepath "./.worktrees"
-          set path "$basepath/$branch"
-          mkdir -p $basepath
-          if not git rev-parse --verify $branch > /dev/null 2>&1
-            echo "Branch $branch does not exist. Please choose an existing branch."
-            return 1
-          end
-          git worktree add --checkout $path $branch
-          for file in ".env" ".claude/settings.local.json"
-            if test -f $file
-              mkdir -p $path/(dirname $file)
-              cp $file $path/$file
-            end
-          end
-          echo "Worktree for branch $branch created at $path"
-          echo "Starting omp in $path..."
-          cd $path && omp
+      # Check out an existing branch into a worktree and open it in omp
+      function ompwe
+        if test (count $argv) -ne 1
+          echo "Usage: ompwe <existing-branch>"
+          return 1
         end
+        __worktree_checkout omp ".env .claude/settings.local.json" $argv[1]
+      end
     '';
-  };
-
-  flake.modules.combined.omp = _: {
-    hm.imports = [config.flake.modules.homeManager.omp];
   };
 }
