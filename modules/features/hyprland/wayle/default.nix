@@ -5,6 +5,7 @@
 }: let
   inherit (config.stylix) fonts;
   inherit (config.opts.theme) colors;
+  helpers = import ../../../../lib/helpers.nix;
 
   # Copy base from the runtime.toml file
   base = import ./base.nix;
@@ -41,8 +42,6 @@ in {
   };
 
   xdg.configFile."wayle/styles/index.scss" = {
-    source =
-      config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}"
-      + "/modules/features/hyprland/wayle/index.scss";
+    source = helpers.mkDotfilesSymlink config "features/hyprland/wayle/index.scss";
   };
 }
