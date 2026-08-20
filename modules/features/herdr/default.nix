@@ -134,6 +134,15 @@
             width = "80%";
             height = "80%";
           }
+          # Yazi file manager in a session-modal popup.
+          {
+            key = "prefix+shift+e";
+            type = "popup";
+            command = "yazi";
+            description = "run yazi";
+            width = "80%";
+            height = "80%";
+          }
           {
             # Break the focused pane into a new tab (tmux break-pane).
             key = "prefix+!";
