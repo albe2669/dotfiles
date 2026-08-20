@@ -55,7 +55,7 @@ disabledProviders:
 setupVersion: 1
 hideThinkingBlock: false
 advisor: 
-  enabled: false
+  enabled: true
 python: 
   kernelMode: session
 inspect_image: 
