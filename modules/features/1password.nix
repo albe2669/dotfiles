@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos."1password" = {username, ...}: {
     programs._1password = {
       enable = true;
@@ -16,18 +16,6 @@
   flake.modules.darwin."1password" = _: {
     homebrew.casks = [
       "1password-cli"
-    ];
-  };
-
-  flake.modules.combined."1password" = {system, ...}: let
-    isDarwin = builtins.match ".*-darwin" system != null;
-  in {
-    imports = [
-      (
-        if isDarwin
-        then config.flake.modules.darwin."1password"
-        else config.flake.modules.nixos."1password"
-      )
     ];
   };
 }

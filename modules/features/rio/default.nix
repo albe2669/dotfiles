@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.rio = {
     config,
     pkgs-unstable,
@@ -152,8 +152,4 @@
         };
       };
     };
-
-  flake.modules.combined.rio = _: {
-    hm.imports = [config.flake.modules.homeManager.rio];
-  };
 }

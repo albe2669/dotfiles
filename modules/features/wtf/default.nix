@@ -1,11 +1,13 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.wtf = {
     pkgs-unstable,
     pkgs,
     config,
     lib,
     ...
-  }: {
+  }: let
+    helpers = import ../../../lib/helpers.nix;
+  in {
     home.packages = with pkgs-unstable; [
       wtfutil
     ];
@@ -15,11 +17,7 @@
     '';
 
     xdg.configFile.wtf = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/wtf/config";
+      source = helpers.mkDotfilesSymlink config "features/wtf/config";
     };
-  };
-
-  flake.modules.combined.wtf = _: {
-    hm.imports = [config.flake.modules.homeManager.wtf];
   };
 }

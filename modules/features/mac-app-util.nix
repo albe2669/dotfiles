@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   flake.modules.darwin.mac-app-util = _: let
     inherit (inputs) mac-app-util;
   in {
@@ -13,9 +9,5 @@
     hm.imports = [
       mac-app-util.homeManagerModules.default
     ];
-  };
-
-  flake.modules.combined.mac-app-util = {...}: {
-    imports = [config.flake.modules.darwin.mac-app-util];
   };
 }

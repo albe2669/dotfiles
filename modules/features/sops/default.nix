@@ -1,10 +1,4 @@
-{
-  inputs,
-  config,
-  ...
-}: let
-  flakeConfig = config;
-in {
+{inputs, ...}: {
   flake.modules.nixos.sops = {config, ...}: let
     username = config.opts.variables.username;
     inherit ((import ./args.nix {inherit config;})) sharedArgs;
@@ -72,18 +66,5 @@ in {
     ];
 
     sops = sharedArgs;
-  };
-
-  flake.modules.combined.sops = {system, ...}: let
-    isDarwin = builtins.match ".*-darwin" system != null;
-  in {
-    imports = [
-      (
-        if isDarwin
-        then flakeConfig.flake.modules.darwin.sops
-        else flakeConfig.flake.modules.nixos.sops
-      )
-    ];
-    hm.imports = [flakeConfig.flake.modules.homeManager.sops];
   };
 }

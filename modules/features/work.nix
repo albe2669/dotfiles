@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.work = {
     pkgs-unstable,
     pkgs,
@@ -31,9 +31,5 @@
         ];
       };
     };
-  };
-
-  flake.modules.combined.work = _: {
-    hm.imports = [config.flake.modules.homeManager.work];
   };
 }

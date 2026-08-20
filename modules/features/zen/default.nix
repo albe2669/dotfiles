@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.zen = {
     inputs,
     system,
@@ -692,9 +692,5 @@
         '';
       }
     );
-  };
-
-  flake.modules.combined.zen = _: {
-    hm.imports = [config.flake.modules.homeManager.zen];
   };
 }

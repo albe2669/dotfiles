@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.herdr = {
     inputs,
     lib,
@@ -158,11 +158,5 @@
         sidebar.spaces.row_gap = 1;
       };
     };
-  };
-
-  flake.modules.combined.herdr = _: {
-    hm.imports = [
-      config.flake.modules.homeManager.herdr
-    ];
   };
 }

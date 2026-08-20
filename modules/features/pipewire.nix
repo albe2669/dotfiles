@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.pipewire = {pkgs-unstable, ...}: {
     services.pipewire = {
       enable = true;
@@ -19,9 +19,5 @@
       pwvucontrol
       easyeffects
     ];
-  };
-
-  flake.modules.combined.pipewire = {...}: {
-    imports = [config.flake.modules.nixos.pipewire];
   };
 }

@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.xdg = {pkgs, ...}: {
     xdg = {
       portal = {
@@ -59,7 +59,4 @@
 
   # HM-only XDG setup. NixOS hosts that want the portal should import
   # flake.modules.nixos.xdg separately.
-  flake.modules.combined.xdg = _: {
-    hm.imports = [config.flake.modules.homeManager.xdg];
-  };
 }

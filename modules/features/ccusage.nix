@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.ccusage = {
     inputs,
     system,
@@ -39,11 +39,5 @@
           pricingOverrides = ccusagePricingOverrides;
         };
       };
-  };
-
-  flake.modules.combined.ccusage = _: {
-    hm.imports = [
-      config.flake.modules.homeManager.ccusage
-    ];
   };
 }

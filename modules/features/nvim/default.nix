@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.nvim = {
     pkgs,
     pkgs-unstable,
@@ -6,6 +6,7 @@
     config,
     ...
   }: let
+    helpers = import ../../../lib/helpers.nix;
     normalPackages = with pkgs; [
       curl
       virtualenv
@@ -33,11 +34,7 @@
       ];
 
     xdg.configFile.nvim = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/nvim/config";
+      source = helpers.mkDotfilesSymlink config "features/nvim/config";
     };
-  };
-
-  flake.modules.combined.nvim = _: {
-    hm.imports = [config.flake.modules.homeManager.nvim];
   };
 }

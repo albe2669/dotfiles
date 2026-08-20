@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.network = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       speedtest-cli
@@ -33,9 +33,5 @@
     #   fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
     #   dnsovertls = "true";
     # };
-  };
-
-  flake.modules.combined.network = {...}: {
-    imports = [config.flake.modules.nixos.network];
   };
 }

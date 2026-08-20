@@ -21,8 +21,4 @@ in {
       };
     };
   };
-
-  flake.modules.combined.bootloader-uefi = {...}: {
-    imports = [flakeConfig.flake.modules.nixos.bootloader-uefi];
-  };
 }

@@ -1,19 +1,17 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.opencode = {
     pkgs-unstable,
     config,
     ...
-  }: {
+  }: let
+    helpers = import ../../../lib/helpers.nix;
+  in {
     home.packages = with pkgs-unstable; [
       opencode
     ];
 
     xdg.configFile.opencode = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/opencode/config";
+      source = helpers.mkDotfilesSymlink config "features/opencode/config";
     };
-  };
-
-  flake.modules.combined.opencode = _: {
-    hm.imports = [config.flake.modules.homeManager.opencode];
   };
 }

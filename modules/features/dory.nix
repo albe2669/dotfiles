@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.darwin.dory = _: {
     homebrew = {
       # Non-official tap; Homebrew 6.0 refuses to load casks from untrusted
@@ -27,15 +27,5 @@
         }
       ];
     };
-  };
-
-  flake.modules.combined.dory = {
-    system,
-    lib,
-    ...
-  }: let
-    isDarwin = builtins.match ".*-darwin" system != null;
-  in {
-    imports = lib.optional isDarwin config.flake.modules.darwin.dory;
   };
 }

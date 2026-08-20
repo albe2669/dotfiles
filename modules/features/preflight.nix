@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.preflight = {
     inputs,
     config,
@@ -90,9 +90,5 @@
         };
       };
     };
-  };
-
-  flake.modules.combined.preflight = _: {
-    hm.imports = [config.flake.modules.homeManager.preflight];
   };
 }

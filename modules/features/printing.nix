@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.printing = {pkgs, ...}: {
     services.avahi = {
       enable = false;
@@ -14,9 +14,5 @@
       ];
       openFirewall = false;
     };
-  };
-
-  flake.modules.combined.printing = {...}: {
-    imports = [config.flake.modules.nixos.printing];
   };
 }

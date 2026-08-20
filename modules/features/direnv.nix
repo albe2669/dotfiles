@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.direnv = {pkgs, ...}: {
     programs = {
       direnv = {
@@ -13,9 +13,5 @@
       #   '';
       # };
     };
-  };
-
-  flake.modules.combined.direnv = _: {
-    hm.imports = [config.flake.modules.homeManager.direnv];
   };
 }

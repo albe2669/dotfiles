@@ -49,6 +49,7 @@ in {
     lib,
     ...
   }: let
+    helpers = import ../../../lib/helpers.nix;
     inherit (config.opts.theme) colors;
     # Hyprland wants bare RRGGBB(AA) inside rgba()/rgb(), no leading '#'.
     hex = c: lib.removePrefix "#" c;
@@ -60,9 +61,7 @@ in {
     # ~/.config/hypr so they can be edited without a rebuild. Only the
     # theme module is generated, from config.opts.theme.colors.
     luaConfig = name: {
-      source =
-        config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}"
-        + "/modules/features/hyprland/config/${name}.lua";
+      source = helpers.mkDotfilesSymlink config "features/hyprland/config/${name}.lua";
     };
 
     themeLua = ''
@@ -132,10 +131,5 @@ in {
         };
       };
     };
-  };
-
-  flake.modules.combined.hyprland = {...}: {
-    imports = [flakeConfig.flake.modules.nixos.hyprland];
-    hm.imports = [flakeConfig.flake.modules.homeManager.hyprland];
   };
 }

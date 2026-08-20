@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.kitty = {
     config,
     lib,
@@ -63,9 +63,5 @@
         "cmd+shift+v" = "paste_from_clipboard";
       };
     };
-  };
-
-  flake.modules.combined.kitty = _: {
-    hm.imports = [config.flake.modules.homeManager.kitty];
   };
 }

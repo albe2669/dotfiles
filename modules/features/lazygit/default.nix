@@ -1,20 +1,18 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.lazygit = {
     pkgs,
     config,
     ...
-  }: {
+  }: let
+    helpers = import ../../../lib/helpers.nix;
+  in {
     home.packages = with pkgs; [
       lazygit
       # commitizen
     ];
 
     xdg.configFile.lazygit = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/lazygit/config";
+      source = helpers.mkDotfilesSymlink config "features/lazygit/config";
     };
-  };
-
-  flake.modules.combined.lazygit = _: {
-    hm.imports = [config.flake.modules.homeManager.lazygit];
   };
 }

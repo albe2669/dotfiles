@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.touchpad = _: {
     services.libinput = {
       enable = true;
@@ -8,9 +8,5 @@
         disableWhileTyping = true;
       };
     };
-  };
-
-  flake.modules.combined.touchpad = {...}: {
-    imports = [config.flake.modules.nixos.touchpad];
   };
 }

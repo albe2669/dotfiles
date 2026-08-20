@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.rtk = {pkgs-unstable, ...}: {
     home.packages = with pkgs-unstable; [rtk];
 
@@ -22,9 +22,5 @@
         enabled = false
       '';
     };
-  };
-
-  flake.modules.combined.rtk = _: {
-    hm.imports = [config.flake.modules.homeManager.rtk];
   };
 }

@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.security = _: {
     security = {
       polkit.enable = true;
@@ -8,9 +8,5 @@
     };
 
     services.gnome.gnome-keyring.enable = true;
-  };
-
-  flake.modules.combined.security = {...}: {
-    imports = [config.flake.modules.nixos.security];
   };
 }

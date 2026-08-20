@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.dynamic-libs = {pkgs, ...}: {
     programs.nix-ld.enable = true;
     programs.nix-ld.libraries = with pkgs; [
@@ -115,9 +115,5 @@
       xz
       zlib
     ];
-  };
-
-  flake.modules.combined.dynamic-libs = {...}: {
-    imports = [config.flake.modules.nixos.dynamic-libs];
   };
 }

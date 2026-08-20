@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.ags = {
     config,
     inputs,
@@ -42,8 +42,4 @@
         inputs.astal.packages.${system}.notifd
       ];
     };
-
-  flake.modules.combined.ags = _: {
-    hm.imports = [config.flake.modules.homeManager.ags];
-  };
 }

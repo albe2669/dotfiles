@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.nvidia-prime = _: {
     hardware.nvidia.prime = {
       offload = {
@@ -6,9 +6,5 @@
         enableOffloadCmd = true;
       };
     };
-  };
-
-  flake.modules.combined.nvidia-prime = {...}: {
-    imports = [config.flake.modules.nixos.nvidia-prime];
   };
 }

@@ -1,21 +1,19 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.kittykat = {
     self,
     system,
     config,
     ...
-  }: {
+  }: let
+    helpers = import ../../../lib/helpers.nix;
+  in {
     home.packages = [
       self.packages.${system}.kittykat
     ];
 
     # Must be installed manually
     xdg.configFile.kittykat = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/kittykat/config";
+      source = helpers.mkDotfilesSymlink config "features/kittykat/config";
     };
-  };
-
-  flake.modules.combined.kittykat = _: {
-    hm.imports = [config.flake.modules.homeManager.kittykat];
   };
 }

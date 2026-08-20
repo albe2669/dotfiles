@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.php = {pkgs, ...}: {
     home.packages = let
       myPhp = pkgs.php83.buildEnv {
@@ -21,9 +21,5 @@
       myPhp
       pkgs.php83Packages.composer
     ];
-  };
-
-  flake.modules.combined.php = _: {
-    hm.imports = [config.flake.modules.homeManager.php];
   };
 }

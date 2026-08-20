@@ -1,11 +1,9 @@
-{config, ...}: {
-  flake.modules.homeManager.wallpapers = {config, ...}: {
+_: {
+  flake.modules.homeManager.wallpapers = {config, ...}: let
+    helpers = import ../../../lib/helpers.nix;
+  in {
     xdg.configFile.wallpapers = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/wallpapers/images";
+      source = helpers.mkDotfilesSymlink config "features/wallpapers/images";
     };
-  };
-
-  flake.modules.combined.wallpapers = _: {
-    hm.imports = [config.flake.modules.homeManager.wallpapers];
   };
 }

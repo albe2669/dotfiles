@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.fish = {pkgs, ...}: {
     programs.fish = {
       enable = true;
@@ -90,9 +90,5 @@
       source = ./config;
       recursive = true;
     };
-  };
-
-  flake.modules.combined.fish = _: {
-    hm.imports = [config.flake.modules.homeManager.fish];
   };
 }

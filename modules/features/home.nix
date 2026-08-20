@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.home = {
     config,
     lib,
@@ -20,9 +20,5 @@
       enable = true;
       enableFishIntegration = true;
     };
-  };
-
-  flake.modules.combined.home = _: {
-    hm.imports = [config.flake.modules.homeManager.home];
   };
 }

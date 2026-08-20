@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.gcloud = {pkgs, ...}: let
     gdk = pkgs.google-cloud-sdk.withExtraComponents (with pkgs.google-cloud-sdk.components; [
       gke-gcloud-auth-plugin
@@ -7,9 +7,5 @@
     home.packages = [
       gdk
     ];
-  };
-
-  flake.modules.combined.gcloud = _: {
-    hm.imports = [config.flake.modules.homeManager.gcloud];
   };
 }

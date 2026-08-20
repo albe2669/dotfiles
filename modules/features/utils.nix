@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.utils = {pkgs, ...}: {
     home.packages = with pkgs; [
       # Tools
@@ -24,9 +24,5 @@
       bottom
       procs
     ];
-  };
-
-  flake.modules.combined.utils = _: {
-    hm.imports = [config.flake.modules.homeManager.utils];
   };
 }

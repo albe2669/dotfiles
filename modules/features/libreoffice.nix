@@ -1,11 +1,7 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.libreoffice = {pkgs, ...}: {
     home.packages = with pkgs; [
       libreoffice-qt
     ];
-  };
-
-  flake.modules.combined.libreoffice = _: {
-    hm.imports = [config.flake.modules.homeManager.libreoffice];
   };
 }

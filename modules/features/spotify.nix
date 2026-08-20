@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.spotify = {
     inputs,
     system,
@@ -39,9 +39,5 @@
         ncsVisualizer
       ];
     };
-  };
-
-  flake.modules.combined.spotify = _: {
-    hm.imports = [config.flake.modules.homeManager.spotify];
   };
 }

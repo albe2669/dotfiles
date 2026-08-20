@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.wakatime = {
     pkgs,
     config,
@@ -26,9 +26,5 @@
         );
     };
     xdg.configFile."wakatime/.wakatime.cfg".force = true;
-  };
-
-  flake.modules.combined.wakatime = _: {
-    hm.imports = [config.flake.modules.homeManager.wakatime];
   };
 }

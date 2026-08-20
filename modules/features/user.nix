@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.darwin.user = {config, ...}:
     with config.opts; let
       inherit (variables) username;
@@ -15,8 +15,4 @@
 
       system.primaryUser = username;
     };
-
-  flake.modules.combined.user = {...}: {
-    imports = [config.flake.modules.darwin.user];
-  };
 }

@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.qemu = {
     username,
     pkgs,
@@ -29,9 +29,5 @@
       spiceUSBRedirection.enable = true;
     };
     services.spice-vdagentd.enable = true;
-  };
-
-  flake.modules.combined.qemu = {...}: {
-    imports = [config.flake.modules.nixos.qemu];
   };
 }

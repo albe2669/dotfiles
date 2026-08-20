@@ -1,4 +1,4 @@
-{config, ...}: let
+_: let
   fontPackages = {pkgs}: {
     packages = with pkgs; [
       noto-fonts
@@ -45,10 +45,5 @@ in {
       enable = true;
       inherit (fontConfig) defaultFonts;
     };
-  };
-
-  flake.modules.combined.fonts = {...}: {
-    imports = [config.flake.modules.nixos.fonts];
-    hm.imports = [config.flake.modules.homeManager.fonts];
   };
 }

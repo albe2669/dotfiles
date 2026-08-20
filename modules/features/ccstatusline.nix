@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.ccstatusline = {
     self,
     system,
@@ -104,9 +104,5 @@
       xdg.configFile."ccstatusline/settings.json".source =
         jsonFormat.generate "ccstatusline-settings.json" cfg.settings;
     };
-  };
-
-  flake.modules.combined.ccstatusline = _: {
-    hm.imports = [config.flake.modules.homeManager.ccstatusline];
   };
 }

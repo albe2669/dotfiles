@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.vscode = {pkgs-unstable, ...}: {
     programs.vscode = {
       enable = true;
@@ -15,9 +15,5 @@
         ms-azuretools.vscode-docker
       ];
     };
-  };
-
-  flake.modules.combined.vscode = _: {
-    hm.imports = [config.flake.modules.homeManager.vscode];
   };
 }

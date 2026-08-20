@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.sddm = {...}: {
     imports = [
       ./theme.nix
@@ -20,9 +20,5 @@
         };
       };
     };
-  };
-
-  flake.modules.combined.sddm = {...}: {
-    imports = [config.flake.modules.nixos.sddm];
   };
 }

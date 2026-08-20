@@ -17,9 +17,4 @@ in {
       google-chrome
     ];
   };
-
-  flake.modules.combined.programs = {...}: {
-    imports = [config.flake.modules.nixos.programs];
-    hm.imports = [config.flake.modules.homeManager.programs];
-  };
 }

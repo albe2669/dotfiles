@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.python3 = {pkgs-unstable, ...}: let
     python-packages = ps:
       with ps; [
@@ -37,9 +37,5 @@
 
       ((python3.withPackages python-packages).override (_args: {ignoreCollisions = true;}))
     ];
-  };
-
-  flake.modules.combined.python3 = _: {
-    hm.imports = [config.flake.modules.homeManager.python3];
   };
 }

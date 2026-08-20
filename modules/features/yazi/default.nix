@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.yazi = {
     pkgs-unstable,
     config,
@@ -86,9 +86,5 @@
         };
       };
     };
-  };
-
-  flake.modules.combined.yazi = _: {
-    hm.imports = [config.flake.modules.homeManager.yazi];
   };
 }

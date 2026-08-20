@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.darwin.homebrew = {lib, ...}: {
     homebrew = {
       enable = lib.mkDefault true;
@@ -8,9 +8,5 @@
         extraFlags = ["--force-cleanup"];
       };
     };
-  };
-
-  flake.modules.combined.homebrew = {...}: {
-    imports = [config.flake.modules.darwin.homebrew];
   };
 }

@@ -1,19 +1,17 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.lazydocker = {
     pkgs,
     config,
     ...
-  }: {
+  }: let
+    helpers = import ../../../lib/helpers.nix;
+  in {
     home.packages = with pkgs; [
       lazydocker
     ];
 
     xdg.configFile.lazydocker = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/lazydocker/config";
+      source = helpers.mkDotfilesSymlink config "features/lazydocker/config";
     };
-  };
-
-  flake.modules.combined.lazydocker = _: {
-    hm.imports = [config.flake.modules.homeManager.lazydocker];
   };
 }

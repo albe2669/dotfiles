@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.satty = {
     pkgs-unstable,
     config,
@@ -15,9 +15,5 @@
         save-after-copy = true;
       };
     };
-  };
-
-  flake.modules.combined.satty = _: {
-    hm.imports = [config.flake.modules.homeManager.satty];
   };
 }

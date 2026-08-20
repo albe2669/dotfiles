@@ -1,19 +1,12 @@
-{config, ...}: {
-  flake.modules.homeManager.dunst = {
-    pkgs,
-    config,
-    ...
-  }: {
-    home.packages = with pkgs; [
-      # dunst
+_: {
+  flake.modules.homeManager.dunst = {config, ...}: let
+    helpers = import ../../../lib/helpers.nix;
+  in {
+    home.packages = [
     ];
 
     xdg.configFile.dunst = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/dunst/config";
+      source = helpers.mkDotfilesSymlink config "features/dunst/config";
     };
-  };
-
-  flake.modules.combined.dunst = _: {
-    hm.imports = [config.flake.modules.homeManager.dunst];
   };
 }

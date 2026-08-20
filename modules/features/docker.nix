@@ -1,6 +1,4 @@
-{config, ...}: let
-  flakeConfig = config;
-in {
+_: {
   flake.modules.nixos.docker = {pkgs, ...}: {
     environment.systemPackages = [pkgs.docker-compose];
 
@@ -23,18 +21,6 @@ in {
       docker-compose
       docker
       docker-credential-helpers
-    ];
-  };
-
-  flake.modules.combined.docker = {system, ...}: let
-    isDarwin = builtins.match ".*-darwin" system != null;
-  in {
-    imports = [
-      (
-        if isDarwin
-        then flakeConfig.flake.modules.darwin.docker
-        else flakeConfig.flake.modules.nixos.docker
-      )
     ];
   };
 }

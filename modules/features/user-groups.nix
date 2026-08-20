@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.user-groups = {config, ...}:
     with config.opts; let
       inherit (variables) username;
@@ -42,8 +42,4 @@
         }
       ];
     };
-
-  flake.modules.combined.user-groups = {...}: {
-    imports = [config.flake.modules.nixos.user-groups];
-  };
 }

@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.git-widget = {
     inputs,
     config,
@@ -77,9 +77,5 @@
         }
       ];
     };
-  };
-
-  flake.modules.combined.git-widget = _: {
-    hm.imports = [config.flake.modules.homeManager.git-widget];
   };
 }

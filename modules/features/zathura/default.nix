@@ -1,20 +1,18 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.zathura = {
     pkgs,
     lib,
     config,
     ...
-  }: {
+  }: let
+    helpers = import ../../../lib/helpers.nix;
+  in {
     home.packages = lib.mkIf pkgs.stdenv.isLinux (with pkgs; [
       zathura
     ]);
 
     xdg.configFile.zathura = lib.mkIf pkgs.stdenv.isLinux {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.opts.variables.dotfilesLocation}" + "/modules/features/zathura/config";
+      source = helpers.mkDotfilesSymlink config "features/zathura/config";
     };
-  };
-
-  flake.modules.combined.zathura = _: {
-    hm.imports = [config.flake.modules.homeManager.zathura];
   };
 }

@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.langs = {
     pkgs,
     pkgs-unstable,
@@ -63,9 +63,5 @@
 
       GOROOT = "${go_pkg}/share/go";
     };
-  };
-
-  flake.modules.combined.langs = _: {
-    hm.imports = [config.flake.modules.homeManager.langs];
   };
 }

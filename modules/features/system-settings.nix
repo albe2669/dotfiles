@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.darwin.system-settings = _: {
     system.defaults = {
       dock = {
@@ -83,9 +83,5 @@
         }
       ];
     };
-  };
-
-  flake.modules.combined.system-settings = {...}: {
-    imports = [config.flake.modules.darwin.system-settings];
   };
 }

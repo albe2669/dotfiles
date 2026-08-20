@@ -1,5 +1,5 @@
 # SOURCE: https://nixos.wiki/wiki/Nvidia
-{config, ...}: {
+_: {
   flake.modules.nixos.nvidia = {config, ...}: {
     # Enable OpenGL
     hardware.graphics = {
@@ -40,9 +40,5 @@
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
-  };
-
-  flake.modules.combined.nvidia = {...}: {
-    imports = [config.flake.modules.nixos.nvidia];
   };
 }

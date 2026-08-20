@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.nixos.hidpi = {
     config,
     lib,
@@ -17,10 +17,5 @@
     ];
 
     programs.kitty.font.size = lib.mkIf config.opts.variables.isHidpi (lib.mkForce 13);
-  };
-
-  flake.modules.combined.hidpi = {...}: {
-    imports = [config.flake.modules.nixos.hidpi];
-    hm.imports = [config.flake.modules.homeManager.hidpi];
   };
 }

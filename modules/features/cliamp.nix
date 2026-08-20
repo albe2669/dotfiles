@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.cliamp = {
     pkgs-unstable,
     config,
@@ -25,9 +25,5 @@
         client_id = "\$\{${apiKeyEnvName}\}";
       };
     };
-  };
-
-  flake.modules.combined.cliamp = _: {
-    hm.imports = [config.flake.modules.homeManager.cliamp];
   };
 }

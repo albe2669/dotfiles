@@ -1,4 +1,4 @@
-{config, ...}: {
+_: {
   flake.modules.homeManager.git = {
     pkgs,
     config,
@@ -61,9 +61,5 @@
         enable = true;
       };
     };
-  };
-
-  flake.modules.combined.git = _: {
-    hm.imports = [config.flake.modules.homeManager.git];
   };
 }
