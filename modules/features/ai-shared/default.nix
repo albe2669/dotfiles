@@ -11,8 +11,6 @@
   };
 
   flake.modules.combined.ai = _: {
-    hm.imports = [
-      config.flake.modules.homeManager.ai
-    ];
+    hm.imports = [config.flake.modules.homeManager.ai];
   };
 }
