@@ -304,9 +304,6 @@
   };
 
   flake.modules.combined.claude = _: {
-    hm.imports = [
-      config.flake.modules.homeManager.claude
-      config.flake.modules.homeManager.ccstatusline
-    ];
+    hm.imports = [config.flake.modules.homeManager.ccstatusline];
   };
 }
