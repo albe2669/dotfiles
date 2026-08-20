@@ -68,21 +68,6 @@
         fish_add_path $XDG_DATA_HOME/cargo/bin
         fish_add_path $BUN_INSTALL/bin
 
-        fish_add_path $HOME/Documents/Installs/bin
-        fish_add_path $HOME/Documents/Installs/nvim
-        fish_add_path $HOME/Documents/Installs/lazygit
-        fish_add_path $HOME/Documents/Installs/kubectl
-        fish_add_path $HOME/Documents/Installs/kustomize
-        fish_add_path $HOME/Documents/Installs/kind
-        fish_add_path $HOME/Documents/Installs/dagger
-        fish_add_path $HOME/Documents/Installs/rust_analyzer
-        fish_add_path $HOME/Documents/Installs/zotero
-        fish_add_path $HOME/Documents/Installs/google-cloud-sdk/bin
-        fish_add_path $HOME/Documents/Installs/lsp/lua/bin
-
-        fish_add_path $HOME/Documents/Installs/zotero
-
-
         # The next line updates PATH for the Google Cloud SDK.
         if [ -f '/home/goose/Downloads/gcloud/google-cloud-sdk/path.fish.inc' ]; . '/home/goose/Downloads/gcloud/google-cloud-sdk/path.fish.inc'; end
 
