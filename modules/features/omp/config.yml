@@ -53,9 +53,9 @@ providers:
 disabledProviders: 
   - github
 setupVersion: 1
-hideThinkingBlock: false
+hideThinkingBlock: true
 advisor: 
-  enabled: true
+  enabled: false
 python: 
   kernelMode: session
 inspect_image: 

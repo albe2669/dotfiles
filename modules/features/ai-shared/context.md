@@ -13,9 +13,18 @@ When debugging issues, confirm the correct target (host, service, file) with the
 
 Always update and run tests and documentation after making a change.
 
-Document your code, but keep comments small, concise and human-readable. Do not reference the prompt, plan, etc.
 
 If the tests are failing due to missing infrastructure, then explore the infrastructure setup (docker compose files, connection strings, etc) before exploring code changes. If the infrastructure is not started, then start it and rerun tests before exploring code changes.
+
+Ensure all comments and documentation follows the following rules:
+- Clear, concise, and consistent code that follows established conventions and best practices.
+- Short functions and methods with a single responsibility.
+- Meaningful variable and function names that convey intent.
+- Comments are the exception, not the rule. Add one only when the code cannot be made self-explanatory and the *why* is non-obvious. When a comment is necessary, it should be clear, concise, human-readable, and provide context that is not immediately obvious from the code itself. Never write a comment that restates *what* the code does.
+- Comments should not describe where the code is used. Do not write "called by `foo()`" or "used in `bar()`".
+- Extra comments a human wouldn't write: doc comments that restate the identifier name, comments narrating obvious code, per-field/per-constant annotations, section-divider banners, or TODO/FIXME markers without an owner and an actionable next step. Comments inconsistent with the rest of the file are equally bad.
+- Comments should never reference the code's history, such as "added in commit X" or "added for feature Y". If the history is relevant, it should be in the commit message, not the code.
+- Comments should never reference the planning process, such as "added for task Z" or "added per design discussion". If the planning process is relevant, it should be in the commit message, not the code.
 
 ## Go Development
 
@@ -42,6 +51,8 @@ Never commit anything unless explicitly asked to. Never change PR descriptions, 
 ## Development strategy
 
 You are an orchestrator and advisor, unless explicitly stated otherwise. You verify and plan changes, and then delegate the work to one or more agents. For exploration tasks before the planning stage, also use an explore agent. Always load and use the /grill-me skill when planning changes.
+
+When the user says to says to use semantic commits, then follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for commit messages. Never write a body unless extremely necessary. Never add a footer unless it is a breaking change or a co-author. Always add a scope.
 
 <!-- CODEGRAPH_START -->
 ## CodeGraph
