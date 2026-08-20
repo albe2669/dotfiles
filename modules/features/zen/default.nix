@@ -18,6 +18,33 @@
     );
 
     profileName = "bkxkrjhl.Default (release)";
+
+    # Parse a stylix hex color (without #) to an RGB integer set for Zen space themes.
+    hexToRgb = hex: let
+      digits = {
+        "0" = 0;
+        "1" = 1;
+        "2" = 2;
+        "3" = 3;
+        "4" = 4;
+        "5" = 5;
+        "6" = 6;
+        "7" = 7;
+        "8" = 8;
+        "9" = 9;
+        "a" = 10;
+        "b" = 11;
+        "c" = 12;
+        "d" = 13;
+        "e" = 14;
+        "f" = 15;
+      };
+      hexPair = pair: digits.${builtins.substring 0 1 pair} * 16 + digits.${builtins.substring 1 1 pair};
+    in {
+      red = hexPair (builtins.substring 0 2 hex);
+      green = hexPair (builtins.substring 2 2 hex);
+      blue = hexPair (builtins.substring 4 2 hex);
+    };
   in {
     imports = [
       inputs.zen-browser.homeModules.twilight
@@ -55,13 +82,19 @@
             Fingerprinting = true;
           };
 
-          Preferences = mkLockedAttrs {
-            "browser.search.suggest.enabled" = true;
-            "browser.tabs.closeWindowWithLastTab" = false;
-            "zen.view.compact.should-enable-at-startup" = true;
-            "zen.view.use-single-toolbar" = false;
-            "zen.view.welcome-screen.seen" = true;
-          };
+          Preferences = mkLockedAttrs (
+            {
+              "browser.search.suggest.enabled" = true;
+              "browser.tabs.closeWindowWithLastTab" = false;
+              "zen.view.compact.should-enable-at-startup" = true;
+              "zen.view.use-single-toolbar" = false;
+              "zen.view.welcome-screen.seen" = true;
+            }
+            // lib.optionalAttrs config.opts.variables.isDarwin {
+              # Suppress the "what's new" page after updates.
+              "browser.startup.homepage_override.mstone" = "ignore";
+            }
+          );
         };
 
         profiles."${profileName}" = {
@@ -74,6 +107,28 @@
             vimium
           ];
 
+          search = {
+            engines = {
+              github = {
+                name = "GitHub";
+                urls = [
+                  {
+                    template = "https://github.com/search?q={searchTerms}";
+                  }
+                ];
+                definedAliases = ["@gh"];
+              };
+              nix = {
+                name = "Nix";
+                urls = [
+                  {
+                    template = "https://search.nixos.org/packages?query={searchTerms}";
+                  }
+                ];
+                definedAliases = ["@nx"];
+              };
+            };
+          };
           settings = {
             zen = {
               mods.updated-value-observer = true;
@@ -151,7 +206,7 @@
               id = 3;
             };
           };
-          keyboardShortcutsVersion = 19;
+          keyboardShortcutsVersion = 20;
           keyboardShortcuts = [
             # Sidebar
             {
@@ -445,6 +500,7 @@
               mkWorkPin "3bbb10c6-39e4-476e-b057-253f49242bac" "https://mrshu.github.io/github-statuses/"
               "GitHub Status"
               1100;
+            "HiBob" = mkWorkPin "f47ac10b-58cc-4372-a567-0e02b2c3d479" "https://app.hibob.com" "HiBob" 1200;
           };
 
           spacesForce = true;
@@ -456,19 +512,132 @@
               position = 1000;
               icon = "☀️";
               container = containers."Personal".id;
+              theme = {
+                colors = [
+                  (
+                    hexToRgb colors.base0D
+                    // {
+                      algorithm = "floating";
+                      type = "explicit-lightness";
+                      lightness = 50;
+                    }
+                  )
+                ];
+                opacity = 0.3;
+                texture = 0.0;
+              };
+              routes = {
+                "discord" = {
+                  reference = "discord";
+                  matchType = "contains";
+                };
+              };
             };
             "Work" = {
               id = "73eca14a-5498-406d-845f-55439aa80f90";
               position = 2000;
               icon = "🏛️";
               container = containers."Work".id;
+              theme = {
+                colors = [
+                  (
+                    hexToRgb colors.base09
+                    // {
+                      algorithm = "floating";
+                      type = "explicit-lightness";
+                      lightness = 50;
+                    }
+                  )
+                ];
+                opacity = 0.3;
+                texture = 0.0;
+              };
+              routes = {
+                "linear" = {
+                  reference = "linear.app";
+                  matchType = "contains";
+                };
+                "github" = {
+                  reference = "github.com";
+                  matchType = "contains";
+                };
+                "notion" = {
+                  reference = "notion.so";
+                  matchType = "contains";
+                };
+                "navan" = {
+                  reference = "app.navan.com";
+                  matchType = "contains";
+                };
+                "datadog" = {
+                  reference = "datadoghq.eu";
+                  matchType = "contains";
+                };
+                "orca" = {
+                  reference = "orca.corti.app";
+                  matchType = "contains";
+                };
+                "corti" = {
+                  reference = "corti";
+                  matchType = "contains";
+                };
+              };
+              liveFolders = {
+                "Pull requests" = {
+                  id = "b7a3d5c1-9e2f-4a68-b0d4-6f1c8e5a2d93";
+                  kind = "github:pull-requests";
+                  position = 401;
+                  github = {
+                    assignedMe = true;
+                    reviewRequested = false;
+                    authorMe = false;
+                  };
+                };
+                "My issues" = {
+                  id = "3c9e1f7a-5b24-4d80-9a6c-e2f4b8d10c57";
+                  kind = "github:issues";
+                  position = 402;
+                  github = {
+                    assignedMe = true;
+                    authorMe = false;
+                  };
+                };
+              };
             };
             "Alt" = {
               id = "a781d4e4-b7f6-4b9b-9324-b99d95c2f5f9";
               position = 3000;
               icon = "👁️‍🗨️";
               container = containers."Alt".id;
+              theme = {
+                colors = [
+                  (
+                    hexToRgb colors.base0E
+                    // {
+                      algorithm = "floating";
+                      type = "explicit-lightness";
+                      lightness = 50;
+                    }
+                  )
+                ];
+                opacity = 0.3;
+                texture = 0.0;
+              };
+              routes = {
+                "sharepoint" = {
+                  reference = "sharepoint";
+                  matchType = "contains";
+                };
+                "msadmin" = {
+                  reference = "admin.microsoft";
+                  matchType = "contains";
+                };
+              };
             };
+          };
+          spaceRouting = {
+            force = true;
+            defaultExternalRoute = "most-recent-space";
           };
 
           storeId = "b2373c55";
