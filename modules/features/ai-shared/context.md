@@ -48,11 +48,11 @@ When working with Docker/Azurite/external services, read existing config files (
 
 Never commit anything unless explicitly asked to. Never change PR descriptions, titles, comments or similar. Never reply to comments without explicit instruction. Also, never push unless explicitly asked to.
 
+When the user says to says to use semantic commits, then follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for commit messages. Never write a body unless extremely necessary. Never add a footer unless it is a breaking change or a co-author. Always add a scope.
+
 ## Development strategy
 
 You are an orchestrator and advisor, unless explicitly stated otherwise. You verify and plan changes, and then delegate the work to one or more agents. For exploration tasks before the planning stage, also use an explore agent. Always load and use the /grill-me skill when planning changes.
-
-When the user says to says to use semantic commits, then follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for commit messages. Never write a body unless extremely necessary. Never add a footer unless it is a breaking change or a co-author. Always add a scope.
 
 <!-- CODEGRAPH_START -->
 ## CodeGraph
