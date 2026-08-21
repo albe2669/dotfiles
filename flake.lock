@@ -240,11 +240,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1787209168,
-        "narHash": "sha256-hUAltwBhTtmAl7K5MYD44SXtCU1s57MYHQcbPqLVMek=",
+        "lastModified": 1787286907,
+        "narHash": "sha256-pPM2LL4jN2/sBYyZGl2psNDa0viFAG56X2WaSQryoeY=",
         "owner": "ryoppippi",
         "repo": "ccusage",
-        "rev": "7aac448b7f6cb85ddda1d1199925263dcd070ecd",
+        "rev": "dc06d9a0320e09aab880a6f6dd7aecc2570b78ca",
         "type": "github"
       },
       "original": {
@@ -282,11 +282,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1787189302,
-        "narHash": "sha256-cUM75Rob89qTxJvqVRF8GUewOriqQtLiyiy5xfd1fMM=",
+        "lastModified": 1787259953,
+        "narHash": "sha256-Q+c2/CB/3m2YRoLH8zJscPly5Zh0G93A4Ks4we4sFCg=",
         "owner": "sadjow",
         "repo": "claude-code-nix",
-        "rev": "8fb8cbab6345583e0b68ca7dbbbad08a0a348145",
+        "rev": "729bda6a380d20d1d9ac6c22b814b363df497d2b",
         "type": "github"
       },
       "original": {
@@ -382,11 +382,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1787112172,
-        "narHash": "sha256-UMk1vXwGwx7dSxHAst6EcOvsryXIRuRF1QIFCz3oG+k=",
+        "lastModified": 1787284994,
+        "narHash": "sha256-ekBKvaEJY74xfbvB/QWLaB42XspwLlO5ySfmgvgKeeM=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "b6890db16471fa96d9223b538bcd30af7ea0a9bb",
+        "rev": "6e90cf8523a05e55621ede7cf1e101e1a70c5446",
         "type": "gitlab"
       },
       "original": {
@@ -879,11 +879,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1787138659,
-        "narHash": "sha256-/p1ymNXx4nbq0uYBzDBYAA0pRrojD/+209Km7+BKnu0=",
+        "lastModified": 1787239441,
+        "narHash": "sha256-O4pHn5sN1gRWz33L5fcontzUb89ytCikDIQVbrnYvKw=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "52b368f1d7fdee1b0e96ef3dc655b5a577df4fdb",
+        "rev": "8d50be06aa7d84283ac364a03df74bd834cab0ee",
         "type": "github"
       },
       "original": {
@@ -1156,11 +1156,11 @@
     "litellm": {
       "flake": false,
       "locked": {
-        "lastModified": 1787188749,
-        "narHash": "sha256-cM+0SvR33lT9fYxduSh+LdU0SNeH1v4u954e8bg6G9M=",
+        "lastModified": 1787262921,
+        "narHash": "sha256-xCOSlWHTBhMOxY/x5Cfc0Fgm3H5k88xGMZZG2tumlHY=",
         "owner": "BerriAI",
         "repo": "litellm",
-        "rev": "0ab172575703387896d998c108bd32e6ca4bf57f",
+        "rev": "2dcd45386045b44f5a61952094a3f14c9cbf504e",
         "type": "github"
       },
       "original": {
@@ -1182,11 +1182,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1787205996,
-        "narHash": "sha256-P1/6bZ4SHjdAZ+TorVtceqI1cv6jwGeumfDwrdqjj3Q=",
+        "lastModified": 1787286673,
+        "narHash": "sha256-HRmx7PnoqUNtA06P/FEyygZeUJIzbNUtx4zo9Jiiz9s=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "20766586959e0dcc2f9e7cff6d49b0c710de30d6",
+        "rev": "0bedd15c76b9422a649b05e44b82666196e5246f",
         "type": "github"
       },
       "original": {
@@ -1221,11 +1221,11 @@
     "models-dev": {
       "flake": false,
       "locked": {
-        "lastModified": 1787207246,
-        "narHash": "sha256-nCTXYccLbNpbB6gT5nfzm/lQUsDZwmqZ+DK6pllkhIU=",
+        "lastModified": 1787246785,
+        "narHash": "sha256-ftwoZkjIgfDE46GydcktP6+SmSV5RMfNqklR7FSw5PE=",
         "owner": "anomalyco",
         "repo": "models.dev",
-        "rev": "86c7c9b56814cedadba207b4233957cd206862a8",
+        "rev": "b398c049f7d567a535ab3870384940e2d2e4bf43",
         "type": "github"
       },
       "original": {
@@ -1639,16 +1639,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1787210768,
-        "narHash": "sha256-Bw3eAa2+mAM6c/s0P/DHVBT9u1rIW3LcVnAZBZEXxTM=",
+        "lastModified": 1787299915,
+        "narHash": "sha256-fCxFziXm7h5IUWHV4MD5uq65rRi814sAxRsxHXnPHt0=",
         "ref": "refs/heads/master",
-        "rev": "80abe4caee74a6780867a908dc1a8958e5f1ddb4",
-        "revCount": 105,
+        "rev": "ab4da670441e11522e15dd2a88e2c9375906b481",
+        "revCount": 119,
         "type": "git",
         "url": "https://github.com/albe2669/preflight"
       },
       "original": {
-        "rev": "80abe4caee74a6780867a908dc1a8958e5f1ddb4",
+        "rev": "ab4da670441e11522e15dd2a88e2c9375906b481",
         "type": "git",
         "url": "https://github.com/albe2669/preflight"
       }
@@ -2216,11 +2216,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787197732,
-        "narHash": "sha256-rxqzRhFq8Gpem967K+jGkw4kfm1ZN9bsNzaujG4Z6wc=",
+        "lastModified": 1787281392,
+        "narHash": "sha256-WnGPcxoouwp2ZNQ2lBfVunY77AIFy6cdAfT4J5Vw6Fs=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "dc0baff0a6041483be3816cf2e12ae053b5e458a",
+        "rev": "4ab199700226db9b91ab69fa2b78816ebe475358",
         "type": "github"
       },
       "original": {
