@@ -22,6 +22,7 @@ _: {
       # System
       bandwhich
       bottom
+      witr
       procs
     ];
   };
