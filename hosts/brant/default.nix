@@ -9,7 +9,7 @@
     self.modules.combined.shell
     self.modules.combined.mac-app-util
     self.modules.combined.docker
-    self.modules.combined.dory
+    self.modules.combined.orbstack
     self.modules.combined.xdg
     self.modules.combined.aerospace
 
