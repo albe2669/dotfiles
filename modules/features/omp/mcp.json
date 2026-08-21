@@ -12,6 +12,14 @@
     "linear-server": {
       "type": "http",
       "url": "https://mcp.linear.app/mcp"
+    },
+    "synapse": {
+      "type": "http",
+      "url": "https://mcp.synapse.corti.app/mcp",
+      "oauth": {
+        "clientId": "synapse-mcp",
+        "scopes": "openid email profile offline_access"
+      }
     }
   }
 }
