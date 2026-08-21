@@ -147,7 +147,7 @@ _: {
             # Break the focused pane into a new tab (tmux break-pane).
             key = "prefix+!";
             type = "shell";
-            command = ''$HERDR_BIN_PATH pane move "$HERDR_ACTIVE_PANE_ID" --new-tab --focus'';
+            command = ''$HERDR_BIN_PATH pane move "$HERDR_PANE_ID" --new-tab --focus'';
             description = "break pane into new tab";
           }
         ];

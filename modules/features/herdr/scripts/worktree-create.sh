@@ -20,7 +20,10 @@ case "$branch" in
   *..*|"") echo "invalid branch name: $branch" >&2; exit 1 ;;
 esac
 
-src="${HERDR_ACTIVE_PANE_CWD:-$(pwd)}"
+workspace_info=$("$HERDR_BIN_PATH" worktree list --workspace "$HERDR_WORKSPACE_ID")
+workspace_id=$(echo $workspace_info | jq -r '.result.source.source_workspace_id')
+
+src=$(echo $workspace_info | jq -r '.result.source.repo_root')
 wtroot="$src/.worktrees"
 checkout="$wtroot/$branch"
 
@@ -43,8 +46,6 @@ if ! branch_exists "$base"; then
   echo "base branch does not exist: $base" >&2
   exit 1
 fi
-
-workspace_id=$(herdr worktree list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.source.source_workspace_id')
 
 result=$("$HERDR_BIN_PATH" worktree create --workspace $workspace_id --branch "$branch" --base "$base" --path "$checkout" --focus)
 
