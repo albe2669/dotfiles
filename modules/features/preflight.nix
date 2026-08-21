@@ -14,8 +14,11 @@ _: {
     programs.preflight = {
       enable = true;
       package = inputs.preflight.packages.${system}.default;
+      frontendPackage = inputs.preflight.packages.${system}.frontend;
+      raycastPackage = inputs.preflight.packages.${system}.raycast;
 
       installService = true;
+      installRaycast = true;
 
       settings = {
         clock.timezone = "Europe/Copenhagen";
