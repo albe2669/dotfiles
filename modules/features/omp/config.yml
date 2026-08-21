@@ -34,10 +34,12 @@ statusLine:
 defaultThinkingLevel: auto
 compaction: 
   enabled: true
-  strategy: context-full
   autoContinue: true
   thresholdTokens: -1
   thresholdPercent: 80
+  methodOrder: 
+    - remote
+    - soft
 eval: 
   py: true
   js: true
@@ -52,8 +54,8 @@ providers:
   memoryModel: online
 disabledProviders: 
   - github
-setupVersion: 1
-hideThinkingBlock: true
+setupVersion: 2
+hideThinkingBlock: false
 advisor: 
   enabled: false
 python: 
@@ -73,3 +75,5 @@ features:
 mnemopi: 
   llmMode: smol
   embeddingModel: ""
+composer: 
+  shape: box
