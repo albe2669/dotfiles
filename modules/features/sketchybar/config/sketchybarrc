@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+BAR_COLOR="0xff2D353B"
+FONT="Iosevka Nerd Font"
+COLOR_FG="0xffD3C6AA"
+COLOR_GREEN="0xffA7C080"
+COLOR_YELLOW="0xffDBBC7F"
+COLOR_RED="0xffE67E80"
+COLOR_BLUE="0xff7FBBB3"
+COLOR_GREY="0xff859289"
+COLOR_BG1="0xff343F44"
+
+sketchybar --bar height=28 color=$BAR_COLOR border_color=$BAR_COLOR \
+  shadow=off sticky=on padding_right=2 padding_left=2 corner_radius=0
+
+sketchybar --default \
+  icon.font="$FONT:Regular:14.0" icon.color=$COLOR_FG \
+  icon.padding_left=4 icon.padding_right=4 \
+  label.font="$FONT:Regular:12.0" label.color=$COLOR_FG \
+  label.padding_left=4 label.padding_right=4
+
+# Left: Apple logo (click toggles hidden menus)
+sketchybar --add item apple left \
+  --set apple icon="" label.drawing=off \
+  click_script="for m in File Edit View Window Help; do sketchybar --toggle drawing menu_\$m; done"
+
+# Hidden menus (toggled by apple click)
+for menu in File Edit View Window Help; do
+  sketchybar --add item "menu_$menu" left \
+    --set "menu_$menu" label="$menu" label.color=$COLOR_GREY drawing=off \
+    click_script="osascript -e 'tell application \"System Events\" to click menu item 1 of menu 1 of menu bar item \"$menu\" of menu bar 1 of (first process whose frontmost is true)'"
+done
+
+# Center: Active space (aerospace)
+sketchybar --add item space center \
+  --set space label="Desktop" label.color=$COLOR_BLUE \
+    label.font="$FONT:Bold:12.0" \
+    script="$CONFIG_DIR/plugins/space.sh" \
+  --subscribe space aerospace_workspace_change
+
+# Right: CPU, MEM, Clock
+sketchybar --add item cpu right \
+  --set cpu icon="" icon.color=$COLOR_GREEN label="0%" \
+    script="$CONFIG_DIR/plugins/cpu.sh" update_freq=5
+
+sketchybar --add item mem right \
+  --set mem icon="" icon.color=$COLOR_GREEN label="0%" \
+    script="$CONFIG_DIR/plugins/mem.sh" update_freq=5
+
+sketchybar --add item clock right \
+  --set clock icon.drawing=off label="" \
+    script="$CONFIG_DIR/plugins/clock.sh" update_freq=30
+
+# Initial update
+$CONFIG_DIR/plugins/space.sh
+$CONFIG_DIR/plugins/cpu.sh
+$CONFIG_DIR/plugins/mem.sh
+$CONFIG_DIR/plugins/clock.sh
