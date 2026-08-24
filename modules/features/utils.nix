@@ -24,6 +24,9 @@ _: {
       bottom
       witr
       procs
+      nix-output-monitor
+      delta
+      commitizen
     ];
   };
 }
