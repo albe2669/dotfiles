@@ -21,7 +21,7 @@ hl.bind("print", hl.dsp.exec_cmd([[wayfreeze & PID=$!; sleep .1; grim -g "$(slur
 hl.bind("SHIFT + print", hl.dsp.exec_cmd([[grim -g "$(slurp)" - | satty -f -]]))
 
 hl.bind(mod .. " + d", hl.dsp.exec_cmd("nc -U /run/user/1000/walker/walker.sock"))
-hl.bind(mod .. " + SHIFT + d", hl.dsp.exec_cmd("rofi -show p modi p:~/.config/rofi/rofi-power-menu -width 20 -lines 6"))
+hl.bind(mod .. " + SHIFT + d", hl.dsp.exec_cmd("wlogout"))
 
 hl.bind(mod .. " + j", hl.dsp.focus({ direction = "down" }))
 hl.bind(mod .. " + k", hl.dsp.focus({ direction = "up" }))

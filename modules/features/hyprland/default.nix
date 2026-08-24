@@ -32,6 +32,7 @@ in {
       xbacklight
       xdpyinfo
       nautilus
+      wlogout
     ];
 
     nix.settings = {
