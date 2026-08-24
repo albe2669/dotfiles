@@ -40,10 +40,10 @@
           on-resume = "${hyprctl} dispatch dpms on && ${brightnessctl} -r";
         }
 
-        # {
-        #   timeout = timeout + 60;
-        # 	on-timeout = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
-        # }
+        {
+          timeout = timeout + 60;
+          on-timeout = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
+        }
       ];
     };
   };
