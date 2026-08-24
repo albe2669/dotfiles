@@ -8,6 +8,7 @@ _: {
   in {
     home.packages = with pkgs; [
       bfg-repo-cleaner
+      delta
       pre-commit
     ];
 
@@ -48,6 +49,15 @@ _: {
             autoSquash = true;
             autoStash = true;
             updateRefs = true;
+          };
+
+          core.pager = "delta";
+          interactive.diffFilter = "delta --color-only";
+          delta = {
+            navigate = true;
+            line-numbers = true;
+            side-by-side = true;
+            syntax-theme = "Everforest Dark Hard";
           };
         }
         // {
