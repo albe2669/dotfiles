@@ -19,6 +19,7 @@ _: {
     home.packages = with pkgs-unstable;
       [
         neovim
+        nixd
         nil
         gopls
         tree-sitter
@@ -27,6 +28,8 @@ _: {
         jdt-language-server
         google-java-format
         rust-analyzer
+        delve
+        gdb
       ]
       ++ normalPackages
       ++ lib.optionals (!config.opts.variables.isDarwin) [
