@@ -1,5 +1,20 @@
 _: {
-  flake.modules.homeManager.fish = {pkgs, ...}: {
+  flake.modules.homeManager.fish = {pkgs, ...}: let
+    thefuck = pkgs.python311.pkgs.buildPythonApplication {
+      pname = "thefuck";
+      version = "3.32";
+      pyproject = true;
+      build-system = with pkgs.python311.pkgs; [setuptools];
+      src = pkgs.fetchFromGitHub {
+        owner = "nvbn";
+        repo = "thefuck";
+        rev = "3.32";
+        sha256 = "sha256-bRCy95owBJaxoyCNQF6gEENoxCkmorhyKzZgU1dQN6I=";
+      };
+      propagatedBuildInputs = with pkgs.python311.pkgs; [psutil colorama six decorator pyte];
+      doCheck = false;
+    };
+  in {
     programs.fish = {
       enable = true;
       # fish >=4.0 dropped share/fish/tools/create_manpage_completions.py, which
@@ -14,6 +29,15 @@ _: {
             repo = "nix-env.fish";
             rev = "7b65bd228429e852c8fdfa07601159130a818cfa";
             sha256 = "sha256-RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=";
+          };
+        }
+        {
+          name = "forgit";
+          src = pkgs.fetchFromGitHub {
+            owner = "wfxr";
+            repo = "forgit";
+            rev = "26.08.0";
+            sha256 = "sha256-VJiUXbArwe0oTQVznDMgPEIhzqvFZI7ciezbNuWH620=";
           };
         }
       ];
@@ -35,6 +59,8 @@ _: {
       };
 
       interactiveShellInit = ''
+        ${thefuck}/bin/thefuck --alias | source
+
         if not set -q HERDR_ENV
           set -l sessions (herdr session list --json 2>/dev/null | jq -r '.sessions[].name')
           set -l result (printf '%s\n' $sessions | fzf --print-query --prompt="herdr> " --header="[enter] attach  [type name + enter] create new" --bind "tab:accept")
@@ -80,6 +106,7 @@ _: {
       atuin
       fzf
       jq
+      thefuck
 
       (fishPlugins.bass.overrideAttrs {doCheck = false;})
       fishPlugins.puffer
