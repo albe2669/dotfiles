@@ -1,20 +1,5 @@
 _: {
-  flake.modules.homeManager.fish = {pkgs, ...}: let
-    thefuck = pkgs.python311.pkgs.buildPythonApplication {
-      pname = "thefuck";
-      version = "3.32";
-      pyproject = true;
-      build-system = with pkgs.python311.pkgs; [setuptools];
-      src = pkgs.fetchFromGitHub {
-        owner = "nvbn";
-        repo = "thefuck";
-        rev = "3.32";
-        sha256 = "sha256-bRCy95owBJaxoyCNQF6gEENoxCkmorhyKzZgU1dQN6I=";
-      };
-      propagatedBuildInputs = with pkgs.python311.pkgs; [psutil colorama six decorator pyte];
-      doCheck = false;
-    };
-  in {
+  flake.modules.homeManager.fish = {pkgs, ...}: {
     programs.fish = {
       enable = true;
       # fish >=4.0 dropped share/fish/tools/create_manpage_completions.py, which
@@ -59,8 +44,6 @@ _: {
       };
 
       interactiveShellInit = ''
-        ${thefuck}/bin/thefuck --alias | source
-
         if not set -q HERDR_ENV
           set -l sessions (herdr session list --json 2>/dev/null | jq -r '.sessions[].name')
           set -l result (printf '%s\n' $sessions | fzf --print-query --prompt="herdr> " --header="[enter] attach  [type name + enter] create new" --bind "tab:accept")
@@ -106,7 +89,6 @@ _: {
       atuin
       fzf
       jq
-      thefuck
 
       (fishPlugins.bass.overrideAttrs {doCheck = false;})
       fishPlugins.puffer
