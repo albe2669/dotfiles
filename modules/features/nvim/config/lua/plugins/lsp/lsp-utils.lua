@@ -67,11 +67,11 @@ function utils.on_attach(client, bufnr)
   u.buf_map(bufnr, "n", "<Leader>ld", ":LspDiagLine<CR>")
   u.buf_map(bufnr, "i", "<Leader>lh", "<cmd> LspSignatureHelp<CR>")
 
-  if client.supports_method("textDocument/formatting") then
+  if client:supports_method("textDocument/formatting") then
     vim.cmd("autocmd BufWritePre <buffer> lua global.lsp.formatting()")
   end
 
-  if client.supports_method("textDocument/completion") then
+  if client:supports_method("textDocument/completion") then
     -- Completion is driven by blink.cmp; keep omnifunc as a fallback but don't
     -- claim <C-Space>, which blink uses to toggle the completion menu/docs.
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"

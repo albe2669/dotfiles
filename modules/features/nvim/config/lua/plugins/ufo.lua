@@ -14,9 +14,8 @@ return {
       vim.o.foldenable = true
     end,
     opts = {
-      provider_selector = function(bufnr, filetype, buftype)
-        local ufo = require("ufo")
-        return ufo.default_provider_selector(bufnr, filetype, buftype)
+      provider_selector = function()
+        return { "lsp", "treesitter" }
       end,
       open_fold_hl_timeout = 150,
       close_fold_kinds_for_ft = {
@@ -30,10 +29,10 @@ return {
       },
     },
     keys = {
-      { "zR", function() require("ufo").openAllFolds() end, desc = "Open all folds" },
-      { "zM", function() require("ufo").closeAllFolds() end, desc = "Close all folds" },
+      { "zR", function() require("ufo").openAllFolds() end,         desc = "Open all folds" },
+      { "zM", function() require("ufo").closeAllFolds() end,        desc = "Close all folds" },
       { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "Open folds except kinds" },
-      { "zm", function() require("ufo").closeFoldsWith() end, desc = "Close folds with" },
+      { "zm", function() require("ufo").closeFoldsWith() end,       desc = "Close folds with" },
     },
   },
 }
