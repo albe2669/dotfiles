@@ -1,10 +1,9 @@
--- nvim-ufo: code folding with LSP and treesitter context.
+-- nvim-ufo: code folding with LSP and indent fallback.
 return {
   {
     "kevinhwang91/nvim-ufo",
     dependencies = {
       "kevinhwang91/promise-async",
-      "nvim-treesitter/nvim-treesitter",
     },
     event = { "BufReadPost", "BufNewFile" },
     init = function()
@@ -15,7 +14,7 @@ return {
     end,
     opts = {
       provider_selector = function()
-        return { "lsp", "treesitter" }
+        return { "lsp", "indent" }
       end,
       open_fold_hl_timeout = 150,
       close_fold_kinds_for_ft = {
