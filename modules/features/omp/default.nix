@@ -12,25 +12,25 @@ _: {
     apiKeyEnvName = "CORTI_API_KEY";
 
     pkg = inputs.llm-agents.packages.${system}.omp.overrideAttrs (oldAttrs: {
-      # Source from fork branch with oauth.scopes override support (PR #9199).
-      # Remove this override once the PR merges and llm-agents.nix updates.
-      src = pkgs-unstable.fetchFromGitHub {
-        owner = "albe2669";
-        repo = "oh-my-pi";
-        rev = "9e4a782fc0a9b7daa01684943a3d2ec861b1e736";
-        sha256 = "sha256-RfF1rl4oZF09gfNKIq+fUFjzJaJZmwUDioStM53RGZk=";
-      };
-      # Cargo deps are unchanged — the PR only touches TypeScript.
-      cargoDeps = pkgs-unstable.rustPlatform.fetchCargoVendor {
-        name = "omp-${oldAttrs.version}-cargo-vendor";
-        src = pkgs-unstable.fetchFromGitHub {
-          owner = "albe2669";
-          repo = "oh-my-pi";
-          rev = "9e4a782fc0a9b7daa01684943a3d2ec861b1e736";
-          sha256 = "sha256-RfF1rl4oZF09gfNKIq+fUFjzJaJZmwUDioStM53RGZk=";
-        };
-        hash = "sha256-G4WAIm+LswZ/nyOZ03m0rmpZthht5H3MQ6hLM7AhF5Y=";
-      };
+      #   # Source from fork branch with oauth.scopes override support (PR #9199).
+      #   # Remove this override once the PR merges and llm-agents.nix updates.
+      #   src = pkgs-unstable.fetchFromGitHub {
+      #     owner = "albe2669";
+      #     repo = "oh-my-pi";
+      #     rev = "9e4a782fc0a9b7daa01684943a3d2ec861b1e736";
+      #     sha256 = "sha256-RfF1rl4oZF09gfNKIq+fUFjzJaJZmwUDioStM53RGZk=";
+      #   };
+      #   # Cargo deps are unchanged — the PR only touches TypeScript.
+      #   cargoDeps = pkgs-unstable.rustPlatform.fetchCargoVendor {
+      #     name = "omp-${oldAttrs.version}-cargo-vendor";
+      #     src = pkgs-unstable.fetchFromGitHub {
+      #       owner = "albe2669";
+      #       repo = "oh-my-pi";
+      #       rev = "9e4a782fc0a9b7daa01684943a3d2ec861b1e736";
+      #       sha256 = "sha256-RfF1rl4oZF09gfNKIq+fUFjzJaJZmwUDioStM53RGZk=";
+      #     };
+      #     hash = "sha256-G4WAIm+LswZ/nyOZ03m0rmpZthht5H3MQ6hLM7AhF5Y=";
+      #   };
 
       nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs-unstable.makeWrapper];
 
