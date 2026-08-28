@@ -20,8 +20,13 @@ case "$branch" in
   *..*|"") echo "invalid branch name: $branch" >&2; exit 1 ;;
 esac
 
-workspace_info=$("$HERDR_BIN_PATH" worktree list --workspace "$HERDR_WORKSPACE_ID")
-workspace_id=$(echo $workspace_info | jq -r '.result.source.source_workspace_id')
+workspace_info=$("$HERDR_BIN_PATH" worktree list --workspace "$HERDR_ACTIVE_WORKSPACE_ID")
+workspace_id=$(echo "$workspace_info" | jq -r '.result.source.source_workspace_id')
+if [ -z "$workspace_id" ] || [ "$workspace_id" = "null" ]; then
+  echo "could not determine workspace id from herdr" >&2
+  echo "$workspace_info" >&2
+  exit 1
+fi
 
 src=$(echo $workspace_info | jq -r '.result.source.repo_root')
 wtroot="$src/.worktrees"

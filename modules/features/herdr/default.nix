@@ -120,7 +120,7 @@ _: {
           {
             key = "prefix+shift+y";
             type = "popup";
-            command = ''HERDR_WORKTREE_BASE="main" HERDR_WORKTREE_COPY_FILES="${lib.concatStringsSep " " worktreeCopyFiles}" herdr-worktree-create'';
+            command = ''bash -c "HERDR_WORKTREE_BASE=\"main\" HERDR_WORKTREE_COPY_FILES=\"${lib.concatStringsSep " " worktreeCopyFiles}\" herdr-worktree-create; read -n 1 -s -p 'Press any key to continue...'"''; # Errors print to the popup; pause always runs.
             description = "new worktree (local)";
             width = "60%";
             height = 8;
