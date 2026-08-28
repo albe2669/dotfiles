@@ -16,7 +16,6 @@
   commonPlugins = [
     "IdeaVIM"
     "dev.turingcomplete.intellijdevelopertoolsplugins"
-    "com.intellij.resharper.azure"
     "mobi.hsz.idea.gitignore"
     "com.github.catppuccin.jetbrains"
     "com.github.catppuccin.jetbrains_icons"
