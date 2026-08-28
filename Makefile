@@ -10,7 +10,7 @@ endif
 # If not found, use skein
 # Detect nom for pretty build output. Falls back to empty so nix keeps TTY colors.
 nom != command -v nom 2>/dev/null || true
-nom_pipe = $(if $(nom),2>&1 | nom,)
+nom_pipe = $(if $(nom),--log-format internal-json -v |& nom --json,)
 
 repl:
 	nix --extra-experimental-features "nix-command flakes repl-flake" --show-trace repl
@@ -22,7 +22,7 @@ fmt:
 	nix --extra-experimental-features "nix-command flakes" fmt *
 
 update:
-	nix --extra-experimental-features "nix-command flakes" flake update
+	nix --extra-experimental-features "nix-command flakes" flake update --option access-token "github.com=$(gh auth token)"
 
 build:
 ifeq ($(os),Darwin)
