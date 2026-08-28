@@ -53,7 +53,7 @@ _: {
       # omp — MUST be relative: omp does path.join(os.homedir(), PI_CONFIG_DIR)
       PI_CONFIG_DIR = ".config/omp";
 
-      KUBECONFIG = "${config.xdg.configHome}/kube";
+      KUBECONFIG = "${config.xdg.configHome}/kube/config";
     };
   };
 
