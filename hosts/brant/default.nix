@@ -42,7 +42,6 @@
     self.modules.combined.ccusage
     self.modules.combined."1password"
     self.modules.combined.git-widget
-    self.modules.combined.wtf
     self.modules.combined.jetbrains
     self.modules.combined.jetbrains-goland
     self.modules.combined.rtk
