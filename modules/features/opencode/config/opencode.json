@@ -1,3 +1,15 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "synapse": {
+      "type": "remote",
+      "url": "https://mcp.synapse.corti.app/mcp",
+      "enabled": true,
+      "oauth": {
+        "clientId": "synapse-mcp",
+        "scope": "openid email profile",
+        "prompt": "none"
+      }
+    }
+  }
 }
