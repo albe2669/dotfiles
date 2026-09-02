@@ -38,7 +38,7 @@ And add `*myhost` to the age list under `creation_rules`.
 ### 4. Re-encrypt secrets
 
 ```sh
-sops updatekeys modules/shared/sops/secrets/*.yaml
+sops updatekeys modules/features/sops/secrets/*.yaml
 ```
 
 This re-encrypts the file so the new host can decrypt it.
@@ -48,7 +48,7 @@ This re-encrypts the file so the new host can decrypt it.
 ### 1. Edit the encrypted secrets file
 
 ```sh
-sops modules/shared/sops/secrets/<secret-file>.yaml
+sops modules/features/sops/secrets/<secret-file>.yaml
 ```
 
 This opens your `$EDITOR` with the decrypted contents. Add a new key, fx:
@@ -60,7 +60,7 @@ Save and close — sops re-encrypts automatically.
 
 ### 2. Declare the secret in sops modules
 
-Add to `modules/shared/sops/args.nix`
+Add to `modules/features/sops/args.nix`
 ```nix
 secrets = {
   # ... existing secrets ...
@@ -103,5 +103,5 @@ Before any secrets can be decrypted, you need at least one valid age key in `.so
 
 ```sh
 # Create and edit the secrets file
-sops modules/shared/sops/secrets/secrets.yaml
+sops modules/features/sops/secrets/secrets.yaml
 ```
