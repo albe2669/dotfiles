@@ -2,6 +2,7 @@ _: {
   flake.modules.nixos.network = {
     config,
     inputs,
+    lib,
     ...
   }: {
     imports = [
@@ -12,5 +13,7 @@ _: {
         wsl.defaultUser = config.opts.variables.username;
       }
     ];
+
+    networking.wireless.enable = lib.mkForce false;
   };
 }
