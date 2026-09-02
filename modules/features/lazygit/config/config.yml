@@ -242,6 +242,11 @@ customCommands:
     description: "commit with commitizen"
     context: "files"
     loadingText: "opening commitizen commit tool"
+  - key: "o"
+    command: 'gh pr create -a "@me" -r "copilot" -f && gh pr merge --auto --squash; gh pr view --web'
+    description: "create PR, enable auto-merge, open in browser"
+    context: "localBranches"
+    loadingText: "creating pull request"
     output: terminal
 services: {}
 notARepository: prompt
