@@ -11,6 +11,7 @@ lib: pkgs: {
   categories ? null,
   exclude ? [],
   skillsDirOverride ? null,
+  skillsSubDir ? null,
 }: let
   skillsDir =
     if skillsDirOverride != null
@@ -28,13 +29,16 @@ lib: pkgs: {
 
   # Categorized layout: iterate selected categories, link each skill dir.
   linkCategory = cat: let
-    dir = "${skillsDir}/${cat}";
+    catDir =
+      if skillsSubDir != null
+      then "${skillsDir}/${cat}/${skillsSubDir}"
+      else "${skillsDir}/${cat}";
     linkSkill = skill:
       if skill == "deprecated" || builtins.elem skill exclude
       then ""
-      else "ln -s ${dir}/${skill} $out/${skill}";
+      else "ln -s ${catDir}/${skill} $out/${skill}";
   in
-    lib.concatMapStringsSep "\n" linkSkill (subDirs dir);
+    lib.concatMapStringsSep "\n" linkSkill (subDirs catDir);
 
   # Flat layout: link every skill dir directly under skills/.
   linkFlat = let
