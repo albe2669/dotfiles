@@ -62,7 +62,10 @@ _: {
       )
       modelsData.models;
   in {
-    imports = [./theme.nix];
+    imports = [
+      ./theme.nix
+      ./plugins.nix
+    ];
     home.packages =
       [
         pkg
@@ -81,7 +84,6 @@ _: {
     xdg.configFile."omp/agent/mcp.json" = {
       source = helpers.mkDotfilesSymlink config "features/omp/mcp.json";
     };
-
     sops.templates."models.yaml" = {
       content = ''
         providers:
