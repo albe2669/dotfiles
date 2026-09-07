@@ -15,11 +15,13 @@
     "brant"
   ];
 
-  hostInfos = builtins.listToAttrs (map (host: {
+  hostInfos = builtins.listToAttrs (
+    map (host: {
       name = host;
       value = import ./${host}/info.nix;
     })
-    allHosts);
+    allHosts
+  );
 
   isDarwinSystem = system: builtins.match ".*-darwin" system != null;
 
@@ -84,9 +86,25 @@
 
   createDarwinConfiguration = name: info: let
     inherit (info) system;
+    # nixpkgs-unstable's lib/services/lib.nix references lib.importService,
+    # which stable nixpkgs (26.05, used by nix-darwin) lacks. Extend lib
+    # with importService so home-manager's services-modular module loads.
+    pkgs = let
+      base = import inputs.nixpkgs {inherit system;};
+    in
+      base
+      // {
+        lib = base.lib.extend (
+          _: _: {
+            importService = inputs.nixpkgs-unstable.lib.modules.importApply (
+              inputs.nixpkgs-unstable.outPath + "/lib/services/service.nix"
+            );
+          }
+        );
+      };
   in
     inputs.nix-darwin.lib.darwinSystem {
-      inherit system;
+      inherit system pkgs;
 
       specialArgs = {
         inherit self inputs system;
