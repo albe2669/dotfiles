@@ -22,7 +22,7 @@ fmt:
 	nix --extra-experimental-features "nix-command flakes" fmt *
 
 update:
-	nix --extra-experimental-features "nix-command flakes" flake update --option access-token "github.com=$(gh auth token)"
+	nix --extra-experimental-features "nix-command flakes" flake update --option access-token "github.com=$$(gh auth token)"
 
 build:
 ifeq ($(os),Darwin)
