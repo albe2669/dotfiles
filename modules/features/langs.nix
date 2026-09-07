@@ -39,9 +39,6 @@ _: {
 
         opentofu
 
-        # AI
-        pkgs-unstable.gemini-cli
-
         # Per project setup
         pkgs-unstable.devenv
       ]
