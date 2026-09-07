@@ -42,9 +42,6 @@ _: {
         # AI
         pkgs-unstable.gemini-cli
 
-        # Erlang
-        erlang_28
-
         # Per project setup
         pkgs-unstable.devenv
       ]
