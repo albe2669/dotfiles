@@ -1,4 +1,4 @@
-modelRoles: 
+modelRoles:
   default: corti/corti-s1
   smol: corti/corti-s1-mini
   slow: corti/corti-s1
@@ -8,72 +8,70 @@ modelRoles:
   tiny: corti/corti-s1-tiny
   advisor: corti/corti-s1
   vision: corti/corti-s1-mini
-tools: 
+tools:
   approvalMode: yolo
-  approval: 
+  approval:
     bash: allow
-lsp: 
+lsp:
   enabled: true
   lazy: true
   diagnosticsOnWrite: true
   formatOnWrite: true
   diagnosticsOnEdit: true
-bash: 
+bash:
   enabled: true
   direnv: auto
-ask: 
+ask:
   notify: "on"
-theme: 
+theme:
   dark: everforest
 symbolPreset: nerd
-statusLine: 
+statusLine:
   preset: default
   separator: powerline-thin
   sessionAccent: true
   transparent: true
 defaultThinkingLevel: auto
-compaction: 
+compaction:
   enabled: true
   autoContinue: true
   thresholdTokens: -1
   thresholdPercent: 80
-  methodOrder: 
+  methodOrder:
     - remote
     - soft
-eval: 
+eval:
   py: true
   js: true
-memory: 
+memory:
   backend: mnemopi
-power: 
+power:
   sleepPrevention: idle
-github: 
+github:
   enabled: true
-providers: 
+providers:
   tinyModel: online
   memoryModel: online
-disabledProviders: 
+disabledProviders:
   - github
 setupVersion: 2
-hideThinkingBlock: false
-advisor: 
+hideThinkingBlock: true
+advisor:
   enabled: false
-python: 
+python:
   kernelMode: session
-inspect_image: 
-  mode: auto
-task: 
+task:
   eager: preferred
   enableEffort: true
   maxEffort: max
-error: 
+error:
   notify: "on"
-startup: 
+startup:
   checkUpdate: false
 features:
   unexpectedStopDetection: smart
 mnemopi:
   llmMode: smol
   embeddingModel: ""
-composer: 
+composer:
   shape: box
