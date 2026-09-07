@@ -9,9 +9,7 @@
     import inputs.nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
-      config.permittedInsecurePackages = [
-        "electron-29.4.6"
-      ];
+      config.permittedInsecurePackages = ["electron-29.4.6"];
       overlays = import ../overlays {inherit inputs;};
     };
 in {
