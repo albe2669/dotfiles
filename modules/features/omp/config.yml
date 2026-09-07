@@ -70,9 +70,9 @@ error:
   notify: "on"
 startup: 
   checkUpdate: false
-features: 
-  unexpectedStopDetection: true
-mnemopi: 
+features:
+  unexpectedStopDetection: smart
+mnemopi:
   llmMode: smol
   embeddingModel: ""
 composer: 
