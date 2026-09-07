@@ -7,11 +7,11 @@ _: {
   }: let
     helpers = import ../../../lib/helpers.nix;
   in {
-    home.packages = lib.mkIf pkgs.stdenv.isLinux (with pkgs; [
+    home.packages = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (with pkgs; [
       zathura
     ]);
 
-    xdg.configFile.zathura = lib.mkIf pkgs.stdenv.isLinux {
+    xdg.configFile.zathura = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       source = helpers.mkDotfilesSymlink config "features/zathura/config";
     };
   };

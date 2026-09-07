@@ -4,7 +4,7 @@ _: {
     lib,
     ...
   }: {
-    home.packages = lib.optionals (!pkgs-unstable.stdenv.isDarwin) [
+    home.packages = lib.optionals (!pkgs-unstable.stdenv.hostPlatform.isDarwin) [
       pkgs-unstable.anytype
     ];
   };
