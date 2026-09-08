@@ -70,6 +70,7 @@ _: {
       [
         pkg
         inputs.llm-agents.packages.${system}.codegraph
+        pkgs-unstable.bun
       ]
       ++ lib.optionals (builtins.match ".*-linux" system != null) [
         pkgs-unstable.libnotify
