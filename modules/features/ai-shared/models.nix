@@ -5,7 +5,7 @@
       name = "Corti S1 (GLM5.2)";
       reasoning = true;
       input = ["text"];
-      contextWindow = 524288;
+      contextWindow = 262144;
       cost = {
         input = 2;
         output = 8;
@@ -18,7 +18,7 @@
       name = "Corti S1 Instant (GLM5.2-nothinking)";
       reasoning = false;
       input = ["text"];
-      contextWindow = 524288;
+      contextWindow = 262144;
       cost = {
         input = 2;
         output = 8;
