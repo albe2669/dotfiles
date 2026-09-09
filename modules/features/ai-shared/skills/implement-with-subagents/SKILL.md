@@ -5,9 +5,16 @@ description: The workflowz implement-review loop. The main agent plans, dispatch
 
 # Implement with subagents
 
-The **workflowz** notice injects the `eval` contract — `agent()`, `parallel()`, `pipeline()`, `completion()` — that this loop runs in. This skill adds the one thing the notice does not: a plan → implement → review → triage → converge loop with compaction-durable state and final checks. The notice is the source of truth for the helpers; this skill is the source of truth for the loop.
+The **workflowz** notice injects the `eval` contract — `agent()`, `wait()`, `completion()`, and (when available) `parallel()`/`pipeline()` — that this loop runs in. This skill adds the one thing the notice does not: a plan → implement → review → triage → converge loop with compaction-durable state and final checks. The notice is the source of truth for the helpers; this skill is the source of truth for the loop.
 
-The orchestrator plans, dispatches, and triages; the implementers write the change. The loop **converges** on reviewer sign-off, not on the implementer claiming done. All execution is synchronous within `eval` — `agent()` blocks and returns the subagent's output; chain `eval` calls across turns for phases.
+The orchestrator plans, dispatches, and triages; the implementers write the change. The loop **converges** on reviewer sign-off, not on the implementer claiming done.
+
+## Runtime facts (verified)
+
+- `agent(prompt, opts)` **spawns and returns immediately**; it does NOT block. In JS always `await agent(...)` — the resolved handle is `{ kind, id, agent, handle }` (`agent://<id>`). An un-awaited `agent()` call still spawns but hands back a useless empty object.
+- `wait(handles, { raiseErrors })` is the barrier that blocks for results. In JS it takes ONE trailing options object — positional arguments like `wait(hs, null, false)` crash the cell. `raiseErrors: false` keeps a failed slice's error in its slot instead of throwing.
+- `isolated: true` (throwaway worktree per subagent) requires `task.isolation.enabled`; it is often **false**. See the shared-tree fallback below.
+- Chain phases as separate `eval` calls across turns; append to the state file before yielding so compaction cannot lose the loop.
 
 ## State file — surviving compaction
 
@@ -37,7 +44,7 @@ Create `local://implement-loop.md` at the start of the run. Append to it at the 
 
 Read the task. When the files or symbols the change touches are unknown, scout first — `agent("…", agent="scout")` to map each unknown area, not a broad "explore the codebase". Scouts map only; implementers edit.
 
-Write the plan. Define the **what**, not the how — the change and its boundaries, the acceptance criteria the reviewer checks. Do not enumerate every symbol to touch; the implementer decides how. Do decompose the plan into **slices** that can run in parallel when the work has independent parts; order slices that depend on each other.
+Write the plan. Define the **what**, not the how — the change and its boundaries, the acceptance criteria the reviewer checks. Do not enumerate every symbol to touch; the implementer decides how. Do decompose the plan into **slices** that can run in parallel when the work has independent parts; order slices that depend on each other into waves (wave 1 = independent slices, wave 2 = slices that edit files a wave-1 slice owns).
 
 Append the plan to the state file.
 
@@ -45,16 +52,22 @@ Append the plan to the state file.
 
 ## Phase 2 — Implement
 
-Dispatch implementers with `agent()` — omit `agent` for the default worker. Parallel slices go in one `parallel([…])` call; each thunk a self-contained slice with its own target files and acceptance criteria. Sequential slices wait: dispatch only when the slice they depend on has returned.
+Dispatch implementers with `await agent(prompt, { label })` — omit `agent` for the default worker. Each prompt is self-contained: the original task, the slice it owns (with its exact file list), the acceptance criteria, and instruction to skip validation (lint, build, tests) — the reviewer and orchestrator run those.
 
-Every implementer prompt carries the original task, the slice it owns, the acceptance criteria, and instruction to skip validation (lint, build, tests) — the reviewer and orchestrator run those.
+Parallel slices: dispatch every slice of a wave in one eval cell, then `await wait([a, b], { raiseErrors: false })` as the wave barrier. Sequential slices wait: dispatch only when the slice they depend on has returned and its result is recorded.
 
-### Isolation for separate work
+### Shared-tree fallback (when isolation is off)
 
-When a slice is entirely separate — different files, no shared state with the others — isolate it so parallel work does not collide:
+`isolated: true` fails outright when `task.isolation.enabled` is false. In that case run the wave on the shared working tree with this protocol:
 
-- **Slices of one change** — `agent(prompt, isolated=true, merge=true)`. The subagent works in a throwaway worktree; the orchestrator controls the merge. Use this for parallel slices of a single change.
-- **Large, entirely-separate efforts** — a separate omp instance in its own worktree, merged via git later. When inside Herdr (`HERDR_ENV=1`): `herdr pane split --current --direction right --cwd "$PWD" --no-focus`, then `herdr agent start <name> --kind omp --pane <pane-id>`, then `herdr agent prompt <name> "<task>" --wait`. Merge the worktree branch via git when it finishes. Use this when the effort is large enough to warrant a persistent instance checked on later rather than a subagent that returns. For fire-and-forget delegation where the orchestrator should not block, use the `task` tool instead of `eval`'s `agent()`.
+1. **Disjoint file ownership.** Each prompt names its exact files; slices must not share a file — including docs. One file touched by two slices = two waves, never one.
+2. **One committer per wave.** At most one agent runs git (its own conventional commits, explicit `git add <paths>`, never `git add -A`). The other slices edit only and report their per-candidate file sets; the orchestrator stages and commits those after the wave returns. Two agents committing concurrently race on the git index.
+3. **Docs belong to the orchestrator.** Every slice wants to update the same docs file — take docs out of all slice scopes and write them yourself (one docs commit, or folded into the slice commit you stage).
+4. **Build gate between waves.** After merging a wave, run the project's type check/build before dispatching the next wave — cheap drift catch while the fix is still in one person's head.
+
+### If the user is working in the same tree
+
+Before dispatching, `git status --short`. Unexpected modified/untracked files are the USER's work — treat as ground truth, never commit, revert, or "fix" them. Block (`todo block`) any slice whose file list overlaps the user's dirty files and ask how to split the remaining work. Reviewers must review the committed range only (`git diff <base>..<head>`), so in-flight user edits stay out of the verdict.
 
 Append each implementer's result (files changed, summary) to the state file under the current iteration.
 
@@ -62,7 +75,9 @@ Append each implementer's result (files changed, summary) to the state file unde
 
 ## Phase 3 — Review
 
-Dispatch one reviewer with `agent("…", agent="reviewer", schema=REVIEW_SCHEMA)` — give it the original task, the plan, and every implementer's summary plus the files it changed. The schema forces a parseable verdict:
+Dispatch one reviewer with `agent("…", agent="reviewer", schema=REVIEW_SCHEMA)`. Reviewers are strictly read-only. If the working tree is dirty with user work, scope the review to the committed range (`git diff <base>..<head>`) and say so in the prompt.
+
+Give the reviewer the original task, the plan, and every implementer's summary plus the files it changed. The schema forces a parseable verdict:
 
 ```js
 const REVIEW_SCHEMA = {
@@ -86,7 +101,7 @@ const REVIEW_SCHEMA = {
 };
 ```
 
-Each finding is a specific, actionable item: file, what is wrong, what to do.
+Each finding is a specific, actionable item: file, what is wrong, what to do. Tell the reviewer to verify claims itself (grep, git show) — implementer summaries are claims, not evidence.
 
 Append the verdict and findings to the state file.
 
@@ -113,6 +128,6 @@ Repeat Phases 2–4 until the reviewer returns **approved**. The loop converges 
 
 ## Phase 6 — Final checks
 
-The orchestrator runs the project's verification — tests, lint, build, and any check named in `AGENTS.md` / `CLAUDE.md` or the repo's make or just file. These were deliberately skipped inside the loop; run them now on the converged change.
+The orchestrator runs the project's verification — tests, lint, build, and any check named in `AGENTS.md` / `CLAUDE.md` or the repo's make or just file. These were deliberately skipped inside the loop; run them now on the converged change. A build gate ran between waves for type errors — the final checks re-run everything together on the converged tree.
 
 **Done when** every check passes clean.
