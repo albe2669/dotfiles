@@ -19,7 +19,7 @@ _: {
 
   flake.modules.homeManager.aerospace = {pkgs, ...}: {
     home.packages = [
-      pkgs.raycast
+      pkgs.tinycast
     ];
 
     programs.aerospace = {
