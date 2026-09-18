@@ -85,6 +85,8 @@ _: {
           max_height = 1080;
         };
       };
+
+      initLua = ./init.lua;
     };
   };
 }
