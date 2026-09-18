@@ -41,6 +41,9 @@ _: {
 
         # Per project setup
         pkgs-unstable.devenv
+
+        # DB
+        pkgs-unstable.tabularis
       ]
       ++ lib.optionals config.opts.variables.isDarwin [
         pkgs.apple-sdk
