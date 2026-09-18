@@ -91,7 +91,7 @@
 
     elephant = {
       url = "github:abenz1267/elephant";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     walker = {
