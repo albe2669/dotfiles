@@ -55,7 +55,7 @@ providers:
 disabledProviders:
   - github
 setupVersion: 2
-hideThinkingBlock: true
+hideThinkingBlock: false
 advisor:
   enabled: false
 python:

@@ -34,10 +34,12 @@ _: {
 
       nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs-unstable.makeWrapper];
 
-      postFixup = ''
-        wrapProgram $out/bin/omp \
-          --run 'export ${apiKeyEnvName}=$(cat ${config.sops.secrets.corti_bearer.path})'
-      '';
+      postFixup =
+        (oldAttrs.postFixup or "")
+        + ''
+          wrapProgram $out/bin/omp \
+            --run 'if [ -f "${config.sops.secrets.corti_bearer.path}" ]; then export ${apiKeyEnvName}=$(cat "${config.sops.secrets.corti_bearer.path}"); fi'
+        '';
     });
 
     modelsData = import ../ai-shared/models.nix;

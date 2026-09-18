@@ -17,11 +17,6 @@
       spec = "https://github.com/QoderAI/better-harness";
       version = "0.4.0";
     }
-    {
-      name = "context-mode";
-      spec = "^1.0.162";
-      version = "1.0.162";
-    }
   ];
 
   packageJson = pkgs-unstable.writeText "omp-plugins-package.json" (
