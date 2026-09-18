@@ -93,6 +93,8 @@ in {
           inputs.sops-nix.homeManagerModules.sops
         ];
 
+        sops.package = inputs.sops-nix.packages.${pkgs.system}.sops-install-secrets;
+
         opts.variables.isDarwin = config.opts.variables.isDarwin;
       };
     };
