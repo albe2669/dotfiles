@@ -51,6 +51,7 @@
     self.modules.combined.preflight
     self.modules.combined.cliamp
     self.modules.combined.tailscale
+    self.modules.combined.rune
   ];
 
   system.keyboard = {

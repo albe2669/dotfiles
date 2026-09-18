@@ -40,6 +40,7 @@
     self.modules.combined.wtf
     self.modules.combined.jetbrains
     self.modules.combined.jetbrains-goland
+    self.modules.combined.rune
   ];
 
   networking.hostName = config.opts.info.name;
