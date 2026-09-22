@@ -31,7 +31,6 @@ local ensure_installed = {
   "yaml",
   "vim",
   "vue",
-  "yuck",
 }
 
 return {
