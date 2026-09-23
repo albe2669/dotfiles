@@ -1,6 +1,19 @@
 {
   models = [
     {
+      id = "corti-s1-beta";
+      name = "Corti S1 Beta (GLM5.3-flash)";
+      reasoning = true;
+      input = ["text" "image"];
+      contextWindow = 262144;
+      cost = {
+        input = 2;
+        output = 8;
+        cacheRead = 0.2;
+        cacheWrite = 0;
+      };
+    }
+    {
       id = "corti-s1";
       name = "Corti S1 (GLM5.2)";
       reasoning = true;
