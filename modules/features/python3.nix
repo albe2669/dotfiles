@@ -32,6 +32,7 @@
       poppler-utils
       basedpyright
       ruff
+      virtualenv
       ((python3.withPackages python-packages).override (_args: {
         ignoreCollisions = true;
       }))
