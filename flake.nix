@@ -186,7 +186,11 @@
             enable = true;
             settings.config = toString ./statix.toml;
           };
-          deadnix.enable = true;
+          gen-host-readmes = {
+            enable = true;
+            entry = "${./scripts/gen-host-readmes.sh}";
+            pass_filenames = false;
+          };
         };
 
         devShells.default = pkgs.mkShellNoCC {
