@@ -15,7 +15,7 @@
   ];
 
   featureFiles = autoImport ../modules/features;
-  rawFeatures = map (path: import path) featureFiles;
+  rawFeatures = map import path featureFiles;
 
   resolve = value:
     if builtins.isFunction value

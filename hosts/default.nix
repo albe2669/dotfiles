@@ -51,6 +51,27 @@
     {
       nix.registry.nixpkgs.flake = inputs.nixpkgs;
     }
+
+    # Builds the host README derivation from the evaluated config.
+    (
+      {
+        config,
+        pkgs,
+        lib,
+        ...
+      }: {
+        system.build.hostReadme = import ../lib/host-readme.nix {
+          inherit
+            self
+            config
+            pkgs
+            lib
+            ;
+          username = config.opts.variables.username;
+          hostName = config.opts.info.name;
+        };
+      }
+    )
   ];
 
   createNixosConfiguration = name: info: let
@@ -152,4 +173,8 @@ in {
       _name: config: config.config.formats
     )
     nixosConfigurations;
+
+  flake.hostReadmes = builtins.mapAttrs (_name: config: config.config.system.build.hostReadme) (
+    nixosConfigurations // darwinConfigurations
+  );
 }

@@ -23,7 +23,7 @@
     lazydocker
     lazygit
     nvim
-    langs
+    programming-tools
     python3
     direnv
     utils

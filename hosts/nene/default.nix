@@ -22,7 +22,7 @@
     self.modules.combined.sioyek
     self.modules.combined.wallpapers
     self.modules.combined.zathura
-    self.modules.combined.langs
+    self.modules.combined.programming-tools
     self.modules.combined.python3
     self.modules.combined.direnv
     self.modules.combined.utils

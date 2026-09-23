@@ -10,7 +10,7 @@
     self.homeModules.sioyek
     self.homeModules.wallpapers
     self.homeModules.zathura
-    self.homeModules.langs
+    self.modules.combined.programming-tools
     self.homeModules.python3
     self.homeModules.direnv
     self.homeModules.utils

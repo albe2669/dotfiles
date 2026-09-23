@@ -1,5 +1,13 @@
-_: {
-  flake.modules.homeManager.nvim = {
+{config, ...}: let
+  flakeConfig = config;
+in {
+  category = "Tools";
+  name = "nvim";
+  software = [
+    "neovim"
+  ];
+
+  homeManager = {
     pkgs,
     pkgs-unstable,
     lib,
@@ -7,33 +15,26 @@ _: {
     ...
   }: let
     helpers = import ../../../lib/helpers.nix;
-    normalPackages = with pkgs; [
-      curl
-      virtualenv
-      stdenv.cc
-      lua5_1
-      lua51Packages.luarocks
-      lua-language-server
-    ];
   in {
+    imports = with flakeConfig.flake.modules.homeManager; [
+      go
+      rust
+      java
+      nix-lang
+      python3
+      lua
+    ];
+
     home.packages = with pkgs-unstable;
       [
         neovim
-        nixd
-        nil
-        gopls
-        tree-sitter
-        basedpyright
-        ruff
-        jdt-language-server
-        google-java-format
-        rust-analyzer
-        delve
-        gdb
       ]
-      ++ normalPackages
+      ++ (with pkgs; [
+        curl
+        stdenv.cc
+      ])
       ++ lib.optionals (!config.opts.variables.isDarwin) [
-        wl-clipboard
+        pkgs.wl-clipboard
       ];
 
     xdg.configFile.nvim = {
