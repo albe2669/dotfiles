@@ -12,3 +12,13 @@ modules/home/wtf/config/todo.yml
 /.codegraph
 /.pre-commit-config.yaml
 /.direnv/
+/modules/features/rune/config/bin
+/modules/features/rune/config/debug.log
+/modules/features/rune/config/extensions/run
+/modules/features/rune/config/launch.log
+/modules/features/rune/config/pkg
+/modules/features/rune/config/lib
+/modules/features/rune/config/run
+/modules/features/rune/config/trusted_keys.asc
+/modules/features/rune/config/zdot
+/modules/features/omp/config.yml.lock

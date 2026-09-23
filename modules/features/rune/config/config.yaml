@@ -11,13 +11,14 @@ config_version: 2
 gui:
   default_theme: romero
   env:
+    SHELL: /run/current-system/sw/bin/fish
     GOBIN: /Users/arn/.rune/bin
     GOCACHE: /Users/arn/.rune/go/cache
     GOMODCACHE: /Users/arn/.rune/go/pkg/mod
     GOPATH: /Users/arn/.rune/go
     GOROOT: /Users/arn/.rune/lib/go
     GOTOOLCHAIN: auto
-    PATH: /Users/arn/.rune/python/bin:/Users/arn/.rune/bin:/Users/arn/.rune/python/uvbin:$PATH
+    PATH: /Users/arn/.rune/python/bin:/Users/arn/.rune/bin:/Users/arn/.rune/python/uvbin:/etc/profiles/per-user/arn/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     UV_CACHE_DIR: /Users/arn/.rune/python/cache/uv
     UV_PYTHON_BIN_DIR: /Users/arn/.rune/python/uvbin
     UV_PYTHON_CACHE_DIR: /Users/arn/.rune/python/cache/python
@@ -43,52 +44,57 @@ gui:
 # bottom of each pane, and `modal.message_bar` the line showing search prompts
 # and echoed messages.
 # ---------------------------------------------------------------------------
-# editor:
-#   tabspaces: 4
-#   ruler: 90
-#   autoindent: true            # syntax-driven indentation
-#   auto_pair: false            # auto-pair quotes/brackets/braces (modal default)
-#   auto_save: false            # flush dirty buffers ~2s after last edit
-#   initial_folds: true         # collapse language-defined folds on open
-#   aux_bar:
-#     enabled:          true
-#     lines:            absolute   # disabled | absolute | relative
-#     git:              inline     # bar | inline | all | disabled
-#     folds:            true
-#     icons:            true
-#     highlight_cursor: true
-#   status_bar:
-#     enabled: true
-#     # Components: Status, Filepath, GitShortRef, GitDiffAdd, GitDiffDel,
-#     # ShiftRight, CursorColumn, CursorLine, TotalLines, Language.
-#     # Pipe operators: bg, fg, bold, italic, underline, reverse, dim.
-#     layout: ' {{ .Status | bg "red" | fg "white" | bold }} █▓▒░  {{ .Filepath | fg "white" }}  {{ .GitShortRef | fg "white" }}   {{ .GitDiffAdd | fg "green" }}   {{ .GitDiffDel | fg "red" }} {{ .ShiftRight }} {{ .CursorColumn | fg "white" }}:{{ .CursorLine | fg "white" }}  {{ .TotalLines | fg "white" }} lines  ░▒▓█ {{ .Language | bold | fg "white" | bg "red" }} '
-#     background_attr:       {bg: gray}
-#     foreground_error_attr: {fg: yellow}
-#   modal:
-#     message_bar:
-#       attr: {fg: default, bg: gray}
-#       layout: '░▒▓█ {{ .Message | fg "white" }} '
+editor:
+  mode: modal
+  tabspaces: 2
+  autoindent: true
+  auto_pair: true
+  aux_bar:
+    enabled: true
+    lines: absolute
+    git: inline
+    folds: true
+    icons: true
+    highlight_cursor: true
+  status_bar:
+    enabled: true
+    layout: ' {{ .Status | bg "red" | fg "white" | bold }} █▓▒░  {{ .Filepath | fg "white" }}  {{ .GitShortRef | fg "white" }}   {{ .GitDiffAdd | fg "green" }}   {{ .GitDiffDel | fg "red" }} {{ .ShiftRight }} {{ .CursorColumn | fg "white" }}:{{ .CursorLine | fg "white" }}  {{ .TotalLines | fg "white" }} lines  ░▒▓█ {{ .Language | bold | fg "white" | bg "red" }} '
+    background_attr: { bg: gray }
+    foreground_error_attr: { fg: yellow }
+  modal:
+    message_bar:
+      attr: { fg: default, bg: gray }
+      layout: '░▒▓█ {{ .Message | fg "white" }} '
+  comments:
+    go:
+      block:
+        - /*
+        - "*/"
+      line:
+        - //
+    python:
+      line:
+        - "#"
+  icons:
+    .go: "\U000F07D3"
+    .py: "\U000F0320"
 
 # ---------------------------------------------------------------------------
 # Terminal
 # ---------------------------------------------------------------------------
-# terminal:
-#   modal:             true        # enter modal terminal mode on <esc>
-#   max_lines:         1000
-#   initial_reservoir: 0           # set to non-zero to speed up terminal initialization
-#   plugin:
-#     # Layout of the bar shown above a `!` command. Components:
-#     # Command, StatusIcon, ExitStatus, Elapsed, AlignRight, AlignCenter.
-#     # Pipe operators: bg, fg, bold, italic, underline, reverse, dim.
-#     bar_layout: ' {{ .StatusIcon | bg "gray" | fg "white" }} █▓▒░{{ .AlignCenter }}{{ .Command | fg "white" | bold }}{{ .AlignRight }}  ░▒▓█ {{ .Elapsed | fg "white" | bg "gray" }} '
-#     bar_background_attr: {bg: default}
-#     bar_align_bottom:    true
-#     status_success_icon: ""
-#     status_success_attr: {fg: green}
-#     status_error_icon:   ""
-#     status_error_attr:   {fg: red}
-#     animation: "⠃⠅⠆⠘⠨⠰⠉⠒⠤⠑⠡⠢⠊⠌⠔⠇⠸⠎⠱⠣⠜⠪⠕⠋⠙⠓⠚⠍⠩⠥⠬⠖⠲⠦⠴⠏⠹⠧⠼⠫⠝⠮⠵⠺⠗⠞⠳⠛⠭⠶⠟⠻⠷⠾⠯⠽⠿"
+terminal:
+  shell: /run/current-system/sw/bin/fish
+  modal: true
+  max_lines: 1000
+  plugin:
+    bar_layout: ' {{ .StatusIcon | bg "gray" | fg "white" }} █▓▒░{{ .AlignCenter }}{{ .Command | fg "white" | bold }}{{ .AlignRight }}  ░▒▓█ {{ .Elapsed | fg "white" | bg "gray" }} '
+    bar_background_attr: { bg: default }
+    bar_align_bottom: true
+    status_success_icon: ""
+    status_success_attr: { fg: green }
+    status_error_icon: ""
+    status_error_attr: { fg: red }
+    animation: "⠃⠅⠆⠘⠨⠰⠉⠒⠤⠑⠡⠢⠊⠌⠔⠇⠸⠎⠱⠣⠜⠪⠕⠋⠙⠓⠚⠍⠩⠥⠬⠖⠲⠦⠴⠏⠹⠧⠼⠫⠝⠮⠵⠺⠗⠞⠳⠛⠭⠶⠟⠻⠷⠾⠯⠽⠿"
 
 # ---------------------------------------------------------------------------
 # Command prompt
@@ -99,22 +105,18 @@ gui:
 # key_binding value to "" to unbind one added by an extension.
 # ---------------------------------------------------------------------------
 command:
-  #   key:         ":"
-  #   history_key: <meta-r>
-  #   max_history: 20000
-  #   aliases:
-  #     # Simple alias: `:w` runs `:write`.
-  #     w: write
-  #     # Alias with a completer: typing `:e <tab>` suggests files.
-  #     e:    {command: edit, completer: files}
-  #     # Alias with a shell completer (here: git branch names).
-  #     # The `! …` template runs a shell line whose stdout becomes one
-  #     # completion candidate per line.
-  #     gitcheckout:
-  #       command:   "!! git -C $WORKSPACE_PATH checkout $1"
-  #       completer: '! git -C $WORKSPACE_PATH branch --format="%(refname:short)"'
-  #     # Open this configuration file (already bound to <meta-,>).
-  #     conf: config
+  key: ":"
+  history_key: <meta-r>
+  max_history: 20000
+  aliases:
+    w: write
+    q: quit
+    e: { command: edit, completer: files }
+    wq: writequit
+    conf: config
+    lazygit: "! lazygit"
+    ipython: terminalnewtab uv run --with ipython ipython
+    grep: locationpicker rg --vimgrep
   key_bindings:
     "<shift-tab>": "fexplorer"
     "<meta-r>": "history"
@@ -216,9 +218,10 @@ command:
     "<shift-meta-7>": "workspacemove 7"
     "<shift-meta-8>": "workspacemove 8"
     "<shift-meta-9>": "workspacemove 9"
-    <a-m>: go organize-imports
-  aliases:
-    ipython: terminalnewtab uv run --with ipython ipython
+    "<a-m>": go organize-imports
+    "<F8>": "! lazygit"
+    "<ctrl-p>": "echo {prompt}edit<space>"
+    "<alt-g>": "echo {prompt}locationpicker<space>rg<space>--vimgrep<space>"
 debugger:
   go:
     adapter_id: dlv-dap
@@ -239,25 +242,11 @@ debugger:
       python: /Users/arn/.rune/python/bin/python3
       request: launch
       type: python
-editor:
-  comments:
-    go:
-      block:
-        - /*
-        - "*/"
-      line:
-        - //
-    python:
-      line:
-        - "#"
-  icons:
-    .go: "\U000F07D3"
-    .py: "\U000F0320"
 extensions:
   go:
     config:
       addr: localhost:6060
-      logfile: /Users/ernestrc/.rune/logs/lsp/gopls.log
+      logfile: /Users/arn/.rune/logs/lsp/gopls.log
       lsp_path: ""
     path: /Users/arn/.rune/bin/extension_go
   python:
