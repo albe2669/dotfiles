@@ -7,15 +7,8 @@
   autoImport = import ../lib/auto-import.nix lib;
   helpers = import ../lib/helpers.nix;
 
-  validCategories = [
-    "Tools"
-    "Software"
-    "System software"
-    "Programming languages"
-  ];
-
   featureFiles = autoImport ../modules/features;
-  rawFeatures = map import path featureFiles;
+  rawFeatures = map import featureFiles;
 
   resolve = value:
     if builtins.isFunction value
