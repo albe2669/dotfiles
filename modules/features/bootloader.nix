@@ -1,7 +1,14 @@
-_: {
-  flake.modules.nixos.bootloader = {lib, ...}: {
+{
+  category = "System software";
+  name = "bootloader";
+
+  nixos = {lib, ...}: {
     boot = {
-      kernelParams = ["pcie_pm=off" "usbcore.autosuspend=-1" "pcie_aspm=off"];
+      kernelParams = [
+        "pcie_pm=off"
+        "usbcore.autosuspend=-1"
+        "pcie_aspm=off"
+      ];
       loader = {
         grub = {
           enable = lib.mkDefault true;

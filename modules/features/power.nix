@@ -1,5 +1,9 @@
-_: {
-  flake.modules.nixos.power = {
+{
+  category = "System software";
+  name = "power";
+  software = ["powertop"];
+
+  nixos = {
     pkgs,
     lib,
     ...
@@ -10,7 +14,6 @@ _: {
 
     powerManagement = {
       enable = lib.mkDefault true;
-      # powertop.enable = true;
     };
   };
 }

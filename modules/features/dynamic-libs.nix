@@ -1,5 +1,8 @@
-_: {
-  flake.modules.nixos.dynamic-libs = {pkgs, ...}: {
+{
+  category = "System software";
+  name = "dynamic-libs";
+
+  nixos = {pkgs, ...}: {
     programs.nix-ld.enable = true;
     programs.nix-ld.libraries = with pkgs; [
       SDL

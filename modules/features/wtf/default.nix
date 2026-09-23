@@ -1,5 +1,9 @@
-_: {
-  flake.modules.homeManager.wtf = {
+{
+  category = "Tools";
+  name = "wtf";
+  software = ["wtfutil"];
+
+  homeManager = {
     pkgs-unstable,
     pkgs,
     config,

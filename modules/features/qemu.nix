@@ -1,5 +1,18 @@
-_: {
-  flake.modules.nixos.qemu = {
+{
+  category = "System software";
+  name = "qemu";
+  software = [
+    "virt-manager"
+    "virt-viewer"
+    "spice"
+    "spice-gtk"
+    "spice-protocol"
+    "virtio-win"
+    "win-spice"
+    "adwaita-icon-theme"
+  ];
+
+  nixos = {
     username,
     pkgs,
     ...
@@ -14,7 +27,7 @@ _: {
       spice
       spice-gtk
       spice-protocol
-      virtio-win # Renamed from win-virtio
+      virtio-win
       win-spice
       adwaita-icon-theme
     ];

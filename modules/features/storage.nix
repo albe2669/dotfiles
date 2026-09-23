@@ -1,5 +1,8 @@
-_: {
-  flake.modules.nixos.storage = {username, ...}: {
+{
+  category = "System software";
+  name = "storage";
+
+  nixos = {username, ...}: {
     services.devmon.enable = true;
     services.gvfs.enable = true;
     services.udisks2.enable = true;

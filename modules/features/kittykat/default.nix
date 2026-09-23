@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.kittykat = {
+{
+  category = "Software";
+  name = "kittykat";
+
+  homeManager = {
     self,
     system,
     config,

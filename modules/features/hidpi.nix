@@ -1,5 +1,8 @@
-_: {
-  flake.modules.nixos.hidpi = {
+{
+  category = "System software";
+  name = "hidpi";
+
+  nixos = {
     config,
     lib,
     ...
@@ -7,7 +10,7 @@ _: {
     services.xserver.dpi = lib.mkIf config.opts.variables.isHidpi 180;
   };
 
-  flake.modules.homeManager.hidpi = {
+  homeManager = {
     config,
     lib,
     ...

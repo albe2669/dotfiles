@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.lazydocker = {
+{
+  category = "Tools";
+  name = "lazydocker";
+
+  homeManager = {
     pkgs,
     config,
     ...

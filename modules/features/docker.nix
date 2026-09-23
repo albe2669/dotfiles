@@ -1,5 +1,9 @@
-_: {
-  flake.modules.nixos.docker = {pkgs, ...}: {
+{
+  category = "System software";
+  name = "docker";
+  software = ["docker-compose" "docker" "docker-credential-helpers"];
+
+  nixos = {pkgs, ...}: {
     environment.systemPackages = [pkgs.docker-compose];
 
     virtualisation.docker = {
@@ -12,11 +16,7 @@ _: {
     };
   };
 
-  flake.modules.darwin.docker = {pkgs, ...}: {
-    # homebrew.casks = [
-    #   "docker-desktop"
-    # ];
-
+  darwin = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       docker-compose
       docker

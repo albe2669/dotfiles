@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.worktree = _: {
+{
+  category = "Tools";
+  name = "worktree";
+
+  homeManager = _: {
     programs.fish.shellInit = ''
       # $argv[1] = worktree path, $argv[2..] = files to copy
       function __worktree_copy_files

@@ -1,5 +1,9 @@
-_: {
-  flake.modules.nixos.libs = {pkgs, ...}: {
+{
+  category = "System software";
+  name = "libs";
+  software = ["libnotify"];
+
+  nixos = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       libnotify
     ];

@@ -1,5 +1,16 @@
-_: {
-  flake.modules.homeManager.yazi = {
+{
+  category = "Tools";
+  name = "yazi";
+  software = [
+    "exiftool"
+    "mediainfo"
+    "poppler-utils"
+    "ueberzugpp"
+    "ripdrag"
+    "wl-clipboard"
+  ];
+
+  homeManager = {
     pkgs-unstable,
     config,
     lib,

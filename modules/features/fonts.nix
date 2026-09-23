@@ -1,4 +1,4 @@
-_: let
+let
   fontPackages = {pkgs}: {
     packages = with pkgs; [
       noto-fonts
@@ -22,7 +22,21 @@ _: let
     };
   };
 in {
-  flake.modules.nixos.fonts = {pkgs, ...}: let
+  category = "System software";
+  name = "fonts";
+  software = [
+    "noto-fonts"
+    "noto-fonts-cjk-sans"
+    "noto-fonts-color-emoji"
+    "nerd-fonts.fira-code"
+    "nerd-fonts.iosevka"
+    "nerd-fonts.iosevka-term"
+    "nerd-fonts.jetbrains-mono"
+    "material-design-icons"
+    "font-awesome"
+  ];
+
+  nixos = {pkgs, ...}: let
     fontConfig = fontPackages {inherit pkgs;};
   in {
     fonts = {
@@ -34,7 +48,7 @@ in {
     };
   };
 
-  flake.modules.homeManager.fonts = {pkgs, ...}: let
+  homeManager = {pkgs, ...}: let
     fontConfig = fontPackages {inherit pkgs;};
   in {
     home.packages = fontConfig.packages;

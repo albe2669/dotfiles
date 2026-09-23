@@ -1,9 +1,10 @@
-{config, ...}: let
-  flakeConfig = config;
-in {
-  flake.modules.nixos.bootloader-uefi = {...}: {
+{config, ...}: {
+  category = "System software";
+  name = "bootloader-uefi";
+
+  nixos = {...}: {
     imports = [
-      flakeConfig.flake.modules.nixos.bootloader
+      config.flake.modules.nixos.bootloader
     ];
 
     boot = {

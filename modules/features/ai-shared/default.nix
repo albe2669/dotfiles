@@ -1,5 +1,12 @@
-{config, ...}: {
-  flake.modules.homeManager.ai = {
+{
+  category = "Tools";
+  name = "ai";
+  software = [
+    "openspec"
+    "openspecui"
+  ];
+
+  homeManager = {
     inputs,
     system,
     ...
@@ -8,9 +15,5 @@
       inputs.llm-agents.packages.${system}.openspec
       inputs.llm-agents.packages.${system}.openspecui
     ];
-  };
-
-  flake.modules.combined.ai = _: {
-    hm.imports = [config.flake.modules.homeManager.ai];
   };
 }

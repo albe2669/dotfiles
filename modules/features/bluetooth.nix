@@ -1,10 +1,14 @@
-_: {
-  flake.modules.nixos.bluetooth = _: {
+{
+  category = "System software";
+  name = "bluetooth";
+  software = ["bluetuith"];
+
+  nixos = _: {
     hardware.bluetooth.enable = true;
     services.blueman.enable = false;
   };
 
-  flake.modules.homeManager.bluetooth = {pkgs, ...}: {
+  homeManager = {pkgs, ...}: {
     home.packages = with pkgs; [
       bluetuith
     ];

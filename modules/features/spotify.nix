@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.spotify = {
+{inputs, ...}: {
+  category = "Software";
+  name = "spotify";
+
+  homeManager = {
     inputs,
     system,
     ...
@@ -19,17 +22,12 @@ _: {
 
       enabledExtensions = with spicePkgs.extensions; [
         adblock
-        # keyboardShortcut
-        # powerBar
         fullAlbumDate
-        # goToSong
         listPlaylistsWithSong
         wikify
         showQueueDuration
-        # copyToClipboard
         history
         betterGenres
-        # savePlaylists
         sectionMarker
       ];
 

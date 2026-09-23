@@ -1,32 +1,28 @@
-_: {
-  flake.modules.homeManager.python3 = {pkgs-unstable, ...}: let
+{
+  category = "Programming languages";
+  name = "python3";
+  software = [
+    "uv"
+    "poppler-utils"
+    "python3"
+    "basedpyright"
+    "ruff"
+  ];
+
+  homeManager = {pkgs-unstable, ...}: let
     python-packages = ps:
       with ps; [
-        # Common
         build
         wheel
-
-        # ml-slide-splitter
         pypdf
         pdf2image
         pillow
-
-        # Database
         mysql-connector
-
-        # Testing
         pytest
-
-        # eduroam
         dbus-python
-
-        # Excel
         openpyxl
-
-        # LSP
         autopep8
         pycodestyle
-
         pandas
         numpy
       ];
@@ -34,8 +30,11 @@ _: {
     home.packages = with pkgs-unstable; [
       uv
       poppler-utils
-
-      ((python3.withPackages python-packages).override (_args: {ignoreCollisions = true;}))
+      basedpyright
+      ruff
+      ((python3.withPackages python-packages).override (_args: {
+        ignoreCollisions = true;
+      }))
     ];
   };
 }

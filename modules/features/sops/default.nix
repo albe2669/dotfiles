@@ -1,5 +1,13 @@
-{inputs, ...}: {
-  flake.modules.nixos.sops = {config, ...}: let
+{
+  category = "System software";
+  name = "sops";
+  software = ["sops" "age"];
+
+  nixos = {
+    config,
+    inputs,
+    ...
+  }: let
     username = config.opts.variables.username;
     inherit ((import ./args.nix {inherit config;})) sharedArgs;
   in {
@@ -26,7 +34,11 @@
       };
   };
 
-  flake.modules.darwin.sops = {config, ...}: let
+  darwin = {
+    config,
+    inputs,
+    ...
+  }: let
     username = config.opts.variables.username;
     inherit ((import ./args.nix {inherit config;})) sharedArgs;
   in {
@@ -53,7 +65,7 @@
       };
   };
 
-  flake.modules.homeManager.sops = {
+  homeManager = {
     config,
     pkgs,
     ...

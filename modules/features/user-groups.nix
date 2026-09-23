@@ -1,5 +1,8 @@
-_: {
-  flake.modules.nixos.user-groups = {config, ...}:
+{
+  category = "System software";
+  name = "user-groups";
+
+  nixos = {config, ...}:
     with config.opts; let
       inherit (variables) username;
       secrets = config.sops.secrets;

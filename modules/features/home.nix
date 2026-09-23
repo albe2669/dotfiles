@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.home = {
+{
+  category = "System software";
+  name = "home";
+
+  homeManager = {
     config,
     lib,
     ...

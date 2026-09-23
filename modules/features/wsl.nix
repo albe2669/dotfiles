@@ -1,5 +1,8 @@
-_: {
-  flake.modules.nixos.network = {
+{inputs, ...}: {
+  category = "System software";
+  name = "wsl";
+
+  nixos = {
     config,
     inputs,
     lib,

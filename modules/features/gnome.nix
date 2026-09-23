@@ -1,5 +1,9 @@
-_: {
-  flake.modules.homeManager.gnome = {
+{
+  category = "Software";
+  name = "gnome";
+  software = ["dconf-editor" "gnome-tweaks"];
+
+  homeManager = {
     config,
     pkgs,
     lib,
@@ -10,7 +14,6 @@ _: {
       color-shading-type = "solid";
       picture-options = "zoom";
       picture-uri-dark = "file://${config.opts.variables.homeDirectory.path}/.background-image";
-      # picture-uri-dark = "file:///home/goose/.local/share/backgrounds/2025-03-17-19-02-54-demon_goose.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
     };

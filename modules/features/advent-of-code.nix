@@ -1,7 +1,8 @@
-_: {
-  flake.modules.homeManager.advent-of-code = {pkgs-unstable, ...}: {
-    home.packages = with pkgs-unstable; [
-      # gnucobol
-    ];
+{
+  category = "Programming languages";
+  name = "advent-of-code";
+
+  homeManager = {pkgs-unstable, ...}: {
+    home.packages = with pkgs-unstable; [];
   };
 }

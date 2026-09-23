@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.nixgl = {inputs, ...}: {
+{inputs, ...}: {
+  category = "System software";
+  name = "nixgl";
+
+  homeManager = {inputs, ...}: {
     nixGL.packages = inputs.nixgl.packages;
     nixGL.defaultWrapper = "nvidia";
     nixGL.offloadWrapper = "nvidiaPrime";

@@ -1,5 +1,8 @@
-_: {
-  flake.modules.darwin.system-settings = _: {
+{
+  category = "System software";
+  name = "system-settings";
+
+  darwin = _: {
     system.defaults = {
       dock = {
         autohide = true;
@@ -48,38 +51,33 @@ _: {
       trackpad = {
         Clicking = true;
         TrackpadCornerSecondaryClick = 0;
-        # TrackpadFiveFingerPinchGesture = 2;
         TrackpadFourFingerHorizSwipeGesture = 2;
         TrackpadFourFingerPinchGesture = 2;
         TrackpadFourFingerVertSwipeGesture = 2;
-        # TrackpadHandResting = true;
-        # TrackpadHorizScroll = true;
         TrackpadMomentumScroll = true;
         TrackpadPinch = true;
         TrackpadRotate = true;
-        # TrackpadScroll = true;
         TrackpadThreeFingerHorizSwipeGesture = 2;
         TrackpadThreeFingerTapGesture = 0;
         TrackpadThreeFingerVertSwipeGesture = 2;
         TrackpadTwoFingerDoubleTapGesture = true;
         TrackpadTwoFingerFromRightEdgeSwipeGesture = 3;
-        # USBMouseStopsTrackpad = false;
       };
     };
 
     system.keyboard = {
-      remapCapsLockToControl = false; # set other options here if needed
+      remapCapsLockToControl = false;
       enableKeyMapping = true;
       userKeyMapping = [
         {
           # Command → Globe
-          HIDKeyboardModifierMappingSrc = 1095216660480; # 0xFF00000000 Left Command
-          HIDKeyboardModifierMappingDst = 1095216660483; # 0xFF00000003 Globe
+          HIDKeyboardModifierMappingSrc = 1095216660480;
+          HIDKeyboardModifierMappingDst = 1095216660483;
         }
         {
           # fn → Command
-          HIDKeyboardModifierMappingSrc = 30064771202; # fn key HID usage
-          HIDKeyboardModifierMappingDst = 1095216660480; # 0xFF00000000 Left Command
+          HIDKeyboardModifierMappingSrc = 30064771202;
+          HIDKeyboardModifierMappingDst = 1095216660480;
         }
       ];
     };

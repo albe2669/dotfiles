@@ -1,5 +1,9 @@
-_: {
-  flake.modules.homeManager.k8 = {
+{inputs, ...}: {
+  category = "Tools";
+  name = "k8";
+  software = ["kubectl" "kind" "kustomize" "sofka"];
+
+  homeManager = {
     pkgs-unstable,
     inputs,
     system,

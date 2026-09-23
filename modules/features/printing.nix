@@ -1,5 +1,9 @@
-_: {
-  flake.modules.nixos.printing = {pkgs, ...}: {
+{
+  category = "System software";
+  name = "printing";
+  software = ["hplip" "gutenprint" "foo2zjs" "epson-escpr2"];
+
+  nixos = {pkgs, ...}: {
     services.avahi = {
       enable = false;
     };

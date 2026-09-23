@@ -1,14 +1,20 @@
-{config, ...}: let
-  flakeConfig = config;
-in {
-  flake.modules.nixos.programs = _: {
-    programs.ssh.startAgent = false; # Disabled due to conflict with services.gnome.gcr-ssh-agent
+{config, ...}: {
+  category = "Software";
+  name = "programs";
+  software = [
+    "discord"
+    "vlc"
+    "google-chrome"
+  ];
+
+  nixos = _: {
+    programs.ssh.startAgent = false;
     programs.dconf.enable = true;
   };
 
-  flake.modules.homeManager.programs = {pkgs, ...}: {
+  homeManager = {pkgs, ...}: {
     imports = [
-      flakeConfig.flake.modules.homeManager.yaak
+      config.flake.modules.homeManager.yaak
     ];
 
     home.packages = with pkgs; [

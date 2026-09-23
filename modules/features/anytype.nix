@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.anytype = {
+{
+  category = "Software";
+  name = "anytype";
+
+  homeManager = {
     pkgs-unstable,
     lib,
     ...

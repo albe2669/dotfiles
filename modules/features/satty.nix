@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.satty = {
+{
+  category = "Tools";
+  name = "satty";
+
+  homeManager = {
     pkgs-unstable,
     config,
     ...

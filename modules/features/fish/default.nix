@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.fish = {pkgs, ...}: {
+{
+  category = "Tools";
+  name = "fish";
+
+  homeManager = {pkgs, ...}: {
     programs.fish = {
       enable = true;
       # fish >=4.0 dropped share/fish/tools/create_manpage_completions.py, which

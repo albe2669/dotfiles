@@ -1,5 +1,9 @@
-_: {
-  flake.modules.homeManager.zen = {
+{
+  category = "Software";
+  name = "zen";
+  software = ["zen-browser"];
+
+  homeManager = {
     inputs,
     system,
     config,

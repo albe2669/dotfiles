@@ -1,5 +1,8 @@
 {inputs, ...}: {
-  flake.modules.darwin.mac-app-util = _: let
+  category = "System software";
+  name = "mac-app-util";
+
+  darwin = _: let
     inherit (inputs) mac-app-util;
   in {
     imports = [

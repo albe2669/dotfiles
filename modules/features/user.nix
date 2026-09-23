@@ -1,5 +1,8 @@
-_: {
-  flake.modules.darwin.user = {config, ...}:
+{
+  category = "System software";
+  name = "user";
+
+  darwin = {config, ...}:
     with config.opts; let
       inherit (variables) username;
     in {

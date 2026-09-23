@@ -1,7 +1,8 @@
-_: {
-  flake.modules.homeManager.zellij = {pkgs-unstable, ...}: {
-    # stylix.targets.zellij.enable = true;
+{
+  category = "Tools";
+  name = "zellij";
 
+  homeManager = {pkgs-unstable, ...}: {
     programs.zellij = {
       enable = true;
       package = pkgs-unstable.zellij;
@@ -49,17 +50,6 @@ _: {
           "bind \"q\"" = {
             Quit = {};
           };
-
-          # bind "Ctrl f" { Write 2; SwitchToMode "Normal"; }
-          # bind "Esc" { SwitchToMode "Normal"; }
-          # bind "g" { SwitchToMode "Locked"; }
-          # bind "p" { SwitchToMode "Pane"; }
-          # bind "t" { SwitchToMode "Tab"; }
-          # bind "n" { SwitchToMode "Resize"; }
-          # bind "h" { SwitchToMode "Move"; }
-          # bind "s" { SwitchToMode "Scroll"; }
-          # bind "o" { SwitchToMode "Session"; }
-          # bind "q" { Quit; }
         };
       };
     };

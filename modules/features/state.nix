@@ -1,9 +1,12 @@
-_: {
-  flake.modules.nixos.state = {config, ...}: {
+{
+  category = "System software";
+  name = "state";
+
+  nixos = {config, ...}: {
     system.stateVersion = config.opts.variables.stateVersion;
   };
 
-  flake.modules.darwin.state = {config, ...}: {
+  darwin = {config, ...}: {
     system.stateVersion = config.opts.variables.darwinStateVersion;
   };
 }

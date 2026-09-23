@@ -1,5 +1,13 @@
-_: {
-  flake.modules.homeManager.git = {
+{
+  category = "Tools";
+  name = "git";
+  software = [
+    "bfg-repo-cleaner"
+    "delta"
+    "pre-commit"
+  ];
+
+  homeManager = {
     pkgs,
     config,
     ...

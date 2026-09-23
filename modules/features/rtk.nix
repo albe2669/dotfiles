@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.rtk = {pkgs-unstable, ...}: {
+{
+  category = "Tools";
+  name = "rtk";
+
+  homeManager = {pkgs-unstable, ...}: {
     home.packages = with pkgs-unstable; [rtk];
 
     programs.claude-code.settings.hooks = {

@@ -1,16 +1,16 @@
-_: {
-  flake.modules.homeManager.ccusage = {
+{
+  category = "Tools";
+  name = "ccusage";
+
+  homeManager = {
     inputs,
     system,
     pkgs-unstable,
     ...
   }: let
-    # Shared model definitions — same source as omp's models.yml.
     modelsData = import ./ai-shared/models.nix;
 
-    # ccusage pricing overrides keyed by raw model name (as recorded in omp
-    # session logs with the [pi] adapter prefix).  models.nix costs are
-    # per-million-tokens; ccusage expects per-token, so divide by 1e6.
+    # ccusage expects per-token costs; models.nix stores per-million-tokens.
     ccusagePricingOverrides = builtins.listToAttrs (
       map (m: {
         name = "[pi] ${m.id}";
@@ -27,9 +27,7 @@ _: {
       inputs.llm-agents.packages.${system}.ccusage
     ];
 
-    # ccusage configuration: pricing overrides for Corti models (not in
-    # LiteLLM) and calculate mode so overrides are used instead of the
-    # display cost embedded in omp session logs.
+    # Calculate mode uses these overrides instead of display costs in omp logs.
     xdg.configFile."claude/ccusage.json".source =
       (pkgs-unstable.formats.json {}).generate "ccusage.json"
       {

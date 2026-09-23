@@ -1,4 +1,4 @@
-_: let
+let
   mkShell = extra: {
     pkgs,
     config,
@@ -14,15 +14,18 @@ _: let
     }
     // (extra pkgs);
 in {
-  flake.modules.nixos.shell = mkShell (pkgs: {
+  category = "Tools";
+  name = "shell";
+
+  nixos = mkShell (pkgs: {
     users.defaultUserShell = pkgs.fish;
   });
 
-  flake.modules.darwin.shell = mkShell (pkgs: {
+  darwin = mkShell (pkgs: {
     environment.variables.SHELL = "${pkgs.fish}/bin/fish";
   });
 
-  flake.modules.homeManager.shell = {
+  homeManager = {
     config,
     lib,
     ...

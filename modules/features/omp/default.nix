@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.omp = {
+{
+  category = "Tools";
+  name = "omp";
+
+  homeManager = {
     inputs,
     lib,
     system,

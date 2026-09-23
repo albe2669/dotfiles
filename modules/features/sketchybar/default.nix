@@ -1,5 +1,8 @@
-{config, ...}: {
-  flake.modules.homeManager.sketchybar = {
+{
+  category = "Software";
+  name = "sketchybar";
+
+  homeManager = {
     pkgs-unstable,
     config,
     ...
@@ -14,9 +17,5 @@
       source = helpers.mkDotfilesSymlink config "features/sketchybar/config";
       recursive = true;
     };
-  };
-
-  flake.modules.combined.sketchybar = _: {
-    hm.imports = [config.flake.modules.homeManager.sketchybar];
   };
 }

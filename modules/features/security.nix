@@ -1,5 +1,8 @@
-_: {
-  flake.modules.nixos.security = _: {
+{
+  category = "System software";
+  name = "security";
+
+  nixos = _: {
     security = {
       polkit.enable = true;
       pam.services.greetd.enableGnomeKeyring = true;

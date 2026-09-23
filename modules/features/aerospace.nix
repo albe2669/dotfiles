@@ -1,5 +1,9 @@
-_: {
-  flake.modules.darwin.aerospace = {lib, ...}: {
+{
+  category = "System software";
+  name = "aerospace";
+  software = ["tinycast"];
+
+  darwin = {lib, ...}: {
     system.defaults = {
       dock = {
         expose-animation-duration = lib.mkDefault 0.0;
@@ -17,7 +21,7 @@ _: {
     };
   };
 
-  flake.modules.homeManager.aerospace = {pkgs, ...}: {
+  homeManager = {pkgs, ...}: {
     home.packages = [
       pkgs.tinycast
     ];

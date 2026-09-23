@@ -1,5 +1,8 @@
-_: {
-  flake.modules.darwin.homebrew = {lib, ...}: {
+{
+  category = "System software";
+  name = "homebrew";
+
+  darwin = {lib, ...}: {
     homebrew = {
       enable = lib.mkDefault true;
       onActivation = {

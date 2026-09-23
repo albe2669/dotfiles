@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.herdr = {
+{
+  category = "Tools";
+  name = "herdr";
+
+  homeManager = {
     inputs,
     lib,
     system,

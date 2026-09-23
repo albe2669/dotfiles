@@ -1,5 +1,14 @@
-_: let
-  common = {pkgs, ...}: {
+{
+  category = "System software";
+  name = "system-packages";
+  software = [
+    "neovim"
+    "wget"
+    "curl"
+    "git"
+  ];
+
+  nixos = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       neovim
       wget
@@ -9,7 +18,15 @@ _: let
 
     environment.variables.EDITOR = "nvim";
   };
-in {
-  flake.modules.nixos.system-packages = common;
-  flake.modules.darwin.system-packages = common;
+
+  darwin = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
+      neovim
+      wget
+      curl
+      git
+    ];
+
+    environment.variables.EDITOR = "nvim";
+  };
 }

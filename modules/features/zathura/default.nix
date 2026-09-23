@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.zathura = {
+{
+  category = "Software";
+  name = "zathura";
+
+  homeManager = {
     pkgs,
     lib,
     config,

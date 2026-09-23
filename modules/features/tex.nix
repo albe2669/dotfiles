@@ -1,5 +1,9 @@
-_: {
-  flake.modules.homeManager.tex = {pkgs-unstable, ...}: let
+{
+  category = "Programming languages";
+  name = "tex";
+  software = ["texlab"];
+
+  homeManager = {pkgs-unstable, ...}: let
     tex = pkgs-unstable.texlive.combine {
       inherit
         (pkgs-unstable.texlive)
@@ -13,7 +17,6 @@ _: {
         gauss
         forest
         standalone
-        # CV:
         ncctools
         lastpage
         tikzpagenodes

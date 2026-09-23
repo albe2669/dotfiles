@@ -1,14 +1,17 @@
-_: let
+let
   common = _: {
     services.tailscale = {
       enable = true;
     };
   };
 in {
-  flake.modules.nixos.tailscale = common;
-  flake.modules.darwin.tailscale = common;
+  category = "System software";
+  name = "tailscale";
 
-  flake.modules.homeManager.tailscale = {pkgs, ...}: {
+  nixos = common;
+  darwin = common;
+
+  homeManager = {pkgs, ...}: {
     home.packages = with pkgs; [
       tailscale
     ];

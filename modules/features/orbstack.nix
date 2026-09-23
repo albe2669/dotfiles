@@ -1,5 +1,8 @@
-_: {
-  flake.modules.darwin.orbstack = _: {
+{
+  category = "Software";
+  name = "orbstack";
+
+  darwin = _: {
     homebrew = {
       casks = [
         "orbstack"

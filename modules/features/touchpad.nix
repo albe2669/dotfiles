@@ -1,5 +1,8 @@
-_: {
-  flake.modules.nixos.touchpad = _: {
+{
+  category = "System software";
+  name = "touchpad";
+
+  nixos = _: {
     services.libinput = {
       enable = true;
       touchpad = {

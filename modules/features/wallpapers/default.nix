@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.wallpapers = {config, ...}: let
+{
+  category = "Software";
+  name = "wallpapers";
+
+  homeManager = {config, ...}: let
     helpers = import ../../../lib/helpers.nix;
   in {
     xdg.configFile.wallpapers = {

@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.sioyek = {
+{
+  category = "Software";
+  name = "sioyek";
+
+  homeManager = {
     pkgs,
     config,
     ...

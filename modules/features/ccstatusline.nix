@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.ccstatusline = {
+{
+  category = "Tools";
+  name = "ccstatusline";
+
+  homeManager = {
     self,
     system,
     pkgs,
@@ -71,7 +74,7 @@ _: {
           minimalistMode = false;
           powerline = {
             enabled = false;
-            separators = [""];
+            separators = [""];
             separatorInvertBackground = [false];
             startCaps = [];
             endCaps = [];

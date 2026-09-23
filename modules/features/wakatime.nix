@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.wakatime = {
+{
+  category = "Tools";
+  name = "wakatime";
+
+  homeManager = {
     pkgs,
     config,
     ...

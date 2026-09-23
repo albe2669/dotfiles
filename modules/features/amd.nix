@@ -1,13 +1,13 @@
-# SOURCE: https://nixos.wiki/wiki/Nvidia
-_: {
-  flake.modules.nixos.amd = _: {
-    # Enable OpenGL
+{
+  category = "System software";
+  name = "amd";
+
+  nixos = _: {
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
     };
 
-    # Load amd driver for Xorg and Wayland
     services.xserver.videoDrivers = ["amdgpu"];
   };
 }

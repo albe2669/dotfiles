@@ -1,25 +1,42 @@
-_: {
-  flake.modules.homeManager.utils = {pkgs, ...}: {
+{
+  category = "Tools";
+  name = "utils";
+  software = [
+    "bat"
+    "eza"
+    "gnutar"
+    "hyperfine"
+    "ripgrep"
+    "unzip"
+    "gh"
+    "gh-dash"
+    "gnumake"
+    "jq"
+    "fd"
+    "zoxide"
+    "bandwhich"
+    "bottom"
+    "witr"
+    "procs"
+    "nix-output-monitor"
+    "delta"
+    "commitizen"
+  ];
+
+  homeManager = {pkgs, ...}: {
     home.packages = with pkgs; [
-      # Tools
       bat
       eza
       gnutar
       hyperfine
       ripgrep
       unzip
-
-      # Programming
       gh
       gh-dash
       gnumake
       jq
-
-      # Convenience
       fd
       zoxide
-
-      # System
       bandwhich
       bottom
       witr

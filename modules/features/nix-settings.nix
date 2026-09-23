@@ -1,4 +1,5 @@
-{lib, ...}: let
+{inputs, ...}: let
+  lib = inputs.nixpkgs.lib;
   mkCommon = gc: {config, ...}: {
     nix = {
       inherit gc;
@@ -25,13 +26,16 @@
     nixpkgs.config.allowUnfree = true;
   };
 in {
-  flake.modules.nixos.nix-settings = mkCommon {
+  category = "System software";
+  name = "nix-settings";
+
+  nixos = mkCommon {
     automatic = lib.mkDefault true;
     dates = lib.mkDefault "weekly";
     options = lib.mkDefault "--delete-older-than 7d";
   };
 
-  flake.modules.darwin.nix-settings = mkCommon {
+  darwin = mkCommon {
     automatic = lib.mkDefault true;
     interval = lib.mkDefault {
       Weekday = 0;

@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.preflight = {
+{
+  category = "Tools";
+  name = "preflight";
+
+  homeManager = {
     inputs,
     config,
     system,
@@ -29,7 +32,6 @@ _: {
 
         sync = {
           githubTokenPath = secrets.gh_token.path;
-          # linearTokenPath = secrets.linear_token.path;
           github.filters = [
             {
               repo = "corticph/agent-api";

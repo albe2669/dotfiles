@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.walker = {inputs, ...}: {
+{inputs, ...}: {
+  category = "Software";
+  name = "walker";
+
+  homeManager = {inputs, ...}: {
     imports = [
       inputs.walker.homeManagerModules.default
     ];

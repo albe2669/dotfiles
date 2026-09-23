@@ -1,5 +1,8 @@
-_: {
-  flake.modules.nixos.sddm = {...}: {
+{
+  category = "System software";
+  name = "sddm";
+
+  nixos = {...}: {
     imports = [
       ./theme.nix
     ];

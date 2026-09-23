@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.yaak = {pkgs, ...}: {
+{
+  category = "Software";
+  name = "yaak";
+
+  homeManager = {pkgs, ...}: {
     home.packages = with pkgs; [
       yaak
     ];

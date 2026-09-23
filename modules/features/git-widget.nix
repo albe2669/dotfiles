@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.git-widget = {
+{inputs, ...}: {
+  category = "Tools";
+  name = "git-widget";
+
+  homeManager = {
     inputs,
     config,
     ...

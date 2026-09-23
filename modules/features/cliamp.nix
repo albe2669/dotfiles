@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.cliamp = {
+{
+  category = "Software";
+  name = "cliamp";
+
+  homeManager = {
     pkgs-unstable,
     config,
     ...

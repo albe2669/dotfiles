@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.rio = {
+{
+  category = "Software";
+  name = "rio";
+
+  homeManager = {
     config,
     pkgs-unstable,
     ...

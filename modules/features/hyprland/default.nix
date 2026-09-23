@@ -5,7 +5,11 @@
 }: let
   flakeConfig = config;
 in {
-  flake.modules.nixos.hyprland = {
+  category = "System software";
+  name = "hyprland";
+  software = ["libnotify"];
+
+  nixos = {
     pkgs,
     system,
     ...
@@ -42,7 +46,7 @@ in {
     };
   };
 
-  flake.modules.homeManager.hyprland = {
+  homeManager = {
     inputs,
     system,
     pkgs,

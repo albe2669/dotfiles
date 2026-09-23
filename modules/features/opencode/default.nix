@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.opencode = {
+{
+  category = "Tools";
+  name = "opencode";
+
+  homeManager = {
     pkgs-unstable,
     config,
     ...

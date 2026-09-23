@@ -1,5 +1,16 @@
-_: {
-  flake.modules.homeManager.work = {
+{
+  category = "Tools";
+  name = "work";
+  software = [
+    "act"
+    "insomnia"
+    "bruno"
+    "bruno-cli"
+    "slack"
+    "pup"
+  ];
+
+  homeManager = {
     pkgs-unstable,
     pkgs,
     lib,
@@ -17,7 +28,7 @@ _: {
         (pkgs.callPackage ../../pkgs/pup {})
       ];
 
-    programs.fish.shellInit = ''
+    programs.fish.interactiveShellInit = ''
       set -x GIT_TOKEN (${lib.getExe pkgs.gh} auth token)
       set -x GOPRIVATE "github.com/corticph/*"
     '';

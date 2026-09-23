@@ -1,7 +1,10 @@
-_: {
-  flake.modules.homeManager.guiutils = {pkgs, ...}: {
+{
+  category = "System software";
+  name = "guiutils";
+  software = ["networkmanagerapplet"];
+
+  homeManager = {pkgs, ...}: {
     home.packages = with pkgs; [
-      # Networks
       networkmanagerapplet
     ];
   };

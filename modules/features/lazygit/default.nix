@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.lazygit = {
+{
+  category = "Tools";
+  name = "lazygit";
+
+  homeManager = {
     pkgs,
     config,
     ...
@@ -8,7 +11,6 @@ _: {
   in {
     home.packages = with pkgs; [
       lazygit
-      # commitizen
     ];
 
     xdg.configFile.lazygit = {

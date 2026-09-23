@@ -1,11 +1,12 @@
-_: {
-  flake.modules.nixos.battery = _: {
-    # see this post: https://discourse.nixosstag.fcio.net/t/what-is-the-best-option-for-power-management/63406/2
+{
+  category = "System software";
+  name = "battery";
 
+  nixos = _: {
     services = {
-      system76-scheduler.settings.cfsProfiles.enable = true; # Better scheduling for CPU cycles - thanks System76!!!
-      thermald.enable = true; # Enable thermald, the temperature management daemon. (only necessary if on Intel CPUs)
-      power-profiles-daemon.enable = false; # Disable GNOMEs power management
+      system76-scheduler.settings.cfsProfiles.enable = true;
+      thermald.enable = true;
+      power-profiles-daemon.enable = false;
 
       tlp = {
         enable = true;
@@ -23,7 +24,6 @@ _: {
           PLATFORM_PROFILE_ON_AC = "performance";
           PLATFORM_PROFILE_ON_BAT = "power";
 
-          # START_CHARGE_THRESH_BAT0 = 40;
           STOP_CHARGE_THRESH_BAT0 = 80;
 
           CPU_MIN_PERF_ON_AC = 0;

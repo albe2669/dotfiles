@@ -1,5 +1,9 @@
 {config, ...}: {
-  flake.modules.homeManager.claude = {
+  category = "Tools";
+  name = "claude";
+  software = ["bun" "libnotify"];
+
+  homeManager = {
     lib,
     system,
     pkgs-unstable,
@@ -9,8 +13,6 @@
     aiShared = import ./ai-shared/mkAiTool.nix lib pkgs-unstable;
     pkg = pkgs-unstable.claude-code;
   in {
-    # ccstatusline package + declarative settings.json (programs.ccstatusline
-    # module). Claude Code's statusLine below points at this package.
     programs.ccstatusline = {
       enable = true;
       settings = {
@@ -119,10 +121,6 @@
         defaultMsg = "Task complete";
       };
 
-      # Shared skills bundle — written via xdg.configFile because the HM
-      # module's `skills` option rejects store derivations (reads drv
-      # metadata as skill content). See modules/features/ai-shared/bundles.
-
       settings = {
         # Status line is rendered by the pinned, Nix-built ccstatusline package
         # (see pkgs/ccstatusline and the programs.ccstatusline module) rather
@@ -154,16 +152,13 @@
           ];
 
           allow = [
-            # Shell tools
             "Bash(find:*)"
             "Bash(ls:*)"
             "Bash(grep:*)"
 
-            # Nix tools
             "Bash(nix flake metadata:*)"
             "Bash(nix eval*)"
 
-            # Go tools
             "Bash(go vet:*)"
             "Bash(go fmt:*)"
             "Bash(go test:*)"
@@ -171,26 +166,21 @@
             "Bash(go list:*)"
             "Bash(golangci-lint:*)"
 
-            # Rust tools
             "Bash(cargo check:*)"
             "Bash(cargo clippy:*)"
             "Bash(cargo fmt:*)"
 
-            # Web search
             "WebSearch"
             "WebFetch(domain:docs.dagger.io)"
             "WebFetch(domain:github.com)"
             "WebFetch(domain:dagger.io)"
 
-            # Docker tools
             "Bash(docker images:*)"
             "Bash(docker compose:*)"
 
-            # Git tools
             "Bash(git add:*)"
             "Bash(git:*)"
 
-            # RTK
             "Bash(rtk:*)"
           ];
           model = "claude-sonnet-4-6";
@@ -237,6 +227,7 @@
         };
       };
     };
+
     # Shared skills bundle written to ${configDir}/skills via xdg.configFile
     # (the HM module's `skills` option rejects store derivations).
     xdg.configFile."claude/skills".source = aiShared.combinedSkillsBundle;
@@ -303,7 +294,8 @@
       ];
   };
 
-  flake.modules.combined.claude = _: {
+  # Cross-module import: ccstatusline HM module added alongside this feature.
+  combined = _: {
     hm.imports = [config.flake.modules.homeManager.ccstatusline];
   };
 }

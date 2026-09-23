@@ -1,5 +1,8 @@
-_: {
-  flake.modules.homeManager.kitty = {
+{
+  category = "Software";
+  name = "kitty";
+
+  homeManager = {
     config,
     lib,
     pkgs,
@@ -30,7 +33,7 @@ _: {
           shell = "${pkgs.fish}/bin/fish";
         };
 
-      # Map Cmd to act as Ctrl inside the terminal (macOS only)
+      # Map Cmd to Ctrl inside the terminal (macOS only)
       keybindings = lib.optionalAttrs config.opts.variables.isDarwin {
         "cmd+a" = "send_text all \\x01";
         "cmd+b" = "send_text all \\x02";
@@ -56,9 +59,8 @@ _: {
         "cmd+x" = "send_text all \\x18";
         "cmd+y" = "send_text all \\x19";
         "cmd+z" = "send_text all \\x1a";
-        "cmd+[" = "send_text all \\x1b"; # Ctrl+[ = Escape
+        "cmd+[" = "send_text all \\x1b";
 
-        # Restore clipboard via Cmd+Shift
         "cmd+shift+c" = "copy_to_clipboard";
         "cmd+shift+v" = "paste_from_clipboard";
       };
