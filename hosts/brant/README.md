@@ -138,8 +138,10 @@
 | nix-index | 0.1.11 | — | — |
 | nix-info |  | — | — |
 | nix-zsh-completions | 0.5.1-unstable-2025-12-12 | — | — |
+| nodejs | 22.23.3 | — | — |
 | pftui |  | — | — |
 | pkg-config-wrapper | 0.29.2 | — | — |
+| pnpm | 12.3.4 | — | — |
 | puffer | 1.1.0 | — | — |
 | texinfo-interactive | 7.2 | — | — |
 | virtualenv | 21.6.1 | — | — |

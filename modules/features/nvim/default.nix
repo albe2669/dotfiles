@@ -23,6 +23,7 @@ in {
       nix-lang
       python3
       lua
+      javascript
     ];
 
     home.packages = with pkgs-unstable;
