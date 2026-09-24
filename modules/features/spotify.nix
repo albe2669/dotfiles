@@ -5,6 +5,7 @@
   homeManager = {
     inputs,
     system,
+    pkgs,
     ...
   }: {
     imports = [
@@ -17,6 +18,11 @@
 
     programs.spicetify = let
       spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
+      genresSrc = pkgs.fetchzip {
+        url = "https://code.vexcited.com/spicetify/genres/releases/download/0.1.0/genres-0.1.0.zip";
+        hash = "sha256-80WFlkowiaG6+nUXVyE6ULYSlTT4jB93LjczPepcNqk=";
+        stripRoot = false;
+      };
     in {
       enable = true;
 
@@ -27,8 +33,18 @@
         wikify
         showQueueDuration
         history
-        betterGenres
         sectionMarker
+        {
+          name = "betterGenres.js";
+          src = pkgs.runCommand "betterGenres" {} ''
+            mkdir $out
+            cp ${genresSrc}/index.js $out/betterGenres.js
+          '';
+        }
+      ];
+
+      enabledSnippets = [
+        (builtins.readFile (genresSrc + "/index.css"))
       ];
 
       enabledCustomApps = with spicePkgs.apps; [

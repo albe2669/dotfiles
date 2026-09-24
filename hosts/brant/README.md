@@ -38,9 +38,9 @@
 | mediainfo | 26.05 | — | — |
 | neovim | 0.12.4 | — | — |
 | nix-output-monitor | 2.2.0 | — | — |
-| omp | 18.2.8 | — | — |
+| omp | 18.3.0 | — | — |
 | opencode | 1.18.31 | — | $XDG_CONFIG_HOME/opencode, ~/.config/opencode |
-| openspec | 1.13.1 | — | — |
+| openspec | 1.13.2 | — | — |
 | openspecui | 13.0.1 | — | — |
 | poppler-utils | 26.06.0 | — | — |
 | pre-commit | 4.6.2 | — | — |
@@ -52,7 +52,7 @@
 | rtk | 0.49.0 | — | — |
 | rune | 1.2.1 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.28.4 | — | — |
+| sofka | 0.29.0 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.3 | — | — |
@@ -64,7 +64,7 @@
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
 | cliamp | 2.0.1 | — | — |
-| kitty | 0.48.2 | — | — |
+| kitty | 0.49.0 | — | — |
 | spotify | 1.2.98.301 | — | — |
 
 ### System software
@@ -102,7 +102,7 @@
 | nixd | 2.9.2 | — | — |
 | python3 | 3.14.7-env | — | — |
 | ruff | 0.16.8 | — | — |
-| rust-analyzer | 2026-08-03 | — | — |
+| rust-analyzer | 2026-09-21 | — | — |
 | rustc | 1.98.1 | — | — |
 | rustfmt | 1.98.1 | — | — |
 | tree-sitter | 0.26.11 | — | — |
@@ -119,7 +119,7 @@
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
 | clang-wrapper | 21.1.8 | — | — |
-| claude-code | 2.1.278 | — | — |
+| claude-code | 2.1.281 | — | — |
 | codegraph | 1.6.0 | — | — |
 | darwin-option |  | — | — |
 | darwin-rebuild |  | — | — |

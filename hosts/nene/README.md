@@ -44,7 +44,7 @@
 | ripgrep | 15.2.0 | — | — |
 | rune | 1.2.1 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.28.4 | — | — |
+| sofka | 0.29.0 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.3 | — | — |
@@ -56,7 +56,7 @@
 
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
-| kitty | 0.48.2 | — | — |
+| kitty | 0.49.0 | — | — |
 | sioyek | 2.0.0-unstable-2026-08-18 | — | $XDG_CONFIG_HOME/sioyek, ~/.config/sioyek |
 | spotify | 1.2.98.301 | — | — |
 | vscode | 1.137.0 | — | — |
@@ -95,7 +95,7 @@
 | nixd | 2.9.2 | — | — |
 | python3 | 3.14.7-env | — | — |
 | ruff | 0.16.8 | — | — |
-| rust-analyzer | 2026-08-03 | — | — |
+| rust-analyzer | 2026-09-21 | — | — |
 | rustc | 1.98.1 | — | — |
 | rustfmt | 1.98.1 | — | — |
 | tree-sitter | 0.26.11 | — | — |
@@ -112,7 +112,7 @@
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
 | clang-wrapper | 21.1.8 | — | — |
-| claude-code | 2.1.278 | — | — |
+| claude-code | 2.1.281 | — | — |
 | darwin-option |  | — | — |
 | darwin-rebuild |  | — | — |
 | darwin-uninstaller |  | — | — |
