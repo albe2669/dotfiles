@@ -44,7 +44,7 @@
 | ripgrep | 15.2.0 | — | — |
 | rune | 1.2.1 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.29.0 | — | — |
+| sofka | 0.29.2 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.3 | — | — |
@@ -112,7 +112,7 @@
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
 | clang-wrapper | 21.1.8 | — | — |
-| claude-code | 2.1.281 | — | — |
+| claude-code | 2.1.282 | — | — |
 | darwin-option |  | — | — |
 | darwin-rebuild |  | — | — |
 | darwin-uninstaller |  | — | — |
