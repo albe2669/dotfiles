@@ -92,7 +92,7 @@
 | delve | 1.27.2 | — | — |
 | gdb | 17.2 | — | — |
 | go | 1.26.7 | — | — |
-| golangci-lint | 2.13.2 | — | — |
+| golangci-lint | 2.14.0 | — | — |
 | google-java-format | 1.36.1 | — | — |
 | gopls | 0.23.0 | — | — |
 | jdt-language-server | 1.61.0 | — | — |
