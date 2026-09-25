@@ -72,7 +72,7 @@
 | docker-credential-helpers | 0.9.7 | — | — |
 | git | 2.54.0 | — | — |
 | sops | 3.13.3 | — | — |
-| tinycast | 0.10.3-beta.72 | — | — |
+| tinycast | 0.11.3 | — | — |
 | wget | 1.25.0 | — | — |
 
 ### Programming languages
