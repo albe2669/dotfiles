@@ -14,7 +14,7 @@
 | bruno-cli | 4.0.0 | — | — |
 | bun | 1.4.2 | — | — |
 | ccstatusline | 2.2.19 | — | — |
-| ccusage | 20.0.24 | — | — |
+| ccusage | 20.0.26 | — | — |
 | commitizen | 4.16.5 | — | — |
 | delta | 0.19.2 | — | — |
 | direnv | 2.37.1 | — | — |
@@ -38,10 +38,10 @@
 | mediainfo | 26.05 | — | — |
 | neovim | 0.12.4 | — | — |
 | nix-output-monitor | 2.2.0 | — | — |
-| omp | 18.3.0 | — | — |
+| omp | 18.3.2 | — | — |
 | opencode | 1.18.31 | — | $XDG_CONFIG_HOME/opencode, ~/.config/opencode |
 | openspec | 1.13.2 | — | — |
-| openspecui | 13.0.1 | — | — |
+| openspecui | 13.0.2 | — | — |
 | poppler-utils | 26.06.0 | — | — |
 | pre-commit | 4.6.2 | — | — |
 | preflight |  | — | $XDG_CONFIG_HOME/raycast/extensions/preflight, ~/.config/raycast/extensions/preflight |
@@ -52,7 +52,7 @@
 | rtk | 0.49.0 | — | — |
 | rune | 1.2.1 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.29.2 | — | — |
+| sofka | 0.29.3 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.3 | — | — |
@@ -119,7 +119,7 @@
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
 | clang-wrapper | 21.1.8 | — | — |
-| claude-code | 2.1.282 | — | — |
+| claude-code | 2.1.283 | — | — |
 | codegraph | 1.6.0 | — | — |
 | darwin-option |  | — | — |
 | darwin-rebuild |  | — | — |
@@ -154,7 +154,7 @@
 
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
-| devenv | 2.3.1 | — | — |
+| devenv | 2.4.0 | — | — |
 | just | 1.58.0 | — | — |
 | lefthook | 2.1.14 | — | — |
 | openssl | 3.6.4 | — | — |

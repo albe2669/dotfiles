@@ -44,7 +44,7 @@
 | ripgrep | 15.2.0 | — | — |
 | rune | 1.2.1 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.29.2 | — | — |
+| sofka | 0.29.3 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.3 | — | — |
@@ -59,7 +59,7 @@
 | kitty | 0.49.0 | — | — |
 | sioyek | 2.0.0-unstable-2026-08-18 | — | $XDG_CONFIG_HOME/sioyek, ~/.config/sioyek |
 | spotify | 1.2.98.301 | — | — |
-| vscode | 1.137.0 | — | — |
+| vscode | 1.139.1 | — | — |
 
 ### System software
 
@@ -112,7 +112,7 @@
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
 | clang-wrapper | 21.1.8 | — | — |
-| claude-code | 2.1.282 | — | — |
+| claude-code | 2.1.283 | — | — |
 | darwin-option |  | — | — |
 | darwin-rebuild |  | — | — |
 | darwin-uninstaller |  | — | — |
@@ -143,7 +143,7 @@
 
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
-| devenv | 2.3.1 | — | — |
+| devenv | 2.4.0 | — | — |
 | just | 1.58.0 | — | — |
 | lefthook | 2.1.14 | — | — |
 | openssl | 3.6.4 | — | — |
