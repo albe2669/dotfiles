@@ -52,6 +52,7 @@
     self.modules.combined.cliamp
     self.modules.combined.tailscale
     self.modules.combined.rune
+    self.modules.combined.apple-sdk
   ];
 
   system.keyboard = {

@@ -30,7 +30,7 @@
 | insomnia | 13.0.0 | — | — |
 | jq | 1.8.2 | — | — |
 | kind | 0.32.0 | — | — |
-| kubectl | 1.37.0 | — | — |
+| kubectl | 1.37.1 | — | — |
 | kubelogin | 0.2.14 | — | — |
 | kustomize | 5.8.1 | — | — |
 | lazydocker | 0.25.2 | — | $XDG_CONFIG_HOME/lazydocker, ~/.config/lazydocker |
@@ -52,7 +52,7 @@
 | rtk | 0.49.0 | — | — |
 | rune | 1.2.1 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.29.3 | — | — |
+| sofka | 0.29.4 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.3 | — | — |
@@ -119,7 +119,7 @@
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
 | clang-wrapper | 21.1.8 | — | — |
-| claude-code | 2.1.283 | — | — |
+| claude-code | 2.1.284 | — | — |
 | codegraph | 1.6.0 | — | — |
 | darwin-option |  | — | — |
 | darwin-rebuild |  | — | — |
@@ -149,6 +149,12 @@
 | zen-twilight-bin-unwrapped | 1.23t | — | — |
 | zsh | 5.9.1 | — | — |
 | zulu-ca-jdk | 17.0.19 | — | — |
+
+### Programming Languages
+
+| Name | Version | Log location | Config location |
+|------|---------|--------------|-----------------|
+| apple-sdk | 14.4 | — | — |
 
 ### Programming Tools
 
