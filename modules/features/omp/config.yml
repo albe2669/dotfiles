@@ -1,12 +1,12 @@
 modelRoles:
-  default: corti/corti-s1
+  default: corti/corti-s1-beta:medium
   smol: corti/corti-s1-mini
-  slow: corti/corti-s1
-  plan: corti/corti-s1
-  task: corti/corti-s1
+  slow: corti/corti-s1-beta
+  plan: corti/corti-s1-beta
+  task: corti/corti-s1-beta
   commit: corti/corti-s1-mini-instant
   tiny: corti/corti-s1-tiny
-  advisor: corti/corti-s1
+  advisor: corti/corti-s1-mini
   vision: corti/corti-s1-mini
 tools:
   approvalMode: yolo
@@ -49,9 +49,6 @@ power:
   sleepPrevention: idle
 github:
   enabled: true
-providers:
-  tinyModel: online
-  memoryModel: online
 disabledProviders:
   - github
 setupVersion: 2
@@ -63,7 +60,7 @@ python:
 task:
   eager: preferred
   enableEffort: true
-  maxEffort: max
+  maxEffort: medium
 error:
   notify: "on"
 startup:
@@ -75,3 +72,8 @@ mnemopi:
   embeddingModel: ""
 composer:
   shape: box
+dev:
+  autoqaConsent: granted
+providers:
+  autoThinkingMaxEffort: xhigh
+
