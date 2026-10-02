@@ -78,6 +78,13 @@
   # package names map to the feature's category. If software is omitted,
   # the feature name itself maps to the category. showInReadme = false
   # excludes the feature entirely from the category mapping.
+  categories = [
+    "Tools"
+    "Software"
+    "System software"
+    "Programming languages"
+    "Programming tools"
+  ];
   software =
     builtins.foldl' (
       acc: f:
@@ -86,7 +93,14 @@
         else let
           pkgs = f.software or [f.name];
         in
-          builtins.foldl' (s: pkg: s // {${pkg} = f.category;}) acc pkgs
+          builtins.foldl' (
+            s: pkg:
+              if builtins.elem f.category categories
+              then s // {${pkg} = f.category;}
+              else builtins.throw "feature ${f.name}: category \"${f.category}\" not in categories list"
+          )
+          acc
+          pkgs
     ) {}
     features;
 in {
@@ -107,6 +121,12 @@ in {
   config.flake.modules.homeManager = featureHomeManager;
   config.flake.modules.combined = autoCombined;
   config.flake.software = software;
+  options.flake.categories = lib.mkOption {
+    type = lib.types.listOf lib.types.str;
+    default = [];
+    description = "Canonical category buckets for host README generation";
+  };
+  config.flake.categories = categories;
 
   imports =
     [

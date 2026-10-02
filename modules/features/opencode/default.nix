@@ -3,14 +3,15 @@
   name = "opencode";
 
   homeManager = {
-    pkgs-unstable,
+    inputs,
+    system,
     config,
     ...
   }: let
     helpers = import ../../../lib/helpers.nix;
   in {
-    home.packages = with pkgs-unstable; [
-      opencode
+    home.packages = [
+      inputs.llm-agents.packages.${system}.opencode2
     ];
 
     xdg.configFile.opencode = {

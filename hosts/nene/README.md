@@ -21,7 +21,7 @@
 | fd | 10.5.0 | — | — |
 | fish | 4.7.1 | — | $XDG_CONFIG_HOME/fish, ~/.config/fish |
 | gh | 2.101.0 | — | — |
-| gh-dash | 4.25.2 | — | — |
+| gh-dash | 4.26.0 | — | — |
 | gnumake | 4.4.1 | — | — |
 | gnutar | 1.35 | — | — |
 | hyperfine | 1.20.0 | — | — |
@@ -36,15 +36,14 @@
 | mediainfo | 26.05 | — | — |
 | neovim | 0.12.4 | — | — |
 | nix-output-monitor | 2.2.0 | — | — |
-| poppler-utils | 26.06.0 | — | — |
+| poppler-utils | 26.09.0 | — | — |
 | pre-commit | 4.6.2 | — | — |
 | procs | 0.14.12 | — | — |
 | pup | 0.46.0 | — | — |
 | ripdrag | 0.4.13 | — | — |
 | ripgrep | 15.2.0 | — | — |
-| rune | 1.2.1 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.29.4 | — | — |
+| sofka | 0.29.7 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.3 | — | — |
@@ -57,7 +56,7 @@
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
 | kitty | 0.49.0 | — | — |
-| sioyek | 2.0.0-unstable-2026-08-18 | — | $XDG_CONFIG_HOME/sioyek, ~/.config/sioyek |
+| sioyek | 2.0.0-unstable-2026-09-24 | — | $XDG_CONFIG_HOME/sioyek, ~/.config/sioyek |
 | spotify | 1.2.98.301 | — | — |
 | vscode | 1.139.1 | — | — |
 
@@ -84,7 +83,7 @@
 | clippy | 1.98.1 | — | — |
 | delve | 1.27.2 | — | — |
 | gdb | 17.2 | — | — |
-| go | 1.26.7 | — | — |
+| go | 1.26.8 | — | — |
 | golangci-lint | 2.14.0 | — | — |
 | google-java-format | 1.36.1 | — | — |
 | gopls | 0.23.0 | — | — |
@@ -93,13 +92,22 @@
 | lua-language-server | 3.19.1 | — | — |
 | nil | 2026-07-23 | — | — |
 | nixd | 2.9.2 | — | — |
-| python3 | 3.14.7-env | — | — |
 | ruff | 0.16.8 | — | — |
 | rust-analyzer | 2026-09-21 | — | — |
 | rustc | 1.98.1 | — | — |
 | rustfmt | 1.98.1 | — | — |
 | tree-sitter | 0.26.11 | — | — |
 | uv | 0.12.17 | — | — |
+
+### Programming tools
+
+| Name | Version | Log location | Config location |
+|------|---------|--------------|-----------------|
+| devenv | 2.4.0 | — | — |
+| just | 1.58.0 | — | — |
+| lefthook | 2.1.14 | — | — |
+| openssl | 3.5.8 | — | — |
+| tabularis | 0.22.0 | — | — |
 
 ### Uncategorised
 
@@ -112,39 +120,30 @@
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
 | clang-wrapper | 21.1.8 | — | — |
-| claude-code | 2.1.284 | — | — |
-| darwin-option |  | — | — |
-| darwin-rebuild |  | — | — |
-| darwin-uninstaller |  | — | — |
-| darwin-version |  | — | — |
+| claude-code | 2.1.286 | — | — |
+| darwin-option | unknown | — | — |
+| darwin-rebuild | unknown | — | — |
+| darwin-uninstaller | unknown | — | — |
+| darwin-version | unknown | — | — |
 | fzf | 0.74.4 | — | — |
 | git-lfs | 3.7.1 | — | — |
 | goland-with-plugins | 2026.2.2.1 | — | — |
-| hm-session-vars.fish |  | — | — |
-| hm-session-vars.sh |  | — | — |
-| home-configuration-reference-manpage |  | — | — |
+| hm-session-vars.fish | unknown | — | — |
+| hm-session-vars.sh | unknown | — | — |
+| home-configuration-reference-manpage | unknown | — | — |
 | lix | 2.94.2 | — | — |
 | luarocks | 3.13.0-1 | — | — |
 | nerd-fonts-iosevka | 3.4.0+33.2.1 | — | — |
 | nix-index | 0.1.11 | — | — |
-| nix-info |  | — | — |
+| nix-info | unknown | — | — |
 | nix-zsh-completions | 0.5.1-unstable-2025-12-12 | — | — |
 | nodejs | 22.23.3 | — | — |
 | pkg-config-wrapper | 0.29.2 | — | — |
 | pnpm | 12.3.4 | — | — |
 | puffer | 1.1.0 | — | — |
+| python3-3.14.7-env | unknown | — | — |
 | texinfo-interactive | 7.2 | — | — |
 | virtualenv | 21.6.1 | — | — |
 | yazi | 26.9.1 | — | — |
 | zsh | 5.9.1 | — | — |
 | zulu-ca-jdk | 17.0.19 | — | — |
-
-### Programming Tools
-
-| Name | Version | Log location | Config location |
-|------|---------|--------------|-----------------|
-| devenv | 2.4.0 | — | — |
-| just | 1.58.0 | — | — |
-| lefthook | 2.1.14 | — | — |
-| openssl | 3.6.4 | — | — |
-| tabularis | 0.22.0 | — | — |

@@ -3,13 +3,26 @@ set -uo pipefail
 
 dotfiles="$(git rev-parse --show-toplevel)"
 
-# Only attempt hosts that match the current system.
 case "$(uname -s)-$(uname -m)" in
-  Linux-x86_64) hosts=(gander gosling skein larry);;
-  Darwin-arm64) hosts=(nene brant);;
-  Darwin-x86_64) hosts=(nene barnacle brant);;
-  *) hosts=();;
+  Linux-x86_64) sys=x86_64-linux;;
+  Darwin-arm64) sys=aarch64-darwin;;
+  Darwin-x86_64) sys=x86_64-darwin;;
+  *) echo "Unsupported system" >&2; exit 1;;
 esac
+
+mapfile -t lines < <(nix eval --raw ".#readmeSystems" --apply '
+  s: builtins.concatStringsSep "\n" (map (name: "${builtins.getAttr name s} ${name}") (builtins.attrNames s))' \
+  --extra-experimental-features 'nix-command flakes' 2>/dev/null) || {
+  echo "Failed to eval readmeSystems" >&2
+  exit 1
+}
+
+hosts=()
+for line in "${lines[@]}"; do
+  set -- $line
+  [ "$1" = "$sys" ] && hosts+=("$2")
+done
+[ ${#hosts[@]} -eq 0 ] && { echo "No hosts for $sys" >&2; exit 1; }
 
 failed=0
 for host in "${hosts[@]}"; do

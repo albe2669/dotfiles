@@ -26,7 +26,6 @@ in {
     # Home-only features
     self.modules.combined.home
     self.modules.combined.advent-of-code
-    self.modules.combined.ags
     self.modules.combined.dunst
     self.modules.combined.fish
     self.modules.combined.git

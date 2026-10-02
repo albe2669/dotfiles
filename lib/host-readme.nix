@@ -10,52 +10,25 @@
 
   homeConfig = config.home-manager.users.${username};
 
-  pkgInfo = pkg: let
-    parsed = builtins.parseDrvName pkg.name;
-    name = pkg.pname or parsed.name or pkg.name;
-    version = pkg.version or parsed.version or "unknown";
-  in {
-    inherit name version;
-  };
+  mkEntries = isSystem: pkgs:
+    builtins.listToAttrs (
+      builtins.filter (e: e.name != "") (
+        map (pkg: {
+          name = pkg.pname or pkg.name;
+          value = {
+            version = pkg.version or "unknown";
+            inherit isSystem;
+          };
+        })
+        pkgs
+      )
+    );
 
   systemPackages = config.environment.systemPackages or [];
   userPackages = homeConfig.home.packages or [];
 
-  systemEntries = builtins.listToAttrs (
-    builtins.filter (e: e.name != "") (
-      map (
-        pkg: let
-          i = pkgInfo pkg;
-        in {
-          inherit (i) name;
-
-          value = {
-            inherit (i) version;
-            isSystem = true;
-          };
-        }
-      )
-      systemPackages
-    )
-  );
-
-  userEntries = builtins.listToAttrs (
-    builtins.filter (e: e.name != "") (
-      map (
-        pkg: let
-          i = pkgInfo pkg;
-        in {
-          inherit (i) name;
-
-          value = {
-            inherit (i) version;
-            isSystem = false;
-          };
-        }
-      )
-      userPackages
-    )
-  );
+  systemEntries = mkEntries true systemPackages;
+  userEntries = mkEntries false userPackages;
 
   merged = userEntries // systemEntries;
 
@@ -102,7 +75,7 @@
     then "journalctl -u ${name}"
     else "—";
 
-  resolveCategory = name: isSystem: let
+  resolveCategory = name: let
     declared = self.software.${name} or null;
   in
     if declared != null
@@ -114,7 +87,7 @@
       inherit name;
       inherit (info) version isSystem;
 
-      category = resolveCategory name info.isSystem;
+      category = resolveCategory name;
       logLocation = resolveLog name;
       configLocation = resolveConfig name;
     })
@@ -131,13 +104,7 @@
     ) {}
     allPackages;
 
-  knownOrder = [
-    "Tools"
-    "Software"
-    "System software"
-    "Programming languages"
-    "Uncategorised"
-  ];
+  knownOrder = self.categories;
   remainingCategories = builtins.filter (c: !builtins.elem c knownOrder) (
     builtins.sort (a: b: a < b) (builtins.attrNames grouped)
   );

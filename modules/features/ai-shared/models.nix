@@ -5,7 +5,7 @@
       name = "Corti S1 Beta (GLM5.3-flash)";
       reasoning = true;
       input = ["text" "image"];
-      contextWindow = 262144;
+      contextWindow = 1048576;
       cost = {
         input = 2;
         output = 8;

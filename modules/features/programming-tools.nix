@@ -1,5 +1,5 @@
 _: {
-  category = "Programming Tools";
+  category = "Programming tools";
   name = "programming-tools";
   software = [
     "just"

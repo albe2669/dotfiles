@@ -1,5 +1,5 @@
 modelRoles:
-  default: corti/corti-s1-beta:medium
+  default: corti/corti-s1-beta
   smol: corti/corti-s1-mini
   slow: corti/corti-s1-beta
   plan: corti/corti-s1-beta
@@ -76,4 +76,28 @@ dev:
   autoqaConsent: granted
 providers:
   autoThinkingMaxEffort: xhigh
-
+modelPresets:
+  anthropic:
+    modelRoles:
+      default: anthropic/claude-opus-5-5
+      smol: corti/corti-s1-mini
+      slow: corti/corti-s1-beta
+      plan: anthropic/claude-opus-5-5
+      task: anthropic/claude-sonnet-5-5
+      commit: corti/corti-s1-mini-instant
+      tiny: corti/corti-s1-tiny
+      advisor: corti/corti-s1-mini
+      vision: corti/corti-s1-mini
+    defaultThinkingLevel: auto
+  corti:
+    modelRoles:
+      default: corti/corti-s1-beta
+      smol: corti/corti-s1-mini
+      slow: corti/corti-s1-beta
+      plan: corti/corti-s1-beta
+      task: corti/corti-s1-beta
+      commit: corti/corti-s1-mini-instant
+      tiny: corti/corti-s1-tiny
+      advisor: corti/corti-s1-mini
+      vision: corti/corti-s1-mini
+    defaultThinkingLevel: auto

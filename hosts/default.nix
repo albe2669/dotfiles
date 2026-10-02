@@ -177,4 +177,7 @@ in {
   flake.hostReadmes = builtins.mapAttrs (_name: config: config.config.system.build.hostReadme) (
     nixosConfigurations // darwinConfigurations
   );
+  flake.readmeSystems = builtins.mapAttrs (_: config: config.config.opts.info.system) (
+    nixosConfigurations // darwinConfigurations
+  );
 }

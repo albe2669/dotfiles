@@ -1,7 +1,7 @@
 {config, ...}: let
   flakeConfig = config;
 in {
-  category = "Programming Languages";
+  category = "Programming languages";
   name = "apple-sdk";
   software = [
     "apple-sdk"

@@ -11,5 +11,288 @@
         "prompt": "none"
       }
     }
-  }
+  },
+  "providers": {
+    "corti": {
+      "package": "aisdk:@ai-sdk/openai-compatible",
+      "name": "Corti",
+      "settings": {
+        "baseURL": "https://ai.eu.corti.app/v1",
+        "apiKey": "{env:CORTI_BEARER}"
+      },
+      "models": {
+        "corti-s1": {
+          "name": "Corti S1",
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 2,
+            "output": 8,
+            "cache": {
+              "read": 0.2
+            }
+          },
+          "compatibility": {
+            "reasoningField": "reasoning"
+          }
+        },
+        "corti-s1-instant": {
+          "name": "Corti S1 Instant",
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 2,
+            "output": 8,
+            "cache": {
+              "read": 0.2
+            }
+          }
+        },
+        "corti-s1-mini": {
+          "name": "Corti S1 Mini",
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 1,
+            "output": 4,
+            "cache": {
+              "read": 0.1
+            }
+          },
+          "compatibility": {
+            "reasoningField": "reasoning"
+          }
+        },
+        "corti-s1-mini-instant": {
+          "name": "Corti S1 Mini Instant",
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 1,
+            "output": 4,
+            "cache": {
+              "read": 0.1
+            }
+          }
+        },
+        "corti-s1-alpha": {
+          "name": "Corti S1 Alpha",
+          "limit": {
+            "context": 1048576,
+            "output": 1048576
+          },
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 2,
+            "output": 8,
+            "cache": {
+              "read": 0.2
+            }
+          },
+          "compatibility": {
+            "reasoningField": "reasoning"
+          }
+        },
+        "corti-s1-beta": {
+          "name": "Corti S1 Beta",
+          "limit": {
+            "context": 1048576,
+            "output": 1048576
+          },
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 2,
+            "output": 8,
+            "cache": {
+              "read": 0.2
+            }
+          },
+          "compatibility": {
+            "reasoningField": "reasoning"
+          }
+        },
+        "corti-s1-embedding": {
+          "name": "Corti S1 Embedding",
+          "limit": {
+            "context": 16384,
+            "output": 16384
+          },
+          "cost": {
+            "input": 0.03,
+            "output": 0
+          }
+        },
+        "corti-s1-instant-alpha": {
+          "name": "Corti S1 Instant Alpha",
+          "limit": {
+            "context": 1048576,
+            "output": 1048576
+          },
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 2,
+            "output": 8,
+            "cache": {
+              "read": 0.2
+            }
+          },
+          "compatibility": {
+            "reasoningField": "reasoning"
+          }
+        },
+        "corti-s1-instant-beta": {
+          "name": "Corti S1 Instant Beta",
+          "limit": {
+            "context": 1048576,
+            "output": 1048576
+          },
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 2,
+            "output": 8,
+            "cache": {
+              "read": 0.2
+            }
+          },
+          "compatibility": {
+            "reasoningField": "reasoning"
+          }
+        },
+        "corti-s1-mini-beta": {
+          "name": "Corti S1 Mini Beta",
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 1,
+            "output": 4,
+            "cache": {
+              "read": 0.1
+            }
+          },
+          "compatibility": {
+            "reasoningField": "reasoning"
+          }
+        },
+        "corti-s1-mini-instant-beta": {
+          "name": "Corti S1 Mini Instant Beta",
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 1,
+            "output": 4,
+            "cache": {
+              "read": 0.1
+            }
+          }
+        }
+      }
+    }
+  },
+  "model": "corti/corti-s1"
 }
