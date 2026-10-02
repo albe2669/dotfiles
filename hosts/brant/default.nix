@@ -48,6 +48,7 @@
     self.modules.combined.opencode
     self.modules.combined.omp
     self.modules.combined.ai
+    self.modules.combined.kiln
     self.modules.combined.preflight
     self.modules.combined.cliamp
     self.modules.combined.tailscale

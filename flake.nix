@@ -129,6 +129,11 @@
         flake-parts.follows = "flake-parts";
       };
     };
+
+    kiln = {
+      # Local clone; switch to `github:albe2669/kiln` once `main` is pushed.
+      url = "git+file:/Users/arn/Documents/Coding/Rust/kiln?shallow=1";
+    };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
