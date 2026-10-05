@@ -215,18 +215,6 @@
       action.__raw = "function() Snacks.lazygit() end";
     }
     {
-      key = "<F5>";
-      mode = "n";
-      options.desc = "Toggle terminal";
-      action.__raw = "function() Snacks.terminal() end";
-    }
-    {
-      key = "<leader>gg";
-      mode = "n";
-      options.desc = "Lazygit";
-      action.__raw = "function() Snacks.lazygit() end";
-    }
-    {
       key = "<F6>";
       mode = "n";
       options.desc = "Toggle terminal";
