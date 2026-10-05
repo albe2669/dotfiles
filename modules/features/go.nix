@@ -29,7 +29,6 @@
         lsp.servers = {
           gopls.enable = true;
           golangci_lint_ls = {
-            enable = true;
             config.init_options.command = [
               "golangci-lint"
               "run"

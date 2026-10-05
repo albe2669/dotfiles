@@ -16,7 +16,7 @@
     opts = {
       editor.lsp.servers.lua_ls = {
         enable = true;
-        config.settings.Lua = {
+        config.Lua = {
           telemetry.enable = false;
           runtime.version = "LuaJIT";
           diagnostics.globals = ["vim"];

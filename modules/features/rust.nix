@@ -25,7 +25,7 @@
     opts = {
       editor.lsp.servers.rust_analyzer = {
         enable = true;
-        config.settings = {
+        config = {
           check = {
             command = "clippy";
             extraArgs = ["--no-deps"];

@@ -53,6 +53,19 @@
         ];
         lualine_x = [
           {
+            # Direnv status (active/pending/blocked)
+            __unkeyed.__raw = ''
+              function()
+                local ok, result = pcall(require("direnv").statusline)
+                if not ok then return "" end
+                return result
+              end
+            '';
+            color = {
+              fg = "#d699b6";
+            };
+          }
+          {
             # Macro recording indicator
             __unkeyed.__raw = ''
               function()

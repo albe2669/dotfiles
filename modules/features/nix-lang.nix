@@ -13,10 +13,9 @@
       nil
       tree-sitter
     ];
-
     opts = {
       editor.lsp.servers.nil_ls.enable = true;
-      opts.tsGrammars = [
+      tsGrammars = [
         pkgs-unstable.vimPlugins.nvim-treesitter.builtGrammars.tree-sitter-nix
       ];
     };

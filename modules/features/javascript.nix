@@ -3,14 +3,20 @@
   name = "javascript";
   software = ["nodejs_22"];
 
-  homeManager = {pkgs, ...}: {
+  homeManager = {
+    pkgs,
+    pkgs-unstable,
+    ...
+  }: {
     home.packages = with pkgs; [
       nodejs_22
       pnpm
       bun
+      pkgs-unstable.tailwindcss-language-server
+      pkgs-unstable.svelte-language-server
     ];
 
-    # Node-based LSP servers (ts_ls / vue_ls / eslint / emmet / graphql) use
+    # Node-based LSP servers (ts_ls / vue_ls / eslint / emmet) use
     # npx at runtime; nothing to install here.
     opts = {
       editor = {
@@ -25,6 +31,8 @@
             config.filetypes = ["html" "css" "scss" "less" "vue" "typescript"];
           };
           eslint.enable = true;
+          tailwindcss.enable = true;
+          svelte.enable = true;
         };
       };
 

@@ -33,7 +33,7 @@ _: {
         };
       };
 
-      opts.tsGrammars = with pkgs-unstable.vimPlugins.nvim-treesitter.builtGrammars; [
+      tsGrammars = with pkgs-unstable.vimPlugins.nvim-treesitter.builtGrammars; [
         tree-sitter-bash
         tree-sitter-hcl
       ];
