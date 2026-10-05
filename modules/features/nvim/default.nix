@@ -132,14 +132,6 @@
           settings.server = {};
         };
       };
-      # nixpkgs grammar packages bundle upstream query files using the
-      # `#is-not?` predicate (no core handler on nvim 0.12), and the grammar
-      # pack sits before user config in rtp, so overrides cannot win. Strip
-      # the bundled queries; nvim-treesitter ships clean copies for these.
-      extraFiles = {
-        "queries/nix/highlights.scm".source = ./queries/nix/highlights.scm;
-        "queries/javascript/highlights.scm".source = ./queries/javascript/highlights.scm;
-      };
 
       keymaps = [
         # Insert blank line above/below
