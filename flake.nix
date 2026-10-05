@@ -146,6 +146,8 @@
       url = "github:nklmilojevic/sofka";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim.url = "github:nix-community/nixvim";
   };
 
   outputs = inputs @ {flake-parts, ...}:
