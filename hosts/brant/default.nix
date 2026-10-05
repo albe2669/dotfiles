@@ -53,6 +53,11 @@
     self.modules.combined.cliamp
     self.modules.combined.tailscale
     self.modules.combined.apple-sdk
+    self.modules.combined.go
+    self.modules.combined.rust
+    self.modules.combined.nix-lang
+    self.modules.combined.lua
+    self.modules.combined.javascript
   ];
 
   system.keyboard = {
