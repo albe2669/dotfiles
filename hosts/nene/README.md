@@ -34,7 +34,6 @@
 | lazydocker | 0.25.2 | — | $XDG_CONFIG_HOME/lazydocker, ~/.config/lazydocker |
 | lazygit | 0.65.1 | — | $XDG_CONFIG_HOME/lazygit, ~/.config/lazygit |
 | mediainfo | 26.05 | — | — |
-| neovim | 0.12.4 | — | — |
 | nix-output-monitor | 2.2.0 | — | — |
 | poppler-utils | 26.09.0 | — | — |
 | pre-commit | 4.6.2 | — | — |
@@ -70,6 +69,7 @@
 | docker-compose | 5.4.0 | — | — |
 | docker-credential-helpers | 0.9.7 | — | — |
 | git | 2.54.0 | — | — |
+| neovim | 0.12.4 | — | — |
 | sops | 3.13.3 | — | — |
 | tinycast | 0.11.3 | — | — |
 | wget | 1.25.0 | — | — |
@@ -79,24 +79,7 @@
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
 | basedpyright | 1.39.8 | — | — |
-| cargo | 1.98.1 | — | — |
-| clippy | 1.98.1 | — | — |
-| delve | 1.27.2 | — | — |
-| gdb | 17.2 | — | — |
-| go | 1.26.8 | — | — |
-| golangci-lint | 2.14.0 | — | — |
-| google-java-format | 1.36.1 | — | — |
-| gopls | 0.23.0 | — | — |
-| jdt-language-server | 1.61.0 | — | — |
-| lua | 5.1.5 | — | — |
-| lua-language-server | 3.19.1 | — | — |
-| nil | 2026-07-23 | — | — |
-| nixd | 2.9.2 | — | — |
 | ruff | 0.16.8 | — | — |
-| rust-analyzer | 2026-09-21 | — | — |
-| rustc | 1.98.1 | — | — |
-| rustfmt | 1.98.1 | — | — |
-| tree-sitter | 0.26.11 | — | — |
 | uv | 0.12.17 | — | — |
 
 ### Programming tools
@@ -119,7 +102,6 @@
 | atuin | 18.21.0 | — | — |
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
-| clang-wrapper | 21.1.8 | — | — |
 | claude-code | 2.1.286 | — | — |
 | darwin-option | unknown | — | — |
 | darwin-rebuild | unknown | — | — |
@@ -132,18 +114,15 @@
 | hm-session-vars.sh | unknown | — | — |
 | home-configuration-reference-manpage | unknown | — | — |
 | lix | 2.94.2 | — | — |
-| luarocks | 3.13.0-1 | — | — |
 | nerd-fonts-iosevka | 3.4.0+33.2.1 | — | — |
 | nix-index | 0.1.11 | — | — |
 | nix-info | unknown | — | — |
 | nix-zsh-completions | 0.5.1-unstable-2025-12-12 | — | — |
-| nodejs | 22.23.3 | — | — |
+| nixvim | unknown | — | — |
 | pkg-config-wrapper | 0.29.2 | — | — |
-| pnpm | 12.3.4 | — | — |
 | puffer | 1.1.0 | — | — |
 | python3-3.14.7-env | unknown | — | — |
 | texinfo-interactive | 7.2 | — | — |
 | virtualenv | 21.6.1 | — | — |
 | yazi | 26.9.1 | — | — |
 | zsh | 5.9.1 | — | — |
-| zulu-ca-jdk | 17.0.19 | — | — |

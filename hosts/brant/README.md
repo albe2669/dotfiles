@@ -37,7 +37,6 @@
 | lazydocker | 0.25.2 | — | $XDG_CONFIG_HOME/lazydocker, ~/.config/lazydocker |
 | lazygit | 0.65.1 | — | $XDG_CONFIG_HOME/lazygit, ~/.config/lazygit |
 | mediainfo | 26.05 | — | — |
-| neovim | 0.12.4 | — | — |
 | nix-output-monitor | 2.2.0 | — | — |
 | omp | 18.4.6 | — | — |
 | openspec | 1.14.0 | — | — |
@@ -76,6 +75,7 @@
 | docker-compose | 5.4.0 | — | — |
 | docker-credential-helpers | 0.9.7 | — | — |
 | git | 2.54.0 | — | — |
+| neovim | 0.12.4 | — | — |
 | sops | 3.13.3 | — | — |
 | tailscale | 1.98.10 | — | — |
 | tinycast | 0.11.3 | — | — |
@@ -93,9 +93,7 @@
 | gdb | 17.2 | — | — |
 | go | 1.26.8 | — | — |
 | golangci-lint | 2.14.0 | — | — |
-| google-java-format | 1.36.1 | — | — |
 | gopls | 0.23.0 | — | — |
-| jdt-language-server | 1.61.0 | — | — |
 | lua | 5.1.5 | — | — |
 | lua-language-server | 3.19.1 | — | — |
 | nil | 2026-07-23 | — | — |
@@ -127,7 +125,6 @@
 | atuin | 18.21.0 | — | — |
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
-| clang-wrapper | 21.1.8 | — | — |
 | claude-code | 2.1.286 | — | — |
 | codegraph | 1.6.0 | — | — |
 | darwin-option | unknown | — | — |
@@ -147,6 +144,7 @@
 | nix-index | 0.1.11 | — | — |
 | nix-info | unknown | — | — |
 | nix-zsh-completions | 0.5.1-unstable-2025-12-12 | — | — |
+| nixvim | unknown | — | — |
 | nodejs | 22.23.3 | — | — |
 | opencode2 | 2.0.21 | — | — |
 | pftui | unknown | — | — |
@@ -154,9 +152,10 @@
 | pnpm | 12.3.4 | — | — |
 | puffer | 1.1.0 | — | — |
 | python3-3.14.7-env | unknown | — | — |
+| svelte-language-server | 0.18.4 | — | — |
+| tailwindcss-language-server | 0.16.0 | — | — |
 | texinfo-interactive | 7.2 | — | — |
 | virtualenv | 21.6.1 | — | — |
 | yazi | 26.9.1 | — | — |
 | zen-twilight-bin-unwrapped | 1.24t | — | — |
 | zsh | 5.9.1 | — | — |
-| zulu-ca-jdk | 17.0.19 | — | — |
