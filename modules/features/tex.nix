@@ -29,5 +29,13 @@
       texlab
       tex
     ];
+
+    opts.editor = {
+      lsp.servers.texlab.enable = true;
+      plugins.vimtex.settings = {
+        view_method = "zathura";
+        compiler_method = "latexmk";
+      };
+    };
   };
 }

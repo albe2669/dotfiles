@@ -23,5 +23,29 @@
     home.sessionVariables = {
       GOROOT = "${go_pkg}/share/go";
     };
+
+    opts = {
+      editor = {
+        lsp.servers = {
+          gopls.enable = true;
+          golangci_lint_ls = {
+            enable = true;
+            config.init_options.command = [
+              "golangci-lint"
+              "run"
+              "--output.json.path"
+              "stdout"
+              "--show-stats=false"
+              "--issues-exit-code=1"
+            ];
+          };
+        };
+      };
+
+      tsGrammars = with pkgs-unstable.vimPlugins.nvim-treesitter.builtGrammars; [
+        tree-sitter-go
+        tree-sitter-gomod
+      ];
+    };
   };
 }

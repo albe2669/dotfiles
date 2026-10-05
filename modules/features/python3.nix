@@ -37,5 +37,15 @@
         ignoreCollisions = true;
       }))
     ];
+
+    opts = {
+      editor.lsp.servers = {
+        basedpyright.enable = true;
+        ruff.enable = true;
+      };
+      tsGrammars = [
+        pkgs-unstable.vimPlugins.nvim-treesitter.builtGrammars.tree-sitter-python
+      ];
+    };
   };
 }

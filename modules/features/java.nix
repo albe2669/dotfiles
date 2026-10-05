@@ -17,5 +17,9 @@
       pkgs-unstable.jdt-language-server
       pkgs-unstable.google-java-format
     ];
+
+    opts.editor.lsp.servers.jdtls = {
+      enable = true;
+    };
   };
 }

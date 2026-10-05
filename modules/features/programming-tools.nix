@@ -24,5 +24,19 @@ _: {
       pkgs-unstable.devenv
       pkgs-unstable.tabularis
     ];
+
+    opts = {
+      editor = {
+        lsp.servers = {
+          bashls.enable = true;
+          tofu_ls.enable = true;
+        };
+      };
+
+      opts.tsGrammars = with pkgs-unstable.vimPlugins.nvim-treesitter.builtGrammars; [
+        tree-sitter-bash
+        tree-sitter-hcl
+      ];
+    };
   };
 }

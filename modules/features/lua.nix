@@ -12,5 +12,20 @@
       lua51Packages.luarocks
       lua-language-server
     ];
+
+    opts = {
+      editor.lsp.servers.lua_ls = {
+        enable = true;
+        config.settings.Lua = {
+          telemetry.enable = false;
+          runtime.version = "LuaJIT";
+          diagnostics.globals = ["vim"];
+          workspace.library = ["$VIMRUNTIME/lua"];
+        };
+      };
+      tsGrammars = [
+        pkgs-unstable.vimPlugins.nvim-treesitter.builtGrammars.tree-sitter-lua
+      ];
+    };
   };
 }

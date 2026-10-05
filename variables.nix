@@ -42,7 +42,14 @@ in {
 
         directories = mkOption {
           type = types.listOf types.str;
-          default = ["Documents" "Downloads" "Music" "Pictures" "Pictures/FScreenshots" "Videos"];
+          default = [
+            "Documents"
+            "Downloads"
+            "Music"
+            "Pictures"
+            "Pictures/FScreenshots"
+            "Videos"
+          ];
           description = "Directories to create in home directory";
         };
       };
@@ -95,6 +102,18 @@ in {
         default = 6;
         description = "nix-darwin state version";
       };
+    };
+    tsGrammars = mkOption {
+      type = types.listOf types.package;
+      default = [];
+      description = "Treesitter grammar packages, one list per language feature, merged";
+    };
+
+    editor = mkOption {
+      # nixvim module fragment; typed by nixvim, not here
+      type = types.lazyAttrsOf types.anything;
+      default = {};
+      description = "Nixvim editor settings collected from language toolchain features";
     };
   };
 

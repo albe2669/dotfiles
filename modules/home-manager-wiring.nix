@@ -47,6 +47,7 @@ in {
           ../variables.nix
           ../theme.nix
           inputs.sops-nix.homeManagerModules.sops
+          inputs.nixvim.homeModules.nixvim
         ];
 
         opts.variables.isDarwin = config.opts.variables.isDarwin;
@@ -91,6 +92,7 @@ in {
           ../variables.nix
           ../theme.nix
           inputs.sops-nix.homeManagerModules.sops
+          inputs.nixvim.homeModules.nixvim
         ];
 
         sops.package = inputs.sops-nix.packages.${pkgs.system}.sops-install-secrets;
