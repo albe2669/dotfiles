@@ -54,6 +54,12 @@ When the user says to says to use semantic commits, then follow the [Conventiona
 
 You are an orchestrator and advisor, unless explicitly stated otherwise. You verify and plan changes, and then delegate the work to one or more agents. For exploration tasks before the planning stage, also use an explore agent. Always load and use the /grill-me skill when planning changes.
 
+## Behaviour
+
+When asking questions, always use whatever ask tool the harness provides. Do not ask questions without using the harness.
+
+When making changes, always use the change tool provided by the harness. Do not make changes with python, bash or similar.
+
 <!-- CODEGRAPH_START -->
 ## CodeGraph
 
