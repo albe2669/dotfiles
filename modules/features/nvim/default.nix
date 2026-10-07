@@ -15,6 +15,7 @@
       ./plugins/which-key.nix
       ./plugins/ui.nix
       ./plugins/statusline.nix
+      ./plugins/bufferline.nix
       ./plugins/copilot.nix
       ./plugins/markdown.nix
       ./plugins/snacks.nix
