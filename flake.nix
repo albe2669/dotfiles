@@ -148,6 +148,12 @@
     };
 
     nixvim.url = "github:nix-community/nixvim";
+
+    omniwm = {
+      # `programs.omniwm` HM module, package overlay, settings helpers
+      url = "github:mst-mkt/omniwm.nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:

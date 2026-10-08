@@ -22,10 +22,6 @@
   };
 
   homeManager = {pkgs, ...}: {
-    home.packages = [
-      pkgs.tinycast
-    ];
-
     programs.aerospace = {
       enable = true;
       launchd.enable = true;

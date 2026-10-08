@@ -70,6 +70,7 @@
 | docker-credential-helpers | 0.9.7 | — | — |
 | git | 2.54.0 | — | — |
 | neovim | 0.12.4 | — | — |
+| omniwm | 0.7.5 | — | — |
 | sops | 3.13.3 | — | — |
 | tinycast | 0.11.3 | — | — |
 | wget | 1.25.0 | — | — |
@@ -97,7 +98,6 @@
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
 | Image-ExifTool | 13.59 | — | — |
-| aerospace | 0.21.3-Beta | — | — |
 | async-prompt | 1.3.0 | — | — |
 | atuin | 18.21.0 | — | — |
 | bash-interactive | 5.3p9 | — | — |

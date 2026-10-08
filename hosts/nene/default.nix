@@ -9,7 +9,8 @@
     self.modules.combined.shell
     self.modules.combined.mac-app-util
     self.modules.combined.docker
-    self.modules.combined.aerospace
+    self.modules.combined.tinycast
+    self.modules.combined.omniwm
 
     # Home-only features
     self.modules.combined.home

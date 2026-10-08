@@ -11,7 +11,8 @@
     self.modules.combined.docker
     self.modules.combined.orbstack
     self.modules.combined.xdg
-    self.modules.combined.aerospace
+    self.modules.combined.tinycast
+    self.modules.combined.omniwm
 
     # Home-only features
     self.modules.combined.home
@@ -48,7 +49,6 @@
     self.modules.combined.opencode
     self.modules.combined.omp
     self.modules.combined.ai
-    self.modules.combined.kiln
     self.modules.combined.preflight
     self.modules.combined.cliamp
     self.modules.combined.tailscale
