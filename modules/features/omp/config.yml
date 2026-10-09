@@ -61,6 +61,7 @@ task:
   eager: preferred
   enableEffort: true
   maxEffort: medium
+  maxConcurrency: 8
 error:
   notify: "on"
 startup:
