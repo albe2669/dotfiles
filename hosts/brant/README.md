@@ -5,7 +5,7 @@
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
 | act | 0.2.89 | — | — |
-| azure-cli | 2.89.1 | — | — |
+| azure-cli | 2.91.0 | — | — |
 | bandwhich | 0.23.1 | — | — |
 | bat | 0.26.1 | — | — |
 | bfg-repo-cleaner | 1.15.0 | — | — |
@@ -14,42 +14,42 @@
 | bruno-cli | 4.0.0 | — | — |
 | bun | 1.4.2 | — | — |
 | ccstatusline | 2.2.19 | — | — |
-| ccusage | 20.0.26 | — | — |
+| ccusage | 20.0.37 | — | — |
 | commitizen | 4.16.5 | — | — |
 | delta | 0.20.1 | — | — |
-| direnv | 2.37.1 | — | — |
+| direnv | 2.38.2 | — | — |
 | eza | 0.23.5 | — | — |
 | fd | 10.5.0 | — | — |
 | fish | 4.7.1 | — | $XDG_CONFIG_HOME/fish, ~/.config/fish |
 | gh | 2.102.0 | — | — |
-| gh-dash | 4.26.0 | — | — |
+| gh-dash | 4.26.1 | — | — |
 | gnumake | 4.4.1 | — | — |
 | gnutar | 1.35 | — | — |
-| herdr | 0.9.3 | — | — |
-| hyperfine | 1.20.0 | — | — |
+| herdr | 0.9.5 | — | — |
+| hyperfine | 2.0.0 | — | — |
 | insomnia | 13.0.0 | — | — |
 | jq | 1.8.2 | — | — |
-| kind | 0.32.0 | — | — |
+| kind | 0.33.0 | — | — |
 | kubectl | 1.37.1 | — | — |
 | kubelogin | 0.2.14 | — | — |
 | kustomize | 5.8.2 | — | — |
 | lazydocker | 0.25.2 | — | $XDG_CONFIG_HOME/lazydocker, ~/.config/lazydocker |
-| lazygit | 0.65.1 | — | $XDG_CONFIG_HOME/lazygit, ~/.config/lazygit |
+| lazygit | 0.66.2 | — | $XDG_CONFIG_HOME/lazygit, ~/.config/lazygit |
 | mediainfo | 26.05 | — | — |
 | nix-output-monitor | 2.2.0 | — | — |
-| omp | 18.6.1 | — | — |
-| openspec | 1.14.1 | — | — |
-| openspecui | 14.0.0 | — | — |
-| poppler-utils | 26.09.0 | — | — |
-| pre-commit | 4.6.2 | — | — |
+| omp | 18.12.4 | — | — |
+| openspec | 1.14.3 | — | — |
+| openspecui | 14.0.2 | — | — |
+| poppler-utils | 26.10.0 | — | — |
+| pre-commit | 4.7.0 | — | — |
 | preflight | unknown | — | $XDG_CONFIG_HOME/raycast/extensions/preflight, ~/.config/raycast/extensions/preflight |
 | procs | 0.14.12 | — | — |
 | pup | 0.46.0 | — | — |
 | ripdrag | 0.4.13 | — | — |
 | ripgrep | 15.2.0 | — | — |
-| rtk | 0.50.0 | — | — |
+| rtk | 1.0.1 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.29.9 | — | — |
+| sofka | 0.31.14 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.4 | — | — |
@@ -70,12 +70,12 @@
 |------|---------|--------------|-----------------|
 | age | 1.3.2 | — | — |
 | curl | 8.22.0 | — | — |
-| docker | 29.8.1 | — | — |
+| docker | 29.9.1 | — | — |
 | docker-compose | 5.4.0 | — | — |
 | docker-credential-helpers | 0.9.7 | — | — |
 | git | 2.54.0 | — | — |
 | neovim | 0.12.4 | — | — |
-| omniwm | 0.7.5 | — | — |
+| omniwm | 0.7.6 | — | — |
 | sops | 3.13.3 | — | — |
 | tailscale | 1.98.10 | — | — |
 | tinycast | 0.11.3 | — | — |
@@ -87,23 +87,24 @@
 |------|---------|--------------|-----------------|
 | apple-sdk | 14.4 | — | — |
 | basedpyright | 1.39.8 | — | — |
-| cargo | 1.98.1 | — | — |
-| clippy | 1.98.1 | — | — |
+| cargo | 1.99.0 | — | — |
+| clippy | 1.99.0 | — | — |
 | delve | 1.27.2 | — | — |
 | gdb | 17.2 | — | — |
 | go | 1.27.3 | — | — |
 | golangci-lint | 2.14.0 | — | — |
-| gopls | 0.23.0 | — | — |
+| gopls | 0.24.0 | — | — |
+| kache | 1.2.2 | — | — |
 | lua | 5.1.5 | — | — |
-| lua-language-server | 3.19.1 | — | — |
+| lua-language-server | 3.19.2 | — | — |
 | nil | 2026-07-23 | — | — |
-| nixd | 2.9.2 | — | — |
-| ruff | 0.16.10 | — | — |
-| rust-analyzer | 2026-09-28 | — | — |
-| rustc | 1.98.1 | — | — |
-| rustfmt | 1.98.1 | — | — |
+| nixd | 2.9.3 | — | — |
+| ruff | 0.17.1 | — | — |
+| rust-analyzer | 2026-10-12 | — | — |
+| rustc | 1.99.0 | — | — |
+| rustfmt | 1.99.0 | — | — |
 | tree-sitter | 0.26.11 | — | — |
-| uv | 0.12.22 | — | — |
+| uv | 0.13.1 | — | — |
 
 ### Programming tools
 
@@ -112,8 +113,8 @@
 | devenv | 2.4.0 | — | — |
 | just | 1.58.0 | — | — |
 | lefthook | 2.1.15 | — | — |
-| openssl | 3.5.8 | — | — |
-| tabularis | 0.22.0 | — | — |
+| openssl | 3.5.9 | — | — |
+| tabularis | 0.28.0 | — | — |
 
 ### Uncategorised
 
@@ -121,23 +122,23 @@
 |------|---------|--------------|-----------------|
 | Image-ExifTool | 13.59 | — | — |
 | async-prompt | 1.3.0 | — | — |
-| atuin | 18.21.0 | — | — |
+| atuin | 18.23.0 | — | — |
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
-| claude-code | 2.1.291 | — | — |
+| claude-code | 2.1.306 | — | — |
 | codegraph | 1.6.2 | — | — |
 | darwin-option | unknown | — | — |
 | darwin-rebuild | unknown | — | — |
 | darwin-uninstaller | unknown | — | — |
 | darwin-version | unknown | — | — |
-| fzf | 0.74.4 | — | — |
+| fzf | 0.74.5 | — | — |
 | git-lfs | 3.8.0 | — | — |
 | goland-with-plugins | 2026.2.2.1 | — | — |
 | herdr-worktree-create | unknown | — | — |
 | hm-session-vars.fish | unknown | — | — |
 | hm-session-vars.sh | unknown | — | — |
 | home-configuration-reference-manpage | unknown | — | — |
-| lix | 2.94.2 | — | — |
+| lix | 2.94.3 | — | — |
 | luarocks | 3.13.0-1 | — | — |
 | nerd-fonts-iosevka | 3.4.0+33.2.1 | — | — |
 | nix-index | 0.1.11 | — | — |
@@ -145,13 +146,13 @@
 | nix-zsh-completions | 0.5.1-unstable-2025-12-12 | — | — |
 | nixvim | unknown | — | — |
 | nodejs | 22.23.3 | — | — |
-| opencode2 | 2.0.24 | — | — |
+| opencode2 | 2.1.1 | — | — |
 | pftui | unknown | — | — |
 | pkg-config-wrapper | 0.29.2 | — | — |
 | pnpm | 12.9.0 | — | — |
 | puffer | 1.1.0 | — | — |
-| python3-3.14.7-env | unknown | — | — |
-| svelte-language-server | 0.18.4 | — | — |
+| python3-3.14.8-env | unknown | — | — |
+| svelte-language-server | 0.18.5 | — | — |
 | tailwindcss-language-server | 0.16.0 | — | — |
 | texinfo-interactive | 7.2 | — | — |
 | virtualenv | 21.6.1 | — | — |

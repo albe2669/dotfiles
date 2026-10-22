@@ -9,9 +9,18 @@
     "rust-analyzer"
     "delve"
     "gdb"
+    "kache"
   ];
 
-  homeManager = {pkgs-unstable, ...}: {
+  homeManager = {
+    pkgs-unstable,
+    system,
+    inputs,
+    lib,
+    ...
+  }: let
+    kache = inputs.kache.packages."${system}".default;
+  in {
     home.packages = with pkgs-unstable; [
       cargo
       rustc
@@ -20,6 +29,16 @@
       rust-analyzer
       delve
       gdb
+      kache
+    ];
+
+    home.sessionVariables = {
+      RUST_BACKTRACE = "1";
+      RUSTC_WRAPPER = "${lib.getExe kache}";
+    };
+
+    home.sessionPath = [
+      "${kache}/shims"
     ];
 
     opts = {

@@ -154,6 +154,11 @@
       url = "github:mst-mkt/omniwm.nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    kache = {
+      url = "github:kunobi-ninja/kache/stable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:
