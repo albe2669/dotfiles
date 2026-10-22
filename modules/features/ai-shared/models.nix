@@ -14,6 +14,19 @@
       };
     }
     {
+      id = "corti-s1-alpha";
+      name = "Corti S1 Alpha (GLM5.3)";
+      reasoning = true;
+      input = ["text"];
+      contextWindow = 1048576;
+      cost = {
+        input = 2;
+        output = 8;
+        cacheRead = 0.2;
+        cacheWrite = 0;
+      };
+    }
+    {
       id = "corti-s1";
       name = "Corti S1 (GLM5.2)";
       reasoning = true;
