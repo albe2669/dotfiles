@@ -77,6 +77,8 @@ dev:
   autoqaConsent: granted
 providers:
   autoThinkingMaxEffort: xhigh
+  anthropic:
+    slowMode: auto
 modelPresets:
   anthropic:
     modelRoles:
@@ -102,3 +104,11 @@ modelPresets:
       advisor: corti/corti-s1-mini
       vision: corti/corti-s1-mini
     defaultThinkingLevel: auto
+cycleOrder:
+  - smol
+  - default
+  - slow
+retry:
+  fallbackChains:
+    task:
+      - corti/corti-s1-beta
