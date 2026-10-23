@@ -17,7 +17,7 @@ in {
       pkgs.apple-sdk
     ];
 
-    home.sessionVariables = lib.mkIf config.opts.variables.isDarwin {
+    shell.envVars = lib.mkIf config.opts.variables.isDarwin {
       LIBRARY_PATH = lib.makeLibraryPath [
         pkgs.darwin.libresolv
       ];

@@ -32,14 +32,16 @@
       kache
     ];
 
-    home.sessionVariables = {
-      RUST_BACKTRACE = "1";
-      RUSTC_WRAPPER = "${lib.getExe kache}";
-    };
+    shell = {
+      envVars = {
+        RUST_BACKTRACE = "1";
+        RUSTC_WRAPPER = "${lib.getExe kache}";
+      };
 
-    home.sessionPath = [
-      "${kache}/shims"
-    ];
+      paths = [
+        "${kache}/shims"
+      ];
+    };
 
     opts = {
       editor.lsp.servers.rust_analyzer = {

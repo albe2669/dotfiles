@@ -20,7 +20,7 @@
       set -x GOROOT "${go_pkg}/share/go"
     '';
 
-    home.sessionVariables = {
+    shell.envVars = {
       GOROOT = "${go_pkg}/share/go";
     };
 

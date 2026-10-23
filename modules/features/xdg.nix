@@ -22,7 +22,7 @@
   homeManager = {config, ...}: {
     xdg.enable = true;
 
-    home.sessionVariables = {
+    shell.envVars = {
       # Azure CLI
       AZURE_CONFIG_DIR = "${config.xdg.configHome}/azure";
 
