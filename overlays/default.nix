@@ -5,5 +5,6 @@
   (import ./go.nix)
   # (import ./jetbrains.nix)
   (import ./tinycast.nix)
+  (import ./fabric.nix)
   inputs.claude-code.overlays.default
 ]

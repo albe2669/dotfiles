@@ -72,7 +72,7 @@
 | neovim | 0.12.4 | — | — |
 | omniwm | 0.7.6 | — | — |
 | sops | 3.13.3 | — | — |
-| tinycast | 0.11.3 | — | — |
+| tinycast | 0.12.1 | — | — |
 | wget | 1.25.0 | — | — |
 
 ### Programming languages

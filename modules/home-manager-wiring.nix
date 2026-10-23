@@ -5,11 +5,14 @@
 }: let
   # Single definition of the unstable package set, reused across nixos/darwin
   # wiring so nixpkgs-unstable is only instantiated once per build.
+  # azure-cli propagates python fabric, which unstable marks broken
+  # (invoke-3 incompatibility). Remove when nixos-unstable ships eeced2e.
   mkPkgsUnstable = system:
     import inputs.nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
       config.permittedInsecurePackages = ["electron-29.4.6"];
+      config.problems.handlers.fabric.broken = "warn";
       overlays = import ../overlays {inherit inputs;};
     };
 in {
