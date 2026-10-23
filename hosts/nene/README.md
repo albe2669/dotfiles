@@ -42,7 +42,7 @@
 | ripdrag | 0.4.13 | — | — |
 | ripgrep | 15.2.0 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.31.14 | — | — |
+| sofka | 0.32.0 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.4 | — | — |
@@ -102,7 +102,7 @@
 | atuin | 18.23.0 | — | — |
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
-| claude-code | 2.1.306 | — | — |
+| claude-code | 2.1.308 | — | — |
 | darwin-option | unknown | — | — |
 | darwin-rebuild | unknown | — | — |
 | darwin-uninstaller | unknown | — | — |

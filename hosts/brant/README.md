@@ -14,7 +14,7 @@
 | bruno-cli | 4.0.0 | — | — |
 | bun | 1.4.2 | — | — |
 | ccstatusline | 2.2.19 | — | — |
-| ccusage | 20.0.37 | — | — |
+| ccusage | 20.0.40 | — | — |
 | commitizen | 4.16.5 | — | — |
 | delta | 0.20.1 | — | — |
 | direnv | 2.38.2 | — | — |
@@ -48,7 +48,7 @@
 | ripgrep | 15.2.0 | — | — |
 | rtk | 1.0.1 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.31.14 | — | — |
+| sofka | 0.32.0 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.4 | — | — |
@@ -124,7 +124,7 @@
 | atuin | 18.23.0 | — | — |
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
-| claude-code | 2.1.306 | — | — |
+| claude-code | 2.1.308 | — | — |
 | codegraph | 1.6.2 | — | — |
 | darwin-option | unknown | — | — |
 | darwin-rebuild | unknown | — | — |
@@ -146,7 +146,7 @@
 | nixvim | unknown | — | — |
 | nodejs | 22.23.3 | — | — |
 | omp-wrapped | unknown | — | — |
-| opencode2 | 2.1.1 | — | — |
+| opencode2 | 2.1.2 | — | — |
 | pftui | unknown | — | — |
 | pkg-config-wrapper | 0.29.2 | — | — |
 | pnpm | 12.9.0 | — | — |
