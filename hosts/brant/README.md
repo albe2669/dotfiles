@@ -37,7 +37,6 @@
 | lazygit | 0.66.2 | — | $XDG_CONFIG_HOME/lazygit, ~/.config/lazygit |
 | mediainfo | 26.05 | — | — |
 | nix-output-monitor | 2.2.0 | — | — |
-| omp | 18.12.4 | — | — |
 | openspec | 1.14.3 | — | — |
 | openspecui | 14.0.2 | — | — |
 | poppler-utils | 26.10.0 | — | — |
@@ -146,6 +145,7 @@
 | nix-zsh-completions | 0.5.1-unstable-2025-12-12 | — | — |
 | nixvim | unknown | — | — |
 | nodejs | 22.23.3 | — | — |
+| omp-wrapped | unknown | — | — |
 | opencode2 | 2.1.1 | — | — |
 | pftui | unknown | — | — |
 | pkg-config-wrapper | 0.29.2 | — | — |
