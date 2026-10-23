@@ -6,7 +6,7 @@ in {
 
     src = prev.fetchurl {
       url = "https://github.com/abue-ammar/tinycast/releases/download/v${version}/Tinycast-${version}.dmg";
-      hash = "";
+      hash = "sha256-6dPaLAobs7gTzkHM5Sk0+9B8BJQWic9Ojli6MoT3lsU=";
     };
 
     sourceRoot = "Tinycast.app";
