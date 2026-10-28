@@ -157,6 +157,7 @@
 | tailwindcss-language-server | 0.16.0 | — | — |
 | texinfo-interactive | 7.2 | — | — |
 | virtualenv | 21.6.1 | — | — |
+| vlang | 0.5.2 | — | — |
 | yazi | 26.9.1 | — | — |
 | zen-twilight-bin-unwrapped | 1.24t | — | — |
 | zsh | 5.9.1 | — | — |
