@@ -58,6 +58,7 @@
     self.modules.combined.nix-lang
     self.modules.combined.lua
     self.modules.combined.javascript
+    self.modules.combined.kiln
   ];
 
   system.keyboard = {

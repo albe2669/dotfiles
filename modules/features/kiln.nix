@@ -24,6 +24,7 @@
       // {
         meta = inputs.kiln.packages.${system}.default.meta or {};
       };
+    modelsData = import ./ai-shared/models.nix;
     roles = {
       default = "corti/corti-s1-beta:auto";
       smol = "corti/corti-s1-mini:auto";
@@ -38,8 +39,24 @@
       reviewer = "corti/corti-s1-beta:auto";
     };
     roleLines = lib.mapAttrsToList (role: spec: "${role} = \"${spec}\"") roles;
+    modelsToml =
+      lib.concatMapStrings (m: ''
+        ["corti/${m.id}"]
+        context_window = ${toString m.contextWindow}
+        input_price = ${toString m.cost.input}
+        output_price = ${toString m.cost.output}
+
+      '')
+      modelsData.models;
   in {
     home.packages = [pkg];
+
+    # Context windows and prices for the corti models; kiln cannot guess
+    # them, and wrong values make the percent counter bogus.
+    sops.templates."kiln-models.toml" = {
+      content = modelsToml;
+      path = "${config.xdg.configHome}/kiln/models.toml";
+    };
 
     # The whole config renders through sops so the provider base URL and
     # key name stay out of the flake. One template owns config.toml;
