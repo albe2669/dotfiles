@@ -20,7 +20,7 @@
 | eza | 0.23.5 | — | — |
 | fd | 10.5.0 | — | — |
 | fish | 4.7.1 | — | $XDG_CONFIG_HOME/fish, ~/.config/fish |
-| gh | 2.102.0 | — | — |
+| gh | 2.103.0 | — | — |
 | gh-dash | 4.26.1 | — | — |
 | gnumake | 4.4.1 | — | — |
 | gnutar | 1.35 | — | — |
@@ -29,7 +29,7 @@
 | jq | 1.8.2 | — | — |
 | kind | 0.33.0 | — | — |
 | kubectl | 1.37.1 | — | — |
-| kubelogin | 0.2.14 | — | — |
+| kubelogin | 0.2.21 | — | — |
 | kustomize | 5.8.2 | — | — |
 | lazydocker | 0.25.2 | — | $XDG_CONFIG_HOME/lazydocker, ~/.config/lazydocker |
 | lazygit | 0.66.2 | — | $XDG_CONFIG_HOME/lazygit, ~/.config/lazygit |
@@ -80,8 +80,8 @@
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
 | basedpyright | 1.39.8 | — | — |
-| ruff | 0.17.1 | — | — |
-| uv | 0.13.1 | — | — |
+| ruff | 0.17.2 | — | — |
+| uv | 0.13.4 | — | — |
 
 ### Programming tools
 
@@ -99,10 +99,10 @@
 |------|---------|--------------|-----------------|
 | Image-ExifTool | 13.59 | — | — |
 | async-prompt | 1.3.0 | — | — |
-| atuin | 18.23.0 | — | — |
+| atuin | 18.24.2 | — | — |
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
-| claude-code | 2.1.308 | — | — |
+| claude-code | 2.1.311 | — | — |
 | darwin-option | unknown | — | — |
 | darwin-rebuild | unknown | — | — |
 | darwin-uninstaller | unknown | — | — |

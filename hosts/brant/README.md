@@ -14,14 +14,14 @@
 | bruno-cli | 4.0.0 | — | — |
 | bun | 1.4.2 | — | — |
 | ccstatusline | 2.2.19 | — | — |
-| ccusage | 20.0.40 | — | — |
+| ccusage | 20.0.44 | — | — |
 | commitizen | 4.16.5 | — | — |
 | delta | 0.20.1 | — | — |
 | direnv | 2.38.2 | — | — |
 | eza | 0.23.5 | — | — |
 | fd | 10.5.0 | — | — |
 | fish | 4.7.1 | — | $XDG_CONFIG_HOME/fish, ~/.config/fish |
-| gh | 2.102.0 | — | — |
+| gh | 2.103.0 | — | — |
 | gh-dash | 4.26.1 | — | — |
 | gnumake | 4.4.1 | — | — |
 | gnutar | 1.35 | — | — |
@@ -32,14 +32,14 @@
 | kiln | 0.1.0 | — | — |
 | kind | 0.33.0 | — | — |
 | kubectl | 1.37.1 | — | — |
-| kubelogin | 0.2.14 | — | — |
+| kubelogin | 0.2.21 | — | — |
 | kustomize | 5.8.2 | — | — |
 | lazydocker | 0.25.2 | — | $XDG_CONFIG_HOME/lazydocker, ~/.config/lazydocker |
 | lazygit | 0.66.2 | — | $XDG_CONFIG_HOME/lazygit, ~/.config/lazygit |
 | mediainfo | 26.05 | — | — |
 | nix-output-monitor | 2.2.0 | — | — |
-| openspec | 1.14.3 | — | — |
-| openspecui | 14.0.2 | — | — |
+| openspec | 1.15.0 | — | — |
+| openspecui | 15.0.0 | — | — |
 | poppler-utils | 26.10.0 | — | — |
 | pre-commit | 4.7.0 | — | — |
 | preflight | unknown | — | $XDG_CONFIG_HOME/raycast/extensions/preflight, ~/.config/raycast/extensions/preflight |
@@ -99,12 +99,12 @@
 | lua-language-server | 3.19.2 | — | — |
 | nil | 2026-07-23 | — | — |
 | nixd | 2.9.3 | — | — |
-| ruff | 0.17.1 | — | — |
-| rust-analyzer | 2026-10-12 | — | — |
+| ruff | 0.17.2 | — | — |
+| rust-analyzer | 2026-10-19 | — | — |
 | rustc | 1.99.0 | — | — |
 | rustfmt | 1.99.0 | — | — |
 | tree-sitter | 0.26.11 | — | — |
-| uv | 0.13.1 | — | — |
+| uv | 0.13.4 | — | — |
 
 ### Programming tools
 
@@ -122,10 +122,10 @@
 |------|---------|--------------|-----------------|
 | Image-ExifTool | 13.59 | — | — |
 | async-prompt | 1.3.0 | — | — |
-| atuin | 18.23.0 | — | — |
+| atuin | 18.24.2 | — | — |
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
-| claude-code | 2.1.308 | — | — |
+| claude-code | 2.1.311 | — | — |
 | codegraph | 1.6.2 | — | — |
 | darwin-option | unknown | — | — |
 | darwin-rebuild | unknown | — | — |
@@ -145,9 +145,9 @@
 | nix-info | unknown | — | — |
 | nix-zsh-completions | 0.5.1-unstable-2025-12-12 | — | — |
 | nixvim | unknown | — | — |
-| nodejs | 22.23.3 | — | — |
+| nodejs | 22.23.4 | — | — |
 | omp-wrapped | unknown | — | — |
-| opencode2 | 2.1.2 | — | — |
+| opencode2 | 2.1.4 | — | — |
 | pftui | unknown | — | — |
 | pkg-config-wrapper | 0.29.2 | — | — |
 | pnpm | 12.9.0 | — | — |
