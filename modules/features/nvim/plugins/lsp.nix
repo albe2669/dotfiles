@@ -4,15 +4,10 @@
     keymaps = {
       # Old on_attach maps; action = vim.lsp.buf.<action>
       lspBuf = {
-        gd = "definition";
         K = "hover";
         "<leader>lr" = "rename";
         "<leader>la" = "code_action";
         "<leader>lh" = "signature_help";
-        gr = "references";
-        gD = "declaration";
-        gi = "implementation";
-        gtd = "type_definition";
       };
       diagnostic = {
         "[a" = "goto_prev";

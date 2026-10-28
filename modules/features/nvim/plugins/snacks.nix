@@ -185,7 +185,7 @@
       '';
     }
     {
-      key = "gI";
+      key = "gi";
       mode = "n";
       options.desc = "LSP implementations";
       action.__raw = ''
@@ -193,7 +193,15 @@
       '';
     }
     {
-      key = "gy";
+      key = "gd";
+      mode = "n";
+      options.desc = "LSP definitions";
+      action.__raw = ''
+        function() Snacks.picker.lsp_definitions() end
+      '';
+    }
+    {
+      key = "gtd";
       mode = "n";
       options.desc = "LSP type definitions";
       action.__raw = ''
@@ -201,11 +209,43 @@
       '';
     }
     {
-      key = "<leader>gr";
+      key = "gD";
+      mode = "n";
+      options.desc = "LSP declarations";
+      action.__raw = ''
+        function() Snacks.picker.lsp_declarations() end
+      '';
+    }
+    {
+      key = "gr";
       mode = "n";
       options.desc = "LSP references";
       action.__raw = ''
         function() Snacks.picker.lsp_references() end
+      '';
+    }
+    {
+      key = "gI";
+      mode = "n";
+      options.desc = "LSP incoming calls";
+      action.__raw = ''
+        function() Snacks.picker.lsp_incoming_calls() end
+      '';
+    }
+    {
+      key = "gO";
+      mode = "n";
+      options.desc = "LSP outgoing calls";
+      action.__raw = ''
+        function() Snacks.picker.lsp_outgoing_calls() end
+      '';
+    }
+    {
+      key = "gS";
+      mode = "n";
+      options.desc = "LSP symbols";
+      action.__raw = ''
+        function() Snacks.picker.lsp_symbols() end
       '';
     }
     {
