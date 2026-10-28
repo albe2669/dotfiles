@@ -37,6 +37,7 @@ in {
     bashEscape = s: "'" + lib.replaceStrings ["'"] ["'\\''"] (toString s) + "'";
     varNames = lib.concatStringsSep " " (builtins.attrNames liveEnv);
     coreutils = "${pkgs.coreutils}/bin";
+    launchctl = "/bin/launchctl";
     fishScript = pkgs.writeText "live-env-vars.fish" (
       lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "set -Ux ${k} ${fishEscape v}") liveEnv)
     );
@@ -47,36 +48,42 @@ in {
     home.sessionPath = config.shell.paths;
 
     home.activation.liveEnvVars = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if [ ! -v DRY_RUN ]; then
-        # Erase variables that were live-pushed before but are no longer in shell.envVars.
-        STATE="${"$"}{XDG_STATE_HOME:-$HOME/.local/state}/live-env-vars"
-        FISH="${lib.getExe pkgs.fish}"
-        CURRENT=$("${coreutils}/printf" '%s\n' ${varNames} | "${coreutils}/sort")
+        if [ ! -v DRY_RUN ]; then
+          # Erase variables that were live-pushed before but are no longer in shell.envVars.
+          STATE="${"$"}{XDG_STATE_HOME:-$HOME/.local/state}/live-env-vars"
+          FISH="${lib.getExe pkgs.fish}"
+          CURRENT=$("${coreutils}/printf" '%s\n' ${varNames} | "${coreutils}/sort")
 
-        if [ -f "$STATE" ]; then
-          while read -r VAR; do
-            [ -n "$VAR" ] || continue
-            $FISH -c "set -e $VAR"
-            ${lib.optionalString config.opts.variables.isDarwin ''
-        launchctl unsetenv "$VAR"
+          if [ -f "$STATE" ]; then
+            while read -r VAR; do
+              [ -n "$VAR" ] || continue
+      # Erase with --no-config: user config can call commands that are absent
+      # from the activation PATH; without this the failure aborts activation.
+      # Process substitution scope also matters: failure inside <(...) would
+      # abort the script.
+      # shellcheck disable=SC2312
+      $FISH --no-config -c "set -e $VAR" || true
+              ${lib.optionalString config.opts.variables.isDarwin ''
+        ${launchctl} unsetenv "$VAR"
       ''}
-          done < <("${coreutils}/comm" -23 "$STATE" <(printf '%s\n' "$CURRENT"))
-        fi
+            done < <("${coreutils}/comm" -23 "$STATE" <(printf '%s\n' "$CURRENT"))
+          fi
 
-        "${coreutils}/mkdir" -p "$("${coreutils}/dirname" "$STATE")"
-        printf '%s\n' "$CURRENT" > "$STATE"
+          "${coreutils}/mkdir" -p "$("${coreutils}/dirname" "$STATE")"
+          printf '%s\n' "$CURRENT" > "$STATE"
 
-        # Push every variable as an exported fish universal variable.
-        # A running fish shell reads universal variables without a restart.
-        if [ -n "${varNames}" ]; then
-          "$FISH" "${fishScript}"
-        fi
-        ${lib.optionalString config.opts.variables.isDarwin ''
+          # Push every variable as an exported fish universal variable.
+          # A running fish shell reads universal variables without a restart.
+          if [ -n "${varNames}" ]; then
+            # --no-config for the same reason as the erase loop above.
+            "$FISH" --no-config "${fishScript}" || true
+          fi
+          ${lib.optionalString config.opts.variables.isDarwin ''
         ${lib.concatStringsSep "\n" (
-          lib.mapAttrsToList (k: v: "launchctl setenv ${k} ${bashEscape v}") liveEnv
+          lib.mapAttrsToList (k: v: "${launchctl} setenv ${k} ${bashEscape v}") liveEnv
         )}
       ''}
-      fi
+        fi
     '';
 
     programs.fish = {
