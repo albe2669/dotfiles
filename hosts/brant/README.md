@@ -105,6 +105,7 @@
 | rustfmt | 1.99.0 | — | — |
 | tree-sitter | 0.26.11 | — | — |
 | uv | 0.13.4 | — | — |
+| vls | unstable-2026-07-26 | — | — |
 
 ### Programming tools
 

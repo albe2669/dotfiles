@@ -1,0 +1,276 @@
+diff --git c/handlers.v i/handlers.v
+index 0c506af..7895e66 100644
+--- c/handlers.v
++++ i/handlers.v
+@@ -66,18 +66,20 @@ fn (mut app App) operation_at_pos(method Method, request Request) Response {
+ 		}
+ 	}
+ 
++	// V's -line-info expects a 1-based byte column; LSP sends a 0-based
++	// character, so convert before probing the compiler.
+ 	line_info := match method {
+ 		.completion {
+-			'${line_nr}:${col}'
++			'${line_nr}:${col + 1}'
+ 		}
+ 		.hover {
+-			'${line_nr}:hv^${col}'
++			'${line_nr}:hv^${col + 1}'
+ 		}
+ 		.signature_help {
+-			'${line_nr}:fn^${col}'
++			'${line_nr}:fn^${col + 1}'
+ 		}
+ 		.definition, .declaration, .type_definition, .implementation {
+-			'${line_nr}:gd^${col}'
++			'${line_nr}:gd^${col + 1}'
+ 		}
+ 		else {
+ 			''
+@@ -85,6 +87,37 @@ fn (mut app App) operation_at_pos(method Method, request Request) Response {
+ 	}
+ 
+ 	mut result := app.run_v_line_info(method, path, line_info)
++
++	// A trailing member dot (`s.`) leaves the buffer unparsable, so the
++	// compiler run above returns nothing. Re-probe with a placeholder method
++	// inserted at the cursor: the source parses again and -line-info on the
++	// dot returns the member list.
++	if method == .completion && result is []Detail && (result as []Detail).len == 0 {
++		content_for_dot := app.open_files[path] or { '' }
++		lines_for_dot := content_for_dot.split_into_lines()
++		if params.position.line < lines_for_dot.len && params.position.char > 0 {
++			dot_line := lines_for_dot[params.position.line]
++			byte_col := utf8_char_to_byte_index(dot_line, params.position.char)
++			if byte_col > 0 && byte_col <= dot_line.len && dot_line[byte_col - 1] == `.` {
++				head := if params.position.line > 0 { lines_for_dot[..params.position.line].join('\n') + '\n' } else { '' }
++				offset := head.len + byte_col
++				patched := content_for_dot[..offset] + 'dummy()' + content_for_dot[offset..]
++				saved := app.open_files[path] or { '' }
++				app.open_files[path] = patched
++				// The dot sits at LSP char params.position.char - 1, so its
++				// 1-based compiler column is params.position.char.
++				probe_info := '${line_nr}:${params.position.char}'
++				mut retry := app.run_v_line_info(method, path, probe_info)
++				app.open_files[path] = saved
++				if mut retry is []Detail {
++					if retry.len > 0 {
++						result = retry
++					}
++				}
++			}
++		}
++	}
++
+ 	if method == .completion {
+ 		// Check the character immediately before the cursor.
+ 		// If it is not '.', the user is not doing member access, so augment
+@@ -2165,7 +2198,7 @@ fn (mut app App) search_symbol_in_dirs(search_dirs []string, symbol string, requ
+ // usage via compiler gd^ lookup. Returns none when the definition cannot be
+ // resolved, allowing callers to fall back to lexical matching.
+ fn (mut app App) resolve_symbol_anchor(uri string, line int, ch int) ?Location {
+-	line_info := '${line + 1}:gd^${ch}'
++	line_info := '${line + 1}:gd^${ch + 1}'
+ 	result := app.run_v_line_info(.definition, uri, line_info)
+ 	if result is Location {
+ 		loc := result as Location
+diff --git c/interop.v i/interop.v
+index d58c4bb..ec0a981 100644
+--- c/interop.v
++++ i/interop.v
+@@ -247,9 +247,11 @@ fn run_v_argv(args []string, work_folder string) os.Result {
+ 	if stderr_text.trim_space() != '' {
+ 		log('v stderr: ${stderr_text}')
+ 	}
++	// v writes -json-errors output to stderr when the check fails, so
++	// return both streams or failed checks lose their diagnostics.
+ 	return os.Result{
+ 		exit_code: code
+-		output:    out.str()
++		output:    out.str() + stderr_text
+ 	}
+ }
+ 
+@@ -283,7 +285,8 @@ fn (mut app App) run_v_check(path string, text string) []JsonError {
+ 	log('running v.exe check for ${real_path}')
+ 	log('Open files count: ${app.open_files.len}')
+ 
+-	if app.open_files.len > 1 || has_sibling_v_files(working_dir, real_path) {
++	if app.open_files.len > 1 || has_sibling_v_files(working_dir, real_path)
++		|| os.exists(os.join_path(working_dir, 'v.mod')) {
+ 		// Write all tracked files to temp directory
+ 		temp_project_dir = app.write_tracked_files_to_temp(working_dir) or {
+ 			log('Failed to write tracked files: ${err}')
+@@ -297,6 +300,7 @@ fn (mut app App) run_v_check(path string, text string) []JsonError {
+ 			symlink_untracked_files(working_dir, temp_project_dir, app.open_files) or {
+ 				log('Failed to symlink untracked files: ${err}')
+ 			}
++			symlink_sibling_modules(working_dir, temp_project_dir)
+ 			rel_path := real_path.replace(working_dir, '').trim_left('/')
+ 			file_to_check = os.join_path(temp_project_dir, rel_path)
+ 			compile_target = temp_project_dir
+@@ -433,9 +437,61 @@ fn (mut app App) write_tracked_files_to_temp(working_dir string) !string {
+ 		log('WROTE FILE: ${temp_file_path}')
+ 	}
+ 
++	// The compiler resolves module context from v.mod; without a copy in
++	// the temp project dir, -line-info on the temp files cannot resolve
++	// project symbols.
++	vmod_content := os.read_file(os.join_path(working_dir, 'v.mod')) or { '' }
++	if vmod_content != '' {
++		os.write_file(os.join_path(temp_project_dir, 'v.mod'), vmod_content) or {
++			log('Failed to copy v.mod: ${err}')
++		}
++	}
++
+ 	return temp_project_dir
+ }
+ 
++// sibling_modules returns module directories (dirs containing v.mod) that
++// sit next to the working dir. V resolves `import x` through these, so the
++// temp project must mirror them or cross-module imports cannot compile.
++fn sibling_modules(working_dir string) []string {
++	parent := os.dir(working_dir)
++	if parent == '' || parent == working_dir {
++		return []
++	}
++	mut modules := []string{}
++	for entry in os.ls(parent) or { return [] } {
++		if entry == '' || entry[0] == `.` {
++			continue
++		}
++		candidate := os.join_path(parent, entry)
++		if !os.is_dir(candidate) {
++			continue
++		}
++		if os.exists(os.join_path(candidate, 'v.mod')) && candidate != working_dir {
++			modules << candidate
++		}
++	}
++	return modules
++}
++
++// symlink_sibling_modules links sibling module dirs into the temp project's
++// parent so the compiler's module lookup finds them at the same relative
++// position as in the real project.
++fn symlink_sibling_modules(working_dir string, temp_project_dir string) {
++	for module_dir in sibling_modules(working_dir) {
++		name := os.file_name(module_dir)
++		link_target := os.join_path(os.dir(os.real_path(temp_project_dir)), name)
++		if os.exists(link_target) {
++			continue
++		}
++		os.symlink(module_dir, link_target) or {
++			log('Failed to symlink sibling module ${module_dir}: ${err}')
++			continue
++		}
++		log('Symlinked sibling module: ${module_dir} -> ${link_target}')
++	}
++}
++
+ // has_sibling_v_files reports whether the directory of the current file holds
+ // another `.v` file, i.e. the file is part of a multi-file V module. This uses a
+ // shallow directory listing rather than a full recursive tree walk: V modules
+@@ -547,7 +603,8 @@ fn (mut app App) run_v_line_info(method Method, path string, line_info string) R
+ 	if method == .definition || method == .declaration || method == .type_definition
+ 		|| method == .implementation {
+ 		log('OPEN FILES COUNT: ${app.open_files.len}')
+-		if app.open_files.len > 1 || has_sibling_v_files(working_dir, real_path) {
++		if app.open_files.len > 1 || has_sibling_v_files(working_dir, real_path)
++		|| os.exists(os.join_path(working_dir, 'v.mod')) {
+ 			temp_project_dir = app.write_tracked_files_to_temp(working_dir) or {
+ 				log('Failed to write tracked files: ${err}')
+ 				''
+@@ -560,6 +617,7 @@ fn (mut app App) run_v_line_info(method Method, path string, line_info string) R
+ 				symlink_untracked_files(working_dir, temp_project_dir, app.open_files) or {
+ 					log('Failed to symlink untracked files: ${err}')
+ 				}
++				symlink_sibling_modules(working_dir, temp_project_dir)
+ 				rel_path := real_path.replace(working_dir, '').trim_left('/')
+ 				file_to_check = os.join_path(temp_project_dir, rel_path)
+ 				compile_target = temp_project_dir
+@@ -576,7 +634,8 @@ fn (mut app App) run_v_line_info(method Method, path string, line_info string) R
+ 		log('MULTIFILE for method=${method}')
+ 		log('OPEN FILES COUNT: ${app.open_files.len}')
+ 
+-		if app.open_files.len > 1 || has_sibling_v_files(working_dir, real_path) {
++		if app.open_files.len > 1 || has_sibling_v_files(working_dir, real_path)
++		|| os.exists(os.join_path(working_dir, 'v.mod')) {
+ 			temp_project_dir = app.write_tracked_files_to_temp(working_dir) or {
+ 				log('Failed to write tracked files: ${err}')
+ 				''
+@@ -588,6 +647,7 @@ fn (mut app App) run_v_line_info(method Method, path string, line_info string) R
+ 				symlink_untracked_files(working_dir, temp_project_dir, app.open_files) or {
+ 					log('Failed to symlink untracked files: ${err}')
+ 				}
++				symlink_sibling_modules(working_dir, temp_project_dir)
+ 				rel_path := real_path.replace(working_dir, '').trim_left('/')
+ 				file_to_check = os.join_path(temp_project_dir, rel_path)
+ 				compile_target = temp_project_dir
+@@ -730,11 +790,23 @@ fn (mut app App) run_v_line_info(method Method, path string, line_info string) R
+ 				col := fields[fields.len - 1].int()
+ 				mut uri_path := os.to_slash(fields[..fields.len - 2].join(':'))
+ 				if use_multifile && temp_project_dir != '' {
++					// Results may point into sibling module symlinks living
++					// next to the temp project; map those back to the real
++					// sibling dirs so the client navigates to the source.
++					temp_parent := os.dir(temp_project_dir)
++					mut real_parent := ''
++					if temp_parent != '' && real_parent != temp_parent {
++						real_parent = os.dir(working_dir)
++					}
+ 					uri_path = match true {
+ 						uri_path.starts_with(temp_project_dir) {
+ 							rel_path := uri_path.replace(temp_project_dir, '').trim_left('/')
+ 							os.join_path(working_dir, rel_path)
+ 						}
++						real_parent != '' && uri_path.starts_with(temp_parent) {
++							rel_path := uri_path.replace(temp_parent, '').trim_left('/')
++							os.join_path(real_parent, rel_path)
++						}
+ 						uri_path.starts_with('./') || uri_path.starts_with('.\\') {
+ 							os.join_path(working_dir, uri_path[2..])
+ 						}
+diff --git c/main.v i/main.v
+index fbf7b8f..a24b420 100644
+--- c/main.v
++++ i/main.v
+@@ -96,6 +96,26 @@ fn log(s string) {
+ 	output.close()
+ }
+ 
++// StdinReader reads standard input through its raw descriptor so streaming
++// clients are not blocked by the full-buffer behaviour of C fread.
++struct StdinReader {}
++
++fn (_ StdinReader) read(mut buffer []u8) !int {
++	data, bytes_read := os.fd_read(0, buffer.len)
++	if bytes_read < 0 {
++		return error('failed to read from stdin')
++	}
++	if bytes_read == 0 {
++		return io.Eof{}
++	}
++	return copy(mut buffer, data.bytes())
++}
++
++// new_stdin_buffered_reader creates the streaming reader used by stdio mode.
++fn new_stdin_buffered_reader() &io.BufferedReader {
++	return io.new_buffered_reader(reader: StdinReader{}, cap: transport_buffer_cap)
++}
++
+ fn main() {
+ 	log('VLS started. Reading from stdin...')
+ 	log('VLS preferences: is_vls=${v_prefs.is_vls}')
+@@ -142,7 +162,10 @@ fn main() {
+ 		open_files: map[string]string{}
+ 		temp_dir:   temp_dir
+ 	}
+-	mut reader := io.new_buffered_reader(reader: os.stdin(), cap: transport_buffer_cap)
++	// os.File.read uses C fread, which waits for the entire buffer on an open
++	// pipe. LSP clients keep stdin open, so use the raw descriptor-backed pipe
++	// reader to consume each request as soon as it arrives.
++	mut reader := new_stdin_buffered_reader()
+ 	app.handle_requests(mut reader)
+ 	log('VLS exiting.')
+ 	os.rmdir_all(temp_dir) or {
