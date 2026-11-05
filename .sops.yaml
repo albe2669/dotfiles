@@ -7,6 +7,7 @@ keys:
   - &larry age1qedtyy2che7twf7pcwafljw06asf4p2gv7a0lm262qjvyq4pgf8qnc93yp
   - &nene age1h5jug42d2tfxewk376t2hnv9zmd6j2nwztfew374u50fu0vr4arslhmn4j
   - &brant age1facme2rg903na3zf4hkfuxvpatsfy7v5h2gtcrrtqwdgg3fk3vpqaahwkw
+  - &puffin age10qrw0zw5u9uadcz36mzh73rfuf5wsquw56am9mhc8a5ku8gq5qlqqps7x7
 creation_rules:
   - path_regex: modules/features/sops/secrets/[^/]+\.yaml$
     key_groups:
@@ -17,3 +18,4 @@ creation_rules:
           - *larry
           - *nene
           - *brant
+          - *puffin

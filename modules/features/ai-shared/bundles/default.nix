@@ -41,6 +41,12 @@
         mkSkillsBundle
         ;
     })
+    (import ./agent-toolkit.nix {
+      inherit
+        fetchFromGitHub
+        mkSkillsBundle
+        ;
+    })
   ];
 
   # Hand-written skills live alongside this file under ../skills/<name>/.

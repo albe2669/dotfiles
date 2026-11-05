@@ -1,6 +1,4 @@
 gui:
-  authorColors: {}
-  branchColors: {}
   scrollHeight: 2
   scrollPastBottom: true
   mouseEvents: true
@@ -36,6 +34,8 @@ gui:
       - red
     defaultFgColor:
       - default
+    authorColors: {}
+    branchColorPatterns: {}
   commitLength:
     show: true
   skipNoStagedFilesWarning: false
