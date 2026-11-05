@@ -71,6 +71,11 @@ in
         # Intentionally on unstable nixpkgs while HM tracks stable.
         home.enableNixpkgsReleaseCheck = false;
 
+        # No NixOS module sets the login shell or profile env on this
+        # Ubuntu host; the generic target writes ~/.profile so bash
+        # sessions get sessionVariables like PI_CONFIG_DIR too.
+        targets.genericLinux.enable = true;
+
         opts.variables = {
           username = "arn";
           isDarwin = false;
