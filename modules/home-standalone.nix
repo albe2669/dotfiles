@@ -72,14 +72,15 @@ in
         home.enableNixpkgsReleaseCheck = false;
 
         opts.variables = {
-          # Azure AAD SSH maps the OIDC identity to a local user literally
-          # named `arn@corti.ai` (home is still /home/arn); HM's USER check
-          # requires home.username to match it exactly.
-          username = "arn@corti.ai";
+          username = "arn";
           isDarwin = false;
         };
 
-        home.homeDirectory = "/home/arn";
+        # Azure AAD SSH maps the OIDC identity to a local user literally
+        # named `arn@corti.ai` while home stays /home/arn. The home feature
+        # sets home.username from opts.variables.username, so force the
+        # AAD name here; only the USER check reads it.
+        home.username = pkgs.lib.mkForce "arn@corti.ai";
       }
     ]
     ++ (with hm; [
