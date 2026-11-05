@@ -72,12 +72,13 @@ in
         home.enableNixpkgsReleaseCheck = false;
 
         opts.variables = {
-          username = "arn";
+          # Azure AAD SSH maps the OIDC identity to a local user literally
+          # named `arn@corti.ai` (home is still /home/arn); HM's USER check
+          # requires home.username to match it exactly.
+          username = "arn@corti.ai";
           isDarwin = false;
         };
 
-        # The Ubuntu VM user is `arn`, not the default `goose`.
-        home.username = "arn";
         home.homeDirectory = "/home/arn";
       }
     ]
