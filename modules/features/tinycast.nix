@@ -2,9 +2,9 @@
   category = "System software";
   name = "tinycast";
 
-  homeManager = {pkgs, ...}: {
+  homeManager = {pkgs-unstable, ...}: {
     home.packages = [
-      pkgs.tinycast
+      pkgs-unstable.tinycast
     ];
   };
 }

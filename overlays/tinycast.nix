@@ -1,12 +1,12 @@
 _final: prev: let
-  version = "0.12.1";
+  version = "0.12.11";
 in {
   tinycast = prev.tinycast.overrideAttrs (_old: {
     inherit version;
 
     src = prev.fetchurl {
       url = "https://github.com/abue-ammar/tinycast/releases/download/v${version}/Tinycast-${version}.dmg";
-      hash = "sha256-6dPaLAobs7gTzkHM5Sk0+9B8BJQWic9Ojli6MoT3lsU=";
+      hash = "sha256-fdxekolncM2RROF17rhwDaLLSDLBw84YpR9lB0d4AUg=";
     };
 
     sourceRoot = "Tinycast.app";

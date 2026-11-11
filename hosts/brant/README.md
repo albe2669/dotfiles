@@ -77,7 +77,7 @@
 | omniwm | 0.7.6 | — | — |
 | sops | 3.13.3 | — | — |
 | tailscale | 1.104.4 | — | — |
-| tinycast | 0.12.1 | — | — |
+| tinycast | 0.12.11 | — | — |
 | wget | 1.25.0 | — | — |
 
 ### Programming languages
