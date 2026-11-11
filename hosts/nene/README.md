@@ -4,15 +4,14 @@
 
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
-| act | 0.2.89 | — | — |
-| azure-cli | 2.91.0 | — | — |
+| act | 0.2.92 | — | — |
 | bandwhich | 0.23.1 | — | — |
 | bat | 0.26.1 | — | — |
 | bfg-repo-cleaner | 1.15.0 | — | — |
-| bottom | 0.14.9 | — | — |
-| bruno | 4.0.0 | — | — |
-| bruno-cli | 4.0.0 | — | — |
-| bun | 1.4.2 | — | — |
+| bottom | 0.15.0 | — | — |
+| bruno | 4.3.0 | — | — |
+| bruno-cli | 4.3.0 | — | — |
+| bun | 1.4.4 | — | — |
 | ccstatusline | 2.2.19 | — | — |
 | commitizen | 4.16.5 | — | — |
 | delta | 0.20.1 | — | — |
@@ -20,17 +19,17 @@
 | eza | 0.23.5 | — | — |
 | fd | 10.5.0 | — | — |
 | fish | 4.7.1 | — | $XDG_CONFIG_HOME/fish, ~/.config/fish |
-| gh | 2.103.0 | — | — |
-| gh-dash | 4.26.1 | — | — |
+| gh | 2.103.3 | — | — |
+| gh-dash | 4.26.2 | — | — |
 | gnumake | 4.4.1 | — | — |
 | gnutar | 1.35 | — | — |
 | hyperfine | 2.0.0 | — | — |
-| insomnia | 13.0.0 | — | — |
+| insomnia | 13.3.1 | — | — |
 | jq | 1.8.2 | — | — |
 | kind | 0.33.0 | — | — |
-| kubectl | 1.37.1 | — | — |
+| kubectl | 1.37.2 | — | — |
 | kubelogin | 0.2.21 | — | — |
-| kustomize | 5.8.2 | — | — |
+| kustomize | 5.8.3 | — | — |
 | lazydocker | 0.25.2 | — | $XDG_CONFIG_HOME/lazydocker, ~/.config/lazydocker |
 | lazygit | 0.66.2 | — | $XDG_CONFIG_HOME/lazygit, ~/.config/lazygit |
 | mediainfo | 26.05 | — | — |
@@ -42,7 +41,7 @@
 | ripdrag | 0.4.13 | — | — |
 | ripgrep | 15.2.0 | — | — |
 | slack | 4.51.180 | — | — |
-| sofka | 0.32.0 | — | — |
+| sofka | 0.34.0 | — | — |
 | ueberzugpp | 2.9.10 | — | — |
 | unzip | 6.0 | — | — |
 | witr | 0.3.4 | — | — |
@@ -55,17 +54,17 @@
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
 | kitty | 0.49.2 | — | — |
-| sioyek | 2.0.0-unstable-2026-09-24 | — | $XDG_CONFIG_HOME/sioyek, ~/.config/sioyek |
+| sioyek | 2.0.0-unstable-2026-10-31 | — | $XDG_CONFIG_HOME/sioyek, ~/.config/sioyek |
 | spotify | 1.2.98.301 | — | — |
-| vscode | 1.142.0 | — | — |
+| vscode | 1.144.0 | — | — |
 
 ### System software
 
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
 | age | 1.3.2 | — | — |
-| curl | 8.22.0 | — | — |
-| docker | 29.9.1 | — | — |
+| curl | 8.23.0 | — | — |
+| docker | 29.9.2 | — | — |
 | docker-compose | 5.4.0 | — | — |
 | docker-credential-helpers | 0.9.7 | — | — |
 | git | 2.54.0 | — | — |
@@ -80,18 +79,18 @@
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
 | basedpyright | 1.39.8 | — | — |
-| ruff | 0.17.2 | — | — |
-| uv | 0.13.4 | — | — |
+| ruff | 0.17.3 | — | — |
+| uv | 0.13.5 | — | — |
 
 ### Programming tools
 
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
 | devenv | 2.4.0 | — | — |
-| just | 1.58.0 | — | — |
-| lefthook | 2.1.15 | — | — |
+| just | 1.59.0 | — | — |
+| lefthook | 2.2.2 | — | — |
 | openssl | 3.5.9 | — | — |
-| tabularis | 0.28.0 | — | — |
+| tabularis | 0.30.0 | — | — |
 
 ### Uncategorised
 
@@ -99,17 +98,18 @@
 |------|---------|--------------|-----------------|
 | Image-ExifTool | 13.59 | — | — |
 | async-prompt | 1.3.0 | — | — |
-| atuin | 18.24.2 | — | — |
+| atuin | 18.24.4 | — | — |
+| az-with-ssh-extension | unknown | — | — |
 | bash-interactive | 5.3p9 | — | — |
 | bass | 1.0-unstable-2023-12-17 | — | — |
-| claude-code | 2.1.311 | — | — |
+| claude-code | 2.1.318 | — | — |
 | darwin-option | unknown | — | — |
 | darwin-rebuild | unknown | — | — |
 | darwin-uninstaller | unknown | — | — |
 | darwin-version | unknown | — | — |
 | fzf | 0.74.5 | — | — |
-| git-lfs | 3.8.0 | — | — |
-| goland-with-plugins | 2026.2.2.1 | — | — |
+| git-lfs | 3.8.1 | — | — |
+| goland-with-plugins | 2026.2.4 | — | — |
 | hm-session-vars.fish | unknown | — | — |
 | hm-session-vars.sh | unknown | — | — |
 | home-configuration-reference-manpage | unknown | — | — |
