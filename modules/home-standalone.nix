@@ -3,8 +3,7 @@
   self,
   config,
   ...
-}:
-let
+}: let
   system = "x86_64-linux";
 
   # Same package-set construction as modules/home-manager-wiring.nix:
@@ -13,7 +12,7 @@ let
     inherit system;
     config.allowUnfree = true;
     config.problems.handlers.fabric.broken = "warn";
-    overlays = import ../overlays { inherit inputs; };
+    overlays = import ../overlays {inherit inputs;};
   };
 
   # homeManager halves of the features this standalone host uses, straight
@@ -44,8 +43,7 @@ let
       };
     };
   };
-in
-{
+in {
   flake.homeConfigurations.puffin = inputs.home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
 
@@ -56,62 +54,63 @@ in
       username = "arn";
     };
 
-    modules = [
-      ../variables.nix
-      ../theme.nix
+    modules =
+      [
+        ../variables.nix
+        ../theme.nix
 
-      inputs.sops-nix.homeManagerModules.sops
-      inputs.nixvim.homeModules.nixvim
-      inputs.stylix.homeModules.stylix
-      ({ ... }: {
-        _module.args.pkgs-unstable = pkgs;
-        stylix = stylixSettings;
-      })
-      {
-        # Intentionally on unstable nixpkgs while HM tracks stable.
-        home.enableNixpkgsReleaseCheck = false;
+        inputs.sops-nix.homeManagerModules.sops
+        inputs.nixvim.homeModules.nixvim
+        inputs.stylix.homeModules.stylix
+        ({_}: {
+          _module.args.pkgs-unstable = pkgs;
+          stylix = stylixSettings;
+        })
+        {
+          # Intentionally on unstable nixpkgs while HM tracks stable.
+          home.enableNixpkgsReleaseCheck = false;
 
-        # No NixOS module sets the login shell or profile env on this
-        # Ubuntu host; the generic target writes ~/.profile so bash
-        # sessions get sessionVariables like PI_CONFIG_DIR too.
-        targets.genericLinux.enable = true;
+          # No NixOS module sets the login shell or profile env on this
+          # Ubuntu host; the generic target writes ~/.profile so bash
+          # sessions get sessionVariables like PI_CONFIG_DIR too.
+          targets.genericLinux.enable = true;
 
-        opts.variables = {
-          username = "arn";
-          isDarwin = false;
-        };
+          opts.variables = {
+            username = "arn";
+            isDarwin = false;
+          };
 
-        # Azure AAD SSH maps the OIDC identity to a local user literally
-        # named `arn@corti.ai` while home stays /home/arn. The home feature
-        # sets home.username from opts.variables.username, so force the
-        # AAD name here; only the USER check reads it.
-        home.username = pkgs.lib.mkForce "arn@corti.ai";
-      }
-    ]
-    ++ (with hm; [
-      # Requested modules
-      omp
-      sops
-      go
-      fish
-      git
-      nvim
-      azure-cli
-      k8
-      worktree
-      ai
+          # Azure AAD SSH maps the OIDC identity to a local user literally
+          # named `arn@corti.ai` while home stays /home/arn. The home feature
+          # sets home.username from opts.variables.username, so force the
+          # AAD name here; only the USER check reads it.
+          home.username = pkgs.lib.mkForce "arn@corti.ai";
+        }
+      ]
+      ++ (with hm; [
+        # Requested modules
+        omp
+        sops
+        go
+        fish
+        git
+        nvim
+        azure-cli
+        k8
+        worktree
+        ai
 
-      # Supporting modules pulled in by the ones above
-      home
-      xdg
-      shell
-      utils
-      direnv
-      lazygit
-      lazydocker
-      yazi
-      herdr
-      wakatime
-    ]);
+        # Supporting modules pulled in by the ones above
+        home
+        xdg
+        shell
+        utils
+        direnv
+        lazygit
+        lazydocker
+        yazi
+        herdr
+        wakatime
+      ]);
   };
 }

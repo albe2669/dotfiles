@@ -45,7 +45,7 @@
       };
 
       spaces = {
-        spans-displays = true;
+        spans-displays = false;
       };
 
       trackpad = {
