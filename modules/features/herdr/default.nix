@@ -147,7 +147,7 @@
           {
             key = "prefix+shift+y";
             type = "popup";
-            command = ''bash -c "HERDR_WT_BIN=\"${lib.getExe pkgs-unstable.worktrunk}\" herdr-worktree-pick; read -n 1 -s -p 'Press any key to continue...'"''; # Errors print to the popup; pause always runs.
+            command = ''bash -c "HERDR_WT_BIN=\"${lib.getExe pkgs-unstable.worktrunk}\" herdr-worktree-pick"'';
             description = "pick worktree / branch (wt)";
             width = "80%";
             height = "80%";
