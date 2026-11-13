@@ -3,7 +3,7 @@
   name = "v";
   software = [
     "v"
-    "vls"
+    "v-analyzer"
   ];
 
   homeManager = {
@@ -11,32 +11,29 @@
     pkgs-unstable,
     ...
   }: let
-    vls = pkgs-unstable.callPackage ../../pkgs/vls {};
+    v = pkgs-unstable.callPackage ../../pkgs/vlang {};
+    v-analyzer = v.vTools.analyzer;
   in {
     home.packages = [
-      vls
-      pkgs-unstable.vlang
+      v
+      v-analyzer
     ];
 
     opts = {
-      # Treesitter handles syntax highlighting for V; vls semantic tokens
-      # only cover semantic categories and need an explicit start this
-      # config omits.
+      # Treesitter handles syntax highlighting; v-analyzer adds semantic
+      # tokens on top through the LSP client.
       tsGrammars = [
         pkgs-unstable.vimPlugins.nvim-treesitter.builtGrammars.tree-sitter-v
       ];
 
-      editor.lsp.servers.vls.enable = true;
-    };
+      editor.lsp.servers.v_analyzer.enable = true;
 
-    # `v ls` cannot install vls itself: upstream publishes no macOS release
-    # binaries and its source build needs a newer V than 0.5.2. Point the
-    # launcher manifest at the Nix-built binary so `v ls` and nvim's default
-    # `v ls` cmd work.
-    home.activation.vlsManifest = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      mkdir -p "$HOME/.vls"
-      printf '{"server_path": "%s"}\n' '${lib.getExe vls}' > "$HOME/.vls/vls.config.json"
-      rm -rf "$HOME/.vls/src"
-    '';
+      # The treesitter-v grammar is built from v-analyzer's own tree_sitter_v,
+      # but the shared grammar override in the nvim module strips its
+      # queries (they use nvim-0.12-incompatible directives elsewhere).
+      # v-analyzer's highlights query is clean, so install it into the
+      # runtime; without it the grammar parses but nothing is colored.
+      editor.extraFiles."queries/v/highlights.scm".source = "${v-analyzer}/queries/v/highlights.scm";
+    };
   };
 }

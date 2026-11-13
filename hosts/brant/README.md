@@ -104,7 +104,7 @@
 | rustfmt | 1.99.0 | — | — |
 | tree-sitter | 0.26.11 | — | — |
 | uv | 0.13.5 | — | — |
-| vls | unstable-2026-07-26 | — | — |
+| v-analyzer | unstable-2026-11-02 | — | — |
 
 ### Programming tools
 
@@ -158,7 +158,7 @@
 | tailwindcss-language-server | 0.16.0 | — | — |
 | texinfo-interactive | 7.2 | — | — |
 | virtualenv | 21.6.1 | — | — |
-| vlang | 0.5.2 | — | — |
+| vlang | unstable-2026-11-11 | — | — |
 | yazi | 26.9.1 | — | — |
 | zen-twilight-bin-unwrapped | 1.25t | — | — |
 | zsh | 5.9.1 | — | — |
