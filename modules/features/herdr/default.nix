@@ -26,17 +26,40 @@
       ".codegraph/codegraph.db"
     ];
 
-    # Popup script that prompts for a branch, creates the worktree through
-    # herdr's API (so it is listed as a workspace), and copies the files
-    # above from the source checkout into <project>/.worktrees/<branch>.
-    worktreeCreateScript = pkgs-unstable.writeShellScriptBin "herdr-worktree-create" (
-      builtins.readFile ./scripts/worktree-create.sh
+    # Popup script: wt picker over local/remote branches and existing
+    # worktrees, the picked branch is opened as a herdr workspace.
+    worktreePickScript = pkgs-unstable.writeShellScriptBin "herdr-worktree-pick" (
+      builtins.readFile ./scripts/worktree-pick.sh
     );
+
+    # worktrunk post-start hook: seeds new worktrees with the dotfiles
+    # listed above, copied from the primary checkout.
+    worktreeCopyHook = pkgs-unstable.writeShellScript "worktree-copy-files" (
+      builtins.readFile ./scripts/worktree-copy-files.sh
+    );
+
+    # herdr plugin: removes linked worktrees without uncommitted changes
+    # when their workspace closes.
+    worktreeCleanupPlugin = pkgs-unstable.runCommand "herdr-worktree-cleanup-plugin" {} ''
+      mkdir -p $out
+      # herdr plugin link requires a directory with a herdr-plugin.toml
+      # and the hook file under its manifest-declared name.
+      cp ${./plugin/herdr-plugin.toml} $out/herdr-plugin.toml
+      cp ${./plugin/cleanup.sh} $out/cleanup.sh
+    '';
   in {
     home.packages = [
       inputs.llm-agents.packages.${system}.herdr
-      worktreeCreateScript
+      pkgs-unstable.worktrunk
+      worktreePickScript
     ];
+
+    xdg.configFile."worktrunk/config.toml".source = toml.generate "worktrunk-config" {
+      worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}";
+      post-start = {
+        copy = "bash ${worktreeCopyHook} {{ primary_worktree_path }} {{ worktree_path }} ${lib.concatStringsSep " " worktreeCopyFiles}";
+      };
+    };
 
     xdg.configFile."herdr/config.toml".source = toml.generate "herdr-config" {
       theme = {
@@ -117,16 +140,17 @@
         open_worktree = "prefix+shift+u";
 
         command = [
-          # Create a project-local worktree (.worktrees/<branch>) that is
-          # registered as a herdr workspace and seeded with dotfiles.
-          # Replaces the built-in new_worktree keybind (prefix+shift+y).
+          # wt picker: open an existing worktree, a local branch, or an
+          # origin branch as a herdr workspace; Alt-c inside the picker
+          # creates a new branch. Replaces the built-in new_worktree
+          # keybind (prefix+shift+y).
           {
             key = "prefix+shift+y";
             type = "popup";
-            command = ''bash -c "HERDR_WORKTREE_BASE=\"main\" HERDR_WORKTREE_COPY_FILES=\"${lib.concatStringsSep " " worktreeCopyFiles}\" herdr-worktree-create; read -n 1 -s -p 'Press any key to continue...'"''; # Errors print to the popup; pause always runs.
-            description = "new worktree (local)";
-            width = "60%";
-            height = 8;
+            command = ''bash -c "HERDR_WT_BIN=\"${lib.getExe pkgs-unstable.worktrunk}\" herdr-worktree-pick; read -n 1 -s -p 'Press any key to continue...'"''; # Errors print to the popup; pause always runs.
+            description = "pick worktree / branch (wt)";
+            width = "80%";
+            height = "80%";
           }
           # Lazygit in a session-modal popup.
           {
@@ -161,5 +185,15 @@
         sidebar.spaces.row_gap = 1;
       };
     };
+
+    # herdr plugin link re-registers harmlessly when already linked; the
+    # guard keeps hosts without a herdr binary building. The plugin is read
+    # from the store path, so updates arrive with the next switch. No bare
+    # exit here: activation entries run inline in one script.
+    home.activation.linkHerdrWorktreeCleanup = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if command -v herdr >/dev/null 2>&1; then
+        herdr plugin link "${worktreeCleanupPlugin}" --enabled >/dev/null 2>&1 || true
+      fi
+    '';
   };
 }

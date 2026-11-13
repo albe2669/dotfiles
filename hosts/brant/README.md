@@ -135,7 +135,7 @@
 | fzf | 0.74.5 | — | — |
 | git-lfs | 3.8.1 | — | — |
 | goland-with-plugins | 2026.2.4 | — | — |
-| herdr-worktree-create | unknown | — | — |
+| herdr-worktree-pick | unknown | — | — |
 | hm-session-vars.fish | unknown | — | — |
 | hm-session-vars.sh | unknown | — | — |
 | home-configuration-reference-manpage | unknown | — | — |
@@ -159,6 +159,7 @@
 | texinfo-interactive | 7.2 | — | — |
 | virtualenv | 21.6.1 | — | — |
 | vlang | unstable-2026-11-11 | — | — |
+| worktrunk | 0.80.0 | — | — |
 | yazi | 26.9.1 | — | — |
 | zen-twilight-bin-unwrapped | 1.25t | — | — |
 | zsh | 5.9.1 | — | — |
