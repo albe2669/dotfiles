@@ -4,7 +4,6 @@
 
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
-| act | 0.2.92 | — | — |
 | bandwhich | 0.23.1 | — | — |
 | bat | 0.26.1 | — | — |
 | bfg-repo-cleaner | 1.15.0 | — | — |
@@ -24,7 +23,6 @@
 | gnumake | 4.4.1 | — | — |
 | gnutar | 1.35 | — | — |
 | hyperfine | 2.0.0 | — | — |
-| insomnia | 13.3.1 | — | — |
 | jq | 1.8.2 | — | — |
 | kind | 0.33.0 | — | — |
 | kubectl | 1.37.2 | — | — |
@@ -37,7 +35,6 @@
 | poppler-utils | 26.10.0 | — | — |
 | pre-commit | 4.7.0 | — | — |
 | procs | 0.14.12 | — | — |
-| pup | 0.46.0 | — | — |
 | ripdrag | 0.4.13 | — | — |
 | ripgrep | 15.2.0 | — | — |
 | slack | 4.51.180 | — | — |

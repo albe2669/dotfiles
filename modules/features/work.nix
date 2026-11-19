@@ -2,12 +2,9 @@
   category = "Tools";
   name = "work";
   software = [
-    "act"
-    "insomnia"
     "bruno"
     "bruno-cli"
     "slack"
-    "pup"
   ];
 
   homeManager = {
@@ -16,17 +13,11 @@
     lib,
     ...
   }: {
-    home.packages =
-      (with pkgs-unstable; [
-        act
-        insomnia
-        bruno
-        bruno-cli
-        slack
-      ])
-      ++ [
-        (pkgs.callPackage ../../pkgs/pup {})
-      ];
+    home.packages = with pkgs-unstable; [
+      bruno
+      bruno-cli
+      slack
+    ];
 
     programs.fish.interactiveShellInit = ''
       set -x GIT_TOKEN (${lib.getExe pkgs.gh} auth token)

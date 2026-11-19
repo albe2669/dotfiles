@@ -4,7 +4,6 @@
 
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
-| act | 0.2.92 | — | — |
 | bandwhich | 0.23.1 | — | — |
 | bat | 0.26.1 | — | — |
 | bfg-repo-cleaner | 1.15.0 | — | — |
@@ -26,7 +25,6 @@
 | gnutar | 1.35 | — | — |
 | herdr | 0.9.5 | — | — |
 | hyperfine | 2.0.0 | — | — |
-| insomnia | 13.3.1 | — | — |
 | jq | 1.8.2 | — | — |
 | kiln | 0.1.0 | — | — |
 | kind | 0.33.0 | — | — |
@@ -43,7 +41,6 @@
 | pre-commit | 4.7.0 | — | — |
 | preflight | unknown | — | $XDG_CONFIG_HOME/raycast/extensions/preflight, ~/.config/raycast/extensions/preflight |
 | procs | 0.14.12 | — | — |
-| pup | 0.46.0 | — | — |
 | ripdrag | 0.4.13 | — | — |
 | ripgrep | 15.2.0 | — | — |
 | rtk | 1.1.0 | — | — |
