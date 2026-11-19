@@ -184,6 +184,10 @@
       ui = {
         sidebar.spaces.row_gap = 1;
       };
+
+      experimental = {
+        pane_history = true;
+      };
     };
 
     # herdr plugin link re-registers harmlessly when already linked; the
