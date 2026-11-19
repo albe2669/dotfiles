@@ -11,6 +11,7 @@
     imports = [
       ./colorschemes.nix
       ./plugins/completion.nix
+      ./plugins/kotlin.nix
       ./plugins/gitsigns.nix
       ./plugins/which-key.nix
       ./plugins/ui.nix

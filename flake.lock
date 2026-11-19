@@ -1222,6 +1222,22 @@
         "url": "file:/Users/arn/Documents/Coding/Rust/kiln"
       }
     },
+    "kotlin-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794673006,
+        "narHash": "sha256-raEIjlUDJKMFw31DVvsv7FJJ+2GUke5qV8IPAga9EcM=",
+        "owner": "AlexandrosAlexiou",
+        "repo": "kotlin.nvim",
+        "rev": "1082a1570138fd97f0ad3f28f0f9e830b1989c9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AlexandrosAlexiou",
+        "repo": "kotlin.nvim",
+        "type": "github"
+      }
+    },
     "litellm": {
       "flake": false,
       "locked": {
@@ -1807,6 +1823,7 @@
         "hyprland-plugins": "hyprland-plugins",
         "kache": "kache",
         "kiln": "kiln",
+        "kotlin-nvim": "kotlin-nvim",
         "llm-agents": "llm-agents",
         "mac-app-util": "mac-app-util",
         "nix-darwin": "nix-darwin",

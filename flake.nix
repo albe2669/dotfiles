@@ -146,6 +146,12 @@
       url = "github:nklmilojevic/sofka";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kotlin-nvim = {
+      # Editor-side client for JetBrains kotlin-lsp; not in nixpkgs,
+      # upstream ships no flake.nix
+      url = "github:AlexandrosAlexiou/kotlin.nvim";
+      flake = false;
+    };
 
     nixvim.url = "github:nix-community/nixvim";
 

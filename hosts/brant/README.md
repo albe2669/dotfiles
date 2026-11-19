@@ -94,6 +94,9 @@
 | golangci-lint | 2.14.0 | — | — |
 | gopls | 0.24.0 | — | — |
 | kache | 2.0.0 | — | — |
+| kotlin | 2.4.21 | — | — |
+| kotlin-lsp | 271.2085.0 | — | — |
+| ktlint | 1.8.0 | — | — |
 | lua | 5.1.5 | — | — |
 | lua-language-server | 3.19.2 | — | — |
 | nil | 2026-07-23 | — | — |
