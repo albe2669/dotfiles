@@ -37,6 +37,9 @@ in {
       spotify_client_secret = {
         sopsFile = ./secrets/spotify.yaml;
       };
+      aoc_session = {
+        sopsFile = ./secrets/aoc.yaml;
+      };
     };
   };
 }

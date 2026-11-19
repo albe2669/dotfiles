@@ -81,6 +81,7 @@
 
 | Name | Version | Log location | Config location |
 |------|---------|--------------|-----------------|
+| aoc-cli | 0.12.0 | — | — |
 | apple-sdk | 14.4 | — | — |
 | basedpyright | 1.39.8 | — | — |
 | cargo | 1.99.0 | — | — |
