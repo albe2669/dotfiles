@@ -60,7 +60,6 @@
     self.modules.combined.javascript
     self.modules.combined.kiln
     self.modules.combined.kotlin
-    self.modules.combined.v
   ];
 
   system.keyboard = {
