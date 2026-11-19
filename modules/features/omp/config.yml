@@ -51,7 +51,7 @@ github:
   enabled: true
 disabledProviders:
   - github
-setupVersion: 2
+setupVersion: 3
 hideThinkingBlock: false
 advisor:
   enabled: false
