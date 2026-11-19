@@ -7,11 +7,10 @@
   system = "x86_64-linux";
 
   # Same package-set construction as modules/home-manager-wiring.nix:
-  # single instantiation, fabric allowed to be broken.
+  # single instantiation.
   pkgs = import inputs.nixpkgs-unstable {
     inherit system;
     config.allowUnfree = true;
-    config.problems.handlers.fabric.broken = "warn";
     overlays = import ../overlays {inherit inputs;};
   };
 
