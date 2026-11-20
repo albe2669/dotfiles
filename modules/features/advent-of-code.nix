@@ -16,7 +16,7 @@
 
     sops.templates."adventofcode.session" = {
       content = "${config.sops.placeholder.aoc_session}";
-      path = "${config.xdg.configHome}/adventofcode.session";
+      path = "${config.home.homeDirectory}/.adventofcode.session";
     };
   };
 }
