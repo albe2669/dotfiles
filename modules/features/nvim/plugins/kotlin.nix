@@ -23,5 +23,20 @@ in {
     ''
       vim.env.KOTLIN_LSP_DIR = "${kotlin-lsp}/share/kotlin-lsp"
       require("kotlin").setup({})
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = { "*.kt", "*.kts" },
+        callback = function(args)
+          if #vim.lsp.get_clients({ name = "kotlin_lsp", bufnr = args.buf }) == 0 then
+            return
+          end
+          vim.lsp.buf.format({
+            bufnr = args.buf,
+            name = "kotlin_lsp",
+            async = false,
+            timeout_ms = 3000,
+          })
+        end,
+      })
     '';
 }
