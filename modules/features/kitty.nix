@@ -29,6 +29,9 @@
           cursor_shape = "block";
         }
         // lib.optionalAttrs config.opts.variables.isDarwin {
+          # Programs such as wt use Alt+<key> shortcuts; without this,
+          # kitty sends Option+c as the composed character ç.
+          macos_option_as_alt = "yes";
           background_blur = 48;
           shell = "${pkgs.fish}/bin/fish";
         };
